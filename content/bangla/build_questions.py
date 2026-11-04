@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Generate question.md, answer.md and import.md for each Bangla topic.
+"""Generate question.md and answer.md for the Bangla topic (the importer reads this pair).
 
 Run from this folder:  python build_questions.py
-Page numbers in import.md are NOTE PDF pages (the site links "see page N" to the note viewer),
+The "পৃষ্ঠা" line in answer.md is a NOTE PDF page (the site links "see page N" to the note viewer),
 set in PAGES below after the note layout is final.
 """
 import random
@@ -69,7 +69,8 @@ def write(topic):
     n = len(qs)
 
     # question.md
-    L = [f"# {t}: প্রশ্ন", "", f"মোট প্রশ্ন {bn(n)}টি। প্রতিটির চারটি অপশন, একটি সঠিক। উত্তর ও ব্যাখ্যা `answer.md` ফাইলে।", ""]
+    L = ["---", "subject: Bangla", f"topic: {topic['num']}", "lang: bn", "---", "",
+         f"# {t}: প্রশ্ন", "", f"মোট প্রশ্ন {bn(n)}টি। প্রতিটির চারটি অপশন, একটি সঠিক। উত্তর ও ব্যাখ্যা `answer.md` ফাইলে।", ""]
     for x in qs:
         L += heading(x, qs)
         L += [f"### Q{x['n']}. {x['q']}", ""]
@@ -88,18 +89,10 @@ def write(topic):
         L += [f"### Q{x['n']}. {x['q']}", "",
               f"**উত্তর:** {LET[x['ans']]}. {x['opts'][x['ans']]}", "",
               f"**ব্যাখ্যা:** {x['reason']}", "",
+              f"**পৃষ্ঠা:** {x['page']}", "",
               f"**উৎস:** {x['src']}", "", "---", ""]
     (d / "answer.md").write_text("\n".join(L), encoding="utf-8", newline="\n")
 
-    # import.md (docs/QUESTION_FORMAT.md)
-    L = ["---", "subject: Bangla", f"topic: {topic['num']}", "lang: bn", "---", "",
-         f"# বাংলা: {t}", ""]
-    for x in qs:
-        L += heading(x, qs)
-        L += [f"### Q{x['n']}. {x['q']}", ""]
-        L += [f"- {LET[k]}. {o}" for k, o in enumerate(x["opts"])]
-        L += ["", f"**Answer:** {LET[x['ans']]}", "", f"**Reason:** {x['reason']}", "", f"**Page:** {x['page']}", "", "---", ""]
-    (d / "import.md").write_text("\n".join(L), encoding="utf-8", newline="\n")
     return n, new_count
 
 

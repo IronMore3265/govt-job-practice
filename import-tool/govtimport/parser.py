@@ -13,7 +13,10 @@ LANGS = ("en", "bn")
 
 HEAD = re.compile(r"^###\s+Q\s*(\d+)\s*[.:)]?\s*(.*)$")
 OPTION = re.compile(r"^-\s*\(?([A-Za-z])[.)]\s*(.*)$")
-FIELD = re.compile(r"^\*\*(Answer|Reason|Explanation|Page|Figure|Topic|Lang|Marking points):\*\*\s*(.*)$", re.I)
+FIELD = re.compile(r"^\*\*(Answer|Reason|Explanation|Page|Figure|Topic|Lang|Marking points|Source|উত্তর|ব্যাখ্যা|পৃষ্ঠা|উৎস):\*\*\s*(.*)$", re.I)
+# Bangla field names used in answer.md map to the same fields. 'source' is a note for people and is ignored.
+ALIAS = {"উত্তর": "answer", "ব্যাখ্যা": "reason", "পৃষ্ঠা": "page", "উৎস": "source", "explanation": "reason"}
+ANSWER_VALUE = re.compile(r"^\(?([A-Da-d])\)?(?:\s*[.):]\s*(.*))?$")
 SECTION = re.compile(r"^#{1,2}\s")
 RULE = re.compile(r"^-{3,}\s*$")
 
@@ -29,6 +32,7 @@ class Question:
     text: str = ""
     options: dict = field(default_factory=dict)
     answer: str = ""
+    answer_text: str = ""  # answer.md writes "B. option text"; the text is cross-checked against question.md
     reason: str = ""
     page: int | None = None
     figure: str | None = None
@@ -69,9 +73,11 @@ def read_text(path: Path) -> tuple[str | None, list]:
     return text.replace("\r\n", "\n").replace("\r", "\n"), errors
 
 
-def _front_matter(lines: list[str], pf: ParsedFile) -> int:
+def _front_matter(lines: list[str], pf: ParsedFile, required: bool = True) -> int:
     """Read the header. Returns the index of the first line after it."""
     if not lines or lines[0].strip() != "---":
+        if not required:
+            return 0
         pf.errors.append(f"{Path(pf.path).name}: the file must start with a header between two --- lines (subject, topic, lang)")
         return 0
     end = next((i for i in range(1, len(lines)) if lines[i].strip() == "---"), None)
@@ -104,10 +110,12 @@ def _front_matter(lines: list[str], pf: ParsedFile) -> int:
     return end + 1
 
 
-def parse_text(text: str, path: str) -> ParsedFile:
+def parse_text(text: str, path: str, kind: str = "full") -> ParsedFile:
+    """kind: "full" (questions with answers, the single-file format), "questions" (question.md: no answers needed)
+    or "answers" (answer.md: answers, reasons and pages, no options needed; header optional)."""
     pf = ParsedFile(path=path)
     lines = text.split("\n")
-    i0 = _front_matter(lines, pf)
+    i0 = _front_matter(lines, pf, required=kind != "answers")
 
     q: Question | None = None
     mode = None  # "text", ("opt", label), ("field", name) or None
@@ -120,7 +128,7 @@ def parse_text(text: str, path: str) -> ParsedFile:
             q.text = q.text.strip()
             q.reason = q.reason.strip()
             q.options = {k: v.strip() for k, v in q.options.items()}
-            _check_shape(q)
+            _check_shape(q, kind)
             pf.questions.append(q)
         q = None
 
@@ -149,12 +157,13 @@ def parse_text(text: str, path: str) -> ParsedFile:
         f = FIELD.match(line)
         if f:
             name, value = f.group(1).lower(), f.group(2).strip()
-            mode, reason_open = ("field", name), name in ("reason", "explanation")
+            name = ALIAS.get(name, name)
+            mode, reason_open = ("field", name), name == "reason"
             blank_before = False
             _set_field(q, name, value)
             continue
 
-        in_options = mode == "text" or (isinstance(mode, tuple) and mode[0] == "opt")
+        in_options = kind != "answers" and (mode == "text" or (isinstance(mode, tuple) and mode[0] == "opt"))
         o = OPTION.match(line) if in_options else None
         if o:
             label = o.group(1).upper()
@@ -171,7 +180,7 @@ def parse_text(text: str, path: str) -> ParsedFile:
             blank_before = True
             if mode == "text":
                 q.text += "\n"
-            elif isinstance(mode, tuple) and mode[1] in ("reason", "explanation"):
+            elif isinstance(mode, tuple) and mode[1] == "reason":
                 q.reason += "\n"
             continue
 
@@ -202,8 +211,14 @@ def parse_text(text: str, path: str) -> ParsedFile:
 
 def _set_field(q: Question, name: str, value: str) -> None:
     if name == "answer":
-        q.answer = value.strip().strip(".").upper()
-    elif name in ("reason", "explanation"):
+        m = ANSWER_VALUE.match(value.strip())
+        if m:
+            q.answer, q.answer_text = m.group(1).upper(), (m.group(2) or "").strip()
+        else:
+            q.answer = value.strip().strip(".").upper()
+    elif name == "source":
+        pass
+    elif name == "reason":
         q.reason = value
     elif name == "page":
         m = re.match(r"^(\d+)\b", value)
@@ -231,9 +246,16 @@ def _set_field(q: Question, name: str, value: str) -> None:
         q.warnings.append("**Marking points:** is for written questions and is ignored here")
 
 
-def _check_shape(q: Question) -> None:
+def _check_shape(q: Question, kind: str = "full") -> None:
     if not q.text:
         q.errors.append("the question text is empty")
+    if kind != "answers":
+        _check_options(q)
+    if kind != "questions":
+        _check_answer_fields(q)
+
+
+def _check_options(q: Question) -> None:
     missing = [x for x in LABELS if x not in q.options]
     if missing:
         q.errors.append(f"needs exactly four options A to D, missing {', '.join(missing)}")
@@ -243,6 +265,9 @@ def _check_shape(q: Question) -> None:
     texts = [t.casefold() for t in q.options.values() if t]
     if len(texts) != len(set(texts)):
         q.errors.append("two options have the same text")
+
+
+def _check_answer_fields(q: Question) -> None:
     if q.answer not in LABELS:
         q.errors.append(f"**Answer:** must be one letter from A to D, not '{q.answer}'" if q.answer else "**Answer:** is missing")
     if not q.reason:
@@ -251,11 +276,11 @@ def _check_shape(q: Question) -> None:
         q.errors.append("**Page:** is missing (the source page of the book or note)")
 
 
-def parse_file(path: str | Path) -> ParsedFile:
+def parse_file(path: str | Path, kind: str = "full") -> ParsedFile:
     path = Path(path)
     text, errors = read_text(path)
     if text is None:
         return ParsedFile(path=str(path), errors=errors)
-    pf = parse_text(text, str(path))
+    pf = parse_text(text, str(path), kind)
     pf.errors = errors + pf.errors
     return pf

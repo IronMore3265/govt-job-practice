@@ -20,10 +20,13 @@ Add the topics in Admin > Topics first: a question file points at an existing to
 ## Commands (run from `import-tool/`)
 
 ```bash
-# 1. Check files. Offline, writes nothing. Folders are searched for *.md files.
-python -m govtimport check my_questions/english_topic3.md
+# 1. Check files. Offline, writes nothing.
+#    A folder with question.md + answer.md is read as one pair (see docs/QUESTION_FORMAT.md).
+python -m govtimport check ../content/bangla/01-bangla-sahitto
+python -m govtimport check my_questions/english_topic3.md          # old single-file format
 
 # 2. Preview against the database. Reads only, writes nothing.
+python -m govtimport import ../content/bangla/01-bangla-sahitto --dry-run
 python -m govtimport import my_questions/english_topic3.md --dry-run
 
 # 3. Import. Questions arrive as drafts. Add --approve to approve them straight away.

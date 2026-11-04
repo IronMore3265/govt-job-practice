@@ -3,6 +3,56 @@
 One Markdown file per topic (or part of a topic). Same habit as the MSc `*_MCQ.md` files, with a small header so the
 importer knows where the questions belong. `import-tool/samples/` has working examples in English, Bangla and Math.
 
+## Two-file format: question.md + answer.md (preferred)
+
+Keep the questions and their answers in two files in the same folder. The importer reads the pair, matches questions by
+number and cross-checks them, so a typo or a shuffled file is caught before anything is written.
+
+```markdown
+<!-- question.md -->
+---
+subject: Bangla
+topic: 1
+lang: bn
+---
+
+# Any title (ignored)
+
+## Chapter heading (ignored)
+
+### Q1. বাংলা লিপির উৎস কী?
+
+- A. সংস্কৃত
+- B. ব্রাহ্মী লিপি
+- C. আরবি লিপি
+- D. চীনা লিপি
+```
+
+```markdown
+<!-- answer.md (no header needed) -->
+### Q1. বাংলা লিপির উৎস কী?
+
+**উত্তর:** B. ব্রাহ্মী লিপি
+
+**ব্যাখ্যা:** বাংলা লিপি ব্রাহ্মী থেকে এসেছে।
+
+**পৃষ্ঠা:** 7
+
+**উৎস:** বিগত পরীক্ষা
+```
+
+- `question.md` has the header (`subject`, `topic`, `lang`) and, for each question, the `### Qn.` heading and options A to D.
+- `answer.md` has, for each question, the same heading, `**উত্তর:**` (a letter, or letter plus the option text), `**ব্যাখ্যা:**`
+  and `**পৃষ্ঠা:**` (the page of the note PDF). `**উৎস:**` is a note for people and is ignored. The English names
+  `**Answer:**`, `**Reason:**`, `**Page:**` also work, and so do `**Figure:**`, `**Topic:**` and `**Lang:**`.
+- Checked: every question has an answer, no answer without a question, the question text is identical in both files, and
+  the option text written after the answer letter equals that option in `question.md`.
+- Run it on the folder: `python -m govtimport check <folder>` and `python -m govtimport import <folder>`. Naming either file
+  also means the pair. In a folder that holds both files, other `.md` files are ignored.
+- `question.md` can also be used on its own for the old single-file format below, which still works.
+
+## Single-file format (still supported)
+
 ## Example
 
 ```markdown

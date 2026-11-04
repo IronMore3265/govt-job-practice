@@ -11,8 +11,7 @@ no OCR). Book page N is PDF page N + 2. Read pages by rendering them (see "Readi
 
 - Nabil names the topic (for example "বাংলা সাহিত্য"). That name is the topic on the website. Several book chapters
   that he lists under one topic go into **one** note PDF and **one** question set. Never make one topic per chapter.
-- Folder: `content/bangla/<NN>-<topic-slug>/` with `note.pdf` (git-ignored), `note.html`, `question.md`, `answer.md`,
-  `import.md`. Shared: `content/bangla/_build/` (stylesheet, fonts, `build_notes.py`, `coverage_check.py`),
+- Folder: `content/bangla/<NN>-<topic-slug>/` with `note.pdf` (git-ignored), `note.html`, `question.md`, `answer.md`. Shared: `content/bangla/_build/` (stylesheet, fonts, `build_notes.py`, `coverage_check.py`),
   `build_questions.py`, `qdata_*.py` (the question source of truth).
 - The note starts with a contents page (chapter list with page numbers), then the chapters in book order. Page numbers
   are continuous, the cover page is page 1.
@@ -58,12 +57,21 @@ no OCR). Book page N is PDF page N + 2. Read pages by rendering them (see "Readi
   that is the page of the **note PDF** where the fact is taught (the site turns "page N" into a link to the viewer),
   not the book page.
 - Files from one source (`qdata_*.py` -> `build_questions.py`):
-  - `question.md`: questions only, chapter headings, no answers.
-  - `answer.md`: quick key, then answer, explanation, source for every question.
-  - `import.md`: the importer format of `docs/QUESTION_FORMAT.md` (`subject: Bangla`, `topic: <number>`, `lang: bn`).
-    The topic number must match the number in Admin > Topics, so ask or check it. Never point the importer at the folder
-    (it would read `question.md` and `answer.md` as question files); pass `import.md`.
-- Check with `python -m govtimport check content/bangla/<folder>/import.md` (offline, writes nothing).
+  - `question.md`: header (`subject: Bangla`, `topic: <number>`, `lang: bn`), chapter headings, questions and options, no
+    answers.
+  - `answer.md`: quick key, then for every question the answer (`উত্তর`), explanation (`ব্যাখ্যা`), note page (`পৃষ্ঠা`) and
+    source (`উৎস`).
+  - There is no separate import file. **The importer reads the question.md + answer.md pair** (format in
+    `docs/QUESTION_FORMAT.md`). The `topic` number must match Admin > Topics, so check it.
+- Check, then upload (from `import-tool/`):
+  ```
+  python -m govtimport check ../content/bangla/<folder>             # offline
+  python -m govtimport import ../content/bangla/<folder> --dry-run  # reads the database, writes nothing
+  python -m govtimport import ../content/bangla/<folder>            # writes the questions as drafts
+  ```
+  Questions arrive as **drafts**; add `--approve` or approve them in the admin question bank. Re-running is safe (a
+  question whose text already exists in the topic is skipped). After a change to an existing question, edit it in the
+  admin question bank instead of re-importing.
 
 ## 5. Coverage rule (most important)
 
@@ -92,10 +100,10 @@ no OCR). Book page N is PDF page N + 2. Read pages by rendering them (see "Readi
 ## 7. Build and verify
 
 ```
-python content/bangla/build_questions.py        # question.md, answer.md, import.md (asserts multiple of 20)
+python content/bangla/build_questions.py        # question.md and answer.md (asserts multiple of 20)
 python content/bangla/_build/build_notes.py     # note.html and note.pdf (needs: pip install playwright, Chromium)
 python content/bangla/_build/coverage_check.py  # must say 0 not covered
-python -m govtimport check content/bangla/<folder>/import.md   # from import-tool/
+python -m govtimport check ../content/bangla/<folder>   # from import-tool/
 ```
 
 - Open or rasterize every note page and look at it: conjunct letters correct, nothing clipped, nothing overlapping,

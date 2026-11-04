@@ -6,19 +6,44 @@ from pathlib import Path
 from . import importer, notes, report
 from .checks import FIGURE_EXT, FIGURE_MAX, check_files
 from .client import Supabase
+from .pairs import ANSWER_NAME, load_pair, question_file_in
 from .parser import ParsedFile, parse_file
 
 
-def expand(paths: list[str]) -> list[Path]:
-    files: list[Path] = []
+def expand(paths: list[str]) -> list:
+    """Turn the command line paths into units. A unit is a Path (one single-file question Markdown) or a
+    (question.md, answer.md) tuple. A folder that holds question.md and answer.md is one pair, and its other
+    Markdown files are ignored. A single path that is a question.md or answer.md means that pair."""
+    units: list = []
+
+    def add(unit) -> None:
+        if unit not in units:
+            units.append(unit)
+
     for p in map(Path, paths):
-        files += sorted(f for f in p.rglob("*.md") if f.name.lower() != "readme.md") if p.is_dir() else [p]
-    return files
+        if p.is_dir():
+            for d in [p] + sorted(x for x in p.rglob("*") if x.is_dir()):
+                q = question_file_in(d)
+                if q is not None and (d / ANSWER_NAME).is_file():
+                    add((q, d / ANSWER_NAME))
+                    continue
+                for f in sorted(d.glob("*.md")):
+                    if f.name.lower() != "readme.md":
+                        add(f)
+        elif p.name.lower() in ("question.md", "questions.md", ANSWER_NAME):
+            q = p if p.name.lower() != ANSWER_NAME else question_file_in(p.parent)
+            a = p.parent / ANSWER_NAME
+            if q is None or not a.is_file():
+                raise SystemExit(f"{p}: question.md and answer.md must sit side by side in the same folder.")
+            add((q, a))
+        else:
+            add(p)
+    return units
 
 
 def load(paths: list[str], figures_dir: str | None) -> tuple[list[ParsedFile], int]:
     """Parse and check files, print every problem. Returns (files, number of errors)."""
-    files = [parse_file(p) for p in expand(paths)]
+    files = [load_pair(*u) if isinstance(u, tuple) else parse_file(u) for u in expand(paths)]
     if not files:
         raise SystemExit("No Markdown files given.")
     for note in check_files(files, Path(figures_dir) if figures_dir else None):
@@ -125,7 +150,7 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="govtimport", description="Import questions, note PDFs and figures.")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    c = sub.add_parser("check", help="validate Markdown files, offline, writes nothing")
+    c = sub.add_parser("check", help="validate question files (a folder with question.md + answer.md, or single files), offline, writes nothing")
     c.add_argument("files", nargs="+")
     c.add_argument("--figures-dir", help="folder with figure images (default: a 'figures' folder next to each file)")
     c.set_defaults(fn=cmd_check)
