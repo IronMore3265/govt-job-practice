@@ -60,8 +60,8 @@ COVER.update({
 )
 
 
-def page_texts():
-    raw = (HERE.parent / "01-bangla-sahitto" / "note.html").read_text(encoding="utf-8")
+def page_texts(folder):
+    raw = (HERE.parent / folder / "note.html").read_text(encoding="utf-8")
     parts = raw.split('<section class="page')[1:]
     out = []
     for p in parts:
@@ -75,13 +75,36 @@ def norm(s):
     return re.sub(r"\s+", " ", s.replace("‌", "").replace("‍", "")).strip(" ।.")
 
 
-def main():
-    pages = page_texts()
-    qs = bq.prepare(bq.TOPIC)
+# Topic 2 (আদি বা প্রাচীন যুগ: চর্যাপদ): same idea, for options that are labels or worded differently in the note.
+COVER2 = {
+    "চর্যাপদের খণ্ডিত পদগুলো তিব্বতি": ["সুকুমার সেন", "প্রাচীন বাংলায় রূপান্তর"],
+    "চর্যাপদের বর্ণনা অনুযায়ী ডোম্বীদের": ["তাঁত বোনা", "চাঙারি", "মদ চোয়ানো"],
+    "চর্যাপদ আবিষ্কৃত হয় কোথা থেকে": ["নেপালের রাজদরবার", "রাজগ্রন্থশালা"],
+    "বাংলা ভাষার প্রথমকাব্য সংকলন": ["হরপ্রসাদ শাস্ত্রী"],
+    "চর্যাপদ কী?": ["কাব্যধর্মী"],
+    "চর্যাপদের কবি কারা?": ["লুইপা", "ভুসুকুপা", "শবরপা"],
+    "চর্যাপদের প্রবাদ বাক্য কয়টি": ["৬টি"],
+    "বঙ্গীয় সাহিত্য পরিষদ কর্তৃক প্রকাশিত": ["হরপ্রসাদ শাস্ত্রী"],
+    "হরপ্রসাদ শাস্ত্রী 'চর্যাপদ' যে গ্রন্থে": ["হাজার বছরের পুরাণ"],
+    "চর্যাপদের কোন কবি নিজেকে বাঙালি": ["ভুসুকুপা", "বঙ্গালী"],
+    "চর্যাপদের কোন পদটি খণ্ডিত": ["২৩ নং পদ"],
+    "চর্যাপদের কোন পদকর্তা মহিলা কবি": ["কুক্কুরীপা", "মহিলা কবি"],
+    "ড. মুহম্মদ শহীদুল্লাহর মতে প্রাচীনতম চর্যাকার": ["শবরপা", "৬৮০-৭৬০"],
+    "ড.মুহম্মদ শহীদুল্লাহর মতে, চর্যাপদের ভাষা": ["বঙ্গকামরূপী"],
+    "চর্যাপদের কবিদের মধ্যে সবচেয়ে বেশি": ["কাহ্নপা", "১৩টি"],
+    "'চর্যাপদ'র মোট পদকর্তা": ["২৪ জন"],
+}
+COVER_BY_TOPIC = {1: COVER, 2: COVER2}
+
+
+def check_topic(topic):
+    pages = page_texts(topic["folder"])
+    qs = bq.prepare(topic)
+    cover = COVER_BY_TOPIC[topic["num"]]
     bad = []
     for x in qs:
         need = None
-        for k, v in COVER.items():
+        for k, v in cover.items():
             if x["q"].startswith(k):
                 need = v
                 break
@@ -91,10 +114,19 @@ def main():
         miss = [n for n in need if norm(n) not in txt]
         if miss:
             bad.append((x["n"], x["page"], x["q"], x["opts"][x["ans"]], miss))
-    print(f"{len(qs)} questions checked, {len(bad)} not covered on their note page")
+    print(f"{topic['folder']}: {len(qs)} questions checked, {len(bad)} not covered on their note page")
     for n, pg, q, a, miss in bad:
         print(f"  Q{n} (page {pg}): {q[:60]} | answer: {a} | missing: {miss}")
-    return 1 if bad else 0
+    return len(bad)
+
+
+def main():
+    want = {int(a) for a in sys.argv[1:]}
+    total = 0
+    for t in bq.TOPICS:
+        if not want or t["num"] in want:
+            total += check_topic(t)
+    return 1 if total else 0
 
 
 if __name__ == "__main__":

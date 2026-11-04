@@ -106,6 +106,18 @@ python content/bangla/_build/coverage_check.py  # must say 0 not covered
 python -m govtimport check ../content/bangla/<folder>   # from import-tool/
 ```
 
+Topics so far (each has its own question data file, note builder and entry in `TOPICS` in `build_questions.py`):
+
+| Topic | Folder | Question data | Note builder |
+|---|---|---|---|
+| 1 বাংলা সাহিত্য (120 questions) | `01-bangla-sahitto` | `qdata_t1_t3.py`, `qdata_t2_t4.py` | `_build/build_notes.py` |
+| 2 আদি বা প্রাচীন যুগ: চর্যাপদ (80 questions, book pages 18 to 25) | `02-adi-prachin-jug` | `qdata_charyapad.py` | `_build/build_note_charyapad.py` |
+
+`build_questions.py` and `coverage_check.py` take an optional topic number (`python content/bangla/build_questions.py 2`).
+A new topic needs: a `qdata_*.py` (P = past MCQ, D = past MCQ with a doubtful key, N = new), a note builder that reuses the
+helpers in `build_notes.py`, a page map (`PAGES`) and a `COVER` table for the coverage check. A question's `sec` key points to
+the note page that teaches it, so keep the page map in step with the note layout.
+
 - Open or rasterize every note page and look at it: conjunct letters correct, nothing clipped, nothing overlapping,
   diagram labels readable.
 - Do not commit note PDFs or the book. The folder, scripts, `.md` files and `note.html` can be committed when Nabil says
