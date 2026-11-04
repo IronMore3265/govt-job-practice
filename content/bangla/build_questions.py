@@ -13,6 +13,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from qdata_t1_t3 import T1, T3  # noqa: E402
 from qdata_t2_t4 import T2, T4  # noqa: E402
 from qdata_charyapad import T5  # noqa: E402
+from qdata_mj_a import T6_1, T6_2, T6_3, T6_4, T6_5  # noqa: E402
+from qdata_mj_b import T6_6, T6_7, T6_8, T6_9, T6_10, T6_11  # noqa: E402
+from qdata_mj_c import T6_12, T6_13, T6_14  # noqa: E402
 
 HERE = Path(__file__).parent
 BN = "০১২৩৪৫৬৭৮৯"
@@ -37,11 +40,24 @@ CH_TITLES1 = {1: "বাঙালি জাতি", 2: "বাংলা ভা�
 PAGES2 = {1: {"a": 2, "b": 3, "c": 4, "p": 5, "d": 6, "e": 7, "f": 8, "g": 9, "x": 10}}
 CH_TITLES2 = {1: "চর্যাপদ"}
 
+# note PDF pages of topic 3 (see _build/build_note_moddhojug.py): cover=1, a=2 intro, b=3 dark age, c=4 and d=5 Shrikrishnakirtan,
+# e=6 padavali, f=7 and g=8 mangalkavya, h=9 biography and nath, i=10 marsiya, j=11 and k=12 folk, l=13 translation,
+# p=14 romantic tales intro and translators table, m=15 the two stories, n=16 Arakan and patrons, o=17 transition age,
+# x=18 and y=19 book answer-key notes
+_SEC3 = dict(a=2, b=3, c=4, d=5, e=6, f=7, g=8, h=9, i=10, j=11, k=12, l=13, p=14, m=15, n=16, o=17, x=18, y=19)
+PAGES3 = {c: _SEC3 for c in range(1, 15)}
+CH_TITLES3 = {1: "মধ্যযুগ পরিচিতি", 2: "অন্ধকার যুগ", 3: "শ্রীকৃষ্ণকীর্তন", 4: "বৈষ্ণব পদাবলি", 5: "মঙ্গলকাব্য", 6: "জীবনী সাহিত্য",
+              7: "নাথ সাহিত্য", 8: "মর্সিয়া সাহিত্য", 9: "লোকসাহিত্য", 10: "অনুবাদ সাহিত্য", 11: "রোমান্টিক প্রণয়োপাখ্যান",
+              12: "আরাকান রাজসভা", 13: "মধ্যযুগে বাংলা সাহিত্যের পৃষ্ঠপোষক", 14: "যুগ সন্ধিক্ষণ"}
+
 TOPICS = [
     dict(num=1, folder="01-bangla-sahitto", title="বাংলা সাহিত্য",
          chapters=[(1, T1), (2, T2), (3, T3), (4, T4)], pages=PAGES1, ch_titles=CH_TITLES1),
     dict(num=2, folder="02-adi-prachin-jug", title="আদি বা প্রাচীন যুগ",
          chapters=[(1, T5)], pages=PAGES2, ch_titles=CH_TITLES2),
+    dict(num=3, folder="03-moddhojug", title="মধ্যযুগ",
+         chapters=[(1, T6_1), (2, T6_2), (3, T6_3), (4, T6_4), (5, T6_5), (6, T6_6), (7, T6_7), (8, T6_8), (9, T6_9),
+                   (10, T6_10), (11, T6_11), (12, T6_12), (13, T6_13), (14, T6_14)], pages=PAGES3, ch_titles=CH_TITLES3),
 ]
 TOPIC = TOPICS[0]  # kept for older scripts
 LET = "ABCD"

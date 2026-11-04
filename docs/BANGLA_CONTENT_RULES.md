@@ -112,8 +112,12 @@ Topics so far (each has its own question data file, note builder and entry in `T
 |---|---|---|---|
 | 1 বাংলা সাহিত্য (120 questions) | `01-bangla-sahitto` | `qdata_t1_t3.py`, `qdata_t2_t4.py` | `_build/build_notes.py` |
 | 2 আদি বা প্রাচীন যুগ: চর্যাপদ (80 questions, book pages 18 to 25) | `02-adi-prachin-jug` | `qdata_charyapad.py` | `_build/build_note_charyapad.py` |
+| 3 মধ্যযুগ (220 questions, book pages 26 to 55, 14 sections, 19 note pages) | `03-moddhojug` | `qdata_mj_a.py`, `qdata_mj_b.py`, `qdata_mj_c.py` | `_build/build_note_moddhojug.py` (pages in `mj_part1.py`, `mj_part2.py`, `mj_part3.py`) |
 
 `build_questions.py` and `coverage_check.py` take an optional topic number (`python content/bangla/build_questions.py 2`).
+For a long topic the note pages can be split over several modules (topic 3). Its answer-key pages (17 and 18 of the note, keys `x` and `y`)
+hold every fact that only the book's answer key states and every doubtful key, so those questions point to them.
+
 A new topic needs: a `qdata_*.py` (P = past MCQ, D = past MCQ with a doubtful key, N = new), a note builder that reuses the
 helpers in `build_notes.py`, a page map (`PAGES`) and a `COVER` table for the coverage check. A question's `sec` key points to
 the note page that teaches it, so keep the page map in step with the note layout.
