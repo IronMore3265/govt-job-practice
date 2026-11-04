@@ -285,6 +285,42 @@ export type Database = {
     Functions: {
       create_invite: { Args: never; Returns: InviteRow };
       redeem_invite: { Args: { p_code: string; p_user_id: string; p_name: string; p_email: string }; Returns: undefined };
+      start_session: { Args: { p_exam_id: string; p_set_id: string | null; p_topic_ids: string[] | null; p_retry_of: string | null }; Returns: string };
+      begin_session: { Args: { p_session_id: string }; Returns: string };
+      session_state: { Args: { p_session_id: string }; Returns: Json };
+      save_answer: { Args: { p_session_id: string; p_question_id: string; p_option_id: string | null; p_marked: boolean; p_seconds: number }; Returns: string };
+      finish_session: { Args: { p_session_id: string; p_timed_out: boolean }; Returns: Json };
+      get_review: { Args: { p_session_id: string }; Returns: Json };
+      my_history: {
+        Args: never;
+        Returns: {
+          session_id: string;
+          exam_id: string;
+          exam_name: string;
+          set_name: string | null;
+          is_retry: boolean;
+          finished_at: string;
+          timed_out: boolean;
+          score: number;
+          max_score: number;
+          negative_applied: number;
+          correct: number;
+          wrong: number;
+          skipped: number;
+          total: number;
+          seconds_used: number;
+        }[];
+      };
+      my_topic_stats: {
+        Args: never;
+        Returns: { topic_id: string; topic_number: number; topic_title: string; subject_name: string; asked: number; correct: number }[];
+      };
+      my_set_scores: { Args: { p_exam_id: string }; Returns: { set_id: string; best_score: number; last_score: number; max_score: number; tries: number }[] };
+      my_open_session: { Args: never; Returns: Json };
+      join_leaderboard: { Args: never; Returns: undefined };
+      leave_leaderboard: { Args: never; Returns: undefined };
+      leaderboard: { Args: { p_exam_id: string }; Returns: Json };
+      admin_storage_usage: { Args: never; Returns: Json };
       admin_save_question: {
         Args: {
           p_id: string | null;

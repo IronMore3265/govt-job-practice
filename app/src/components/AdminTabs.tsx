@@ -13,6 +13,7 @@ export function AdminTabs({ pending, reports }: { pending: number; reports: numb
     { href: "/admin/questions", label: "Questions", count: reports },
     { href: "/admin/sets", label: "Sets", count: 0 },
     { href: "/admin/students", label: "Students", count: pending },
+    { href: "/admin/settings", label: "Settings", count: 0 },
   ];
   return (
     <nav className="wrap" aria-label="Admin sections">

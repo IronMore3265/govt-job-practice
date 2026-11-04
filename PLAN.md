@@ -206,7 +206,9 @@ Visual references, all in `docs/design/` or linked: `exam-ui-mockup-v5.png` (the
 5. Phase 5: MCQ exam mode, countdown, 0.25 negative marking, palette, review after submit with explanation links to the viewer.
 6. Phase 6: History, weak topics, leaderboard, optional report PDF, admin storage usage and export, polish.
 
-Each phase ends with a short checklist of things to verify by hand, saved as `docs/PHASE<n>_CHECKLIST.md` like on the MSc site.
+Status (November 2026): Phases 1 to 6 are built. The combined hand-check list is `docs/FINAL_CHECKLIST.md`.
+
+Each phase writes a short checklist of things to verify by hand, saved as `docs/PHASE<n>_CHECKLIST.md` like on the MSc site. Phases are built back to back with no hand checks in between (decided after Phase 3). Claude verifies what it can itself (unit tests, build, lint, database tests that roll back), and Nabil gets one combined list when the last phase is done, tests the whole app then, and reports problems to be fixed.
 
 ## 12. Open questions
 
@@ -240,7 +242,7 @@ Rules carried over from the MSc site:
 - Single branch: `main` only, commit and push directly, no feature branches or pull requests unless asked.
 - Commits carry Nabil's name only, no co-author or attribution lines.
 - No em dashes in UI text.
-- Each phase ends with a list of things to verify by hand.
+- Each phase writes its hand-check list, and all lists are given to Nabil together after the last phase (section 11).
 
 Environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (server only), `CRON_SECRET`, `ADMIN_EMAIL`. The import tool uses its own git-ignored `.env` with the Supabase URL and service role key.
 

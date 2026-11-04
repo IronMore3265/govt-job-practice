@@ -26,7 +26,7 @@ Govt job exam practice website for Nabil and friends. MCQ only. Read `PLAN.md` f
 - UI follows PLAN.md section 10 (RoboNuggets style: cream background, orange question shadow, black option shadow, dashed explanation box). No em dashes in any UI text.
 - Single branch: `main` is the only branch. Commit and push to it directly. No feature branches or pull requests unless Nabil asks for one.
 - Never add Claude as a co-author or add attribution lines to commits or pull requests. Commits carry Nabil's name only.
-- At the end of each phase, stop and list what Nabil should verify by hand.
+- Build the remaining phases one after another without stopping between them. Each phase still writes its `docs/PHASE<n>_CHECKLIST.md`, but Nabil gets one combined list at the end and tests the whole app then, fixing what he finds afterwards. Stop early only when something cannot go on without him (a key or account only he has) or when an action could break or destroy live data. Do not ask him to check things in between.
 
 ## Environment variables
 `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (server only), `CRON_SECRET`, `ADMIN_EMAIL`.

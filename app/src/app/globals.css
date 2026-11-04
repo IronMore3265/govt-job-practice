@@ -1475,3 +1475,254 @@ body:has(.nav-pending) {
 .exam-selected .muted {
   color: var(--ink);
 }
+
+/* Note viewer (Phase 4): themed pages on cream, thumbnail drawer, orange progress bar. PLAN.md section 6.2 */
+.nv {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.nv-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 2px solid var(--ink);
+  padding: 12px 18px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nv-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #d9d4c6;
+  overflow: hidden;
+}
+
+.nv-bar i {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
+.nv-body {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  flex: 1;
+}
+
+.nv-thumbs {
+  position: sticky;
+  top: 132px;
+  align-self: start;
+  height: calc(100vh - 132px);
+  overflow-y: auto;
+  border-right: 2px solid var(--ink);
+  padding: 12px 10px 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg);
+}
+
+.nv-thumb {
+  position: relative;
+  width: 100%;
+  flex: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.nv-thumb canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nv-thumb span {
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  padding: 0 5px;
+}
+
+.nv-thumb-on {
+  border-color: var(--orange);
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+.nv-main {
+  padding: 22px 28px 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.nv-page {
+  position: relative;
+  flex: none;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+  scroll-margin-top: 140px;
+}
+
+.nv-page canvas {
+  display: block;
+}
+
+.nv-page .textLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.nv-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 18px;
+  background: var(--bg);
+  border-top: 2px solid var(--ink);
+}
+
+.nv-jump {
+  width: 64px;
+  text-align: center;
+}
+
+.start-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.nv-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (max-width: 860px) {
+  .nv-top {
+    padding: 8px 12px 8px;
+    gap: 6px;
+  }
+
+  .nv-head {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .nv-top .heading {
+    font-size: 17px;
+  }
+
+  .nv-sub {
+    display: none;
+  }
+
+  .nv-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nv-thumbs {
+    display: none;
+  }
+
+  .nv-main {
+    padding: 12px 10px 120px;
+  }
+
+  .nv-resume {
+    display: none;
+  }
+}
+
+@media print {
+  .nv {
+    display: none !important;
+  }
+}
+
+/* Exam screen and review (Phase 5) */
+.opt.opt-sel {
+  background: var(--ink);
+  color: var(--bg);
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.segment.segment-answered {
+  background: var(--ink);
+}
+
+.segment.segment-marked {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.exam-figure {
+  max-width: 100%;
+  max-height: 340px;
+  align-self: flex-start;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+}
+
+.report-q {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.report-box {
+  max-width: 420px;
+}
+
+.review-item {
+  gap: 14px;
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+@media (pointer: coarse) {
+  .segment {
+    height: 22px;
+  }
+}
