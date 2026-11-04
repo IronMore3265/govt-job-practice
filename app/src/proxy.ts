@@ -1,0 +1,48 @@
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+import type { Database } from "@/lib/database.types";
+
+// Pages a signed-out visitor may open. /font-test shows only sample sentences, no data.
+const PUBLIC_PATHS = ["/login", "/signup", "/font-test"];
+
+// Copied from the MSc site. Refreshes the Supabase session cookie on every page request and sends signed-out
+// visitors to /login. Whether a signed-in user is pending, active or admin is checked in the server pages and
+// layouts, where the database is reachable.
+export async function proxy(request: NextRequest) {
+  let response = NextResponse.next({ request });
+
+  const supabase = createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => request.cookies.getAll(),
+        setAll(list) {
+          list.forEach(({ name, value }) => request.cookies.set(name, value));
+          response = NextResponse.next({ request });
+          list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+        },
+      },
+    },
+  );
+
+  // Verifies the token locally (asymmetric signing keys) and refreshes it when it has expired.
+  // getUser would ask the Auth server on every request, prefetches included.
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims?.sub;
+
+  const { pathname } = request.nextUrl;
+  const isPublic = PUBLIC_PATHS.includes(pathname);
+
+  if (!user && !isPublic) {
+    const redirect = NextResponse.redirect(new URL("/login", request.url));
+    response.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+    return redirect;
+  }
+  return response;
+}
+
+export const config = {
+  // Skip static files, images and API routes (API routes do their own checks).
+  matcher: ["/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)"],
+};

@@ -1,0 +1,1436 @@
+/* RoboNuggets style, PLAN.md section 10. Copied from the MSc site's globals.css. Only these colors. Orange is for emphasis. */
+:root {
+  --bg: #f2efe8;
+  --ink: #1c1a16;
+  --muted: #6f6a5c;
+  --orange: #ff6b1a;
+  --card: #faf8f2;
+  --radius: 8px;
+  /* Outfit, "Noto Sans Bengali", sans-serif: Bangla letters inside mixed text fall back to Noto Sans Bengali. */
+  --font-stack: var(--font-outfit), var(--font-bengali), sans-serif;
+  --font-stack-bn: var(--font-bengali), var(--font-outfit), sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-stack);
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Layout */
+.shell {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 100vh;
+}
+
+.shell-wide {
+  max-width: 1180px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 520px) {
+  .shell-wide {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Home on a laptop: picker on the left, side column (invites, leaderboard) on the right. One column on phones. */
+.dash-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+@media (min-width: 960px) {
+  .dash-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Stays in view while the picker scrolls. Taller than the screen, it scrolls on its own. */
+  .dash-side {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 0 8px 8px 0;
+    scrollbar-width: thin;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.grow {
+  flex: 1;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* Type */
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.label-orange {
+  color: var(--orange);
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.heading {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.accent {
+  font-family: var(--font-doto), monospace;
+  font-weight: 900;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
+}
+
+/* Surfaces */
+.card {
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.card-shadow {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.card-orange {
+  background: var(--card);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: 8px 8px 0 var(--orange);
+}
+
+.dashed {
+  border: 2px dashed var(--ink);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: transparent;
+}
+
+/* Form controls */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input,
+.select {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+  box-shadow: 6px 6px 0 var(--ink);
+  outline: none;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--orange);
+}
+
+.input-sm {
+  padding: 7px 10px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 14px;
+}
+
+.field-box {
+  /* leaves room for the hard shadow */
+  padding-right: 6px;
+  padding-bottom: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.btn-primary {
+  background: var(--orange);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  color: var(--muted);
+}
+
+/* Pills and chips */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pill-active,
+.pill[aria-current="page"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.chip {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  padding: 2px 7px;
+  background: var(--card);
+}
+
+.chip-done {
+  background: var(--ink);
+  color: var(--orange);
+}
+
+.chip-now {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.chip-muted {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+/* Lists */
+.rows > * + * {
+  border-top: 1px dashed var(--muted);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.row-link {
+  text-decoration: none;
+}
+
+.row-link:hover .row-name {
+  text-decoration: underline;
+}
+
+.row-name {
+  font-weight: 600;
+}
+
+.exam-selected {
+  background: var(--orange);
+  border-radius: var(--radius);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Messages */
+.form-msg {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-msg[data-ok="false"] {
+  color: var(--orange);
+}
+
+.form-msg[data-ok="true"] {
+  color: var(--ink);
+}
+
+/* Tables on wide screens collapse to stacked rows on phones */
+.student {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 0;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.inline-form .field {
+  width: 120px;
+}
+
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 3px 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+.check input {
+  accent-color: var(--ink);
+}
+
+.code {
+  font-family: var(--font-doto), monospace;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 30px;
+  }
+  .input-sm {
+    width: 100%;
+  }
+  .inline-form .field {
+    width: 100%;
+  }
+}
+
+/* Figures (Phase 2): 1px ink border, original image, caption with label and page */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.figure-card {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.figure-card img {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--muted);
+}
+
+/* Question bank (Phase 3) */
+.textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.45;
+}
+
+.opt-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.opt-row .check {
+  margin-top: 4px;
+}
+
+/* Practice (Phase 4): home pickers, MCQ player, results. Plan section 11. */
+.shell-practice {
+  max-width: 640px;
+}
+
+.pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:is(.btn, .pill, .opt, .exam-card, .segment):focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/* Exam cards: ink border and black shadow, the selected card is orange and pressed */
+.exam-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: calc(100% - 6px);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  box-shadow: 6px 6px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.exam-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.exam-card-sub {
+  display: block;
+  color: var(--muted);
+}
+
+.exam-card-on,
+.exam-card-on:hover {
+  background: var(--orange);
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.exam-card-on .exam-card-sub {
+  color: var(--ink);
+}
+
+/* Timer pill: black with orange digits */
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.timer-pill b {
+  color: var(--orange);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-low {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.timer-low b {
+  color: var(--ink);
+}
+
+/* Progress segments: orange = right, black = wrong, empty = open */
+.segments {
+  display: flex;
+  gap: 4px;
+}
+
+.segment {
+  flex: 1;
+  height: 12px;
+  padding: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.segment-right {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.segment-wrong {
+  background: var(--ink);
+}
+
+.segment-current {
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.q-text {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: pre-line;
+}
+
+/* MCQ option cards: ink border, black shadow. Right is orange, wrong is black, both pressed. */
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: calc(100% - 6px);
+  text-align: left;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  box-shadow: 6px 6px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.opt:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.opt:disabled {
+  cursor: default;
+  color: var(--ink);
+}
+
+.opt-letter {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.opt-text {
+  padding-top: 2px;
+  white-space: pre-line;
+}
+
+.opt.opt-correct {
+  background: var(--orange);
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.opt.opt-wrong {
+  background: var(--ink);
+  color: var(--bg);
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.opt.opt-dim {
+  opacity: 0.55;
+}
+
+/* Results */
+.score-big {
+  font-family: var(--font-doto), monospace;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.score-of {
+  color: var(--muted);
+  font-size: 32px;
+}
+
+.bar {
+  height: 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--orange);
+}
+
+.review-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* Navigation feedback: a clicked link dims until its page arrives, and loading.tsx shows a placeholder */
+.nav-pending {
+  display: none;
+}
+
+a:has(> .nav-pending) {
+  opacity: 0.55;
+  cursor: progress;
+  transition: opacity 0.1s 0.05s;
+}
+
+body:has(.nav-pending) {
+  cursor: progress;
+}
+
+.skeleton {
+  height: 120px;
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton-short {
+  height: 64px;
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* Exam cards sit two or three wide on a laptop, one wide on a phone */
+.exam-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* Briefing before a session starts */
+.brief {
+  scroll-margin: 24px;
+}
+
+.brief-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.brief-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brief-keys {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 10px 12px;
+  align-items: center;
+}
+
+.opt.opt-key {
+  width: 48px;
+  padding: 6px 8px;
+  cursor: default;
+}
+
+.segment.segment-key {
+  display: block;
+  width: 48px;
+  cursor: default;
+}
+
+.brief-move {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Square icon buttons for previous and next */
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+.btn-icon:disabled {
+  cursor: default;
+}
+
+.btn-key {
+  width: 32px;
+  height: 32px;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: default;
+}
+
+.btn-key svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Result review: right or wrong chip next to each question */
+.chip-right {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.chip-wrong {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.print-only {
+  display: none;
+}
+
+/* Report PDF: the browser's "Save as PDF" with RoboNuggets paper. Cream page, A4, every note open. */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 0;
+    background: var(--bg);
+  }
+
+  html,
+  body {
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .shell,
+  .shell-practice {
+    max-width: none;
+    min-height: 0;
+    padding: 2mm 14mm 0;
+    gap: 16px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .card,
+  .card-shadow,
+  .card-orange,
+  .dashed,
+  .review-item,
+  figure {
+    break-inside: avoid;
+  }
+
+  .review-summary {
+    list-style: none;
+  }
+
+  .review-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .print-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+  }
+}
+
+/* Dotted pixel icons in section labels, drawn to match the Doto lettering */
+.dot-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: var(--orange);
+}
+
+/* Section headings on home: a little bigger than .label, icon and text about the same height */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+}
+
+/* Card titles in the side column stay small */
+.dash-side .section-label {
+  gap: 7px;
+  font-size: 11.5px;
+}
+
+.dash-side .dot-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Leaderboard: Doto rank, name, sets, average. Your own row is orange. */
+.lb {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto 44px;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 8px;
+  border-top: 1px dashed var(--muted);
+}
+
+.lb-row:first-child {
+  border-top: none;
+}
+
+.lb-rank {
+  font-family: var(--font-doto), monospace;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--orange);
+}
+
+.lb-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lb-sets {
+  color: var(--muted);
+}
+
+.lb-pct {
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.lb-me {
+  background: var(--orange);
+  border-radius: var(--radius);
+  border-top-color: transparent;
+}
+
+.lb-me + .lb-row {
+  border-top-color: transparent;
+}
+
+.lb-me .lb-rank,
+.lb-me .lb-sets {
+  color: var(--ink);
+}
+
+/* Brand title: a quill writes "Practice Studio", erases it going backward, and writes it again */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.15;
+  min-height: 38px;
+}
+
+.brand-write {
+  position: relative;
+  display: inline-block;
+  padding-right: 34px;
+  white-space: nowrap;
+}
+
+.brand-text {
+  display: inline-block;
+  animation: brand-text 9s linear infinite;
+}
+
+.brand-quill {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin-left: -4px;
+  pointer-events: none;
+  animation: brand-quill 9s linear infinite;
+}
+
+/* The quill spans the text only, so its 100% is the end of the last letter */
+.brand-track {
+  position: absolute;
+  inset: 0 34px 0 0;
+}
+
+.brand-quill svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 6px 30px;
+  animation: brand-nib 0.36s ease-in-out infinite alternate;
+}
+
+@keyframes brand-text {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  40% {
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    clip-path: inset(0 0 0 0);
+  }
+  88% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+/* Writes forward, rests at the end, then runs backward over the words, erasing them */
+@keyframes brand-quill {
+  0% {
+    left: 0%;
+    transform: translateY(0);
+  }
+  40% {
+    left: 100%;
+    transform: translateY(0);
+  }
+  47% {
+    left: 100%;
+    transform: translateY(-4px);
+  }
+  53% {
+    left: 100%;
+    transform: translateY(0);
+  }
+  60% {
+    left: 100%;
+    transform: translateY(0);
+  }
+  88% {
+    left: 0%;
+    transform: translateY(0);
+  }
+  94% {
+    left: 0%;
+    transform: translateY(-4px);
+  }
+  100% {
+    left: 0%;
+    transform: translateY(0);
+  }
+}
+
+@keyframes brand-nib {
+  from {
+    transform: rotate(-7deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .brand {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-text,
+  .brand-quill,
+  .brand-quill svg {
+    animation: none;
+  }
+  .brand-quill {
+    left: 100%;
+  }
+}
+
+@media print {
+  .brand-text,
+  .brand-quill,
+  .brand-quill svg {
+    animation: none;
+  }
+  .brand-quill {
+    left: 100%;
+  }
+}
+
+/* Exam screens (MCQ and CQ players): as wide as home on a laptop, question on the left, answering on the right. */
+.shell-exam {
+  max-width: 1180px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.practice-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .shell-exam {
+    max-width: 640px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .practice-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+/* Notifications: the bell next to Sign out and its panel. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.notif-wrap {
+  position: relative;
+}
+
+/* Bell (mockup frame 6): a square bordered button with an orange count badge on its corner. */
+.bell {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.bell:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.bell:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.bell-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  background: var(--orange);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.card-orange-sm {
+  background: var(--card);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: 4px 4px 0 var(--orange);
+}
+
+.notif-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 30;
+  width: min(360px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.notif-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1.5px dashed var(--ink);
+  border-radius: var(--radius);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.notif-item:hover {
+  border-style: solid;
+}
+
+.notif-unread {
+  border: 2px solid var(--orange);
+}
+
+.notif-title {
+  font-weight: 600;
+}
+
+@media print {
+  .notif-wrap {
+    display: none;
+  }
+}
+
+/* Result screens: missed questions (MCQ) and every question (CQ) in a carousel instead of a long list. */
+.carousel:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 6px;
+  border-radius: var(--radius);
+}
+
+/* Question number chips wrap onto more rows instead of scrolling sideways. */
+.carousel-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.carousel-strip .pill-right {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* Briefing before an exam: on a laptop its sections sit in two columns. */
+@media (min-width: 901px) {
+  .shell-exam .brief {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 36px;
+    align-items: start;
+  }
+  .shell-exam .brief > :first-child,
+  .shell-exam .brief > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media print {
+  .shell-exam {
+    max-width: none;
+    padding: 2mm 14mm 0;
+  }
+  .practice-grid {
+    display: block;
+  }
+  .practice-grid > .practice-col + .practice-col {
+    margin-top: 16px;
+  }
+}
+
+/* ---------- Govt Job Practice additions ---------- */
+
+/* Bangla (PLAN.md section 10). Noto Sans Bengali leads so conjunct letters are shaped by one font.
+   Doto has no Bengali letters, so a Bangla title is Noto Sans Bengali bold with the accent word in orange. */
+.bn {
+  font-family: var(--font-stack-bn);
+}
+
+.bn-title {
+  font-family: var(--font-stack-bn);
+  font-weight: 700;
+}
+
+.bn-accent {
+  font-family: var(--font-stack-bn);
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* lucide-react icons: 2px stroke in the text colour */
+.ico {
+  display: block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+/* Top bar on home and in the admin portal */
+.topbar {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* A count inside an admin tab: "Students · 2" */
+.tab-count {
+  margin-left: 6px;
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Math display (KaTeX, display only). LaTeX between dollar signs, same stored format as the MSc site. */
+.math-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.math-eq {
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.math-inline .katex {
+  font-size: 1.08em;
+}
+
+.math-error {
+  color: var(--orange);
+  font-family: monospace;
+}
+
+/* Font test page */
+.sample {
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.sample-big {
+  font-size: 30px;
+  line-height: 1.45;
+}
+
+.subject-section + .subject-section {
+  margin-top: 6px;
+}
+
+.dash-side .section-label .ico {
+  width: 14px;
+  height: 14px;
+}
+
+.section-label .ico {
+  color: var(--orange);
+}
+
+.dash-side .btn {
+  white-space: nowrap;
+}
+
+/* Muted text would disappear on the orange selected row */
+.exam-selected .muted {
+  color: var(--ink);
+}

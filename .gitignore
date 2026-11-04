@@ -1,0 +1,24 @@
+# secrets and env
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# note PDFs, reference books and student data
+*.pdf
+import-tool/output/
+import-tool/data/
+
+# misc
+.DS_Store
+.vercel
+node_modules
+
+# local tool config
+.claude/
+
+# python
+__pycache__/
+*.pyc

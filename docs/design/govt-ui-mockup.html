@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Govt Job Practice: UI mockup v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Doto:wght@900&family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens and component styles copied from the MSc site (globals.css), trimmed to what these screens need. */
+:root{--bg:#f2efe8;--ink:#1c1a16;--muted:#6f6a5c;--orange:#ff6b1a;--card:#faf8f2;--radius:8px}
+*{box-sizing:border-box}
+body{margin:0;background:#e7e3d9;color:var(--ink);font-family:Outfit,"Noto Sans Bengali",system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+.board{max-width:1500px;margin:0 auto;padding:28px 20px 60px}
+.board-title{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.board-note{font-size:13px;color:var(--muted);margin-bottom:22px;max-width:760px}
+.frames{display:flex;flex-wrap:wrap;gap:34px;align-items:flex-start}
+.frame{display:flex;flex-direction:column;gap:8px}
+.frame-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.screen{background:var(--bg);border:2px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 var(--ink)}
+.phone{width:400px}.laptop{width:780px}
+.shell{padding:22px 18px 28px;display:flex;flex-direction:column;gap:18px}
+.stack{display:flex;flex-direction:column;gap:12px}.stack-sm{display:flex;flex-direction:column;gap:7px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.label-orange{color:var(--orange)}
+.title{font-size:30px;font-weight:500;line-height:1.1}
+.heading{font-size:20px;font-weight:500}
+.accent{font-family:Doto,monospace;font-weight:900;color:var(--orange);text-transform:uppercase;letter-spacing:.02em}
+.bn{font-family:"Noto Sans Bengali",Outfit,sans-serif}
+.bn-accent{font-family:"Noto Sans Bengali",sans-serif;font-weight:700;color:var(--orange)}
+.muted{color:var(--muted)}.small{font-size:13px}
+.card{background:var(--card);border:1px solid var(--ink);border-radius:var(--radius);padding:12px 14px}
+.card-shadow{background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:14px 16px;box-shadow:6px 6px 0 var(--ink)}
+.card-orange{background:var(--card);border:2px solid var(--orange);border-radius:var(--radius);padding:14px 16px;box-shadow:8px 8px 0 var(--orange)}
+.dashed{border:2px dashed var(--ink);border-radius:var(--radius);padding:12px 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:8px 16px;box-shadow:3px 3px 0 var(--ink);text-decoration:none}
+.btn-primary{background:var(--orange)}.btn-ink{background:var(--ink);color:var(--bg)}.btn-small{padding:4px 10px;font-size:12px;box-shadow:2px 2px 0 var(--ink)}
+.pill{display:inline-flex;align-items:center;font-size:13px;font-weight:600;background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:4px 14px}
+.pill-active{background:var(--ink);color:var(--bg)}
+.chip{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:4px;padding:2px 7px;background:var(--card)}
+.chip-done{background:var(--ink);color:var(--orange)}.chip-now{background:var(--orange)}
+.exam-card{display:flex;align-items:center;justify-content:space-between;gap:12px;width:calc(100% - 6px);background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:11px 14px;box-shadow:6px 6px 0 var(--ink)}
+.exam-card-sub{display:block;color:var(--muted);font-size:13px}
+.exam-card-on{background:var(--orange);transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}.exam-card-on .exam-card-sub{color:var(--ink)}
+.timer-pill{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);border-radius:999px;padding:4px 14px;font-size:11px;font-weight:600;letter-spacing:.16em}
+.timer-pill b{color:var(--orange);font-size:15px;letter-spacing:.04em}
+.segments{display:flex;gap:4px}
+.segment{flex:1;height:12px;border:1.5px solid var(--ink);border-radius:3px;background:transparent}
+.s-ans{background:var(--ink)}.s-mark{background:var(--orange);border-color:var(--orange)}.s-cur{box-shadow:0 3px 0 var(--ink)}
+.q-text{font-size:19px;font-weight:500;line-height:1.35}
+.opt{display:flex;align-items:flex-start;gap:12px;width:calc(100% - 6px);font-size:15px;background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:11px 14px;box-shadow:6px 6px 0 var(--ink)}
+.opt-letter{flex:none;display:grid;place-items:center;width:24px;height:24px;border:1.5px solid currentColor;border-radius:4px;font-size:12px;font-weight:600}
+.opt-text{padding-top:2px}
+.opt-sel{background:var(--ink);color:var(--bg);transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.opt-correct{background:var(--orange);transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.opt-wrong{background:var(--ink);color:var(--bg);transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.opt-dim{opacity:.55}
+.score-big{font-family:Doto,monospace;font-weight:900;font-size:56px;line-height:1;color:var(--orange)}
+.bar{height:12px;border:1.5px solid var(--ink);border-radius:3px;overflow:hidden}.bar-fill{height:100%;background:var(--orange)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--ink)}
+.row:last-child{border-bottom:0}
+.input{width:100%;font:inherit;background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:8px 12px;box-shadow:3px 3px 0 var(--ink)}
+.bell{position:relative;display:inline-grid;place-items:center;width:36px;height:36px;border:2px solid var(--ink);border-radius:var(--radius);background:var(--card);box-shadow:3px 3px 0 var(--ink)}
+.bell i{position:absolute;top:-8px;right:-8px;background:var(--orange);border:2px solid var(--ink);border-radius:999px;font-style:normal;font-size:11px;font-weight:600;min-width:20px;height:20px;display:grid;place-items:center}
+.ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
+.btn-icon{padding:6px 8px}
+.btn-icon.btn-small{padding:4px 6px}
+.btn-off{opacity:.45}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+/* note viewer */
+.viewer{display:grid;grid-template-columns:120px 1fr;min-height:520px}
+.thumbs{border-right:2px solid var(--ink);padding:12px 10px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.thumb{height:78px;border:1.5px solid var(--ink);border-radius:4px;background:var(--card);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--muted)}
+.thumb-on{border-color:var(--orange);box-shadow:3px 3px 0 var(--orange);color:var(--ink)}
+.v-main{padding:14px 18px;display:flex;flex-direction:column;gap:12px}
+.v-bar{height:6px;border-radius:3px;background:#d9d4c6}.v-bar i{display:block;height:100%;width:34%;background:var(--orange);border-radius:3px}
+.page{background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);box-shadow:6px 6px 0 var(--ink);padding:22px 26px;display:flex;flex-direction:column;gap:12px;min-height:320px}
+.page h3{font-size:22px;font-weight:500}
+.fake-chart{display:flex;align-items:flex-end;gap:10px;height:90px;border-bottom:2px solid var(--ink);padding:0 6px}
+.fake-chart span{flex:1;background:var(--orange);border:1.5px solid var(--ink);border-bottom:0}
+.sticky{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:4px}
+.zoom{display:flex;gap:6px}
+.zoom .btn{padding:3px 10px;box-shadow:2px 2px 0 var(--ink)}
+ul.brief-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.key{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.opt-key{width:44px;padding:4px 6px;box-shadow:3px 3px 0 var(--ink)}
+.link{text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:3px;font-weight:600}
+@media(max-width:860px){.laptop,.phone{width:100%}.viewer{grid-template-columns:1fr}.thumbs{display:none}}
+</style>
+</head>
+<body>
+<!-- lucide icons (ISC licence), used through lucide-react in the app -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="chev-l" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="chev-r" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+</svg>
+<div class="board">
+  <p class="board-title">Govt Job Practice Website</p>
+  <p class="board-note">UI mockup v1. Same RoboNuggets tokens as the MSc site, with the new screens: Home with "Read notes first", themed note viewer, briefing, exam screen with palette (English and Bangla), review after submit, and the admin notification bell (new signup and reported question). Icons are lucide (Bell, ChevronLeft, ChevronRight). All content is placeholder.</p>
+
+  <div class="frames">
+
+    <!-- 1 Home -->
+    <div class="frame">
+      <p class="frame-label">1 Home</p>
+      <div class="screen phone"><div class="shell">
+        <div class="between">
+          <h1 class="title">Practice <span class="accent">Studio</span></h1>
+        </div>
+        <div class="stack-sm"><p class="label">Subject</p>
+          <div class="wrap"><span class="pill pill-active">General Knowledge</span><span class="pill">English</span><span class="pill">Mathematics</span><span class="pill">Bangla</span></div></div>
+        <div class="stack-sm"><p class="label">Exam</p>
+          <div class="exam-card exam-card-on"><div><b>BCS Preliminary Model</b><span class="exam-card-sub">3 topics · 20 questions · 12 min</span></div><span class="chip">-0.25</span></div>
+          <div class="exam-card"><div><b>Bank Recruitment Model</b><span class="exam-card-sub">4 topics · 20 questions · 12 min</span></div><span class="chip">-0.25</span></div></div>
+        <div class="stack-sm"><p class="label">Topics</p>
+          <div class="wrap"><span class="pill pill-active">All</span><span class="pill">History</span><span class="pill">Geography</span><span class="pill">Current affairs</span></div></div>
+        <div class="stack-sm"><p class="label">Set</p>
+          <div class="wrap"><span class="pill pill-active">Set 1</span><span class="pill">Set 2</span><span class="pill">Set 3</span><span class="pill">New random</span></div>
+          <p class="small muted">20 questions per set.</p></div>
+        <div class="between">
+          <span class="btn">Read notes first</span>
+          <span class="btn btn-primary">Start exam</span>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 2 Note viewer -->
+    <div class="frame">
+      <p class="frame-label">2 Note viewer (laptop)</p>
+      <div class="screen laptop">
+        <div class="shell" style="padding-bottom:12px">
+          <div class="between">
+            <h1 class="heading">History of <span class="accent">Bengal</span></h1>
+            <div class="wrap"><span class="timer-pill">PAGE <b>3 / 9</b></span>
+              <div class="zoom"><span class="btn btn-small">-</span><span class="btn btn-small">+</span><span class="btn btn-small">Fit width</span></div></div>
+          </div>
+          <div class="v-bar"><i></i></div>
+        </div>
+        <div class="viewer" style="border-top:2px solid var(--ink)">
+          <div class="thumbs">
+            <div class="thumb">1</div><div class="thumb">2</div><div class="thumb thumb-on">3</div><div class="thumb">4</div><div class="thumb">5</div>
+          </div>
+          <div class="v-main">
+            <div class="page">
+              <p class="label label-orange">Chapter 1 · Key dates</p>
+              <h3>The Partition of Bengal, 1905</h3>
+              <p class="small">Selectable text from a real text PDF. Charts and diagrams from the reference book sit here as 1:1 copies, with the book's own caption.</p>
+              <div class="fake-chart"><span style="height:35%"></span><span style="height:60%"></span><span style="height:45%"></span><span style="height:85%"></span><span style="height:70%"></span></div>
+              <p class="label">Figure 1.2 · Reference book, page 41</p>
+              <div class="dashed small">Remember: the partition took effect on 16 October 1905.</div>
+            </div>
+            <div class="sticky">
+              <div class="wrap"><span class="btn btn-icon btn-small btn-off" aria-label="Previous page"><svg class="ico"><use href="#chev-l"/></svg></span><span class="btn btn-icon btn-small" aria-label="Next page"><svg class="ico"><use href="#chev-r"/></svg></span></div>
+              <div class="wrap"><span class="small muted">Resumes on page 3 next time</span><span class="btn btn-primary">Start exam</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Briefing -->
+    <div class="frame">
+      <p class="frame-label">3 Before you start</p>
+      <div class="screen phone"><div class="shell">
+        <div class="card-shadow stack">
+          <div class="between"><p class="label label-orange">Before you start</p><p class="label">BCS Preliminary Model · Set 1</p></div>
+          <div class="stack-sm"><p class="label">Questions</p><p class="small">20 MCQs, 20 marks in total.</p></div>
+          <div class="stack-sm"><p class="label">Time</p><p class="small">12 min. The clock starts when you press Begin. At zero the exam is submitted and unanswered questions count as missed.</p></div>
+          <div class="stack-sm"><p class="label">How it is marked</p>
+            <ul class="brief-list small">
+              <li>A right answer earns 1 mark.</li>
+              <li>A wrong answer loses 0.25 mark.</li>
+              <li>A skipped question earns 0 and costs nothing.</li>
+              <li>The answers and explanations show after you submit.</li>
+            </ul></div>
+          <div class="stack-sm"><p class="label">Question palette</p>
+            <div class="segments"><span class="segment s-ans"></span><span class="segment s-mark"></span><span class="segment"></span><span class="segment s-cur"></span></div>
+            <p class="small">Black: answered. Orange: marked for review. Empty: not answered. Underlined: the question you are on.</p></div>
+          <div class="between"><span class="btn">Back</span><span class="btn btn-primary">Begin</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 4 Exam -->
+    <div class="frame">
+      <p class="frame-label">4 Exam screen (Bangla question)</p>
+      <div class="screen phone"><div class="shell">
+        <div class="between"><p class="label">Question 4 of 20</p><span class="timer-pill">TIME <b>08:42</b></span></div>
+        <div class="segments">
+          <span class="segment s-ans"></span><span class="segment s-ans"></span><span class="segment s-mark"></span><span class="segment s-ans s-cur"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span>
+        </div>
+        <div class="card-orange"><p class="q-text bn">বাংলাদেশের জাতীয় ফুল কোনটি?</p></div>
+        <div class="stack" style="gap:14px">
+          <div class="opt"><span class="opt-letter">A</span><span class="opt-text bn">গোলাপ</span></div>
+          <div class="opt opt-sel"><span class="opt-letter">B</span><span class="opt-text bn">শাপলা</span></div>
+          <div class="opt"><span class="opt-letter">C</span><span class="opt-text bn">জবা</span></div>
+          <div class="opt"><span class="opt-letter">D</span><span class="opt-text bn">রজনীগন্ধা</span></div>
+        </div>
+        <div class="between">
+          <div class="wrap"><span class="btn btn-small">Report question</span><span class="btn btn-small">Mark for review</span></div>
+          <div class="wrap"><span class="btn btn-icon btn-small" aria-label="Previous question"><svg class="ico"><use href="#chev-l"/></svg></span><span class="btn btn-icon btn-small" aria-label="Next question"><svg class="ico"><use href="#chev-r"/></svg></span></div>
+        </div>
+        <div class="between"><span class="small muted">6 answered · 1 marked</span><span class="btn btn-ink">Submit exam</span></div>
+      </div></div>
+    </div>
+
+    <!-- 4b Exam laptop -->
+    <div class="frame">
+      <p class="frame-label">4b Exam screen (laptop)</p>
+      <div class="screen laptop"><div class="shell">
+        <div class="between"><p class="label">BCS Prelim Model · MCQ · Q 4 / 20</p><span class="timer-pill">LEFT <b>08:42</b></span></div>
+        <div class="segments">
+          <span class="segment s-ans"></span><span class="segment s-ans"></span><span class="segment s-mark"></span><span class="segment s-ans s-cur"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span><span class="segment"></span>
+        </div>
+        <div class="two-col">
+          <div class="card-orange stack-sm"><p class="label label-orange">General Knowledge, History</p><p class="q-text">In which year did the Partition of Bengal take effect under Lord Curzon?</p></div>
+          <div class="stack" style="gap:14px">
+            <div class="opt"><span class="opt-letter">A</span><span class="opt-text">1857</span></div>
+            <div class="opt opt-sel"><span class="opt-letter">B</span><span class="opt-text">1905</span></div>
+            <div class="opt"><span class="opt-letter">C</span><span class="opt-text">1911</span></div>
+            <div class="opt"><span class="opt-letter">D</span><span class="opt-text">1947</span></div>
+            <div class="between">
+              <div class="wrap"><span class="btn btn-small">Report question</span><span class="btn btn-small">Mark for review</span></div>
+              <div class="wrap"><span class="btn btn-icon" aria-label="Previous question"><svg class="ico"><use href="#chev-l"/></svg></span><span class="btn btn-icon" aria-label="Next question"><svg class="ico"><use href="#chev-r"/></svg></span></div>
+            </div>
+            <div class="between"><span class="small muted">6 of 20 answered · 1 marked</span><span class="btn btn-ink">Submit exam</span></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 5 Review -->
+    <div class="frame">
+      <p class="frame-label">5 Result and review</p>
+      <div class="screen phone"><div class="shell">
+        <div class="card-shadow stack">
+          <p class="label label-orange">Your result</p>
+          <div class="between"><span class="score-big">14.00</span><span class="small muted">out of 20</span></div>
+          <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
+          <p class="small">15 right, 4 wrong (-1.00), 1 skipped. Time 11 min 05 s.</p>
+        </div>
+        <div class="stack-sm"><p class="label">Weak topics</p>
+          <div class="card"><div class="row"><span>Geography</span><span class="chip">50%</span></div><div class="row"><span>Current affairs</span><span class="chip">60%</span></div><div class="row"><span>History</span><span class="chip chip-done">90%</span></div></div></div>
+        <p class="label">Question 7, your pick was wrong</p>
+        <div class="card-orange"><p class="q-text">What is the SI unit of force?</p></div>
+        <div class="stack" style="gap:12px">
+          <div class="opt opt-dim"><span class="opt-letter">A</span><span class="opt-text">Joule</span></div>
+          <div class="opt opt-correct"><span class="opt-letter">B</span><span class="opt-text">Newton</span></div>
+          <div class="opt opt-wrong"><span class="opt-letter">C</span><span class="opt-text">Pascal</span></div>
+          <div class="opt opt-dim"><span class="opt-letter">D</span><span class="opt-text">Watt</span></div>
+        </div>
+        <div class="dashed stack-sm"><p class="label label-orange">Why · <span class="link">Notes, page 12</span></p><p class="small">One newton is the force that gives a 1 kg mass an acceleration of 1 m/s². Pascal is the unit of pressure.</p></div>
+        <div class="between"><span class="small muted">Something wrong with this question?</span><span class="btn btn-small">Report question</span></div>
+        <div class="between"><span class="btn">Save report PDF</span><span class="btn btn-primary">Retry missed</span></div>
+      </div></div>
+    </div>
+
+    <!-- 6 Admin -->
+    <div class="frame">
+      <p class="frame-label">6 Admin: new signup notification</p>
+      <div class="screen phone"><div class="shell">
+        <div class="between"><h1 class="heading">Admin <span class="accent">Portal</span></h1><span class="bell" aria-label="Notifications, 2 unread"><svg class="ico"><use href="#bell"/></svg><i>2</i></span></div>
+        <div class="wrap"><span class="pill">Exams</span><span class="pill">Topics</span><span class="pill">Questions · 1</span><span class="pill pill-active">Students · 2</span></div>
+        <div class="card" style="border-color:var(--orange);box-shadow:4px 4px 0 var(--orange)">
+          <p class="label label-orange">Notifications</p>
+          <div class="row"><div><b class="small">New signup</b><p class="small">Rafi Ahmed, invited by Tania</p></div><span class="chip chip-now">New</span></div>
+          <div class="row"><div><b class="small">Question reported</b><p class="small">Q7 "What is the SI unit of force?" by Tania: answer key looks wrong</p></div><span class="chip chip-now">New</span></div>
+        </div>
+        <div class="stack-sm"><p class="label">Pending approval</p>
+          <div class="card"><div class="row"><div><b>Rafi Ahmed</b><p class="small muted">invited by Tania · 2 min ago</p></div><div class="wrap"><span class="btn btn-small btn-primary">Approve</span><span class="btn btn-small">Reject</span></div></div>
+          <div class="row"><div><b>Nusrat J.</b><p class="small muted">invited by Nabil · 1 h ago</p></div><div class="wrap"><span class="btn btn-small btn-primary">Approve</span><span class="btn btn-small">Reject</span></div></div></div></div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
