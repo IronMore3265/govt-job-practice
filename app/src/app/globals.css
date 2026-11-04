@@ -493,6 +493,47 @@ p {
   margin-top: 4px;
 }
 
+/* Question list and set builder rows */
+.q-row {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.q-main {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.q-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.q-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.q-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 /* Practice (Phase 4): home pickers, MCQ player, results. Plan section 11. */
 .shell-practice {
   max-width: 640px;

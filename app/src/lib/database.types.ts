@@ -285,6 +285,21 @@ export type Database = {
     Functions: {
       create_invite: { Args: never; Returns: InviteRow };
       redeem_invite: { Args: { p_code: string; p_user_id: string; p_name: string; p_email: string }; Returns: undefined };
+      admin_save_question: {
+        Args: {
+          p_id: string | null;
+          p_topic_id: string;
+          p_lang: QuestionLang;
+          p_text: string;
+          p_figure_id: string | null;
+          p_source_page: number | null;
+          p_options: Json;
+          p_correct: string;
+          p_explanation: string;
+          p_status: QuestionStatus;
+        };
+        Returns: string;
+      };
     };
     Enums: {
       user_role: UserRole;

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test src/lib/math-text.test.ts src/lib/exam.test.ts src/lib/invites.test.ts"
+    "test": "node --test src/lib/math-text.test.ts src/lib/exam.test.ts src/lib/invites.test.ts src/lib/sets.test.ts src/lib/questions.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
