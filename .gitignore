@@ -22,3 +22,8 @@ node_modules
 # python
 __pycache__/
 *.pyc
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
