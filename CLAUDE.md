@@ -5,6 +5,7 @@ Govt job exam practice website for Nabil and friends. MCQ only. Read `PLAN.md` f
 ## References
 - Previous site this one grows from: https://github.com/IronMore3265/MSc-Practice-Website.git (live: https://ipe-studio.vercel.app/). Read it for patterns and reuse what fits (list at the end of PLAN.md section 14). Do not bring over AI, CQ, photo, math editor or router code. The one exception is the display-only `MathText` for the Math subject (LaTeX between dollar signs, no editor).
 - Visuals: `docs/design/exam-ui-mockup-v5.png` and `docs/design/govt-ui-mockup.html` (with its PNG).
+- Building or changing a Bangla note or question set: read `docs/BANGLA_CONTENT_RULES.md` first and follow it (one topic, one note, book-like prose, diagrams rebuilt 1:1 as vector, every past MCQ kept, total a multiple of 20, coverage check must pass). For diagrams inside a note its rebuild rule applies, not the figures rule in the Rules section.
 
 ## Stack
 - Next.js (App Router, TypeScript) on Vercel

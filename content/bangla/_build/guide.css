@@ -1,0 +1,72 @@
+@font-face{font-family:"Outfit";font-weight:400;src:url("fonts/outfit-latin-400-normal.woff2") format("woff2");ascent-override:126%;descent-override:0%;line-gap-override:0%}
+@font-face{font-family:"Outfit";font-weight:500;src:url("fonts/outfit-latin-500-normal.woff2") format("woff2");ascent-override:126%;descent-override:0%;line-gap-override:0%}
+@font-face{font-family:"Outfit";font-weight:600;src:url("fonts/outfit-latin-600-normal.woff2") format("woff2");ascent-override:126%;descent-override:0%;line-gap-override:0%}
+@font-face{font-family:"Doto";font-weight:900;src:url("fonts/doto-latin-900-normal.woff2") format("woff2")}
+@font-face{font-family:"Noto Sans Bengali";font-weight:400;src:url("fonts/noto-sans-bengali-bengali-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Noto Sans Bengali";font-weight:500;src:url("fonts/noto-sans-bengali-bengali-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Noto Sans Bengali";font-weight:600;src:url("fonts/noto-sans-bengali-bengali-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Noto Sans Bengali";font-weight:700;src:url("fonts/noto-sans-bengali-bengali-700-normal.woff2") format("woff2")}
+@page{size:793.33px 1122.67px;margin:0}
+:root{--bg:#F2EFE8;--ink:#1C1A16;--muted:#6F6A5C;--orange:#FF6B1A;--card:#FAF8F2;--dark:#131311;--dash:rgba(28,26,22,.30);--hair:rgba(28,26,22,.22);--chip:rgba(28,26,22,.07);--shadow-ink:rgba(28,26,22,.85)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"Outfit","Noto Sans Bengali",sans-serif;font-weight:400;color:var(--ink);font-size:12.2px;line-height:1.75}
+strong,b{font-weight:700}
+.page{position:relative;width:793.33px;height:1122.5px;padding:50px 64px 0;overflow:hidden;background:var(--bg);break-after:page}
+.page:last-child{break-after:auto}
+.footer{position:absolute;left:64px;right:64px;top:1077px;display:flex;justify-content:space-between;font-family:"Outfit",sans-serif;font-size:9.5px;line-height:1.26;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+.footer .pn{font-weight:600;font-size:10px;letter-spacing:0}
+.label{font-size:11px;font-weight:700;color:var(--orange);line-height:1.4;display:block;margin-bottom:3px}
+.label.ink{color:var(--ink)}
+h1.pt{font-weight:700;font-size:29px;line-height:1.45;margin-bottom:4px;display:flex;align-items:baseline;gap:12px}
+h1.pt .n{font-family:"Outfit","Noto Sans Bengali",sans-serif;font-size:15px;font-weight:600;color:var(--orange)}
+.acc{color:var(--orange)}
+.tagline{font-size:13px;line-height:1.6;color:var(--muted);margin-bottom:12px}
+h3{font-size:15.5px;font-weight:700;line-height:1.5;margin:14px 0 4px;display:flex;align-items:center;gap:8px}
+h3::before{content:"";width:9px;height:9px;background:var(--orange);flex:none}
+h3:first-of-type{margin-top:6px}
+p{font-size:12.4px;line-height:1.85;margin:0 0 7px;text-align:left}
+p.sm{font-size:11px;color:var(--muted);line-height:1.6}
+.sbox{border:2px solid var(--ink);border-radius:8px;background:var(--card);padding:10px 16px 11px;margin:10px 0 18px}
+.sbox.orange{border-color:var(--orange);box-shadow:8px 8px 0 var(--orange)}
+.sbox.ink{box-shadow:8px 8px 0 var(--shadow-ink)}
+.sbox p{font-size:12.2px;line-height:1.75;margin-bottom:5px}
+.sbox p:last-child{margin-bottom:0}
+.sbox ul{list-style:none;margin:2px 0 0}
+.sbox li{position:relative;padding-left:16px;font-size:12.2px;line-height:1.7;margin-bottom:2px}
+.sbox li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--ink)}
+.row{display:grid;gap:12px;margin:8px 0 14px}
+.row.c2{grid-template-columns:1fr 1fr}
+.row.c3{grid-template-columns:repeat(3,1fr)}
+.row.c4{grid-template-columns:repeat(4,1fr)}
+.card{border:1px solid var(--ink);border-radius:6px;background:var(--card);padding:8px 11px 9px}
+.card.accent{border:2px solid var(--orange);padding:7px 10px 8px}
+.card h4{font-size:13.5px;font-weight:700;line-height:1.5;margin-bottom:1px}
+.card p{font-size:11.6px;line-height:1.65;margin:0}
+.card ul{list-style:none;margin-top:2px}
+.card li{position:relative;padding-left:15px;font-size:11.6px;line-height:1.65;margin-bottom:1px}
+.card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--ink)}
+.callout{border-left:3px solid var(--orange);background:var(--card);border-radius:0 5px 5px 0;padding:8px 14px 9px 14px;font-size:12px;line-height:1.75;margin:8px 0 12px}
+.callout.ink{border-left-color:var(--ink)}
+table.grid{width:100%;border-collapse:collapse;margin:6px 0 12px;table-layout:fixed}
+.grid th,.grid td{border:1px solid var(--ink);padding:5px 9px 5px;text-align:left;vertical-align:top;font-size:11.8px;line-height:1.65}
+.grid th{background:var(--card);font-size:11.5px;font-weight:700;color:var(--ink)}
+.grid td.strong{font-weight:700}
+.grid td.muted{color:var(--muted)}
+.grid td.num{color:var(--orange);font-weight:700}
+.chain{display:flex;align-items:stretch;flex-wrap:wrap;gap:0;margin:8px 0 14px}
+.chain .st{border:1px solid var(--ink);border-radius:6px;background:var(--card);padding:5px 11px;font-size:12px;line-height:1.55;font-weight:600;text-align:center}
+.chain .st small{display:block;font-size:10px;font-weight:400;color:var(--muted);line-height:1.4}
+.chain .st.hl{border:2px solid var(--orange);background:var(--card)}
+.chain .ar{align-self:center;padding:0 5px;display:flex}
+.vchain{display:flex;flex-direction:column;align-items:center;gap:0;margin:4px 0 8px}
+.vchain .st{border:1px solid var(--ink);border-radius:6px;background:var(--card);padding:3px 14px;font-size:12px;line-height:1.55;font-weight:600;min-width:170px;text-align:center}
+.vchain .st.hl{border:2px solid var(--orange)}
+.vchain .ar{line-height:0;padding:2px 0}
+.ledger{margin-top:4px;border-top:2px solid var(--ink)}
+.ledger .li{display:grid;grid-template-columns:34px 1fr;align-items:baseline;padding:3px 0 4px;border-bottom:1px solid var(--hair)}
+.ledger .n{font-family:"Outfit","Noto Sans Bengali",sans-serif;font-size:12px;font-weight:600;color:var(--orange)}
+.ledger .nm{font-size:13px;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;column-gap:18px}
+
+.cover .pn{display:none}
