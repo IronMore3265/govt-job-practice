@@ -20,6 +20,7 @@ export async function startExam(_prev: ActionState, form: FormData): Promise<Act
   const examId = String(form.get("exam_id") ?? "");
   const setRaw = String(form.get("set_id") ?? "");
   const retryRaw = String(form.get("retry_of") ?? "");
+  const chunkRaw = Number(form.get("chunk") ?? "");
   const topics = String(form.get("topic_ids") ?? "")
     .split(",")
     .map((t) => t.trim())
@@ -32,6 +33,7 @@ export async function startExam(_prev: ActionState, form: FormData): Promise<Act
     p_set_id: isUuid(setRaw) ? setRaw : null,
     p_topic_ids: topics,
     p_retry_of: isUuid(retryRaw) ? retryRaw : null,
+    p_chunk: Number.isInteger(chunkRaw) && chunkRaw >= 1 ? chunkRaw : null,
   });
   if (error || !data) return bad(dbMessage(error, "Could not start the exam."));
   redirect(`/exam/${data}`);

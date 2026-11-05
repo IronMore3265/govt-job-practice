@@ -99,6 +99,7 @@ type ExamRow = {
   negative_mark: number;
   time_seconds: number;
   sort_order: number;
+  all_topics: boolean;
   created_at: string;
 };
 
@@ -122,6 +123,7 @@ type SessionRunRow = {
   set_id: string | null;
   retry_of: string | null;
   topic_ids: string[];
+  chunk: number | null;
   created_at: string;
   started_at: string | null;
   deadline_at: string | null;
@@ -285,7 +287,10 @@ export type Database = {
     Functions: {
       create_invite: { Args: never; Returns: InviteRow };
       redeem_invite: { Args: { p_code: string; p_user_id: string; p_name: string; p_email: string }; Returns: undefined };
-      start_session: { Args: { p_exam_id: string; p_set_id: string | null; p_topic_ids: string[] | null; p_retry_of: string | null }; Returns: string };
+      start_session: { Args: { p_exam_id: string; p_set_id: string | null; p_topic_ids: string[] | null; p_retry_of: string | null; p_chunk?: number | null }; Returns: string };
+      topic_sets: { Args: { p_exam_id: string }; Returns: { topic_id: string; chunk: number; size: number; best_score: number | null; last_score: number | null; max_score: number | null; tries: number }[] };
+      my_revision: { Args: never; Returns: Json };
+      mark_revised: { Args: { p_question_ids: string[] }; Returns: number };
       begin_session: { Args: { p_session_id: string }; Returns: string };
       session_state: { Args: { p_session_id: string }; Returns: Json };
       save_answer: { Args: { p_session_id: string; p_question_id: string; p_option_id: string | null; p_marked: boolean; p_seconds: number }; Returns: string };

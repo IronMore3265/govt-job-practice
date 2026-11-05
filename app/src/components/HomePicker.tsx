@@ -9,6 +9,7 @@ import { noteHref } from "@/lib/notes";
 
 export type TopicView = { id: string; number: number; title: string; hasNote: boolean };
 export type SetView = { id: string; name: string; best: number | null; max: number | null };
+export type TopicSetView = { topicId: string; chunk: number; size: number; best: number | null; max: number | null; tries: number };
 export type ExamView = {
   id: string;
   name: string;
@@ -17,6 +18,9 @@ export type ExamView = {
   negativeMark: number;
   topics: TopicView[];
   liveSets: SetView[];
+  // Topic practice exams: the topic's questions in written order, cut into sets of questionCount.
+  allTopics: boolean;
+  topicSets: TopicSetView[];
 };
 export type SubjectView = { id: string; name: string; exams: ExamView[] };
 
@@ -97,7 +101,9 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
         </div>
       </div>
 
-      {exam ? (
+      {exam && exam.allTopics ? <PracticePicker key={exam.id} exam={exam} /> : null}
+
+      {exam && !exam.allTopics ? (
         <>
           <div className="stack-sm">
             <p className="label">Topics</p>
@@ -174,5 +180,93 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
         <LeaderboardPanel examId={exam?.id} examName={exam?.name} />
       </aside>
     </div>
+  );
+}
+
+// Topic practice: pick one topic, then one of its sets. Set 1 is the first questions of the topic as they were written, Set 2 the
+// next ones, and so on, so finishing every set means every question of the topic has been asked.
+function PracticePicker({ exam }: { exam: ExamView }) {
+  const hasSets = new Set(exam.topicSets.map((t) => t.topicId));
+  const [topicId, setTopicId] = useState(exam.topics.find((t) => hasSets.has(t.id))?.id ?? "");
+  const [picked, setPicked] = useState<number | null>(null);
+
+  const topic = exam.topics.find((t) => t.id === topicId);
+  const sets = exam.topicSets.filter((t) => t.topicId === topicId).sort((a, b) => a.chunk - b.chunk);
+  const firstNew = sets.find((t) => t.tries === 0)?.chunk ?? sets[0]?.chunk ?? null;
+  const chunk = picked !== null && sets.some((t) => t.chunk === picked) ? picked : firstNew;
+  const done = sets.filter((t) => t.tries > 0).length;
+  const progress = (id: string) => {
+    const all = exam.topicSets.filter((t) => t.topicId === id);
+    return `${all.filter((t) => t.tries > 0).length}/${all.length}`;
+  };
+  const readHref = topic?.hasNote && chunk ? noteHref(topic.id, { topics: [topic.id], exam: exam.id, chunk, narrow: true }) : null;
+
+  if (exam.topics.length === 0 || hasSets.size === 0) {
+    return <p className="small muted">No questions in this exam yet. The admin adds them in the portal.</p>;
+  }
+
+  return (
+    <>
+      <div className="stack-sm">
+        <p className="label">Topic</p>
+        <div className="wrap">
+          {exam.topics.map((t) => {
+            const on = t.id === topicId;
+            const has = hasSets.has(t.id);
+            return (
+              <button
+                key={t.id}
+                type="button"
+                className={`pill${on ? " pill-active" : ""}`}
+                aria-pressed={on}
+                disabled={!has}
+                title={has ? undefined : "No questions in this topic yet"}
+                onClick={() => {
+                  setTopicId(t.id);
+                  setPicked(null);
+                }}
+              >
+                {t.title}
+                {has ? <span className="small"> · {progress(t.id)}</span> : null}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="stack-sm">
+        <p className="label">Set</p>
+        <div className="wrap">
+          {sets.map((t) => (
+            <button key={t.chunk} type="button" className={`pill${chunk === t.chunk ? " pill-active" : ""}`} aria-pressed={chunk === t.chunk} onClick={() => setPicked(t.chunk)}>
+              Set {t.chunk}
+              {t.size < exam.questionCount ? <span className="small"> · {t.size} questions</span> : null}
+              {t.tries > 0 && t.best !== null && t.max ? (
+                <span className="small">
+                  {" "}
+                  · best {formatMark(t.best)}/{formatMark(t.max)}
+                </span>
+              ) : null}
+            </button>
+          ))}
+        </div>
+        <p className="small muted">
+          {done} of {sets.length} sets done. Each set is the next {exam.questionCount} questions of the topic in the order they were written. Finish every set and the topic is covered.
+        </p>
+      </div>
+
+      <div className="between" style={{ flexWrap: "wrap", gap: 12 }}>
+        {readHref ? (
+          <Link href={readHref} className="btn">
+            Read notes first
+          </Link>
+        ) : (
+          <button type="button" className="btn" disabled title="This topic has no note yet">
+            Read notes first
+          </button>
+        )}
+        <StartExamForm examId={exam.id} topicIds={topic ? [topic.id] : []} chunk={chunk} disabled={!topic || !chunk} />
+      </div>
+    </>
   );
 }

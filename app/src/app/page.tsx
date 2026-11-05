@@ -16,7 +16,7 @@ export default async function HomePage() {
     supabase.from("subject").select("id, name, sort_order").order("sort_order"),
     supabase
       .from("exam")
-      .select("id, name, subject_id, question_count, time_seconds, negative_mark, sort_order, exam_topic(topic(id, number, title, note_path)), question_set(id, name, status, created_at)")
+      .select("id, name, subject_id, question_count, time_seconds, negative_mark, sort_order, all_topics, exam_topic(topic(id, number, title, note_path)), question_set(id, name, status, created_at)")
       .order("sort_order"),
     supabase.from("invite").select("*").eq("created_by", profile.id).order("created_at", { ascending: false }),
     supabase.rpc("my_open_session"),
@@ -24,6 +24,11 @@ export default async function HomePage() {
 
   // Best score per saved set, so redoing a set shows the earlier result.
   const scored = await Promise.all((exams ?? []).map(async (e) => ({ id: e.id, rows: (await supabase.rpc("my_set_scores", { p_exam_id: e.id })).data ?? [] })));
+  // Topic practice exams: every topic cut into sequential sets, with the student's best score per set.
+  const sequential = await Promise.all(
+    (exams ?? []).filter((e) => e.all_topics).map(async (e) => ({ id: e.id, rows: (await supabase.rpc("topic_sets", { p_exam_id: e.id })).data ?? [] })),
+  );
+  const setsByExam = new Map(sequential.map((s) => [s.id, s.rows]));
   const best = new Map(scored.flatMap((s) => s.rows.map((r) => [r.set_id, { best: Number(r.best_score), max: Number(r.max_score) }] as const)));
 
   const toExamView = (e: NonNullable<typeof exams>[number]) => ({
@@ -35,6 +40,15 @@ export default async function HomePage() {
     topics: e.exam_topic
       .flatMap((et) => (et.topic ? [{ id: et.topic.id, number: et.topic.number, title: et.topic.title, hasNote: Boolean(et.topic.note_path) }] : []))
       .sort((a, b) => a.number - b.number),
+    allTopics: e.all_topics,
+    topicSets: (setsByExam.get(e.id) ?? []).map((r) => ({
+      topicId: r.topic_id,
+      chunk: r.chunk,
+      size: r.size,
+      best: r.best_score === null ? null : Number(r.best_score),
+      max: r.max_score === null ? null : Number(r.max_score),
+      tries: r.tries,
+    })),
     // Students only ever receive live sets (row level security). The admin sees drafts too, so filter here.
     liveSets: e.question_set
       .filter((s) => s.status === "live")
@@ -62,6 +76,9 @@ export default async function HomePage() {
           {isAdmin ? <AdminBell /> : null}
           <Link href="/notes" className="pill">
             Notes
+          </Link>
+          <Link href="/revision" className="pill">
+            Revision
           </Link>
           <Link href="/history" className="pill">
             History

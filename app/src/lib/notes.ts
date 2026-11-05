@@ -34,12 +34,13 @@ export function readingPercent(page: number, pages: number): number {
 }
 
 // The link to the viewer, used by the notes library, Home and the explanation links in the review.
-export function noteHref(topicId: string, opts: { page?: number | null; topics?: readonly string[]; exam?: string | null; set?: string | null; narrow?: boolean } = {}): string {
+export function noteHref(topicId: string, opts: { page?: number | null; topics?: readonly string[]; exam?: string | null; set?: string | null; chunk?: number | null; narrow?: boolean } = {}): string {
   const p = new URLSearchParams();
   if (opts.page && opts.page > 1) p.set("page", String(opts.page));
   if (opts.topics?.length) p.set("topics", opts.topics.join(","));
   if (opts.exam) p.set("exam", opts.exam);
   if (opts.set) p.set("set", opts.set);
+  if (opts.chunk) p.set("chunk", String(opts.chunk));
   if (opts.narrow) p.set("narrow", "1");
   const q = p.toString();
   return q ? `/notes/${topicId}?${q}` : `/notes/${topicId}`;

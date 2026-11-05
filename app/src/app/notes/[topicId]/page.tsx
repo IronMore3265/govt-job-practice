@@ -29,6 +29,8 @@ export default async function NotePage({ params, searchParams }: Props) {
   const ids = listed.includes(topicId) ? listed : [topicId, ...listed];
   const examParam = one(sp.exam);
   const setParam = one(sp.set);
+  const chunkNum = Number(one(sp.chunk));
+  const chunk = Number.isInteger(chunkNum) && chunkNum >= 1 && chunkNum <= 1000 ? chunkNum : null;
 
   const [{ data: subject }, { data: progress }, { data: related }, { data: exam }] = await Promise.all([
     supabase.from("subject").select("name").eq("id", topic.subject_id).maybeSingle(),
@@ -66,7 +68,7 @@ export default async function NotePage({ params, searchParams }: Props) {
       topicsParam={ids.length > 1 || listed.length ? ids : []}
       exam={exam ? exam.id : null}
       setId={exam && isUuid(setParam) ? setParam : null}
-      start={exam ? { examId: exam.id, setId: isUuid(setParam) ? setParam : "random", topicIds: one(sp.narrow) === "1" ? ids : [] } : null}
+      start={exam ? { examId: exam.id, setId: isUuid(setParam) ? setParam : "random", topicIds: one(sp.narrow) === "1" ? ids : [], chunk } : null}
       backHref={exam ? "/" : "/notes"}
     />
   );

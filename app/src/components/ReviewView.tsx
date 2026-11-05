@@ -34,6 +34,9 @@ export function ReviewView({ review, sessionId, show, profileName }: { review: R
         <Link href="/history" className="btn btn-small">
           History
         </Link>
+        <Link href="/revision" className="btn btn-small">
+          Revision list
+        </Link>
       </div>
 
       <div className="card-shadow stack">
@@ -170,7 +173,7 @@ function ReviewItem({ q }: { q: ReviewQuestion }) {
 }
 
 // "see page 12" in an explanation becomes a link to the note at that page. Text with math goes through MathText as it is.
-function Explanation({ text, topicId, hasNote }: { text: string; topicId: string; hasNote: boolean }) {
+export function Explanation({ text, topicId, hasNote }: { text: string; topicId: string; hasNote: boolean }) {
   const parts = hasNote ? splitPageRefs(text) : [{ type: "text" as const, text }];
   if (parts.length === 1 && parts[0].type === "text") return <MathText text={text} className="small" />;
   return (

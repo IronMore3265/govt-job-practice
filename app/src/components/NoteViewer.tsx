@@ -21,7 +21,7 @@ type Props = {
   topicsParam: string[];
   exam: string | null;
   setId: string | null;
-  start: { examId: string; setId: string; topicIds: string[] } | null;
+  start: { examId: string; setId: string; topicIds: string[]; chunk: number | null } | null;
   backHref: string;
 };
 
@@ -408,7 +408,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
 
         <div className="nv-group nv-end">
           <span className="small muted nv-resume">Resumes on page {page} next time</span>
-          {start ? <StartExamForm examId={start.examId} setId={start.setId} topicIds={start.topicIds} /> : null}
+          {start ? <StartExamForm examId={start.examId} setId={start.setId} topicIds={start.topicIds} chunk={start.chunk} /> : null}
         </div>
       </footer>
     </div>
