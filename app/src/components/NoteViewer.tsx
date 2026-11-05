@@ -1,14 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, Download, MessageSquare, Minus, PanelLeft, Plus, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Download, MessageSquare, Minus, PanelLeft, Plus, Trash2, X } from "lucide-react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import "pdfjs-dist/web/pdf_viewer.css";
 import Link from "@/components/NavLink";
 import { AccentTitle } from "@/components/AccentTitle";
 import { NoteSidebar, type SideTab } from "@/components/NoteSidebar";
 import { StartExamForm } from "@/components/StartExamForm";
-import { cleanRects, cleanText, HIGHLIGHT_COLORS, MAX_COMMENT, MAX_QUOTE, mergeLineRects, type Annotation, type HighlightColor, type Rect } from "@/lib/annotations";
+import { cleanRects, cleanText, clipHref, HIGHLIGHT_COLORS, MAX_COMMENT, MAX_QUOTE, mergeLineRects, type Annotation, type HighlightColor, type Rect } from "@/lib/annotations";
 import { noteHref, readingPercent } from "@/lib/notes";
 
 type Pdfjs = typeof import("pdfjs-dist");
@@ -35,10 +35,10 @@ const MAX_FIT = 2.2;
 const PHONE = 860;
 
 // A part of the student's text selection that lies on one page.
-type Part = { page: number; rects: Rect[]; quote: string };
+type Part = { page: number; rects: Rect[]; quote: string; clip?: string | null };
 // The point of the note under the centre of a zoom, kept in place when the page sizes change.
 type Anchor = { page: number; fx: number; fy: number; cx: number; cy: number };
-type Editor = { id: string | null; text: string; quote: string; color: HighlightColor; parts: Part[] };
+type Editor = { id: string | null; text: string; clipSrc: string | null; color: HighlightColor; parts: Part[] };
 
 const pct = (n: number) => `${(n * 100).toFixed(3)}%`;
 const byPageThenTime = (a: Annotation, b: Annotation) => a.page - b.page || a.created_at.localeCompare(b.created_at);
@@ -77,6 +77,34 @@ function readSelection(main: HTMLElement, pages: (HTMLDivElement | null)[]): Par
   return parts;
 }
 
+// A picture of the highlighted area: the page drawn through a window around the highlighted boxes. The words come out exactly
+// as printed, which the text copied from the PDF does not for Bangla. The colour is added when it is shown, so it can change.
+async function makeClip(doc: PDFDocumentProxy, page: number, rects: Rect[]): Promise<string | null> {
+  try {
+    const p = await doc.getPage(page);
+    const v1 = p.getViewport({ scale: 1 });
+    const pad = 0.006;
+    const x0 = Math.max(0, Math.min(...rects.map((r) => r.x)) - pad);
+    const y0 = Math.max(0, Math.min(...rects.map((r) => r.y)) - pad);
+    const x1 = Math.min(1, Math.max(...rects.map((r) => r.x + r.w)) + pad);
+    const y1 = Math.min(1, Math.max(...rects.map((r) => r.y + r.h)) + pad);
+    const wPt = (x1 - x0) * v1.width;
+    const scale = Math.min(6, Math.max(0.8, 640 / wPt));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.ceil(wPt * scale));
+    canvas.height = Math.max(1, Math.min(420, Math.ceil((y1 - y0) * v1.height * scale)));
+    const viewport = p.getViewport({ scale, offsetX: -x0 * v1.width * scale, offsetY: -y0 * v1.height * scale });
+    await p.render({ canvas, viewport }).promise;
+    for (const type of ["image/webp", "image/jpeg"]) {
+      const url = canvas.toDataURL(type, 0.72);
+      if (url.startsWith(`data:${type}`) && url.length <= 150000) return url;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 // The themed note viewer (PLAN.md section 6.2). pdf.js draws each page onto a canvas inside our own cards, with a text
 // layer on top so the text stays selectable. Only the pages near the screen are drawn: pages that scroll away are freed.
 // The PDF comes from a short-lived signed link (/api/notes/<id>). The Download button goes through /api/notes/<id>/download.
@@ -104,6 +132,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   const [lastColor, setLastColor] = useState<HighlightColor>("yellow");
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const lib = useRef<Pdfjs | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -124,7 +153,8 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
 
   const numPages = sizes.length;
   // The bars stay while something is open that the student is working in.
-  const locked = side || Boolean(sel) || Boolean(editor) || zoomOpen;
+  const active = marks.find((m) => m.id === activeId) ?? null;
+  const locked = side || Boolean(sel) || Boolean(editor) || Boolean(active) || zoomOpen;
   const barsAway = slid && !locked;
 
   useEffect(() => {
@@ -498,6 +528,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
         if (!main || Date.now() < holdSel.current) return;
         const parts = readSelection(main, pageEls.current);
         setSel(parts.length ? parts : null);
+        if (parts.length) setActiveId(null);
       }, 220);
     };
     document.addEventListener("selectionchange", onChange);
@@ -515,10 +546,11 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   const saveMarks = async (parts: Part[], color: HighlightColor, comment: string) => {
     const made: Annotation[] = [];
     for (const [i, p] of parts.entries()) {
+      const clip = p.clip ?? (doc ? await makeClip(doc, p.page, p.rects) : null);
       const res = await fetch(`/api/notes/${topicId}/annotations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ page: p.page, rects: p.rects, quote: p.quote, color, comment: i === 0 ? comment : "" }),
+        body: JSON.stringify({ page: p.page, rects: p.rects, quote: p.quote, color, comment: i === 0 ? comment : "", clip }),
       }).catch(() => null);
       if (!res?.ok) {
         flash("Could not save that. Check your connection and try again.");
@@ -542,12 +574,20 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
 
   const startComment = () => {
     if (!sel) return;
-    setEditor({ id: null, text: "", quote: sel.map((p) => p.quote).join(" ").slice(0, MAX_QUOTE), color: lastColor, parts: sel });
+    const parts = sel;
+    setEditor({ id: null, text: "", clipSrc: null, color: lastColor, parts });
     clearSelection();
+    // The picture of the highlighted part, for the sheet and for saving.
+    if (doc) {
+      void Promise.all(parts.map(async (p) => ({ ...p, clip: await makeClip(doc, p.page, p.rects) }))).then((withClips) =>
+        setEditor((e) => (e && !e.id && e.parts === parts ? { ...e, parts: withClips, clipSrc: withClips[0]?.clip ?? null } : e)),
+      );
+    }
   };
 
   const editMark = (m: Annotation) => {
-    setEditor({ id: m.id, text: m.comment ?? "", quote: m.quote, color: m.color, parts: [] });
+    setActiveId(null);
+    setEditor({ id: m.id, text: m.comment ?? "", clipSrc: m.has_clip ? clipHref(topicId, m.id) : null, color: m.color, parts: [] });
     if (window.innerWidth <= PHONE) setSide(false);
   };
 
@@ -584,16 +624,65 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
     }
   };
 
-  const showMark = (m: Annotation) => {
-    goTo(m.page, true, m.rects[0]?.y ?? 0);
-    if (window.innerWidth <= PHONE) setSide(false);
-  };
-
   const marksByPage = useMemo(() => {
     const map = new Map<number, Annotation[]>();
     for (const m of marks) map.set(m.page, [...(map.get(m.page) ?? []), m]);
     return map;
   }, [marks]);
+
+  // Another colour for a mark you tapped.
+  const recolor = async (m: Annotation, color: HighlightColor) => {
+    if (m.color === color) return;
+    setMarks((prev) => prev.map((x) => (x.id === m.id ? { ...x, color } : x)));
+    setLastColor(color);
+    const res = await fetch(`/api/notes/${topicId}/annotations/${m.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ color }) }).catch(() => null);
+    if (!res?.ok) {
+      setMarks((prev) => prev.map((x) => (x.id === m.id ? { ...x, color: m.color } : x)));
+      flash("Could not change the colour. Try again.");
+    }
+  };
+
+  // Tapping a highlight (or its comment pin) brings its edit bar back.
+  const onPagesClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("button")) return;
+    const s = window.getSelection();
+    if (s && !s.isCollapsed) return;
+    const pageEl = target.closest<HTMLElement>(".nv-page");
+    const layer = pageEl?.querySelector<HTMLElement>(".textLayer");
+    if (!pageEl || !layer) {
+      setActiveId(null);
+      return;
+    }
+    const box = layer.getBoundingClientRect();
+    const fx = (e.clientX - box.left) / box.width;
+    const fy = (e.clientY - box.top) / box.height;
+    const slack = 0.004;
+    const hit = [...(marksByPage.get(Number(pageEl.dataset.page)) ?? [])].reverse().find((m) => m.rects.some((r) => fx >= r.x - slack && fx <= r.x + r.w + slack && fy >= r.y - slack && fy <= r.y + r.h + slack));
+    setActiveId(hit ? hit.id : null);
+  };
+
+  const showMark = (m: Annotation) => {
+    goTo(m.page, true, m.rects[0]?.y ?? 0);
+    if (window.innerWidth <= PHONE) setSide(false);
+  };
+
+  // Marks saved before pictures existed get theirs the first time the note is open.
+  const backfilled = useRef(new Set<string>());
+  useEffect(() => {
+    if (!doc) return;
+    const todo = marks.filter((m) => !m.has_clip && m.rects.length && !backfilled.current.has(m.id));
+    if (!todo.length) return;
+    todo.forEach((m) => backfilled.current.add(m.id));
+    (async () => {
+      for (const m of todo) {
+        const clip = await makeClip(doc, m.page, m.rects);
+        if (!clip) continue;
+        const res = await fetch(`/api/notes/${topicId}/annotations/${m.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ clip }) }).catch(() => null);
+        if (res?.ok) setMarks((prev) => prev.map((x) => (x.id === m.id ? { ...x, has_clip: true } : x)));
+      }
+    })();
+  }, [doc, marks, topicId]);
 
   const percent = readingPercent(page, numPages);
   const zoomLabel = zoom === "fit" ? "Fit" : `${Math.round(scale * 100)}%`;
@@ -631,6 +720,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
       </header>
 
       <NoteSidebar
+        topicId={topicId}
         open={side}
         tab={tab}
         onTab={setTab}
@@ -648,7 +738,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
       />
 
       <div className={`nv-main${side ? " nv-main-shift" : ""}`} ref={mainRef}>
-        <div className="nv-pages" ref={pagesRef}>
+        <div className="nv-pages" ref={pagesRef} onClick={onPagesClick}>
           {state === "loading" ? <p className="small muted">Loading the note...</p> : null}
           {state === "error" ? (
             <div className="card stack-sm" role="alert">
@@ -671,13 +761,13 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
               >
                 <canvas />
                 <div className="nv-hls" aria-hidden>
-                  {here.flatMap((m) => m.rects.map((r, k) => <i key={`${m.id}-${k}`} className={`nv-hl nv-hl-${m.color}`} style={{ left: pct(r.x), top: pct(r.y), width: pct(r.w), height: pct(r.h) }} />))}
+                  {here.flatMap((m) => m.rects.map((r, k) => <i key={`${m.id}-${k}`} className={`nv-hl nv-hl-${m.color}${m.id === activeId ? " nv-hl-on" : ""}`} style={{ left: pct(r.x), top: pct(r.y), width: pct(r.w), height: pct(r.h) }} />))}
                 </div>
                 <div className="textLayer" />
                 {here
                   .filter((m) => m.kind === "comment" && m.rects[0])
                   .map((m) => (
-                    <button key={m.id} type="button" className="nv-pin" style={{ top: pct(m.rects[0].y) }} onClick={() => editMark(m)} aria-label="Open your comment">
+                    <button key={m.id} type="button" className="nv-pin" style={{ top: pct(m.rects[0].y) }} onClick={() => setActiveId(m.id)} aria-label="Open your comment">
                       <MessageSquare aria-hidden />
                     </button>
                   ))}
@@ -687,25 +777,45 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
         </div>
       </div>
 
-      {sel && !editor ? (
+      {(sel || active) && !editor ? (
         <div
           className="nv-selbar"
           role="toolbar"
-          aria-label="Mark the selected text"
+          aria-label={sel ? "Mark the selected text" : "Edit this highlight"}
           onMouseDown={(e) => e.preventDefault()}
           onPointerDown={() => {
             holdSel.current = Date.now() + 1500;
           }}
         >
-          {HIGHLIGHT_COLORS.map((c) => (
-            <button key={c} type="button" className={`nv-swatch nv-hl-${c}`} onClick={() => void highlight(c)} aria-label={`Highlight in ${c}`} disabled={busy} />
-          ))}
-          <button type="button" className="btn nv-btn" onClick={startComment}>
+          {!sel && active?.comment ? <p className="nv-selbar-note">{active.comment}</p> : null}
+          <div className="nv-selbar-row">
+            <span className="nv-swatches" role="group" aria-label={sel ? "Highlight in a colour" : "Highlight colour"}>
+              {HIGHLIGHT_COLORS.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  className={`nv-swatch nv-hl-${c}`}
+                  aria-pressed={!sel && active?.color === c}
+                  aria-label={sel ? `Highlight in ${c}` : `Change to ${c}`}
+                  onClick={() => (sel ? void highlight(c) : active && void recolor(active, c))}
+                  disabled={busy}
+                />
+              ))}
+            </span>
+            <span className="nv-group">
+              {!sel && active ? (
+                <button type="button" className="btn nv-btn" onClick={() => void deleteMark(active)} aria-label="Delete this highlight">
+                  <Trash2 aria-hidden />
+                </button>
+              ) : null}
+              <button type="button" className="btn nv-btn" onClick={sel ? clearSelection : () => setActiveId(null)} aria-label="Close">
+                <X aria-hidden />
+              </button>
+            </span>
+          </div>
+          <button type="button" className="btn nv-btn nv-selbar-main" onClick={sel ? startComment : () => active && editMark(active)}>
             <MessageSquare aria-hidden />
-            <span>Comment</span>
-          </button>
-          <button type="button" className="btn nv-btn" onClick={clearSelection} aria-label="Clear the selection">
-            <X aria-hidden />
+            <span>{sel ? "Highlight + comment" : active?.comment ? "Edit comment" : "Add comment"}</span>
           </button>
         </div>
       ) : null}
@@ -787,8 +897,13 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
 
       {editor ? (
         <div className="nv-shade" onPointerDown={(e) => e.target === e.currentTarget && setEditor(null)}>
-          <div className="nv-sheet" role="dialog" aria-modal="true" aria-label={editor.id ? "Edit your comment" : "Add a comment"}>
-            {editor.quote ? <p className={`nv-mark-quote nv-q-${editor.color}`}>{editor.quote.length > 160 ? `${editor.quote.slice(0, 160)}...` : editor.quote}</p> : null}
+          <div className="nv-sheet" role="dialog" aria-modal="true" aria-label={editor.id ? "Edit your comment" : "Highlight and comment"}>
+            {editor.clipSrc ? (
+              <span className={`nv-clip nv-clip-${editor.color}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={editor.clipSrc} alt="The highlighted part of the note" />
+              </span>
+            ) : null}
             <label className="sr-only" htmlFor="nv-comment">Your comment</label>
             <textarea id="nv-comment" className="nv-text" value={editor.text} maxLength={MAX_COMMENT} autoFocus placeholder="Write your comment" onChange={(e) => setEditor({ ...editor, text: e.target.value })} />
             <div className="nv-sheet-row">

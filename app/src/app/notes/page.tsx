@@ -1,6 +1,7 @@
 import Link from "@/components/NavLink";
 import { BrandTitle } from "@/components/BrandTitle";
-import { ANNOTATION_COLUMNS, snippet, toAnnotation, type Annotation } from "@/lib/annotations";
+import { MarkClip } from "@/components/NoteSidebar";
+import { ANNOTATION_COLUMNS, toAnnotation, type Annotation } from "@/lib/annotations";
 import { requireActive } from "@/lib/auth";
 import { noteHref, readingPercent } from "@/lib/notes";
 import { createClient } from "@/lib/supabase/server";
@@ -66,7 +67,7 @@ export default async function NotesLibraryPage() {
                             <i className={`nv-dot nv-dot-${m.color}`} aria-hidden />
                             Page {m.page}
                           </span>
-                          {m.quote ? <span className={`nv-mark-quote nv-q-${m.color}`}>{snippet(m.quote, 220)}</span> : null}
+                          {m.has_clip ? <MarkClip topicId={t.id} id={m.id} color={m.color} /> : null}
                           {m.comment ? <span className="nv-mark-comment">{m.comment}</span> : null}
                         </Link>
                       </li>

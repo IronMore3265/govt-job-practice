@@ -14,13 +14,15 @@ export type Annotation = {
   quote: string;
   rects: Rect[];
   comment: string | null;
+  // A picture of the highlighted area exists (loaded from /api/notes/<topic>/annotations/<id>/clip).
+  has_clip: boolean;
   created_at: string;
 };
 
 // The columns the viewer and the notes library read.
-export const ANNOTATION_COLUMNS = "id, topic_id, page, kind, color, quote, rects, comment, created_at";
+export const ANNOTATION_COLUMNS = "id, topic_id, page, kind, color, quote, rects, comment, has_clip, created_at";
 
-type AnnotationRowLike = { id: string; page: number; kind: string; color: string; quote: string; rects: unknown; comment: string | null; created_at: string };
+type AnnotationRowLike = { id: string; page: number; kind: string; color: string; quote: string; rects: unknown; comment: string | null; has_clip: boolean; created_at: string };
 
 export function toAnnotation(row: AnnotationRowLike): Annotation {
   return {
@@ -31,6 +33,7 @@ export function toAnnotation(row: AnnotationRowLike): Annotation {
     quote: row.quote,
     rects: cleanRects(row.rects),
     comment: row.comment,
+    has_clip: row.has_clip,
     created_at: row.created_at,
   };
 }
@@ -38,6 +41,17 @@ export function toAnnotation(row: AnnotationRowLike): Annotation {
 export const MAX_RECTS = 200;
 export const MAX_QUOTE = 2000;
 export const MAX_COMMENT = 1000;
+export const MAX_CLIP = 150000;
+
+// The picture of a highlight from a request: an image data URL of a sane size, or null.
+export function cleanClip(raw: unknown): string | null {
+  if (typeof raw !== "string" || raw.length > MAX_CLIP) return null;
+  return /^data:image\/(webp|jpeg|png);base64,[A-Za-z0-9+/=]+$/.test(raw) ? raw : null;
+}
+
+export function clipHref(topicId: string, id: string): string {
+  return `/api/notes/${topicId}/annotations/${id}/clip`;
+}
 
 export function isColor(v: unknown): v is HighlightColor {
   return typeof v === "string" && (HIGHLIGHT_COLORS as readonly string[]).includes(v);

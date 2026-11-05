@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ANNOTATION_COLUMNS, cleanComment, isColor, toAnnotation } from "@/lib/annotations";
+import { ANNOTATION_COLUMNS, cleanClip, cleanComment, isColor, toAnnotation } from "@/lib/annotations";
 import { getSession } from "@/lib/auth";
 import { isUuid } from "@/lib/questions";
 import { createClient } from "@/lib/supabase/server";
@@ -19,13 +19,15 @@ export async function PATCH(request: Request, ctx: RouteContext<"/api/notes/[top
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body) return NextResponse.json({ error: "Bad request." }, { status: 400 });
 
-  const patch: { updated_at: string; kind?: "highlight" | "comment"; comment?: string | null; color?: "yellow" | "green" | "pink" } = { updated_at: new Date().toISOString() };
+  const patch: { updated_at: string; kind?: "highlight" | "comment"; comment?: string | null; color?: "yellow" | "green" | "pink"; clip?: string } = { updated_at: new Date().toISOString() };
   if ("comment" in body) {
     const comment = cleanComment(body.comment);
     patch.comment = comment || null;
     patch.kind = comment ? "comment" : "highlight";
   }
   if (isColor(body.color)) patch.color = body.color;
+  const clip = cleanClip(body.clip);
+  if (clip) patch.clip = clip;
 
   const supabase = await createClient();
   const { data, error } = await supabase.from("note_annotation").update(patch).eq("id", g.id).eq("topic_id", g.topicId).eq("user_id", g.userId).select(ANNOTATION_COLUMNS);

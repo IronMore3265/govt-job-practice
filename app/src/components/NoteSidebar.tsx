@@ -3,11 +3,12 @@
 import { useEffect, useMemo, useRef } from "react";
 import { MessageSquare, Trash2 } from "lucide-react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
-import { snippet, type Annotation } from "@/lib/annotations";
+import { clipHref, type Annotation } from "@/lib/annotations";
 
 export type SideTab = "pages" | "marks";
 
 type Props = {
+  topicId: string;
   open: boolean;
   tab: SideTab;
   onTab: (tab: SideTab) => void;
@@ -24,7 +25,7 @@ type Props = {
 // The drawer beside (on a phone: over) the note. "Pages" is a grid of page pictures with the number under each, "Marks" is
 // the student's own highlights and comments for this note. The list scrolls on its own and only follows the current page
 // when the student is not scrolling it themselves.
-export function NoteSidebar({ open, tab, onTab, doc, sizes, page, marks, onPage, onMark, onEdit, onDelete }: Props) {
+export function NoteSidebar({ topicId, open, tab, onTab, doc, sizes, page, marks, onPage, onMark, onEdit, onDelete }: Props) {
   const panel = useRef<HTMLDivElement>(null);
   const touched = useRef(0);
   const marked = useMemo(() => new Set(marks.map((m) => m.page)), [marks]);
@@ -67,7 +68,7 @@ export function NoteSidebar({ open, tab, onTab, doc, sizes, page, marks, onPage,
                     <i className={`nv-dot nv-dot-${m.color}`} aria-hidden />
                     Page {m.page}
                   </span>
-                  {m.quote ? <span className={`nv-mark-quote nv-q-${m.color}`}>{snippet(m.quote)}</span> : null}
+                  {m.has_clip ? <MarkClip topicId={topicId} id={m.id} color={m.color} /> : null}
                   {m.comment ? <span className="nv-mark-comment">{m.comment}</span> : null}
                 </button>
                 <span className="nv-mark-acts">
@@ -84,6 +85,16 @@ export function NoteSidebar({ open, tab, onTab, doc, sizes, page, marks, onPage,
         )}
       </div>
     </aside>
+  );
+}
+
+// The highlighted words as a picture of the page (the text copied out of the PDF is scrambled for Bangla), tinted in the mark's colour.
+export function MarkClip({ topicId, id, color }: { topicId: string; id: string; color: string }) {
+  return (
+    <span className={`nv-clip nv-clip-${color}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={clipHref(topicId, id)} alt="The highlighted part of the note" loading="lazy" />
+    </span>
   );
 }
 

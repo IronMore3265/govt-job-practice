@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ANNOTATION_COLUMNS, cleanComment, cleanRects, cleanText, isColor, MAX_QUOTE, toAnnotation } from "@/lib/annotations";
+import { ANNOTATION_COLUMNS, cleanClip, cleanComment, cleanRects, cleanText, isColor, MAX_QUOTE, toAnnotation } from "@/lib/annotations";
 import { getSession } from "@/lib/auth";
 import { clampPage } from "@/lib/notes";
 import { isUuid } from "@/lib/questions";
@@ -36,6 +36,7 @@ export async function POST(request: Request, ctx: RouteContext<"/api/notes/[topi
       quote: cleanText(body.quote, MAX_QUOTE),
       rects,
       comment: comment || null,
+      clip: cleanClip(body.clip),
     })
     .select(ANNOTATION_COLUMNS)
     .single();

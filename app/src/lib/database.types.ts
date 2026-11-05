@@ -159,6 +159,8 @@ type NoteAnnotationRow = {
   quote: string;
   rects: Json;
   comment: string | null;
+  clip: string | null;
+  has_clip: boolean;
   created_at: string;
   updated_at: string;
 };
