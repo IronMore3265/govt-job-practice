@@ -323,7 +323,9 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
       suppressUntil.current = Date.now() + (smooth ? 900 : 300);
       setSlid(false);
       const down = fy > 0 ? el.offsetHeight * fy - 70 : 0;
-      main.scrollTo({ top: Math.max(0, el.offsetTop - topHRef.current - 8 + down), behavior: smooth ? "smooth" : "auto" });
+      // The top padding is 14px with the bars showing and taller while they are away; either way the page lands 8px below the top bar.
+      const padTop = parseFloat(getComputedStyle(main).paddingTop) || 0;
+      main.scrollTo({ top: Math.max(0, el.offsetTop - padTop + 6 + down), behavior: smooth ? "smooth" : "auto" });
     },
     [numPages],
   );
@@ -444,8 +446,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
     const onScroll = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const r = main.getBoundingClientRect();
-        const line = r.top + topHRef.current + r.height * 0.25;
+        const line = topHRef.current + window.innerHeight * 0.25;
         let current = 1;
         pageEls.current.forEach((el, i) => {
           if (el && el.getBoundingClientRect().top <= line) current = i + 1;

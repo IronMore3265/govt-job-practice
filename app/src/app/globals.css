@@ -1498,11 +1498,22 @@ body:has(.nav-pending) {
 }
 
 /* The notes */
+/* The scroll box sits between the bars, so its scrollbars are never hidden under them. While the bars slide away it grows to the
+   full screen and the padding grows by the same amount, so the note does not move. */
 .nv-main {
   position: absolute;
-  inset: 0;
+  top: var(--nv-top, 64px);
+  bottom: var(--nv-bot, 60px);
+  left: 0;
+  right: 0;
   overflow: auto;
   overscroll-behavior: contain;
+  padding: 14px 28px 28px;
+}
+
+.nv-away .nv-main {
+  top: 0;
+  bottom: 0;
   padding: calc(var(--nv-top, 64px) + 14px) 28px calc(var(--nv-bot, 60px) + 28px);
 }
 
