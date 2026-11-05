@@ -128,7 +128,10 @@ COVER3 = {
     "'বটতলার পুঁথি' বলতে": ["বটতলার পুঁথি", "দোভাষী পুঁথি সাহিত্য"],
     "পুঁথি সাহিত্য বলতে বুঝি": ["ইসলামী চেতনাসমৃদ্ধ সাহিত্যকে পুঁথি সাহিত্য"],
 }
-COVER_BY_TOPIC = {1: COVER, 2: COVER2, 3: COVER3}
+sys.path.insert(0, str(HERE.parent))
+from cover4 import COVER4  # noqa: E402
+
+COVER_BY_TOPIC = {1: COVER, 2: COVER2, 3: COVER3, 4: COVER4}
 
 
 def check_topic(topic):
@@ -144,6 +147,9 @@ def check_topic(topic):
                 break
         if need is None:
             need = [x["opts"][x["ans"]]]
+        if x["page"] < 1:
+            bad.append((x["n"], 0, x["q"], x["opts"][x["ans"]], ["no note page found"]))
+            continue
         txt = norm(pages[x["page"] - 1])
         miss = [n for n in need if norm(n) not in txt]
         if miss:

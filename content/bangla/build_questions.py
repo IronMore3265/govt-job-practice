@@ -16,6 +16,9 @@ from qdata_charyapad import T5  # noqa: E402
 from qdata_mj_a import T6_1, T6_2, T6_3, T6_4, T6_5  # noqa: E402
 from qdata_mj_b import T6_6, T6_7, T6_8, T6_9, T6_10, T6_11  # noqa: E402
 from qdata_mj_c import T6_12, T6_13, T6_14  # noqa: E402
+import qdata_modern_a as _ma, qdata_modern_b as _mb, qdata_modern_c as _mc, qdata_modern_d as _md, qdata_modern_e as _me  # noqa: E402
+import qdata_modern_f as _mf, qdata_modern_g as _mg, qdata_modern_h as _mh, qdata_modern_i as _mi, qdata_modern_j as _mj  # noqa: E402
+import qdata_modern_k as _mk, qdata_modern_n as _mn  # noqa: E402
 
 HERE = Path(__file__).parent
 BN = "০১২৩৪৫৬৭৮৯"
@@ -50,6 +53,28 @@ CH_TITLES3 = {1: "মধ্যযুগ পরিচিতি", 2: "অন্ধ
               7: "নাথ সাহিত্য", 8: "মর্সিয়া সাহিত্য", 9: "লোকসাহিত্য", 10: "অনুবাদ সাহিত্য", 11: "রোমান্টিক প্রণয়োপাখ্যান",
               12: "আরাকান রাজসভা", 13: "মধ্যযুগে বাংলা সাহিত্যের পৃষ্ঠপোষক", 14: "যুগ সন্ধিক্ষণ"}
 
+# topic 4 (আধুনিক যুগ): see _build/build_note_modern.py. Note pages: cover=1, contents pages 2..44, answer-key pages 45 and 46.
+_X = {c: (45 if c <= 13 else 46) for c in range(1, 28)}
+PAGES4 = {
+    1: {"a": 2}, 2: {"a": 3}, 3: {"a": 4}, 4: {"a": 5}, 5: {"a": 5, "b": 6}, 6: {"a": 6}, 7: {"a": 7},
+    8: {"a": 8, "b": 9, "c": 10, "d": 11}, 9: {"a": 12, "b": 13}, 10: {"a": 14, "b": 14, "c": 15}, 11: {"a": 16}, 12: {"a": 17},
+    13: {"a": 18, "p": 19, "b": 20, "c": 21}, 14: {"a": 22}, 15: {"a": 23, "b": 24}, 16: {"a": 25}, 17: {"a": 26, "b": 38},
+    18: {"a": 27, "b": 28}, 19: {"a": 29, "b": 30}, 20: {"a": 31}, 21: {"a": 32}, 22: {"a": 33, "b": 34, "c": 35},
+    23: {"a": 36, "b": 37}, 24: {"a": 38}, 25: {"a": 39}, 26: {"a": 40, "b": 41}, 27: {"a": 42, "b": 43, "c": 44},
+}
+for _c, _d in PAGES4.items():
+    _d["x"] = _X[_c]
+CH_TITLES4 = {1: "বাংলা গদ্যসাহিত্য", 2: "ফোর্ট উইলিয়াম কলেজ", 3: "শ্রীরামপুর মিশন ও বাংলা ছাপাখানা", 4: "হিন্দু কলেজ ও ইয়ংবেঙ্গল",
+              5: "ঢাকা মুসলিম সাহিত্য সমাজ", 6: "বাংলাদেশ এশিয়াটিক সোসাইটি", 7: "বাংলা একাডেমি", 8: "উপন্যাস", 9: "নাটক", 10: "প্রবন্ধ",
+              11: "বাংলা সাহিত্যের ইতিহাস বিষয়ক গ্রন্থ", 12: "ভ্রমণকাহিনি", 13: "বাংলা কাব্য ও কবিতা", 14: "মহাকাব্য", 15: "ছোটগল্প",
+              16: "জীবনচরিত: মুহম্মদ (স.)", 17: "ভাষা আন্দোলনভিত্তিক রচনা", 18: "মুক্তিযুদ্ধভিত্তিক গ্রন্থ", 19: "বিখ্যাত চরিত্র",
+              20: "বিখ্যাত সাহিত্যিকদের উপাধি", 21: "প্রকৃত নাম ও ছদ্মনাম", 22: "প্রথম প্রকাশিত উপন্যাস, নাটক, গল্প ও কাব্য",
+              23: "বাংলা সাহিত্যের প্রথম বিষয়াবলি", 24: "বাজেয়াপ্ত ও উৎসর্গীকৃত সাহিত্যকর্ম", 25: "বিখ্যাত বাংলা গান",
+              26: "বিখ্যাত পঙ্ক্তি ও বক্তা", 27: "পত্রিকা / সাময়িকী ও সম্পাদক"}
+CH4 = [_ma.T7_1, _ma.T7_2, _ma.T7_3, _ma.T7_4, _ma.T7_5, _ma.T7_6, _ma.T7_7, _mb.T7_8, _mc.T7_9, _md.T7_10, _md.T7_11, _me.T7_12, _me.T7_13,
+       _mf.T7_14, _mf.T7_15, _mf.T7_16, _mg.T7_17, _mg.T7_18, _mh.T7_19, _mi.T7_20, _mi.T7_21, _mn.T7_22, _mn.T7_23, _mn.T7_24,
+       _mj.T7_25, _mj.T7_26, _mk.T7_27]
+
 TOPICS = [
     dict(num=1, folder="01-bangla-sahitto", title="বাংলা সাহিত্য",
          chapters=[(1, T1), (2, T2), (3, T3), (4, T4)], pages=PAGES1, ch_titles=CH_TITLES1),
@@ -58,12 +83,14 @@ TOPICS = [
     dict(num=3, folder="03-moddhojug", title="মধ্যযুগ",
          chapters=[(1, T6_1), (2, T6_2), (3, T6_3), (4, T6_4), (5, T6_5), (6, T6_6), (7, T6_7), (8, T6_8), (9, T6_9),
                    (10, T6_10), (11, T6_11), (12, T6_12), (13, T6_13), (14, T6_14)], pages=PAGES3, ch_titles=CH_TITLES3),
+    dict(num=4, folder="04-adhunik-jug", title="আধুনিক যুগ", resolver=True,
+         chapters=[(i + 1, d) for i, d in enumerate(CH4)], pages=PAGES4, ch_titles=CH_TITLES4),
 ]
 TOPIC = TOPICS[0]  # kept for older scripts
 LET = "ABCD"
 
 
-def prepare(topic):
+def prepare(topic, resolve=True):
     out = []
     n = 0
     for ch, data in topic["chapters"]:
@@ -78,9 +105,45 @@ def prepare(topic):
                 ans = opts.index(q["correct"])
             assert len(opts) == 4 and len(set(opts)) == 4, (ch, k)
             assert "—" not in q["q"] + q["reason"] + "".join(opts), (ch, k)
-            out.append(dict(n=n, ch=ch, q=q["q"], opts=opts, ans=ans, reason=q["reason"], src=q["src"], page=topic["pages"][ch][q["sec"]]))
+            page = 1 if topic.get("resolver") else topic["pages"][ch][q["sec"]]
+            out.append(dict(n=n, ch=ch, q=q["q"], opts=opts, ans=ans, reason=q["reason"], src=q["src"], page=page, sec=q["sec"]))
+    # The book repeats some stems with different options. The importer skips a question whose text already exists
+    # in the topic, so a repeated stem gets a number in brackets: "(২)", "(৩)" and so on.
+    seen = {}
+    for x in out:
+        seen[x["q"]] = seen.get(x["q"], 0) + 1
+        if seen[x["q"]] > 1:
+            x["q"] = f"{x['q']} ({bn(seen[x['q']])})"
     assert len({x["q"] for x in out}) == len(out), "duplicate question text"
+    if topic.get("resolver") and resolve:
+        _resolve(topic, out)
     return out
+
+
+def _resolve(topic, out):
+    """Topic 4: the note layout is automatic, so each question's note page is found by searching the built note.html:
+    first the pages of its chapter, then any page. Questions marked sec 'x' point to the answer-key pages. Page 0 = not found."""
+    import note_pages
+    from cover4 import need
+
+    info = note_pages.page_info(topic["folder"])
+    for x in out:
+        if not info:
+            x["page"] = 0
+            continue
+        if x["sec"] == "x":
+            hit = [i + 1 for i, p in enumerate(info) if 28 in p["chs"] and note_pages.norm(x["q"]) in p["text"]]
+            x["page"] = hit[0] if hit else 0
+            continue
+        need_ = [note_pages.norm(t) for t in (need(x["q"]) or [x["opts"][x["ans"]]])]
+        pool = [i for i, p in enumerate(info) if 28 not in p["chs"]]
+        mine = [i for i in pool if x["ch"] in info[i]["chs"]]
+        x["page"] = 0
+        for grp in (mine, [i for i in pool if i not in mine]):
+            hit = [i + 1 for i in grp if all(t in info[i]["text"] for t in need_)]
+            if hit:
+                x["page"] = hit[0]
+                break
 
 
 

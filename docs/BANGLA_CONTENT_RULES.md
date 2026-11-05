@@ -114,6 +114,15 @@ Topics so far (each has its own question data file, note builder and entry in `T
 | 2 আদি বা প্রাচীন যুগ: চর্যাপদ (80 questions, book pages 18 to 25) | `02-adi-prachin-jug` | `qdata_charyapad.py` | `_build/build_note_charyapad.py` |
 | 3 মধ্যযুগ (220 questions, book pages 26 to 55, 14 sections, 19 note pages) | `03-moddhojug` | `qdata_mj_a.py`, `qdata_mj_b.py`, `qdata_mj_c.py` | `_build/build_note_moddhojug.py` (pages in `mj_part1.py`, `mj_part2.py`, `mj_part3.py`) |
 
+| 4 আধুনিক যুগ (540 questions, 27 sections, 55 note pages) | `04-adhunik-jug` | `qdata_modern_a.py` to `qdata_modern_k.py`, `qdata_modern_n.py` (19 new) | `_build/build_note_modern.py` (pages in `md_part1.py` to `md_part11.py`) |
+
+Topic 4 differs from topics 1 to 3 in two ways. (1) The note is paginated automatically: each page function returns one block of HTML, and
+`build_note_modern.py` splits tables and lists over as many pages as needed and tags every page with `data-ch` (the chapters it teaches).
+(2) Each question's note page is found by searching the built `note.html` (`build_questions.py` `_resolve`), first among the pages of its
+chapter, then any page. Questions marked `sec "x"` point to the generated answer-key pages (facts that only the book's answer key states).
+Run `build_note_modern.py` first, then `build_questions.py 4`, then `coverage_check.py 4`. `cover4.py` is the `COVER` table for this topic.
+Repeated stems in the book get a number in brackets, for example `(২)`, because the importer skips a question whose text already exists.
+
 `build_questions.py` and `coverage_check.py` take an optional topic number (`python content/bangla/build_questions.py 2`).
 For a long topic the note pages can be split over several modules (topic 3). Its answer-key pages (17 and 18 of the note, keys `x` and `y`)
 hold every fact that only the book's answer key states and every doubtful key, so those questions point to them.
