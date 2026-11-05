@@ -1530,6 +1530,16 @@ body:has(.nav-pending) {
   min-width: 100%;
 }
 
+/* Two pages side by side: pages 1 and 2 on the first row, 3 and 4 on the next, and so on */
+.nv-pages.nv-spread {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  align-items: start;
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
 .nv-page {
   position: relative;
   flex: none;

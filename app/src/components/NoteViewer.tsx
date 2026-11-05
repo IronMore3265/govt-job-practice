@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, Download, MessageSquare, Minus, PanelLeft, Plus, Trash2, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Columns2, Download, MessageSquare, Minus, PanelLeft, Plus, Trash2, X } from "lucide-react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import "pdfjs-dist/web/pdf_viewer.css";
 import Link from "@/components/NavLink";
@@ -33,6 +33,11 @@ const MIN_ZOOM = 0.3;
 const MAX_ZOOM = 4;
 const MAX_FIT = 2.2;
 const PHONE = 860;
+// Space between pages, which is also the gap between the two pages of a spread.
+const GAP = 24;
+
+// "fit" fits the width of the notes box, "height" fits the whole page in it, a number is a fixed zoom.
+type Zoom = number | "fit" | "height";
 
 // A part of the student's text selection that lies on one page.
 type Part = { page: number; rects: Rect[]; quote: string; clip?: string | null };
@@ -117,8 +122,10 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   const [state, setState] = useState<"loading" | "ready" | "error">("loading");
   const [error, setError] = useState("");
   const [page, setPage] = useState(initialPage);
-  const [zoom, setZoom] = useState<number | "fit">("fit");
+  const [zoom, setZoom] = useState<Zoom>("fit");
+  const [spread, setSpread] = useState(false);
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   const [jump, setJump] = useState(String(initialPage));
   const [side, setSide] = useState(false);
   const [tab, setTab] = useState<SideTab>("pages");
@@ -143,6 +150,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   const pageEls = useRef<(HTMLDivElement | null)[]>([]);
   const jobs = useRef(new Map<number, () => void>());
   const pageRef = useRef(initialPage);
+  const spreadRef = useRef(false);
   const placed = useRef(false);
   const lastSaved = useRef(0);
   const topHRef = useRef(topH);
@@ -204,11 +212,15 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
     };
   }, [topicId]);
 
-  // ---- available width, for "fit width"
+  // ---- available width and height, for "fit width" and "fit height". The height is the same whether the bars are showing or
+  // away, because the box and its padding change by the same amount.
   useEffect(() => {
     const el = mainRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setWidth(Math.floor(entry.contentRect.width)));
+    const ro = new ResizeObserver(([entry]) => {
+      setWidth(Math.floor(entry.contentRect.width));
+      setHeight(Math.floor(entry.contentRect.height));
+    });
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -234,7 +246,10 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   }, []);
 
   const widest = useMemo(() => Math.max(1, ...sizes.map((s) => s.w)), [sizes]);
-  const scale = zoom === "fit" ? Math.min(MAX_FIT, Math.max(MIN_ZOOM, (width - 6) / widest)) : zoom;
+  const tallest = useMemo(() => Math.max(1, ...sizes.map((s) => s.h)), [sizes]);
+  // Two pages side by side need twice the width (and the gap) to fit.
+  const across = (width - 6 - (spread ? GAP : 0)) / ((spread ? 2 : 1) * widest);
+  const scale = zoom === "fit" ? Math.min(MAX_FIT, Math.max(MIN_ZOOM, across)) : zoom === "height" ? Math.min(MAX_FIT, Math.max(MIN_ZOOM, (height - 6) / tallest)) : zoom;
   const scaleRef = useRef(scale);
 
   // ---- draw and free pages as they come near the screen
@@ -356,6 +371,19 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
     });
   }, [scale, goTo]);
 
+  // Switching between one page and two: the layout changes under the student, so land on the same page again.
+  const lastSpread = useRef(spread);
+  useEffect(() => {
+    spreadRef.current = spread;
+    if (lastSpread.current === spread) return;
+    lastSpread.current = spread;
+    if (!placed.current) return;
+    requestAnimationFrame(() => goTo(pageRef.current));
+  }, [spread, goTo]);
+
+  // The page to go to from the previous and next buttons and the arrow keys: a row at a time in a spread.
+  const stepPage = useCallback((from: number, dir: 1 | -1) => (spread ? from - ((from - 1) % 2) + 2 * dir : from + dir), [spread]);
+
   // Where in the note a point of the notes box is, as a page and fractions of it.
   const captureAnchor = useCallback((cx: number, cy: number): Anchor | null => {
     const main = mainRef.current;
@@ -381,7 +409,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   }, []);
 
   const applyZoom = useCallback(
-    (next: number | "fit") => {
+    (next: Zoom) => {
       const main = mainRef.current;
       anchor.current = main ? captureAnchor(main.clientWidth / 2, main.clientHeight / 2) : null;
       setZoom(typeof next === "number" ? Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, next)) : next);
@@ -451,6 +479,12 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
         pageEls.current.forEach((el, i) => {
           if (el && el.getBoundingClientRect().top <= line) current = i + 1;
         });
+        // In a spread the two pages of a row share a top, so the row counts as one: keep the page the student asked for while
+        // it is in view, otherwise take the left page of the row.
+        if (spreadRef.current) {
+          const row = (n: number) => Math.floor((n - 1) / 2);
+          current = row(current) === row(pageRef.current) ? pageRef.current : row(current) * 2 + 1;
+        }
         if (current !== pageRef.current) {
           pageRef.current = current;
           setPage(current);
@@ -501,12 +535,12 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
         return;
       }
       if ((e.target as HTMLElement)?.closest("input, textarea, select, button")) return;
-      if (e.key === "ArrowRight") goTo(pageRef.current + 1, true);
-      if (e.key === "ArrowLeft") goTo(pageRef.current - 1, true);
+      if (e.key === "ArrowRight") goTo(stepPage(pageRef.current, 1), true);
+      if (e.key === "ArrowLeft") goTo(stepPage(pageRef.current, -1), true);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [goTo]);
+  }, [goTo, stepPage]);
 
   // ---- the zoom menu closes when something else is tapped
   useEffect(() => {
@@ -686,7 +720,8 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
   }, [doc, marks, topicId]);
 
   const percent = readingPercent(page, numPages);
-  const zoomLabel = zoom === "fit" ? "Fit" : `${Math.round(scale * 100)}%`;
+  const zoomLabel = zoom === "fit" ? "Fit W" : zoom === "height" ? "Fit H" : `${Math.round(scale * 100)}%`;
+  const zoomName = zoom === "fit" ? "fit width" : zoom === "height" ? "fit height" : zoomLabel;
   const ready = state === "ready";
 
   return (
@@ -739,7 +774,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
       />
 
       <div className={`nv-main${side ? " nv-main-shift" : ""}`} ref={mainRef}>
-        <div className="nv-pages" ref={pagesRef} onClick={onPagesClick}>
+        <div className={`nv-pages${spread ? " nv-spread" : ""}`} ref={pagesRef} onClick={onPagesClick}>
           {state === "loading" ? <p className="small muted">Loading the note...</p> : null}
           {state === "error" ? (
             <div className="card stack-sm" role="alert">
@@ -832,10 +867,13 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
           <button type="button" className={`btn nv-btn${side ? " nv-btn-on" : ""}`} onClick={() => setSide((v) => !v)} aria-label={side ? "Hide pages and marks" : "Show pages and marks"} aria-pressed={side} title={side ? "Hide pages and marks" : "Show pages and marks"}>
             <PanelLeft aria-hidden />
           </button>
-          <button type="button" className="btn nv-btn" onClick={() => goTo(page - 1, true)} disabled={page <= 1} aria-label="Previous page">
+          <button type="button" className={`btn nv-btn${spread ? " nv-btn-on" : ""}`} onClick={() => setSpread((v) => !v)} aria-label={spread ? "Show one page at a time" : "Show two pages side by side"} aria-pressed={spread} title={spread ? "Show one page at a time" : "Show two pages side by side"} disabled={!ready}>
+            <Columns2 aria-hidden />
+          </button>
+          <button type="button" className="btn nv-btn" onClick={() => goTo(stepPage(page, -1), true)} disabled={stepPage(page, -1) < 1} aria-label={spread ? "Previous two pages" : "Previous page"}>
             <ChevronLeft aria-hidden />
           </button>
-          <button type="button" className="btn nv-btn" onClick={() => goTo(page + 1, true)} disabled={page >= numPages} aria-label="Next page">
+          <button type="button" className="btn nv-btn" onClick={() => goTo(stepPage(page, 1), true)} disabled={stepPage(page, 1) > numPages} aria-label={spread ? "Next two pages" : "Next page"}>
             <ChevronRight aria-hidden />
           </button>
           <form
@@ -857,7 +895,7 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
           <button type="button" className="btn nv-btn nv-zoom-step" onClick={() => zoomBy(-1)} aria-label="Zoom out" disabled={!ready}>
             <Minus aria-hidden />
           </button>
-          <button type="button" className="btn nv-btn nv-zoombtn" onClick={() => setZoomOpen((v) => !v)} aria-haspopup="menu" aria-expanded={zoomOpen} aria-label={`Zoom level, now ${zoom === "fit" ? "fit width" : zoomLabel}`} disabled={!ready}>
+          <button type="button" className="btn nv-btn nv-zoombtn" onClick={() => setZoomOpen((v) => !v)} aria-haspopup="menu" aria-expanded={zoomOpen} aria-label={`Zoom level, now ${zoomName}`} disabled={!ready}>
             <span>{zoomLabel}</span>
             <ChevronDown aria-hidden />
           </button>
@@ -876,6 +914,9 @@ export function NoteViewer({ topicId, title, subject, initialPage, initialMarks,
               </div>
               <button type="button" role="menuitemradio" aria-checked={zoom === "fit"} className="nv-pop-item" onClick={() => { applyZoom("fit"); setZoomOpen(false); }}>
                 Fit width
+              </button>
+              <button type="button" role="menuitemradio" aria-checked={zoom === "height"} className="nv-pop-item" onClick={() => { applyZoom("height"); setZoomOpen(false); }}>
+                Fit height
               </button>
               {ZOOMS.map((z) => (
                 <button key={z} type="button" role="menuitemradio" aria-checked={zoom === z} className="nv-pop-item" onClick={() => { applyZoom(z); setZoomOpen(false); }}>
