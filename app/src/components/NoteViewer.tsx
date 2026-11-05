@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Maximize2, Minus, Plus } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { ChevronLeft, ChevronRight, Download, Minus, PanelLeft, Plus } from "lucide-react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import "pdfjs-dist/web/pdf_viewer.css";
 import Link from "@/components/NavLink";
@@ -30,7 +30,7 @@ const MAX_FIT = 2.2;
 
 // The themed note viewer (PLAN.md section 6.2). pdf.js draws each page onto a canvas inside our own cards, with a text
 // layer on top so the text stays selectable. Only the pages near the screen are drawn: pages that scroll away are freed.
-// The PDF comes from a short-lived signed link (/api/notes/<id>), and there is no download button.
+// The PDF comes from a short-lived signed link (/api/notes/<id>). The Download button goes through /api/notes/<id>/download.
 export function NoteViewer({ topicId, title, subject, initialPage, related, topicsParam, exam, setId, start, backHref }: Props) {
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [sizes, setSizes] = useState<{ w: number; h: number }[]>([]);
@@ -40,9 +40,12 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
   const [zoom, setZoom] = useState<number | "fit">("fit");
   const [width, setWidth] = useState(0);
   const [jump, setJump] = useState(String(initialPage));
+  const [thumbs, setThumbs] = useState(true);
+  const [topH, setTopH] = useState(132);
 
   const lib = useRef<Pdfjs | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLElement>(null);
   const pageEls = useRef<(HTMLDivElement | null)[]>([]);
   const jobs = useRef(new Map<number, () => void>());
   const pageRef = useRef(initialPage);
@@ -97,6 +100,22 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
     ro.observe(el);
     return () => ro.disconnect();
   }, [state]);
+
+  // ---- the page drawer starts closed on a phone, and the sticky parts follow the real header height
+  useEffect(() => {
+    const el = topRef.current;
+    if (!el) return;
+    let first = true;
+    const ro = new ResizeObserver(() => {
+      if (first) {
+        first = false;
+        setThumbs(window.innerWidth > 860);
+      }
+      setTopH(Math.ceil(el.getBoundingClientRect().height));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const widest = useMemo(() => Math.max(1, ...sizes.map((s) => s.w)), [sizes]);
   const scale = zoom === "fit" ? Math.min(MAX_FIT, Math.max(0.3, (width - 6) / widest)) : zoom;
@@ -264,37 +283,21 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
   const percent = readingPercent(page, numPages);
 
   return (
-    <div className="nv">
-      <header className="nv-top">
-        <div className="between" style={{ flexWrap: "wrap", gap: 8 }}>
-          <div className="stack-sm">
-            <div className="nv-head">
-              <Link href={backHref} className="small">
-                Back
-              </Link>
-              <AccentTitle title={title} />
-            </div>
+    <div className="nv" style={{ "--nv-top": `${topH}px` } as CSSProperties}>
+      <header className="nv-top" ref={topRef}>
+        <div className="nv-top-row">
+          <Link href={backHref} className="btn nv-btn nv-back">
+            <ChevronLeft aria-hidden />
+            Back
+          </Link>
+          <div className="nv-titles">
+            <AccentTitle title={title} />
             <p className="small muted nv-sub">{subject}</p>
           </div>
-          <div className="wrap">
-            <span className="timer-pill" aria-live="polite">
-              PAGE{" "}
-              <b>
-                {page} / {numPages || "..."}
-              </b>
-            </span>
-            <div className="zoom" role="group" aria-label="Zoom">
-              <button type="button" className="btn btn-small btn-icon" onClick={() => zoomBy(-1)} aria-label="Zoom out" disabled={state !== "ready"}>
-                <Minus size={16} strokeWidth={2} aria-hidden />
-              </button>
-              <button type="button" className="btn btn-small btn-icon" onClick={() => zoomBy(1)} aria-label="Zoom in" disabled={state !== "ready"}>
-                <Plus size={16} strokeWidth={2} aria-hidden />
-              </button>
-              <button type="button" className="btn btn-small" onClick={() => setZoom("fit")} disabled={state !== "ready"}>
-                <Maximize2 size={14} strokeWidth={2} aria-hidden /> Fit width
-              </button>
-            </div>
-          </div>
+          <a href={`/api/notes/${topicId}/download`} className="btn nv-btn nv-download" aria-label="Download this note as a PDF" aria-disabled={state !== "ready"}>
+            <Download aria-hidden />
+            <span>Download</span>
+          </a>
         </div>
         {related.length > 1 ? (
           <nav className="wrap" aria-label="Notes in this exam">
@@ -310,10 +313,20 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
         </div>
       </header>
 
-      <div className="nv-body">
-        <aside className="nv-thumbs" aria-label="Pages">
+      <div className={`nv-body${thumbs ? "" : " nv-body-wide"}`}>
+        <aside className={`nv-thumbs${thumbs ? " nv-thumbs-open" : ""}`} aria-label="Pages" hidden={!thumbs}>
           {sizes.map((s, i) => (
-            <Thumb key={i} doc={doc} n={i + 1} ratio={s.h / s.w} active={page === i + 1} onClick={() => goTo(i + 1, true)} />
+            <Thumb
+              key={i}
+              doc={doc}
+              n={i + 1}
+              ratio={s.h / s.w}
+              active={page === i + 1}
+              onClick={() => {
+                goTo(i + 1, true);
+                if (window.innerWidth <= 860) setThumbs(false);
+              }}
+            />
           ))}
         </aside>
 
@@ -344,14 +357,19 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
       </div>
 
       <footer className="nv-bottom">
-        <div className="wrap">
-          <button type="button" className="btn btn-small btn-icon" onClick={() => goTo(page - 1, true)} disabled={page <= 1} aria-label="Previous page">
-            <ChevronLeft size={16} strokeWidth={2} aria-hidden />
+        <div className="nv-group">
+          <button type="button" className={`btn nv-btn${thumbs ? " nv-btn-on" : ""}`} onClick={() => setThumbs((v) => !v)} aria-label={thumbs ? "Hide page list" : "Show page list"} aria-pressed={thumbs} title={thumbs ? "Hide page list" : "Show page list"}>
+            <PanelLeft aria-hidden />
           </button>
-          <button type="button" className="btn btn-small btn-icon" onClick={() => goTo(page + 1, true)} disabled={page >= numPages} aria-label="Next page">
-            <ChevronRight size={16} strokeWidth={2} aria-hidden />
+          <button type="button" className="btn nv-btn" onClick={() => goTo(page - 1, true)} disabled={page <= 1} aria-label="Previous page">
+            <ChevronLeft aria-hidden />
+          </button>
+          <button type="button" className="btn nv-btn" onClick={() => goTo(page + 1, true)} disabled={page >= numPages} aria-label="Next page">
+            <ChevronRight aria-hidden />
           </button>
           <form
+            className="nv-pageof"
+            aria-live="polite"
             onSubmit={(e) => {
               e.preventDefault();
               const n = Number.parseInt(jump, 10);
@@ -359,10 +377,36 @@ export function NoteViewer({ topicId, title, subject, initialPage, related, topi
             }}
           >
             <label className="sr-only" htmlFor="nv-jump">Go to page</label>
-            <input id="nv-jump" className="input input-sm nv-jump" inputMode="numeric" value={jump} onChange={(e) => setJump(e.target.value)} onBlur={() => setJump(String(page))} />
+            <input id="nv-jump" className="nv-field nv-jump" inputMode="numeric" value={jump} onChange={(e) => setJump(e.target.value)} onBlur={() => setJump(String(page))} />
+            <span>of {numPages || "..."}</span>
           </form>
         </div>
-        <div className="wrap">
+
+        <div className="nv-group" role="group" aria-label="Zoom">
+          <button type="button" className="btn nv-btn" onClick={() => zoomBy(-1)} aria-label="Zoom out" disabled={state !== "ready"}>
+            <Minus aria-hidden />
+          </button>
+          <label className="sr-only" htmlFor="nv-zoom">Zoom level</label>
+          <select
+            id="nv-zoom"
+            className="nv-field nv-zoom"
+            value={zoom === "fit" ? "fit" : String(zoom)}
+            onChange={(e) => setZoom(e.target.value === "fit" ? "fit" : Number(e.target.value))}
+            disabled={state !== "ready"}
+          >
+            <option value="fit">Fit width ({Math.round(scale * 100)}%)</option>
+            {ZOOMS.map((z) => (
+              <option key={z} value={String(z)}>
+                {Math.round(z * 100)}%
+              </option>
+            ))}
+          </select>
+          <button type="button" className="btn nv-btn" onClick={() => zoomBy(1)} aria-label="Zoom in" disabled={state !== "ready"}>
+            <Plus aria-hidden />
+          </button>
+        </div>
+
+        <div className="nv-group nv-end">
           <span className="small muted nv-resume">Resumes on page {page} next time</span>
           {start ? <StartExamForm examId={start.examId} setId={start.setId} topicIds={start.topicIds} /> : null}
         </div>

@@ -36,7 +36,8 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 - [ ] Home > Notes (library) lists topics, with "Continue, page N" after you read.
 - [ ] Open a note. The pages look right: cream background, ink border and hard shadow per page, orange progress bar, `PAGE x / y`. Real text is selectable. Charts and figures look sharp, Bangla letters are not broken.
 - [ ] Zoom out, zoom in, Fit width, next and previous, jump to a page, thumbnails on the left (laptop). Close the tab, reopen: it resumes on the same page.
-- [ ] No download button anywhere. The PDF address stops working after about 10 minutes (open `/api/notes/<topic id>` while signed in, copy the link, try it later).
+- [ ] The Download button (top right of the note viewer) saves the PDF. The PDF address stops working after about 10 minutes (open `/api/notes/<topic id>` while signed in, copy the link, try it later).
+- [ ] Viewer controls: Back is a clear button; the bottom bar has page list toggle, previous, next, page box with "of N", zoom out, zoom level menu (Fit width, 50% to 300%) and zoom in, all the same height. The page list hides and shows, and the pages widen when it is hidden.
 - [ ] On your phone: single column, the controls and bottom bar are easy to tap, pinch zoom works, scrolling a long note stays smooth.
 - [ ] Home > pick an exam, press "Read notes first": the topic pills at the top switch between notes, and a sticky "Start exam" button stays at the bottom.
 
@@ -84,7 +85,7 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 - **Leaderboard** counts finished sessions of a full set or a full random set. Retries do not count. Only sessions started after joining count.
 - **Export is JSON**, one file per group, streamed so large exports work. The note PDFs and figures are not in it.
 - **Report PDF** uses the browser's print dialog, as planned. Nothing is generated on the server.
-- **Notes can still be saved by a determined student** (a screenshot, for example). The viewer has no download button, hides the right-click menu on pages and prints blank, and the file link expires after 10 minutes. This only makes casual copying harder, as the plan says.
+- **Notes can still be saved by a determined student** (a screenshot, for example). The viewer hides the right-click menu on pages and prints blank, and the file link expires after 10 minutes. This only makes casual copying harder, as the plan says.
 
 ## If something breaks
 

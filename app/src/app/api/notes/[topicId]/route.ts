@@ -6,8 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 
 // A topic's note PDF. The `notes` bucket is private, so the browser never gets a permanent link: this route checks that
 // the caller is an approved member, then returns a signed link that stops working after 10 minutes. The viewer asks for
-// a fresh one each time a note is opened. There is no download button in the viewer. A member who can read a note can
-// still save it by other means, so this only makes casual copying harder (PLAN.md section 6.2).
+// a fresh one each time a note is opened. The Download button uses the sibling /download route.
 export async function GET(_request: Request, ctx: RouteContext<"/api/notes/[topicId]">) {
   const { topicId } = await ctx.params;
   if (!isUuid(topicId)) return NextResponse.json({ error: "Bad request." }, { status: 400 });

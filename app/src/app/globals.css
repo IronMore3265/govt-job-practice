@@ -1517,11 +1517,19 @@ body:has(.nav-pending) {
   flex: 1;
 }
 
+.nv-body-wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.nv-thumbs[hidden] {
+  display: none;
+}
+
 .nv-thumbs {
   position: sticky;
-  top: 132px;
+  top: var(--nv-top, 132px);
   align-self: start;
-  height: calc(100vh - 132px);
+  height: calc(100vh - var(--nv-top, 132px));
   overflow-y: auto;
   border-right: 2px solid var(--ink);
   padding: 12px 10px 90px;
@@ -1585,7 +1593,7 @@ body:has(.nav-pending) {
   border-radius: var(--radius);
   box-shadow: 6px 6px 0 var(--ink);
   overflow: hidden;
-  scroll-margin-top: 140px;
+  scroll-margin-top: calc(var(--nv-top, 132px) + 8px);
 }
 
 .nv-page canvas {
@@ -1613,9 +1621,92 @@ body:has(.nav-pending) {
   border-top: 2px solid var(--ink);
 }
 
+/* Every control in the viewer is the same height, with icons sized to match */
+.nv-btn {
+  height: 40px;
+  min-width: 40px;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.nv-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.2;
+  flex: none;
+}
+
+.nv-btn-on {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.nv-field {
+  height: 40px;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 0 10px;
+}
+
+.nv-field:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
 .nv-jump {
-  width: 64px;
+  width: 56px;
   text-align: center;
+  padding: 0 4px;
+}
+
+.nv-zoom {
+  width: 150px;
+  cursor: pointer;
+}
+
+.nv-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nv-pageof {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nv-end {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nv-top-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nv-titles {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nv-download[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .start-form {
@@ -1625,42 +1716,58 @@ body:has(.nav-pending) {
   gap: 6px;
 }
 
-.nv-head {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
 @media (max-width: 860px) {
   .nv-top {
     padding: 8px 12px 8px;
     gap: 6px;
   }
 
-  .nv-head {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 12px;
-  }
-
   .nv-top .heading {
     font-size: 17px;
   }
 
-  .nv-sub {
+  .nv-top-row {
+    gap: 10px;
+  }
+
+  .nv-sub,
+  .nv-download span {
     display: none;
+  }
+
+  .nv-download {
+    padding: 0;
+    width: 40px;
+  }
+
+  .nv-bottom {
+    padding: 8px 12px;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .nv-zoom {
+    width: 120px;
   }
 
   .nv-body {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* On a phone the page list slides over the note instead of sitting beside it */
   .nv-thumbs {
-    display: none;
+    position: fixed;
+    left: 0;
+    top: var(--nv-top, 90px);
+    bottom: 0;
+    height: auto;
+    width: 132px;
+    z-index: 15;
+    box-shadow: 4px 0 0 var(--ink);
   }
 
   .nv-main {
-    padding: 12px 10px 120px;
+    padding: 12px 10px 150px;
   }
 
   .nv-resume {

@@ -19,7 +19,7 @@ Govt job exam practice website for Nabil and friends. MCQ only. Read `PLAN.md` f
 - No AI anywhere in the app. MCQ answering, set building and grading never call an AI. Questions and explanations are written offline and imported.
 - Never commit secrets, `.env*` files, note PDFs, reference books or student data. Keep `.env.local` git-ignored.
 - Every table has RLS with tested policies. Browser code uses only the anon key. The service role key is used only in server routes (invite sign-up, admin actions, signed URLs, cron) and the import tool.
-- Storage buckets are private. The browser gets notes and figures only through short-lived signed URLs issued by a server route after an active-student check. No download button in the viewer.
+- Storage buckets are private. The browser gets notes and figures only through short-lived signed URLs issued by a server route after an active-student check. The viewer has a Download button (Nabil allows downloads), served by a route that makes the same active-student check.
 - Figures are 1:1 copies from the reference book, never redrawn.
 - Exam mode only. No feedback while answering. Review after submit. The browser never receives the correct option or an explanation before the session is finished (database functions withhold the key). Sets have exactly 20 questions, 1 mark each, 0.25 negative marking per wrong answer, and a timer of 36 seconds per question (12 minutes for 20), all per-exam settings. A set is `live` only when it has 20 questions.
 - Text is English or Bangla. Font stack `Outfit, "Noto Sans Bengali", sans-serif`. Doto has no Bengali letters, so Bangla titles use Noto Sans Bengali bold with the accent word in orange.

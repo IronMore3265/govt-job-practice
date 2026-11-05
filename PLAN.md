@@ -101,7 +101,7 @@ Questions and notes are prepared on your laptop with Claude, then imported once.
 - Performance: render only the pages near the screen, free the canvases of pages that scroll away.
 - Resume: the last page read per student and note is saved, so reopening continues there.
 - Entry points: on the start screen, after picking the exam and topics, a "Read notes first" button opens the viewer on the selected topics' PDFs, with a sticky "Start exam" button. There is also a Notes library in the main menu.
-- Delivery: the browser never gets a permanent link. A server route checks that the student is active, then returns a signed URL that expires in about 10 minutes. There is no download button. Note that a student who can view a PDF can always save it by other means, so this only makes casual copying harder.
+- Delivery: the browser never gets a permanent link. A server route checks that the student is active, then returns a signed URL that expires in about 10 minutes. The viewer has a Download button (allowed by Nabil), which goes through `/api/notes/<id>/download`: the same active-student check, then a redirect to a signed link that saves the file.
 - Same dashed explanation style: when an MCQ explanation says "see page 12", the page number is a link that opens the viewer at that page.
 
 ## 7. Accounts, invites and admin
