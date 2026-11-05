@@ -49,7 +49,7 @@ export default async function NotesLibraryPage() {
                       <span className="row-name">
                         {t.number}. {t.title}
                       </span>
-                      {hasNote && t.note_pages ? <span className="small muted"> · {t.note_pages} pages</span> : null}
+                      {hasNote && t.note_pages ? <span className="small muted note-pages">{t.note_pages} pages</span> : null}
                     </span>
                     {hasNote ? (
                       <span className="wrap">
@@ -62,11 +62,11 @@ export default async function NotesLibraryPage() {
                   </>
                 );
                 return hasNote ? (
-                  <Link key={t.id} href={noteHref(t.id)} className="row row-link">
+                  <Link key={t.id} href={noteHref(t.id)} className="row row-link note-row">
                     {body}
                   </Link>
                 ) : (
-                  <div key={t.id} className="row" style={{ opacity: 0.6 }}>
+                  <div key={t.id} className="row note-row" style={{ opacity: 0.6 }}>
                     {body}
                   </div>
                 );

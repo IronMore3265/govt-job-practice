@@ -369,6 +369,33 @@ p {
   font-weight: 600;
 }
 
+/* Notes library rows: the title and page count on the left, the status chips on the right, the same in every row */
+.note-row > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.note-row > :last-child {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.note-pages {
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .note-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .note-row > :last-child {
+    justify-content: flex-start;
+  }
+}
+
 .exam-selected {
   background: var(--orange);
   border-radius: var(--radius);
@@ -1031,7 +1058,7 @@ body:has(.nav-pending) {
   color: var(--ink);
 }
 
-/* Brand title: a quill writes "Practice Studio", erases it going backward, and writes it again */
+/* Brand title: the site name at the top of a page */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -1041,131 +1068,9 @@ body:has(.nav-pending) {
   min-height: 38px;
 }
 
-.brand-write {
-  position: relative;
-  display: inline-block;
-  padding-right: 34px;
-  white-space: nowrap;
-}
-
-.brand-text {
-  display: inline-block;
-  animation: brand-text 9s linear infinite;
-}
-
-.brand-quill {
-  position: absolute;
-  top: -14px;
-  left: 0;
-  width: 34px;
-  height: 34px;
-  margin-left: -4px;
-  pointer-events: none;
-  animation: brand-quill 9s linear infinite;
-}
-
-/* The quill spans the text only, so its 100% is the end of the last letter */
-.brand-track {
-  position: absolute;
-  inset: 0 34px 0 0;
-}
-
-.brand-quill svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transform-origin: 6px 30px;
-  animation: brand-nib 0.36s ease-in-out infinite alternate;
-}
-
-@keyframes brand-text {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  40% {
-    clip-path: inset(0 0 0 0);
-  }
-  60% {
-    clip-path: inset(0 0 0 0);
-  }
-  88% {
-    clip-path: inset(0 100% 0 0);
-  }
-  100% {
-    clip-path: inset(0 100% 0 0);
-  }
-}
-
-/* Writes forward, rests at the end, then runs backward over the words, erasing them */
-@keyframes brand-quill {
-  0% {
-    left: 0%;
-    transform: translateY(0);
-  }
-  40% {
-    left: 100%;
-    transform: translateY(0);
-  }
-  47% {
-    left: 100%;
-    transform: translateY(-4px);
-  }
-  53% {
-    left: 100%;
-    transform: translateY(0);
-  }
-  60% {
-    left: 100%;
-    transform: translateY(0);
-  }
-  88% {
-    left: 0%;
-    transform: translateY(0);
-  }
-  94% {
-    left: 0%;
-    transform: translateY(-4px);
-  }
-  100% {
-    left: 0%;
-    transform: translateY(0);
-  }
-}
-
-@keyframes brand-nib {
-  from {
-    transform: rotate(-7deg);
-  }
-  to {
-    transform: rotate(5deg);
-  }
-}
-
 @media (max-width: 520px) {
   .brand {
     font-size: 22px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .brand-text,
-  .brand-quill,
-  .brand-quill svg {
-    animation: none;
-  }
-  .brand-quill {
-    left: 100%;
-  }
-}
-
-@media print {
-  .brand-text,
-  .brand-quill,
-  .brand-quill svg {
-    animation: none;
-  }
-  .brand-quill {
-    left: 100%;
   }
 }
 
@@ -1313,6 +1218,22 @@ body:has(.nav-pending) {
 
 .notif-title {
   font-weight: 600;
+}
+
+/* Phone: the bell sits in a wrapped row, so anchor the panel to the whole top bar and span its width */
+@media (max-width: 640px) {
+  .topbar {
+    position: relative;
+  }
+  .notif-wrap {
+    position: static;
+  }
+  .notif-panel {
+    left: 0;
+    right: 0;
+    width: auto;
+    top: calc(100% + 8px);
+  }
 }
 
 @media print {
