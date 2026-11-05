@@ -149,6 +149,20 @@ type AttemptRow = {
 
 type NoteProgressRow = { user_id: string; topic_id: string; last_page: number; updated_at: string };
 
+type NoteAnnotationRow = {
+  id: string;
+  user_id: string;
+  topic_id: string;
+  page: number;
+  kind: "highlight" | "comment";
+  color: "yellow" | "green" | "pink";
+  quote: string;
+  rects: Json;
+  comment: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 type QuestionReportRow = {
   id: string;
   question_id: string;
@@ -261,6 +275,14 @@ export type Database = {
         [
           Rel<"note_progress_user_id_fkey", ["user_id"], "profile", ["id"]>,
           Rel<"note_progress_topic_id_fkey", ["topic_id"], "topic", ["id"]>,
+        ]
+      >;
+      note_annotation: Table<
+        NoteAnnotationRow,
+        "user_id" | "topic_id" | "page",
+        [
+          Rel<"note_annotation_user_id_fkey", ["user_id"], "profile", ["id"]>,
+          Rel<"note_annotation_topic_id_fkey", ["topic_id"], "topic", ["id"]>,
         ]
       >;
       question_report: Table<

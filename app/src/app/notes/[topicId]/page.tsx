@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "@/components/NavLink";
 import { NoteViewer } from "@/components/NoteViewer";
+import { ANNOTATION_COLUMNS, toAnnotation } from "@/lib/annotations";
 import { requireActive } from "@/lib/auth";
 import { parseTopicList, startPage } from "@/lib/notes";
 import { isUuid } from "@/lib/questions";
@@ -32,9 +33,10 @@ export default async function NotePage({ params, searchParams }: Props) {
   const chunkNum = Number(one(sp.chunk));
   const chunk = Number.isInteger(chunkNum) && chunkNum >= 1 && chunkNum <= 1000 ? chunkNum : null;
 
-  const [{ data: subject }, { data: progress }, { data: related }, { data: exam }] = await Promise.all([
+  const [{ data: subject }, { data: progress }, { data: marks }, { data: related }, { data: exam }] = await Promise.all([
     supabase.from("subject").select("name").eq("id", topic.subject_id).maybeSingle(),
     supabase.from("note_progress").select("last_page").eq("user_id", user.id).eq("topic_id", topicId).maybeSingle(),
+    supabase.from("note_annotation").select(ANNOTATION_COLUMNS).eq("user_id", user.id).eq("topic_id", topicId).order("page").order("created_at"),
     ids.length > 1 ? supabase.from("topic").select("id, number, title, note_path").in("id", ids) : Promise.resolve({ data: [] }),
     isUuid(examParam) ? supabase.from("exam").select("id").eq("id", examParam).maybeSingle() : Promise.resolve({ data: null }),
   ]);
@@ -64,6 +66,7 @@ export default async function NotePage({ params, searchParams }: Props) {
       title={topic.title}
       subject={`${subject?.name ?? ""} · Topic ${topic.number}`}
       initialPage={startPage({ requested: one(sp.page), saved: progress?.last_page, pages: topic.note_pages })}
+      initialMarks={(marks ?? []).map(toAnnotation)}
       related={tabs}
       topicsParam={ids.length > 1 || listed.length ? ids : []}
       exam={exam ? exam.id : null}
