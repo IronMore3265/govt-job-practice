@@ -32,9 +32,10 @@ def norm(t):
 def note_pages():
     html = (FOLDER / "note.html").read_text(encoding="utf-8")
     out = []
-    for m in re.finditer(r'<section class="page[^"]*" data-ch="([^"]*)">(.*?)</section>', html, re.S):
+    # every page, the cover (no data-ch) included, so that list index + 1 is the PDF page number
+    for m in re.finditer(r'<section class="page[^"]*?"(?: data-ch="([^"]*)")?>(.*?)</section>', html, re.S):
         raw = re.sub(r"<[^>]+>", " ", m.group(2)).replace("&amp;", "&")
-        out.append(dict(ch=m.group(1), text=norm(m.group(2)), words=set(re.findall(r"[ঀ-৿A-Za-z0-9]{3,}", raw.casefold()))))
+        out.append(dict(ch=m.group(1) or "cover", text=norm(m.group(2)), words=set(re.findall(r"[ঀ-৿A-Za-z0-9]{3,}", raw.casefold()))))
     return out
 
 
@@ -45,7 +46,7 @@ def resolve(qs):
     """Page choice: only pages of the question's chapter first; among them the page whose rare words match the question best."""
     pages = note_pages()
     key_pages = [i for i, p in enumerate(pages) if p["ch"] == "0"]
-    body_pages = [i for i, p in enumerate(pages) if p["ch"] != "0"]
+    body_pages = [i for i, p in enumerate(pages) if p["ch"] not in ("0", "cover")]
     df = {}
     for p in pages:
         for w in p["words"]:
