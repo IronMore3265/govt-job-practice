@@ -1,0 +1,24 @@
+## MCQ Hints থেকে অতিরিক্ত তথ্য
+### Gender-এর প্রকার ও শব্দের লিঙ্গ
+- Gender-এর প্রকার চারটি (Four types): Masculine, Feminine, Common ও Neuter। বইয়ের ভূমিকায় 'Gender 8 প্রকার' লেখা আছে, কিন্তু তালিকায় চারটি।
+|| Word | লিঙ্গ | কারণ
+| lad | Masculine | lad অর্থ বালক; কিশোর; ছোকরা। mare হলো ঘোটকী (মাদি ঘোড়া), pillow অর্থ বালিশ, pony অর্থ টাট্টুঘোড়া
+| stag | Masculine | Stag (পুরুষ হরিণ) একটি masculine gender। vixen, doe, roe সব feminine
+| ox, bull, cock, dog | Masculine | Bull, Ox-এর fem. Cow; Cock-এর fem. Hen; Dog-এর fem. Bitch
+| stallion | Masculine | Stallion- ঘোটক; mare-এর masculine হলো stallion
+| drone | Masculine | স্ত্রী মৌমাছিকে বলা হয় Bee আর পুরুষ মৌমাছিকে বলা হয় Drone
+| drake | Masculine | Duck (পাতিহাঁস) শব্দটি feminine gender এবং এর masculine gender হলো drake
+| duke | Masculine | Duchess-এর masculine হলো Duke। Earl- উচ্চ পদমর্যাদাসম্পন্ন সম্ভ্রান্ত ইংরেজ ব্যক্তির পদবি; Dramatist- নাট্যকার; Dutchman- হল্যান্ডবাসী/ওলন্দাজ
+| prince, boar, drone, emperor | Masculine | prince (রাজকুমার) masculine; boar, drove, emperor সবই masculine
+| lord | Masculine | lady-এর opposite gender হলো lord
+| queen | Feminine | Queen- রানি একটি স্ত্রীবাচক শব্দ। Moon- চাঁদ ক্লীবলিঙ্গ আর boy- বালক পুংলিঙ্গ
+| nun | Feminine | nun হলো monk-এর feminine gender
+| duck, ewe, mare | Feminine | ewe (ভেড়ি) ও mare (ঘোটকী) উভয়ই feminine gender
+| vixen | Feminine | fox-এর feminine gender
+| tigress | Feminine | tiger-এর feminine gender
+| niece | Feminine | Niece- বোনের মেয়ে (feminine gender)
+| spinster, princess | Feminine | Bachelor-এর feminine spinster, prince-এর feminine princess
+| tutor, spouse, baby, dancer, teacher | Common gender | Spouse অর্থ স্বামী অথবা স্ত্রী। Baby- শিশু; Dancer- নর্তক বা নর্তকী
+| professor, doctor, cook | Masculine ও feminine উভয় | steward বা বিমানবালা মহিলা হিসেবেই দেখা যায়, তাই steward dual gender নয়
+| lady doctor | doctor-এর opposite gender | doctress, nurse ও doctorex ভুল উত্তর
+| swan | Masculine | Swan- রাজহাঁস (Masculine gender)

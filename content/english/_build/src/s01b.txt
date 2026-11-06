@@ -1,0 +1,70 @@
+## MCQ Hints থেকে অতিরিক্ত তথ্য
+বইয়ের প্রশ্নোত্তরের Hints-এ যেসব শব্দের শ্রেণি আর ব্যবহারের কথা আছে, সেগুলো এখানে সাজানো হলো। যে শব্দ কোন noun, তা এখান থেকেই পড়ে নিন।
+### কোন শব্দ কোন ধরনের noun
+|| Word | ধরন | কারণ
+| mutton | Material noun | Mutton (মেষ মাংস; ভেড়ার মাংস) পদার্থ বিষয়ক শব্দ
+| paper | Material noun | Ring, River ও Book হলো common noun, শুধু paper হলো material noun
+| water | Material noun | পদার্থের নাম, গণনা করা যায় না কিন্তু পরিমাপ নির্ণয় করা যায়
+| salt | Material noun, uncountable | লবণ গণনা করা যায় না কিন্তু পরিমাপ করা যায়
+| goodwill | Abstract noun | air, flavor, water হলো material noun
+| kindness | Abstract noun | Kindness (দয়া) দ্বারা গুণের নাম প্রকাশ পায়
+| honesty | Abstract noun | গুণের নাম প্রকাশ করে
+| freedom | Abstract noun | স্বাধীনতাকে ধরা, স্পর্শ করা যায় না, শুধু অনুধাবন করা যায়
+| beauty | Abstract noun | 'Beauty is truth'। কিন্তু 'She was a beauty in her youth' বাক্যে common noun
+| height | Abstract noun | ধরা, ছোঁয়া বা স্পর্শ করা যায় না
+| goodness, bravery, childhood | Abstract noun | ভালোত্ব; সদগুণ, সাহসিকতা; নির্ভীকতা, শৈশব
+| love | Abstract noun | ভালোবাসা
+| committee | Collective noun | বিশেষ কাজ সম্পাদনের জন্য নির্বাচিত ব্যক্তিবর্গ
+| cattle | Collective noun | গবাদি পশুর পাল বা সমষ্টি
+| jury | Collective noun | The jury found the prisoner guilty
+| crowd | Collective noun | Crowd (জনতা; জনসাধারণ) অনেক মানুষের সমষ্টি
+| family | Collective noun | পরিবার, অনেক সদস্যের সমষ্টি
+| navy, public, orchestra | Collective noun | Navy- নৌবাহিনী; Public- জনগণ; Orchestra- বাদকদল
+| class, audience, public | Collective noun | class হলো শিক্ষার্থীদের group, audience হলো শ্রোতাদের group, public হলো সাধারণ মানুষের group
+| fleet, shoal, crew | Collective noun | basis collective noun নয়
+| peer | Common noun | কোনো একজন সমজাতীয় ব্যক্তি, collective noun নয়
+| man, girl, infant | Common noun | Girl-এর proper noun যেমন Saleha, Moushumi, Nushrat, Tania
+| city | Common noun | collective noun নয়
+| corps | Noun | সৈন্য বাহিনীর ভাগবিশেষ
+| adversity | Noun | দুর্ভাগ্য বা নিদারুণ দুর্দশা, এর adjective form adverse (প্রতিকূল)
+| frailty | Noun | ভঙ্গুরতা, নশ্বরতা। 'Frailty, thy name is woman' বাক্যটি Shakespeare-এর Tragedy 'Hamlet' থেকে
+| orphanage, genocide | Noun | noun হিসেবে পরিচিত শব্দ
+| reproduction | Noun | suffix -tion ইঙ্গিত করে এটি noun, অর্থ পুনরুৎপাদন, জন্মদান
+### গণনাযোগ্য ও অগণনীয় noun
+|| Word | কেমন | কারণ
+| message | Countable | গণনা করা যায়। Love, music, sand গণনা করা যায় না
+| information | Uncountable | এর কোনো plural form নেই
+| poetry | Uncountable | a collection of poem, uncountable noun হিসেবে পরিচিত
+| advice | Uncountable | কোনো singular/plural হয় না, তাই some good advice
+| scenery | Non-count noun | plural form নেই, তাই abundance of beautiful scenery
+| furniture | Singular, no plural | এর কোনো plural রূপ নেই, সর্বদা singular
+### কোন শব্দ noun, কোনটি নয়
+|| Noun | Noun নয় | কারণ
+| acceptance (গ্রহণ; স্বীকার) | acceptable, accepted, acception | acceptance একটি noun
+| song | sing, feed, tell | sing (গান গাওয়া), feed (খাওয়ানো), tell (বলা) হলো verb
+| flute (বাঁশি) | cute, acute, mute | এই তিনটি adjective
+| denial | deny | Deny verb, যার noun হলো denial
+| assurance | assure, assured, assuredly | assurance একটি noun
+| indemnity, articulation, simulation | defame | Defame (মানহানি করা, কুৎসা রটনা করা) verb, বাকি সব noun। Indemnity- নিরাপত্তা/ক্ষতিপূরণ; Articulation- স্পষ্ট উচ্চারণ; Simulation- ভান/অনুকরণ/ছদ্মরূপ ধারণ
+### বাক্যে noun হিসেবে ব্যবহৃত শব্দ
+|| শব্দ | বাক্য | কেন noun
+| go | This is the go of the world | Article-এর পর এবং preposition-এর পূর্বে noun বসে। go অর্থ নিয়ম, এটাই পৃথিবীর নিয়ম
+| right | You have no right to do it | have no-এর পরে noun বসে, right অর্থ অধিকার
+| round | The doctor took the round in the hospital | round অর্থ পরিদর্শন
+| talk | I had a talk with him | verb-এর আগে article বা modifier বসিয়ে noun করা যায়, talk এখানে object
+| beauty | She was a beauty in her youth | common noun হিসেবে ব্যবহৃত
+| fast | He kept the fast for a week | fast এখানে noun
+| like | We shall not see his like again | like এখানে noun
+| walks | People from all walks of life | Determiner (all)-এর পর এবং preposition (of) এর পূর্বে noun বসে
+| copying | Copying is prohibited in the examination | Verb-এর ing form verb-এর subject হলে noun (gerund)
+| Lovely | Lovely comes here regularly | এখানে Lovely একটি নাম, noun
+### একাধিক parts of speech
+|| Word | কী কী হতে পারে
+| diabetic | Oxford Dictionary অনুযায়ী Adjective ও Noun উভয়ই
+| advance | verb, noun এবং adjective হিসেবে ব্যবহৃত হতে পারে
+### Compound noun ও অন্যান্য
+|| Word | তথ্য
+| Headmaster, Hair-brush | Compound noun
+| Friday, Information, Examination | Compound noun নয়
+| number | শুধু Noun-এর Number (singular/plural) হয়, conjunction, adverb, adjective-এর হয় না
+| The Omar Khayyam | বাক্য The Omar Khayyam is rarely born. (বইয়ের উত্তরমালা অনুযায়ী ঠিক)

@@ -1,0 +1,71 @@
+21: তুলনার ক্ষেত্রে বা বিশেষ ব্যক্তিকে বোঝাতে proper noun-এর আগে article বসতে পারে। বইয়ের উত্তরমালা অনুযায়ী সঠিক বাক্য হলো The Omar Khayyam is rarely born.
+23: Infant (শিশু) একটি common noun। Salt হলো material noun, studentship হলো abstract noun, আর Army বাহিনীর সমষ্টি, তাই collective noun।
+32: Jury (বিচারকমণ্ডলী) অনেক ব্যক্তির সমষ্টিকে বোঝায়, তাই এটি collective noun।
+34: Lovely comes here regularly বাক্যে Lovely কোনো ব্যক্তির নাম, তাই এটি noun (subject)।
+35: Head ও master দুটি noun মিলে Headmaster গঠিত, তাই এটি compound noun (noun + noun)। Information, Friday ও Examination compound noun নয়।
+36: Hair ও brush দুটি noun মিলে Hair-brush গঠিত, তাই এটি compound noun (noun + noun)।
+37: Childhood (শৈশব) গুণ বা অবস্থার নাম, তাই abstract noun। Child ও Boy common noun, Family collective noun।
+38: Honesty (সততা) একটি গুণের নাম, তাই এটি abstract noun।
+40: Fleet, shoal ও crew সমজাতীয় বস্তুর সমষ্টি, তাই collective noun। Basis (ভিত্তি) collective noun নয়।
+41: Cattle, police ও audience সমষ্টিবাচক, তাই collective noun। City (শহর) common noun, তাই collective noun নয়।
+42: Advice (উপদেশ) একটি noun। এটি uncountable, এর plural হয় না। Advice-এর পরিবর্তে verb হলো advise।
+43: Assure verb, assured ও assuredly অন্য শ্রেণির শব্দ। Assurance (নিশ্চয়তা) হলো noun।
+44: 'Beauty is truth' বাক্যে beauty (সৌন্দর্য) একটি গুণের নাম, তাই abstract noun।
+45: He kept the fast for a week বাক্যে the-এর পরে বসে fast (উপবাস) noun হিসেবে ব্যবহৃত হয়েছে।
+46: Orphanage (এতিমখানা) একটি noun।
+47: Genocide (গণহত্যা) একটি noun।
+48: We shall not see his like again বাক্যে his-এর পরে বসে like (তার মতো আরেকজন) noun হিসেবে ব্যবহৃত হয়েছে।
+55: Kindness (দয়া) একটি গুণের নাম, তাই abstract noun।
+56: This is the go of life বাক্যে the-এর পরে বসে go (নিয়ম) noun হিসেবে ব্যবহৃত হয়েছে।
+64: Much (অনেক) পরিমাণবাচক determiner, যা time-এর মতো uncountable noun-এর আগে বসে।
+65: Song একবচন ও নির্দিষ্ট, তাই এর আগে demonstrative determiner That বসে। These ও Those বহুবচন noun-এর আগে বসে, আর Thus adverb।
+66: Dangerous drivers countable noun, তাই আগে a lot of বসে। A very lot of, very many of ও very much of ব্যবহার হয় না।
+69: Honourary-র h অনুচ্চারিত থাকে, উচ্চারণ vowel দিয়ে শুরু হয়, তাই এর আগে an বসে।
+92: European-এর শুরুতে vowel letter থাকলেও উচ্চারণ ইউ (consonant sound), তাই a European বসে।
+102: University-র উচ্চারণ ইউ দিয়ে শুরু (consonant sound), তাই a University বসে।
+103: The ... the ... গঠনে comparative বসে। The less you worry, the better।
+104: Man-এর আগে কোনো article না বসালে মানবজাতি বোঝায়।
+105: নির্দিষ্ট পুকুরের পানি বোঝাতে water-এর আগে the বসে।
+106: নির্দিষ্ট college বোঝাতে college-এর আগে the বসে: Everyday the college begins at 9 O'clock।
+107: Went to hospital as patient (রোগী হিসেবে) এই অর্থে hospital-এর আগে কোনো article বসে না। বইয়ের উত্তরমালা অনুযায়ী সঠিক উত্তর no article।
+108: Pronoun-এর আগে কোনো article ব্যবহৃত হয় না।
+109: University-র উচ্চারণ ইউ, তাই এর আগে a বসে। An university ভুল। Men, the earth ও an hour সঠিক।
+110: A person of any age (যেকোনো বয়স) অর্থ প্রকাশ করে।
+121: E. Coli has proven to be one of the most dangerous bacteria গঠনে one of the বসে।
+122: Miles একটি ব্যান্ডের নাম, তাই the বসে: The Miles is a popular band in Bangladesh।
+125: Symbol একবচন ও অনির্দিষ্ট, তাই a symbol। History of this land নির্দিষ্ট, তাই the history।
+126: Outstanding-এর উচ্চারণ vowel দিয়ে শুরু, তাই an outstanding scholar। আর a Perfect Man বসে।
+128: তুলনার জন্য twice as much as ব্যবহৃত হয়।
+130: USA-র আগে the বসে: the USA।
+131: A ও an হলো indefinite article। The হলো definite article।
+132: Spread out as much as thirty meters (প্রায় ত্রিশ মিটার পর্যন্ত) অর্থে as much as বসে।
+134: Much of what he said গঠনে uncountable অর্থে Much বসে।
+147: Mare (ঘোটকী)-এর masculine gender হলো stallion (ঘোটক)।
+148: Fox-এর feminine gender হলো vixen।
+149: Lady-র opposite gender হলো lord।
+150: Gender চার প্রকার: Masculine, Feminine, Common ও Neuter। তাই Four types।
+151: Nun (সন্ন্যাসিনী) feminine gender। Colt, Hart ও Friar masculine gender।
+152: Tiger-এর feminine gender হলো tigress, কারণ masculine noun-এর শেষে ess যোগ হয়।
+155: Duchess-এর masculine gender হলো duke।
+156: Duck-এর masculine gender হলো drake।
+157: Monk (সন্ন্যাসী)-এর opposite gender (feminine) হলো nun (সন্ন্যাসিনী)।
+158: Bitch (কুকুরী)-এর opposite gender (masculine) হলো dog (কুকুর)।
+159: Baby (ছেলে বা মেয়ে শিশু) পুরুষ ও স্ত্রী উভয়কেই বোঝায়, তাই common gender।
+160: Teacher (শিক্ষক/শিক্ষিকা) common gender, তাই এর কোনো নির্দিষ্ট opposite gender নেই।
+193: Crisis-এর plural crises। News, mathematics ও economics singular।
+194: Roof-এর plural roofs (ves হয় না)। Wife, wolf ও self-এর plural wives, wolves ও selves।
+195: Criterion-এর plural form হলো criteria।
+196: Hero-এর শেষে o এবং আগে consonant, তাই -es যোগ হয়ে Heroes।
+197: Phenomena, oases ও ultimata plural। Criterion হলো singular, এর plural criteria।
+198: Measles রোগের নাম, দেখতে plural। বইয়ের উত্তরমালা অনুযায়ী এর আলাদা singular form নেই। Horses, men ও brethren-এর singular horse, man ও brother।
+199: Feet, lice ও men plural। News শব্দটি singular হিসেবে ব্যবহৃত হয়।
+200: Prince-এর plural হলো princes। Actress ও princess singular, news-ও singular।
+207: Ethics দেখতে plural হলেও বিষয়ের নাম হিসেবে singular রূপে ব্যবহার করা যায়।
+208: Genera হলো genus-এর plural।
+209: Data হলো datum-এর plural।
+212: Sheep-এর plural form একই থাকে, অর্থাৎ sheep।
+213: Oasis (মরুদ্যান)-এর plural হলো oases।
+214: Agenda হলো agendum-এর plural, তাই singular form agendum।
+215: Fish singular ও plural উভয় হিসেবে একই রূপে ব্যবহৃত হয়।
+216: Crises, data ও phenomena plural। Axis হলো singular, এর plural axes।
+217: Public ও crowd collective noun, mice plural। Knife হলো singular, এর plural knives।

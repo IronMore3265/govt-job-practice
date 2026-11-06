@@ -1,0 +1,149 @@
+# The Number
+## iii. The Number
+Noun বা pronoun-এর সংখ্যাকে Number বলে। অর্থাৎ কোনো ব্যক্তি, বস্তু, স্থান বা ক্রিয়ার সংখ্যাকে number বলে। Noun বা pronoun-এর সংখ্যা একটি হলে তাকে Singular Noun বলে। যেমন- book, cat, mango প্রভৃতি। কিছু ভাষায় দুই বা ততধিক সংখ্যাকে Plural Number ধরা হয়। কিন্তু ইংরেজি ভাষায় noun বা pronoun-এর সংখ্যা একের অধিক হলেই তাকে Plural Number ধরা হয়। যেমন- one and a half lemons, books, cats, mangoes প্রভৃতি।
+## Classes of Nouns According to Number
+ইংরেজি ভাষায় number বিবেচনায় noun বা pronoun গুলোকে তিন ভাগে ভাগ করা যায়। যথা: a. Singular invariable nouns, b. Plural invariable nouns, c. Variable nouns.
+### A. Singular Invariable Nouns
+কতকগুলো noun আছে যারা সর্বদায় singular, সাধারণত plural হয় না। যেমন-
+**1. Noncount Nouns:** Abuse, accommodation, advice, baggage, behaviour, bread, business, chaos, conduct, courage, damage, education, equipment, evidence, furniture, garbage, harm, homework, information, knowledge, luggage, money, music, permission, poetry, poverty, progress, publicity, research, rubbish, scenery, shopping, sunshine, traffic, transport, violence, weather, work প্রভৃতি noncount noun গুলো সাধারণত singular হয়, এদের plural হয় না। কিন্তু কিছু কিছু concrete noncount noun বিশেষ অর্থে count noun হিসেবে ব্যবহৃত হয়। যেমন-
+- I have much **butter**. (noncount)
+- I like the Italian **butters**. (count) এখানে butter-এর kind কে বুঝানো হয়েছে।
+- Do not eat much **bear**. (noncount)
+- Please give me a **beer**. (count) (এখানে a glass of beer বুঝানো হয়েছে)
+- She will give a **talk** on Chinese art. (এখানে lecture বুঝানো হয়েছে)
+আবার কিছু কিছু abstract noncount noun নির্দিষ্ট করে বোঝাতে count noun হিসেবে ব্যবহৃত হয়। যেমন-
+- She was a **beauty** in her youth.
+- He had several odd **experiences**.
+**2. Proper Nouns:** Karim, The Padma, Rabindranath, Dhaka প্রভৃতি proper noun গুলো সাধারণত singular হয়, এদের plural হয় না। কিন্তু বিশেষ ক্ষেত্রে এরা common noun হিসেবে ব্যবহৃত হতে পারে। Rabindranaths (রবীন্দ্রনাথের মতো লোকেরা) are rare in this world.
+**3. Nouns Denoting Subjects দেখতে plural হলেও আসলে singular.** Acoustics, athletics, economics, ethics, gymnastics, linguistics, mathematics, physics, statistics প্রভৃতি noun গুলো সাধারণত singular হয়, এদের plural হয় না। কিন্তু বিশেষ ক্ষেত্রে এরা plural হিসেবে ব্যবহৃত হতে পারে।
+- His politics (political views) are rather conservative.
+- These statistics (তথ্যাবলি) are misleading.
+- This statistic (তথ্য) is surprising.
+**4. Nouns Denoting Diseases:** দেখতে plural হলেও আসলে singular. Measles, mumps, rickets, shingles প্রভৃতি রোগের নামগুলো সাধারণত singular হয়, এদের plural হয় না। তবে এগুলোর plural-ও গ্রহণযোগ্য।
+**5. Nouns Denoting Games:** দেখতে plural হলেও আসলে singular. Billiads, draughts, craps, darts প্রভৃতি খেলার নামগুলো সাধারণত singular হয়, এদের plural হয় না। যেমন- Darts is becoming popular now-a-days.
+**6. Count Nouns as Noncount Nouns:** আবার কিছু কিছু Count noun বিশেষ অর্থে Noncount noun হিসেবে ব্যবহৃত হয়। যেমন-
+- He has many lambs. (count)
+- There is lamb on the menu. (noncount)
+### B. Plural Invariable Nouns
+কতকগুলো noun আছে যারা সর্বদায় plural, সাধারণত singular হয় না। যেমন-
+**1. Summation Plurals:**
+**a. Tools and Instruments:** Bellows, glasses, spectacles, binoculars, scales, clippers, forceps, pincers, scissors, shears, tongs, tweezers প্রভৃতি যন্ত্রপাতির নামগুলো সাধারণত plural হয়, এদের singular হয় না।
+**b. Articles of Dress:** Braces, briefs, flannels, jeans, knickers, pants, pyjamas, shorts, slacks, tights, trousers প্রভৃতি পোশাকের নামগুলো সাধারণত plural হয়, এদের singular হয় না। তবে উপরিউক্ত summation plural গুলো noun-এর পূর্বে attributively ব্যবহৃত হলে singular হতে পারে। যেমন- a spectacles case, a jeans leg প্রভৃতি।
+**2. Pluralia Tantam:** যেসব noun বিশেষ অর্থে শুধু plural হিসেবে ব্যবহৃত হয় তাদেরকে pluralia tantam বলা হয়। যেমন-
+- The __damages__ (compensation in money) have not yet been paid.
+- We put on warm clothes (dress).
+- Police officers in the UK do not usually carry __arms__ (weapons).
+**3. Unmarked Plural Nouns:** দেখতে singular হলেও আসলে plural. Police, people, cattle, clergy, staff, poultry, livestock, vermin প্রভৃতি plural noun গুলোর plural mark (s, es) থাকে না। এগুলোর সাধারণত singular হয় না। তবে people (জাতি অর্থে) singular হিসেবে ব্যবহৃত হয়। যেমন- The British are a brave __people__ (জাতি অর্থে).
+### C. Variable Nouns
+Variable Noun-এর singular ও plural দুটি form আছে। বেশির ভাগ noun হলো variable noun. অর্থাৎ বেশিরভাগ noun-এর singular ও plural form আছে।
+**1. Regular Plurals:** Variable Noun-এর মধ্যে বেশিরভাগ noun-এর singular form দেখেই এদের plural form বের করা যায়। এসব plural কে regular plural বলা হয়।
+**a.** যেসব noun-এর শেষে silent-e থাকে সেগুলোসহ বেশির ভাগ noun-এর শেষে -s যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| apple | apples | bat | bats
+| pet | pets | cake | cakes
+| school | schools | page | pages
+**b.** যেসব noun-এর শেষে s, ss, z, x, ch (চ-এর মতো উচ্চারণ), sh থাকে তাদের শেষে -es যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| gas | gases | church | churches
+| buzz | buzzes | bush | bushes
+| box | boxes | glass | glasses
+**c.** যেসব noun-এর শেষে o থাকে এবং সেই o-এর আগে vowel (letter বা sound) থাকে তাদের শেষে -s যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| bamboo | bamboos | radio | radios
+| embrio | embrios | studio | studios
+| kangaroo | kangaroos | zoo | zoos
+**d.** যেসব noun-এর শেষে o থাকে এবং সেই o-এর আগে consonant থাকে, তাদের শেষে -es যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| domino | dominoes | hero | heroes
+| echo | echoes | potato | potatoes
+| embargo | embargoes | tomato | tomatoes
+| torpedo | torpedoes | veto | vetoes
+**ব্যতিক্রম:** কিছু noun, abbreviations এবং ethnic nouns-এর শেষে o থাকে, সেই o-এর আগে consonant থাকলেও তাদের শেষে -s যোগ করে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| dynamo | dynamos | kilo | kilos
+| piano | pianos | memo | memos
+| quarto | quartos | photo | photos
+| solo | solos | Eskimo | Eskimos
+**e.** কিছু noun-এর শেষে o থাকে, সেই o-এর আগে consonant থাকলেও তাদের শেষে -s বা -es যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| banjo | banjos/ banjoes | manifesto | manifestos/manifestoes
+| buffalo | buffalos/buffaloes | motto | mottos/mottoes
+| cargo | cargos/cargoes | tornado | tornados/tornadoes
+| halo | halos/haloes | volcano | volcanos/volcanoes
+**f.** যেসব noun-এর শেষে y থাকে এবং সেই y-এর আগে vowel (letter বা sound) থাকে তাদের শেষে -s যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| boy | boys | monkey | monkeys
+| day | days | play | plays
+| key | keys | toy | toys
+**ব্যতিক্রম:** soliloquy-এর plural হলো soliloquies
+**g.** যেসব noun-এর শেষে y থাকে এবং সেই y-এর আগে consonant থাকে তাদের y-এর স্থলে i হয় এবং তারপর -es যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| army | armies | fly | flies
+| baby | babies | lady | ladies
+| city | cities | story | stories
+| duty | duties | pony | ponies
+**ব্যতিক্রম:**
+|| singular | plural | singular | plural
+| Germany | Germanys | Tommy | Tommys
+**h.** কোনো letter-এর plural করতে 's যোগ করতে হয়। কিন্তু সংখ্যার শেষে 's বা s যোগ করে plural করতে হয়। যেমন-
+|| singular | plural | singular | plural
+| i | i's | t | t's
+| PhD | PhD's/PhDs | 1980 | 1980's/1980s
+**i.** যেসব noun-এর শেষে f বা fe থাকে তাদের f বা fe-এর স্থলে -ves যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| half | halves | loaf | loaves
+| knife | knives | self | selves
+| leaf | leaves | thief | thieves
+**ব্যতিক্রম:** কিছু কিছু noun-এর শেষে iff, arf, erf, ulf, afe, oof, off বা ef থাকলেও তাদের শেষে -s যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| cliff | cliffs | hoof | hoofs
+| dwarf | dwarfs | safe | safes
+| scarf | scarfs | reef | reefs
+| gulf | gulfs | chief | chiefs
+**j.** যেসব noun-এর শেষে th থাকে তাদের শেষে -s যোগ করলে plural হয়। যেমন-
+|| singular | plural | singular | plural
+| berth | berths | length | lengths
+| birth | births | math | maths
+| cloth | cloths | sheath | sheaths
+| clothe | clothes | truth | truths
+| death | deaths | oath | oaths
+**k. Mutation Plurals:** কতকগুলো noun-এর ভিতরের vowel পরিবর্তন করে plural করা হয়। যেমন-
+|| singular | plural | singular | plural
+| man | men | mouse | mice
+| foot | feet | woman | women
+| goose | geese | tooth | teeth
+**l. -en plurals:** কতকগুলো noun-এর ভিতরের vowel পরিবর্তন করে plural করা হয়। যেমন-
+|| singular | plural | singular | plural
+| child | children | ox | oxen
+| brother | brethren (একই ধর্মের সদস্য অর্থে)
+## Foreign Plurals
+কিছু বিদেশি শব্দের foreign plural হয়। যেমন-
+|| singular | plural | singular | plural
+| alumnus | alumni | bacterium | bacteria
+| bacillus | bacilli | ovum | ova
+| locus | loci | basis | bases
+| stimulus | stimuli | analysis | analyses
+| alumna | alumnae | axis | axes
+| alga | algae | crisis | crises
+| larva | larvae | criterion | criteria
+| curriculum | curricula | phenomenon | phenomena
+কিছু বিদেশি শব্দের regular plural হয় -es যোগে। আর কিছু ক্ষেত্রে -s যোগে। যেমন-
+|| singular | plural | singular | plural
+| apparatus | apparatuses | dilema | dilemas
+| bonus | bonuses | diploma | diplomas
+| census | censuses | album | albums
+| chorus | choruses | museum | museums
+| circus | circuses | premium | premiums
+| minus | minuses | electron | electrons
+| status | statuses | neutron | neutrons
+| virus | viruses | proton | protons
+কিন্তু Latin থেকে আসা কিছু শব্দের regular and foreign plural দুটিই হয়। যেমন-
+|| singular | plural | singular | plural
+| formula | formulas/formulae | aquarium | aquaria/aquariums
+| antennus | antennus/antennae | ultimatum | ultimata/ultimatums
+| focus | focuses/foci | index | indices/ indexes
+| fungus | funguses/ fungi | matrix | matrices/ matrixes
+| cactus | cactuses/cacti | bureau | bureaux/ bureaus
+| nucleus | nucleuses/nuclei | adieu | adieu
+| radius | radiuses/radii | tempo | tempi/tempos
+| syllabus | syllabuses/syllabi | kibbutz | kibbutzim/kibbutzes

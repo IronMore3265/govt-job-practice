@@ -1,0 +1,93 @@
+# Parts of Speech
+Parts of Speech বা পদ English Grammar-এর অতি গুরুত্বপূর্ণ বিষয়। ইংরেজি ভাষা শুদ্ধভাবে শিখে ভাষাকে যথাযথভাবে প্রয়োগ করার দক্ষতা অর্জনের ক্ষেত্রে Parts of Speech-এর ভূমিকা অপরিসীম। বিভিন্ন পরীক্ষায়ও Parts of Speech-এর উপর প্রশ্ন আসে। তাই Smart English শিখে Competitive পরীক্ষায় সফল হয়ে উন্নত Career গঠনের জন্য Parts of Speech পুরোপুরিভাবে রপ্ত করা শিক্ষার্থীদের জন্য অত্যন্ত জরুরি।
+বাক্যে ব্যবহৃত প্রত্যেকটি শব্দ বা Word-কে Parts of Speech বলে। একটি শব্দ বা Word একটি Sentence-এর মধ্যে যে কাজ করে তার উপর ভিত্তি করে সেই শব্দ বা Word-এর নামকরণ করা হয়। আবার একই শব্দ বা Word বিভিন্ন Sentence-এ ভিন্ন ভিন্ন কাজ করে বলে তা একাধিক Parts of Speech হিসেবে কাজ করে।
+### Parts of speech-এর প্রকারভেদ
+একটি শব্দ বা Word, Sentence-এর মধ্যে যে কাজ করে তা আট ধরনের। এজন্য Parts of Speech আট প্রকার। যথা:
+|| 1. Noun | 2. Pronoun | 3. Adjective | 4. Verb
+| 5. Adverb | 6. Preposition | 7. Conjunction | 8. Interjection
+## 01. Noun
+কোনো ব্যক্তি, বস্তু, স্থান বা ক্রিয়ার নামকে Noun বলে। যেমন- Karim, Dhaka, man, flower, planet, class, team, iron, water, wisdom, honesty etc.
+**Classification (শ্রেণি বিভাগ):** Noun-এর অস্তিত্ব বিচারে Noun-কে দুই ভাগে ভাগ করা যায়। যথা: 1. Concrete Noun ও 2. Abstract Noun
+### 1. Concrete Noun
+যেসব জিনিসের বাহ্যিক অস্তিত্ব আছে বা ইন্দ্রিয়ের সাহায্যে উপলব্ধি করা যায় অর্থাৎ যাদেরকে দেখা যায়, যাদের গন্ধ নেয়া যায়, যাদেরকে স্পর্শ করা যায় বা যাদের স্বাদ নেয়া যায় তাদের নামকে Concrete Noun বলে। Concrete Noun আবার চার প্রকার। যথা:
+|| a. Proper Noun | b. Common Noun
+| c. Collective Noun | d. Material Noun
+**a. Proper Noun:** যেসব noun নির্দিষ্ট কোনো ব্যক্তি, বস্তু, স্থান বা অন্য কিছুর নামকে বোঝায়, তাদেরকে Proper Noun বলে। যেমন- Rahim, Karim, Titanic, Quran, Moon, Dhaka, Rajshahi etc.
+**b. Common Noun:** যেসব noun নির্দিষ্ট কোনো কিছুকে না বুঝিয়ে একটি শ্রেণির ব্যক্তি বা বস্তুর প্রত্যেকের সাধারণ নাম বোঝায় তাদেরকে Common Noun বলে। যেমন- man, flower, girl, woman, planet, dress, fruit, player, dancer, actor, actress, ship etc.
+**c. Collective Noun:** যেসব noun একজাতীয় ব্যক্তি বা বস্তুর অবিভক্ত সমষ্টিকে বোঝায় তাদেরকে Collective Noun বলে। যেমন- flock, band, cavalry, herd, jury, crowd, poultry, cattle, navy, party, gang, committee, group, fleet, infantry etc.
+**d. Material Noun:** যেসব noun কোনো পদার্থের সমুদয় অংশকে এককভাবে বোঝায় এবং তার অন্তর্গত কোনো খণ্ড বা অংশকে বোঝায় না তাদেরকে Material Noun বলে। এগুলোকে গণনা করা যায় না, অন্য কোনোভাবে পরিমাপ করা যায়। যেমন- gold, iron, wheat, salt, flour, milk, tea, coffee etc.
+### 2. Abstract Noun
+যেসব noun অবস্তুগত ধারণা বা গুণকে নির্দেশ করে, যাদের বাহ্যিক অস্তিত্ব নেই বা ইন্দ্রিয়ের সাহায্যে উপলব্ধি করা যায় না অর্থাৎ যাদেরকে দেখা যায় না, যাদের গন্ধ নেয়া যায় না, যাদেরকে স্পর্শ করা যায় না বা যাদের স্বাদ নেয়া যায় না, কিন্তু শুধু কল্পনা দ্বারা বা অনুভব দ্বারা বোঝা যায়, তাদেরকে Abstract Noun বলে। যেমন- agency, childhood, fatherhood, friendship, girlhood, heroism, infancy, manhood, motherhood etc.
+## Countable Noun and Uncountable Noun
+গণনাযোগ্যতার ভিত্তিতে Noun কে দুই ভাগে ভাগ করা যায়। যথা: 1. Countable Noun ও 2. Uncountable Noun.
+### 1. Countable Noun
+যেসব noun-এর সংখ্যা গণনা করা যায় তাদেরকে Countable Noun বলে। Countable Noun-এর Plural হয়। যেমন- book, city, stars etc.
+### 2. Uncountable Noun
+যেসব noun-এর সংখ্যা গণনা করা যায় না, অন্য কোনো উপায়ে পরিমাপ করা গেলেও যেতে পারে তাদেরকে Uncountable Noun বলে। Uncountable Noun-এর plural হয় না। যেমন- water, honesty, air, news, physics etc.
+### Gerund
+Verb + ing যখন sentence-এ noun-এর কাজ করে তখন তাকে Gerund বলে। নিচের sentence-এ swimming ও watching হলো Gerund.
+- __Swimming__ is a good excercise.
+- He enjoys __watching__ television.
+### Verbal Noun
+Verb+ing-এর পূর্বে the এবং পরে of থাকলে তাকে Verbal Noun বলে। যেমন-
+- __The reading of__ novels gives us pleasure.
+- __The killing of__ animals is an offence.
+## Functions of Noun (Noun-এর কাজ)
+- (a) Verb-এর subject হিসেবে কাজ করতে পারে। যেমন- __Akbar__ rules over India. __This book__ reads well.
+- (b) Transitive verb-এর object হিসেবে কাজ করতে পারে। যেমন- We visited __India__. The driver starts __the bus__.
+- (c) Preposition-এর object হিসেবে কাজ করতে পারে। যেমন- The cat is fond of __milk__. I cannot rely on __Karim__.
+- (d) Linking verb-এর complement হিসেবে কাজ করতে পারে। যেমন- He is __Akbar__. We elected him __chairman__.
+- (e) Noun-এর apposition হিসেবে কাজ করতে পারে। যেমন- My brother, __Akbar__, is a good boy. We, __the SSC examinees__, are waiting for the result.
+## Formation of Derived Nouns
+অন্য word থেকে prefixation and suffixation, conversion ও compounding-এর মাধ্যমে Derived Nouns গঠিত হয়।
+### Prefixation
+Noun-এর শুরুতে prefix যোগ হয়ে নতুন noun গঠিত হয়। যেমন-
+|| Prefix | Examples | Prefix | Examples
+| anti- | antibody, anticlimax | co- | co-chairman, co-founder
+| arch- | arch-enemy, archbishop | dis- | disbelief, discomfort
+| auto- | autobiography, autograph | ex- | ex-student, ex-chairman
+| bi- | bicentenary, bilingualism | in- | inattention, inactivity
+| bio- | biochemistry, biomass | inter- | interaction, intermarriage
+### Suffixation
+Noun-এর শেষে suffix যোগ হয়ে নতুন noun গঠিত হয়। যেমন-
+|| Suffix | Examples | Suffix | Examples
+| -an, -ian | American, historian | -ese | Chinese, Japanese
+| -ician | clinician, politician | -ess | actress, tigress
+| -cy | decency, currency | -ette | Cigarette, kitchenette
+| -dom | boredom, wisdom | -ful | Handful, mouthful
+| -ee | absentee, devotee | -hood | childhood, falsehood
+### Abstract nouns from other Parts of Speech
+|| Common Noun | Abstract Noun | Adjective | Abstract Noun
+| agent | agency | anxious | anxiety
+| friend | friendship | beautiful | beauty
+| child | childhood | clever | cleverness
+| father | fatherhood | deep | depth
+| girl | girlhood | fat | fatness
+| hero | heroism | high | height
+| advise | advice | hate | hatred
+|| Verb | Abstract Noun | Verb | Abstract Noun
+| amplify | amplification | know | knowledge
+| arrive | arrival | laugh | laughter
+| believe | belief | live | life
+| choose | choice | multiply | multiplicity
+### Converted Nouns
+কতকগুলো adjective ও verb কোনো পরিবর্তন না হয়ে সরাসরি noun হিসেবে ব্যবহৃত হয়। এদেরকে Converted Noun বলে। যেমন-
+|| Base Word | Converted Noun
+| hopeful(adj.) | They are presidential __hopefuls__.
+| white (adj.) | They speak like the __whites__.
+| catch (v) | He took a brilliant __catch__
+| cheat (v) | You are a __cheat__.
+| walk (v) | We can go for a __walk__.
+### Compound Nouns
+কতকগুলো noun-এর সাথে অন্যান্য noun বা অন্যান্য Parts of Speech যোগ হয়ে একটি noun বা noun phrase হিসেবে ব্যবহৃত হয়। এদেরকে Converted noun বলে। যেমন-
+|| Structural pattern | Examples
+| noun + noun | bar code, bathroom, database, eye-witness etc.
+| noun + verb/noun | gunfire, handshake, home run, moonwalk etc.
+| noun + verb-er | dishwasher, dressmaker, eye-opener, fire-fighter etc.
+| noun + verb-ing | fire-fighting, housekeeping, thanksgiving etc.
+| verb/noun + noun | cookbook, dipstick, playboy, swimsuit etc.
+| self + noun | self-control, self-esteem, self-help, self-pity etc.
+| verb-ing + noun | filling cabinet, filling station, mockingbird etc.
+| adjective + noun | bigwig, blackbird, grandmother, highway etc.
+| verb + particle | checkout, feedback, fly-over, go-between etc.
+| particle+ verb/noun | Bystander, downturn, in-fighting, outfit etc.

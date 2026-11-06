@@ -1,0 +1,37 @@
+## MCQ Hints থেকে অতিরিক্ত তথ্য
+### a, an, the কখন বসে
+- Vowel sound (a, e, i, o, u)-এর পূর্বে an বসে। কিন্তু vowel sound যদি eu (ইউ) অথবা one (ওয়া)-এর মতো উচ্চারণ হয়, তাহলে a বসে। যেমন: a European lady, a one-eyed beggar, a one-taka note, a university।
+- Article-এর ব্যবহার উচ্চারণের (pronunciation) ওপর নির্ভর করে। Consonant-এর উচ্চারণ vowel-এর মতো হলে an হয়। যেমন: an heir (heir-এর উচ্চারণ a দিয়ে শুরু), an honest man, an honourary Magistrate, an hour।
+- Abbreviation-এর প্রথম অক্ষর consonant হলেও উচ্চারণে vowel sound এলে an বসে। যেমন: an MBBS, an M.A. in English, an FRCS (এম, এফ উচ্চারণে প্রথমে 'এ')।
+- নদী, সাগর, উপসাগর ও মহাসাগরের আগে the বসে: The Meghna falls into the Bay of Bengal।
+- Ship-এর নামের আগে the বসে: the Nelson, the Titanic।
+- জাতি বোঝাতে English-এর আগে the বসে: The English are industrious।
+- নির্দিষ্ট করে বোঝাতে the বসে: the life of Bangabandhu Sheikh Mujibur Rahman, the artist who painted this portrait, the one I was seriously looking for।
+- 'of' দিয়ে দুটি noun-এর সম্পর্ক বোঝালে উভয় noun-এর (proper noun ছাড়া) আগে সাধারণত the বসে: the honesty of Rahim।
+- কিছু noun-এর আগে the বসলে abstract noun-এর অর্থ হয়: The mother rose in her (তার মধ্যে মাতৃসুলভ মায়া-মমতা জেগে উঠল), Check the beast in you (তোমার মধ্যে কুপ্রবৃত্তিকে দমন কর), the beast in him got the upper hand (অবশেষে তার পাশবিকতা জাগ্রত হলো)।
+- Pronoun-এর আগে কোনো article বসে না। Abstract noun love-এর আগেও article বসে না: Love is such a beautiful thing। All thumbs phrase-এর মাঝে কোনো article বসে না।
+- Man-এর আগে কোনো article না বসালে মানবজাতি বোঝায়।
+- তুলনা করার ক্ষেত্রে proper noun যদি common noun হিসেবে ব্যবহৃত হয়, তখন তার আগে a/an বসে: You are a Nazrul, He wants to be a Shakespeare।
+- বাক্যের অর্থ অনুযায়ী the বসে: The Miles is a popular band in Bangladesh।
+- A, an হলো indefinite article। A, an and the হলো articles।
+### Quantifier ও অন্যান্য determiner
+- Money, milk, furniture, difference non-countable noun। Non-countable noun-এর আগে a little বা little বসে, much-ও বসে: still have a little money, I need a little milk, I don't have much furniture, made little difference।
+- Countable noun-এর আগে few, a few, many বসে। Guests-এর ক্ষেত্রে than থাকলে few-এর comparative form fewer বসে: fewer guests than I expected।
+- a few হ্যাঁ বোধক (অল্পসংখ্যক), few না বোধক (একেবারে কম)। Comma-এর পর plus থাকলে positive word a few বসে: plus a few hundred thousand।
+- There is very little milk in the bottle: uncountable noun-এর আগে very little বসে।
+- Everyday the college begins at 9 O'clock: নির্দিষ্ট college বোঝাতে the college বসে।
+- A much fainter secondary rainbow may be visible outside the bright primary rainbow: determiner হিসেবে article a বসে।
+- Much (অনেক) পরিমাণ বাচক determiner, uncountable noun-এর আগে বসে: Will it take much time?
+- Beautiful places-এর আগে many বসে, কারণ countable noun: so many beautiful places।
+- আশ্চর্যজনক কিছু বোঝাতে such + a/an + adjective + noun: such a large airplane।
+- দুই দিকের একদিক বোঝাতে either বসে: either side of the road।
+- Determiner হলো সেসব word যা noun-এর পূর্বে বসে। যেমন: these, those, my, our, much, no (I have no news for you)।
+- Among preposition ব্যবহৃত হয় দুইয়ের অধিক ব্যক্তি, প্রাণী বা বস্তু জড়িত থাকলে।
+- Partly finished বাক্যে there is something left বসে। আংশিক শেষ হয়েছে, কিছু বাকি আছে।
+- Five miles দ্বারা আলাদা পাঁচটি মাইল না বুঝিয়ে একটি নির্দিষ্ট দূরত্ব বোঝায়, তাই uncountable ও singular: Five miles is a long distance।
+- 'Speed' সর্বদা velocity-এর মতো একই রকম (the same as) নয়।
+- Less popular মানে তুলনামূলক কম জনপ্রিয়। Twice as much as হলো সঠিক তুলনা।
+- Than-এর আগে ও পরে subject-এর article না থাকলে দুই জায়গাতেই article বসবে না: peacocks are more beautiful than peahens।
+- She works six days a week। Uniformly adverb-এর আগে a বসে: a uniformly dark color।
+- One of the most dangerous bacteria: most-এর আগে one of the বসে।
+- The roots spread out as much as thirty meters। The less you worry, the better।

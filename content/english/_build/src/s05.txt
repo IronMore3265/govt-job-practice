@@ -1,0 +1,10 @@
+# বইয়ের উত্তরমালা থেকে
+## উত্তরমালায় "Note" লেখা ছয়টি প্রশ্ন
+বইয়ের উত্তরমালায় ছয়টি প্রশ্নের পাশে কোনো অপশন না ছাপিয়ে "Note" লেখা আছে। কারণ ওই প্রশ্নগুলোর একাধিক অপশন ঠিক হতে পারে, অথবা শব্দটি নিয়ে প্রশ্ন আছে। এই সেটে প্রতিটির জন্য বইয়ে যে অপশনে দাগ দেওয়া আছে সেটিই সঠিক উত্তর ধরা হয়েছে। প্রশ্নগুলো সন্দেহযুক্ত হিসেবে চিহ্নিত।
+|| প্রশ্নের বিষয় | বইয়ের Note | এই সেটে ধরা উত্তর
+| 'Frailty thy name is women.' Here 'Frailty' is: A noun, An adjective, An adverb, A verb | Frailty বলে কোনো word পাওয়া যায় না। তবে শব্দটি Frailty না হয়ে Frailty (ভঙ্গুরতা, নশ্বরতা) হলে এটি হতো noun। 'Frailty, thy name is woman' বাক্যটি Shakespeare-এর বিখ্যাত Tragedy 'Hamlet' থেকে নেয়া | A noun
+| কোনটি Material Noun নয়? Ring, River, Book, Paper | যে Noun দ্বারা কোনো পদার্থের পৃথিবীতে বিদ্যমান সম্পূর্ণ অস্তিত্বকে অবিভাজ্যভাবে বোঝায় এবং যাদেরকে সংখ্যা দ্বারা গণনা করা যায় না কিন্তু একক দ্বারা পরিমাপ করা যায় তাদেরকে Material Noun বলে। প্রদত্ত option গুলোর মধ্যে শুধুমাত্র paper-ই হচ্ছে material noun। আর Ring, River ও Book হচ্ছে common noun | River (Ring ও Book-ও material noun নয়)
+| নিম্নের কোনটি Abstract noun নয়? air, goodwill, flavor, water | প্রদত্ত Option গুলোর মধ্যে 'goodwill' Abstract noun আর বাকি তিনটি Material noun | flavor (air ও water-ও abstract noun নয়)
+| The word 'advance' is— an adverb, a verb, a noun, an adjective | 'Advance' শব্দটি verb, noun এবং adjective হিসেবে ব্যবহৃত হতে পারে | a noun
+| The plural form of 'Nucleus' is— Nucleausy, Nuclei, Nucleis, Nucleuses | উল্লিখিত শব্দটি plural form হিসেবে অপশন Nuclei এবং Nucleuses উভয়ই ব্যবহৃত হয় | Nuclei
+| The plural of "Spectrum" is— Spectra, Spikes, Spectrums, Species | Singular noun 'Spectrum' (বর্ণচ্ছটা বার্ণালি)-এর plural number হলো spectra এবং spectrums উভয়ই। সুতরাং সঠিক উত্তর a এবং c | Spectra

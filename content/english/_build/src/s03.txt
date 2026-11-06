@@ -1,0 +1,154 @@
+# The Gender
+## ii. The Gender
+Gender কোনো noun বা pronoun পুরুষবাচক বা স্ত্রীবাচক বা ক্লীব বা উভয় লিঙ্গ কি-না তা প্রকাশ করে।
+**Classification of Gender:** Gender 8 প্রকার। যথা:
+### 1. Masculine Gender (পুং লিঙ্গ)
+পুরুষবাচক noun বা pronoun-কে Masculine Gender বলে। যেমন- Karim, brother, boy, grandfather প্রভৃতি।
+### 2. Feminine Gender (স্ত্রীলিঙ্গ)
+স্ত্রীবাচক noun বা pronoun-কে Feminine Gender বলে। যেমন- mother, sister, aunt, she প্রভৃতি।
+### 3. Common Gender (উভয় লিঙ্গ)
+যেসব noun বা pronoun দিয়ে একই সাথে পুরুষ এবং স্ত্রী উভয়কে বুঝায় তাদেরকে common gender বলে। যেমন- student, friend, child, cousin, orphan, parent প্রভৃতি।
+### 4. Neuter Gender (ক্লীবলিঙ্গ)
+যেসব noun বা pronoun স্ত্রী বা পুরুষ কোনোটি না বুঝিয়ে জড় বস্তুকে বুঝায় তাদেরকে Neuter Gender বলে। যেমন- chair, table, house প্রভৃতি।
+## Transformation of Gender
+- i. সম্পূর্ণ ভিন্ন শব্দ ব্যবহার করে। যেমন- Man—woman, boy—girl, he—she ইত্যাদি।
+- ii. Masculine Noun-এর শেষে 'ess' যোগ করে। যেমন- Author—Authoress, God—Goddess, Poet—Poetess, Heir—Heiress ইত্যাদি।
+- iii. Compound Noun-এর Masculine অংশটির Feminine করে। যেমন- brother-in-law—sister-in-law, he-goat—she-goat, mankind—womankind, step-father—step-mother ইত্যাদি।
+### 1. সম্পূর্ণ ভিন্ন শব্দ ব্যবহার করে কিছু কিছু masculine gender-কে feminine gender-এ রূপান্তরিত করা হয়। যেমন-
+|| Masculine | Feminine
+| Bachelor (অবিবাহিত পুরুষ) | Maid/Spinster (অবিবাহিতা স্ত্রীলোক/কুমারী)
+| Beau (সুন্দর পুরুষ) | Belle (সুন্দরী স্ত্রীলোক)
+| Boar (শূকর) | Sow (শূকরী)
+| Buck (হরিণ) | Doe (হরিণী)
+| Bull, Ox (ষাঁড়) | Cow (গাভী)
+| Bridegroom (বর) | Bride (কনে)
+| Cock (মোরগ) | Hen (মুরগি)
+| Dog (কুকুর) | Bitch (কুকুরী)
+| Drake (পাতিহাঁস) | Buck (পাতিহাঁসী)
+| Drone (পুং মৌমাছি) | Bee (স্ত্রী মৌমাছি)
+| Duke (সম্রাট) | Duchess (সম্রাজ্ঞী)
+| Gander (রাজহংস) | Goose (রাজহংসী)
+| Horse (ঘোটক) | Mare (ঘোটকী)
+| Hart (হরিণ) | Roe (হরিণী)
+| Lad (বালক) | Lass (বালিকা)
+| Master (প্রভু, শিক্ষক) | Mistress (প্রভুপত্নী, শিক্ষয়িত্রী)
+| Monk, Friar (সন্ন্যাসী) | Nun (সন্ন্যাসিনী)
+| Nephew (ভাইপো) | Niece (ভাইঝি)
+| Ram (ভেড়া) | Ewe (ভেড়ী)
+| Sloven (নোংরা পোশাক পরা পুরুষ) | Slut (নোংরা মহিলা)
+| Stage (হরিণ) | Hind (হরিণী)
+| Tailor (দর্জি) | Seamstress (মহিলা দর্জি)
+| Widower (বিপত্নীক) | Widow (বিধবা)
+| Wizard (যাদুকর) | Witch (ডাইনি, মোহিনী নারী)
+### 2. a. Masculine Noun-এর শেষে 'ess' যোগ করে:
+|| Masculine | Feminine
+| Author (লেখক) | Authoress (লেখিকা)
+| Baron (সম্ভ্রান্ত পুরুষ) | Baroness (সম্ভ্রান্ত মহিলা)
+| Count (সম্মানিত ব্যক্তি) | Countess (সম্মানিতা মহিলা)
+| Giant (দানব) | Giantess (দানবী)
+| God (দেবতা) | Goddess (দেবী)
+| Heir (উত্তরাধিকারী) | Heiress (উত্তরাধিকরিণী)
+| Host (অতিথি সেবক) | Hostess (অতিথি সেবিকা)
+| Jew (ইহুদি পুরুষ) | Jewess (ইহুদি স্ত্রীলোক)
+| Lion (সিংহ) | Lioness (সিংহী)
+| Patron (পৃষ্ঠপোষক) | Patroness (পৃষ্ঠপোষিকা)
+| Poet (কবি) | Poetess (মহিলা কবি)
+| Priest (ধর্মযাজক) | Priestess (মহিলা ধর্মযাজক)
+| Prince (রাজপুত্র) | Princess (রাজকন্যা)
+| Shepherd (পুং রাখাল) | Shepherdess (স্ত্রী রাখাল)
+| Manager (ব্যবস্থাপক) | Manageress (মহিলা ব্যবস্থাপক)
+### b. Masculine Noun-এর শেষে যদি or, er, ro, ary থাকে তাহলে তাকে Feminine করার সময় o, e, a উঠে দিয়ে r-এর পর ess যুক্ত হয়।
+|| Masculine | Feminine
+| Actor (অভিনেতা) | Actress (অভিনেত্রী)
+| Hunter (পুরুষ শিকারি) | Huntress (মহিলা শিকারি)
+| Director (পরিচালক) | Directress/ Directrix (পরিচালিকা)
+| Enchanter (যাদুকর) | Enchantress (যাদুকরী)
+| Emperor (সম্রাট) | Empress (সম্রাজ্ঞী)
+| Governor (অভিভাবক) | Governess (অভিভাবিকা)
+| Instructor (পুং উপদেষ্টা) | Instructress (স্ত্রী উপদেষ্টা)
+| Inspector (পরিদর্শক) | Inspectress (পরিদর্শিকা)
+| Murderer (পুরুষ খুনি) | Murderess (মহিলা খুনি)
+| Sorcerer (যাদুকর) | Sorceress (যাদুকরনী)
+| Tiger (বাঘ) | Tigress (বাঘিনী)
+| Traitor (বিশ্বাসঘাতক) | Traitress (বিশ্বাসঘাতিনী)
+| Tutor (শিক্ষক) | Tutress (শিক্ষিকা)
+| Negro (কাফ্রি পুরুষ) | Negress (কাফ্রি মহিলা)
+| Porter (মুটে, কুলি) | Portess (মুটেনী)
+| Waiter (পরিচারক) | Waitress (পরিচারিকা)
+### c. বিদেশি ভাষার কিছু Noun এদের Feminine সহ ইংরেজিতে প্রবেশ করেছে।
+|| Masculine | Feminine
+| Administrator (পরিচালক) | Administratrix (পরিচালিকা)
+| Czar (জার রাশিয়ার সম্রাট) | Czarina (রাশিয়ার সম্রাজ্ঞী)
+| Don (মহাশয়) | Dona (মহাশয়া)
+| Hero (বীর) | Heroine (বীরাঙ্গনা)
+| Sultan (সুলতান) | Sultana (মুসলিম সম্রাজ্ঞী)
+| Executor (নির্বাহক) | Executrix (নির্বাহিকা)
+### d. আবার কিছু কিছু noun আছে যাদেরকে feminine-এ রূপান্তর করতে হলে কোনো নির্দিষ্ট নিয়ম অনুসরণ করা যায় না। যেমন-
+|| Masculine | Feminine
+| Abbot (মঠের কর্তা) | Abbess (মঠের কর্তী)
+| Master (মহাশয়) | Miss (মহাশয়া)
+| Mr. (জনাব) | Miss (জনাবা)
+| Marquis/Marquess (সম্ভ্রান্ত ব্যক্তি) | Marchioness (সম্ভ্রান্ত মহিলা)
+### e. Compound Noun-এর masculine অংশকে feminine করে।
+|| Masculine | Feminine
+| Boy-baby (পুরুষ শিশু) | Girl-baby (মেয়ে শিশু)
+| Bull calf (এঁড়ে বাছুর) | Cow-calf (বকনা বাছুর)
+| Billy-goat (পাঠা) | Nanny-goat (পাঠী)
+| He-goat (ছাগ) | She-goat (ছাগী)
+| Father in-law (শ্বশুর) | Mother-in-law (শাশুড়ি)
+| Mankind (পুরুষ জাতি) | Womankind (নারীজাতি)
+| Male-servant (চাকর) | Female-servant (চাকরানী)
+| Man-servant (চাকর) | Maid-servant (চাকরানী)
+| Son-in-law (জামাতা) | Daughter-in-law (পুত্রবধূ)
+| Beggar-man (ভিখারী) | Beggar-woman (ভিখারিণী)
+| Foster-father (পালকপিতা) | Foster-mother (পালকমাতা)
+| God-father (ধর্মপিতা) | God-mother (ধর্মমাতা)
+| Milk-man (গোয়ালা) | Milk-maid (গোয়ালিনী)
+| Peacock (ময়ূর) | Peahen (ময়ূরী)
+| Step-brother (বৈমাত্রেয় ভাই) | Step-sister (বৈমাত্রেয় বোন)
+| Washer-man (ধোপা) | Washer-woman (ধোপানী)
+### 4. ইংরেজিতে কতগুলো word আছে যা সবসময় feminine হিসেবে ব্যবহৃত হয়। যেমন-
+!LIST orange Always feminine
+- Amazon (পুরুষালি স্বভাবের নারী)
+- Nurse (সেবিকা)
+- Virgin (অবিবাহিতা পবিত্র যুবতী)
+- Brunette (কালোচুল, কালো চুল বিশিষ্ট রমণী)
+- Laundress (ধোপানী)
+- Blonde (সোনালি চুল ও বর্ণ বিশিষ্ট রমণী)
+- Termagant (কলহপ্রিয় মহিলা)
+- Shrew (ঝগড়াটে মহিলা)
+- Siren (কুহকিনী)
+- Coquette (ছিনাল মহিলা)
+- Flirt (ছিনাল)
+### 5. ইংরেজিতে কতগুলো word আছে যা সবসময় masculine হিসেবে ব্যবহৃত হয়। যেমন-
+!LIST orange Always masculine
+- Knight (নাইট)
+- Squire (সম্ভ্রান্ত পুরুষ)
+### 6. ইংরেজিতে কতগুলো noun আছে যারা masculine ও feminine উভয়কেই বুঝায় বলে এরা common gender। যেমন-
+!LIST ink Common gender
+- Captain (পুরুষ/মহিলা অধিনায়ক)
+- Judge (পুরুষ/মহিলা বিচারক)
+- Parson (পুরুষ/মহিলা ধর্মযাজক)
+- Lawyer (আইনজীবী পুরুষ/ মহিলা)
+- Chairperson (পুরুষ/মহিলা সভাপতি)
+- Coward (পুরুষ/মহিলা কাপুরুষ)
+- Citizen (পুরুষ/মহিলা নাগরিক)
+- Ass (পুরুষ বা মাদী গাধা)
+- Baby (ছেলে বা মেয়ে শিশু)
+- Beggar (ভিখারী বা ভিখারিণী)
+- Deer (হরিণ বা হরিণী)
+- Pupil (ছাত্র-ছাত্রী)
+- Cousin (জ্ঞাতী ভাই ও বোন)
+- Infant (বালক-বালিকা)
+- Parent (পিতামাতা)
+- Elephant (পুরুষ বা মাদী হাতি)
+- Spouse (স্বামী-স্ত্রী)
+- Pig (শুকর/শুকরী)
+- Child (খোকা-খুকী)
+- Fox (মদা বা মাদী খেকশিয়াল)
+- Student (ছাত্র-ছাত্রী)
+- Writer (লেখক/লেখিকা)
+- Teacher (শিক্ষক/ শিক্ষিকা)
+- Fool (বোকা)
+- Bird (পাখি/ পক্ষিণী)
+- Sheep (ভেড়া/ভেড়ী)

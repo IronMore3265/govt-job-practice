@@ -1,0 +1,35 @@
+# The Determiners
+## i. The Determiners
+যেসব word কোনো noun বা pronoun-এর পূর্বে বসে তাকে নির্দেশ করে তাদেরকে Determiner বলে।
+**Classification of determiners:** Determiners তিন প্রকার। যথা:
+### 1. Central Determiner
+**Articles:** ইংরেজি ভাষায় সবচেয়ে বেশি ব্যবহৃত determiner হলো definite and indefinite article (a, an, the).
+- Runa is __a__ student. This is __an__ orange.
+- __The__ man is good.
+**Demonstratives:** This, that, these, those.
+- __This__ book is interesting. I like __these__ people.
+- __That__ mango is ripe.
+**Possessives:** My, our, your, his, her, their etc.
+- __My__ pencil is fine. We love __our__ country.
+- I want __your__ book.
+**Quantifiers:** Some, any, no, enough, either, neither, much, many, each, every, etc.
+- I have __enough__ rice.
+- Do you have __any__ book?
+- I want __neither__ book.
+### 2. Predeterminer
+যে determiner গুলো central determiner-এর পূর্বে বসে তাদেরকে predeterminer বলা হয়। both, all, half, double, one-third, such, what etc.
+- I bought __both__ the books. He knows __all__ the boys.
+- I want __double__ the amount.
+- __What__ a fine day it is!
+### 3. Postdeterminer
+যে determiner গুলো central determiner-এর পরে বসে তাদেরকে postdeterminer বলে।
+**Cardinal Numbers:** one(a), two, three, four, etc.
+- I like the __three__ books. He bought the __two__ cars.
+**Ordinal Numbers:** first, second, third, etc.
+- Karim is the __first__ boy.
+- March is the __third__ month of the year.
+**Closed-class Quantifiers:** few, large, etc.
+- I have a few books. Give me the little milk.
+**Open-class or Phrasal Quantifiers:** lot of, deal of, amount of, great deal of, etc.
+- I have a __lot of__ books.
+- He has a __great deal of__ money.

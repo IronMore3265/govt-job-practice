@@ -1,0 +1,41 @@
+## MCQ Hints থেকে অতিরিক্ত তথ্য
+### কোনটি singular, কোনটি plural
+|| Singular | Plural | মন্তব্য
+| louse (উকুন) | lice | mouse, goose, louse-এর মধ্যবর্তী vowel পরিবর্তন করে plural করা হয়
+| mouse (ইঁদুর) | mice | Mouse (ইঁদুর) এর plural form হলো mice
+| man | men | কিছু singular noun-এর মধ্যকার vowel পরিবর্তন করে plural করতে হয়, যেমন man-men, louse-lice
+| foot (পায়ের পাতা) | feet | News শব্দটি singular হিসেবে ব্যবহৃত হয়
+| tooth | teeth | tooth-teeth, foot-feet
+| boy | boys | শব্দের শেষে y এবং y-এর পূর্বে vowel থাকলে s যোগ হয়, যেমন boy-boys, toy-toys
+| wife, wolf, shelf | wives, wolves, shelves | wolf (নেকড়ে)-এর plural হলো wolves
+| roof (ছাদ বা চাল) | roofs | roof-এর plural roofs, wife-wolf-shelf-এর মতো ves হয় না
+| thief | thieves | শব্দের শেষে fe, ef, if থাকলে সাধারণত f বা ef-এর স্থলে v বসে এবং এরপর es যোগ হয়
+| oasis (মরুদ্যান) | oases | Oasis-এর plural হলো oases
+| hero | heroes | o-এর আগে consonant থাকলে -es
+| apex | apexes | s, sh, ss, ch, x, z থাকলে শেষে es যোগ করে plural গঠন করা হয়
+| crisis (সংকটকাল) | crises | একমাত্র crisis হচ্ছে singular noun যার plural crises
+| cliff (উঁচু খাড়া পাহাড়) | cliffs | index (সূচক) singular, plural indexes বা indices
+| criterion (বিচারের মাপকাঠি বা মানদণ্ড) | criteria | Criteria-এর singular criterion
+| phenomenon (ঘটনা, ব্যাপার) | phenomena | Phenomena plural, singular phenomenon, অর্থ ব্যাপার, ঘটনা, ইন্দ্রিয়গ্রাহ্য বস্তু
+| thesis (প্রবন্ধ) | theses | Data, Oxen, Criteria plural, তাদের singular Datum, Ox, criterion
+| datum | data | Data হলো datum-এর plural
+| agendum | agenda | Agenda হলো agendum-এর plural
+| erratum (ছাপার ভুল) | errata | errata হলো erratum-এর plural
+| medium | media | Media শব্দটি plural, singular medium
+| radius (ব্যাসার্ধ) | radii, radiuses | agenda, oases, formulae plural, তাদের singular agendum, oasis, formula
+| hypothesis (প্রস্তাব; অনুমান) | hypothesises | Hypothesis singular number
+| spectrum (বর্ণচ্ছটা) | spectra, spectrums | Spectrum শব্দের plural spectra
+| brother | brethren, brothers | দুভাবেই brother-এর plural form লেখা যায়
+| ox | oxen | Ox-এর plural number হলো Oxen
+| genus | genera | Genera হলো plural
+### Plural হয় না বা একই থাকে
+|| শব্দ | তথ্য
+| deer, sheep, aircraft | Singular ও plural একই: deer-এর plural deer, sheep-এর plural sheep, aircraft-এর plural aircraft (intention, mouse, thesis-এর plural intentions, mice, theses)
+| canon | Zero plural marker: singular ও plural একই, শেষে s/es যুক্ত হয় না (sheep, fish-এর মতো)
+| fish | singular ও plural উভয় হিসেবে ব্যবহৃত হয়
+| furniture, information | কোনো plural form নেই, সর্বদা singular
+| physics, poetry, analysis, alms | singular; physics হচ্ছে বিষয়ের নাম অর্থাৎ পদার্থবিজ্ঞান
+| cattle (গবাদিপশু), measles | cattle plural; measles-এর singular form নেই
+| pair | singular এবং plural উভয়ই হিসেবে ব্যবহৃত হয়
+| spectacles, vegetables | plural number
+| ethics | plural দেখতে হলেও singular হিসেবে ব্যবহার করা যায়
