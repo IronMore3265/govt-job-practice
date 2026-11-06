@@ -30,8 +30,10 @@ export type SubjectView = { id: string; name: string; exams: ExamView[] };
 export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?: ReactNode }) {
   const [subjectId, setSubjectId] = useState(subjects[0]?.id ?? "");
   const subject = subjects.find((s) => s.id === subjectId) ?? subjects[0];
-  const [examId, setExamId] = useState(subject?.exams[0]?.id ?? "");
-  const exam = subject?.exams.find((e) => e.id === examId) ?? subject?.exams[0];
+  // Model tests (exams that are not topic practice) are greyed out as "Coming soon" until all topics have questions.
+  const firstOpen = (s?: SubjectView) => (s?.exams.find((e) => e.allTopics) ?? s?.exams[0])?.id ?? "";
+  const [examId, setExamId] = useState(firstOpen(subject));
+  const exam = subject?.exams.find((e) => e.id === examId) ?? subject?.exams.find((e) => e.allTopics);
   // The topics the student narrowed the scope to. Empty means all of the exam's topics.
   const [narrowed, setNarrowed] = useState<string[]>([]);
   // A saved set id, "random" for a new random set, or "" for the exam's first live set.
@@ -39,7 +41,7 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
 
   function pickSubject(id: string) {
     setSubjectId(id);
-    setExamId(subjects.find((s) => s.id === id)?.exams[0]?.id ?? "");
+    setExamId(firstOpen(subjects.find((s) => s.id === id)));
     setNarrowed([]);
     setSetChoice("");
   }
@@ -84,6 +86,8 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
               key={e.id}
               type="button"
               className={`exam-card${e.id === exam?.id ? " exam-card-on" : ""}`}
+              style={e.allTopics ? undefined : { opacity: 0.5, filter: "grayscale(1)", cursor: "not-allowed", boxShadow: "none" }}
+              disabled={!e.allTopics}
               aria-pressed={e.id === exam?.id}
               onClick={() => {
                 setExamId(e.id);
@@ -95,7 +99,7 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
                 <b>{e.name}</b>
                 <span className="exam-card-sub small">{examSummary({ question_count: e.questionCount, time_seconds: e.timeSeconds }, e.topics.length)}</span>
               </span>
-              <span className="chip">-{formatMark(e.negativeMark)}</span>
+              <span className="chip">{e.allTopics ? `-${formatMark(e.negativeMark)}` : "Coming soon"}</span>
             </button>
           ))}
         </div>
