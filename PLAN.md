@@ -60,6 +60,7 @@ A web app where you and your friends practice MCQs for government job exams. Eac
 9. Report a question: a "Report question" button sits on the exam screen (next to Mark for review) and in the review after submit. The student adds a short note. It saves a `question_report` and a trigger writes a `notification` for the admin, so the report shows up in the admin's bell right away, with the question, who reported it and the note. The admin sees all open reports in the question bank, fixes the question and marks the report resolved. Govt exam answers must be right, so this matters.
 10. Retry missed: start a new session made only of the questions missed in a finished session.
 11. Leaderboard, copied from the MSc site: per exam, each student's average score percentage over finished full-set sessions. The admin switches it on or off for everyone. Students join it themselves (opt-in), and only sessions started after joining count. Leaving and joining again restarts the count. It shows the top 10 plus your own row, and shares only a name, an average and a session count. Retries of missed questions do not count. Answers stay private.
+12. Daily streak, in the Home side column above the invites. A day burns when the student finishes at least one set from every subject that has questions (Bangladesh time). A set counts when it is finished, is not a retry and has at least one answered question. A full missed day resets the streak to 0, and it stays alive until midnight while today is open. Each done subject gets an orange tick and strikethrough, and the progress bar ends in a cash pile that is grey until the day is done, then orange and ink. Worked out from `session_run` by `my_streak()`, nothing is stored per day. The admin switch `streaks_public` (off by default) also lists every active student's name and streak days.
 
 ## 4. Later features
 
@@ -158,7 +159,7 @@ Stack: Next.js, Supabase, `pdfjs-dist` for the viewer, `lucide-react` for icons,
 - `note_progress(user_id, topic_id, last_page, updated_at)`
 - `notification(id, user_id, kind[new_signup|question_report], ref_profile_id, ref_report_id, created_at, read_at)` (written by triggers on `profile` and `question_report`, students cannot write it)
 - `question_report(id, question_id, user_id, note, status[open|resolved], created_at)`
-- `app_setting(id, leaderboard_on, updated_at)` (one row of site-wide switches)
+- `app_setting(id, leaderboard_on, streaks_public, updated_at)` (one row of site-wide switches)
 
 ## 10. UI specification (RoboNuggets style)
 

@@ -1,7 +1,7 @@
 import { ActionForm } from "@/components/ActionForm";
 import { formatBytes, LIMITS_BYTES, usageNote, usagePercent } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
-import { setLeaderboard } from "./actions";
+import { setLeaderboard, setStreaksPublic } from "./actions";
 
 type Usage = { db_bytes: number; buckets: { bucket: string; files: number; bytes: number }[] };
 
@@ -11,17 +11,18 @@ const EXPORTS = [
   { group: "activity", title: "Activity", detail: "Exam sessions, attempts, question reports and notifications. Private student data." },
 ] as const;
 
-// Settings tab: the leaderboard switch, storage usage against the free plan limits, and the data export (the free plan has
+// Settings tab: the leaderboard and shared streaks switches, storage usage against the free plan limits, and the data export (the free plan has
 // no restore points to rely on, so this is the backup).
 export default async function AdminSettingsPage() {
   const supabase = await createClient();
   const [{ data: setting }, { data: usageRaw }] = await Promise.all([
-    supabase.from("app_setting").select("leaderboard_on").eq("id", 1).maybeSingle(),
+    supabase.from("app_setting").select("leaderboard_on, streaks_public").eq("id", 1).maybeSingle(),
     supabase.rpc("admin_storage_usage"),
   ]);
   const usage = usageRaw as unknown as Usage | null;
   const fileBytes = (usage?.buckets ?? []).reduce((sum, b) => sum + Number(b.bytes), 0);
   const on = Boolean(setting?.leaderboard_on);
+  const streaksOn = Boolean(setting?.streaks_public);
 
   const bar = (label: string, used: number, limit: number) => {
     const pct = usagePercent(used, limit);
@@ -59,6 +60,19 @@ export default async function AdminSettingsPage() {
         </ActionForm>
         <p className="small">
           Status: <b>{on ? "on" : "off"}</b>
+        </p>
+      </div>
+
+      <div className="card stack-sm">
+        <p className="label">Shared streaks</p>
+        <p className="small muted">
+          Every student always sees their own daily streak on Home. Switched on, the card also lists every active student with their name and streak days, and nothing else.
+        </p>
+        <ActionForm action={setStreaksPublic} submitLabel={streaksOn ? "Switch off" : "Switch on"} buttonClass={streaksOn ? "btn" : "btn btn-primary"} key={String(streaksOn)}>
+          <input type="hidden" name="on" value={String(!streaksOn)} />
+        </ActionForm>
+        <p className="small">
+          Status: <b>{streaksOn ? "on" : "off"}</b>
         </p>
       </div>
 

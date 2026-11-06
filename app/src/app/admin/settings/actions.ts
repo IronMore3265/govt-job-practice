@@ -16,3 +16,14 @@ export async function setLeaderboard(_prev: ActionState, form: FormData): Promis
   revalidatePath("/", "layout");
   return { ok: true, message: on ? "The leaderboard is on. Students can join it." : "The leaderboard is off for everyone." };
 }
+
+// Lets students see each other's streaks on Home, or hides them. Their own streak always shows.
+export async function setStreaksPublic(_prev: ActionState, form: FormData): Promise<ActionState> {
+  await requireAdmin();
+  const on = form.get("on") === "true";
+  const supabase = await createClient();
+  const { error } = await supabase.from("app_setting").update({ streaks_public: on, updated_at: new Date().toISOString() }).eq("id", 1);
+  if (error) return { ok: false, message: "Could not change the setting." };
+  revalidatePath("/", "layout");
+  return { ok: true, message: on ? "Students can now see each other's streaks." : "Streaks are private again." };
+}

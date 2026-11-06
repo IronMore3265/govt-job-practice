@@ -186,7 +186,7 @@ type NotificationRow = {
   read_at: string | null;
 };
 
-type AppSettingRow = { id: number; leaderboard_on: boolean; updated_at: string };
+type AppSettingRow = { id: number; leaderboard_on: boolean; streaks_public: boolean; updated_at: string };
 
 // Insert: columns with a default (or nullable) are optional. Update: everything optional.
 type Table<Row, Required extends keyof Row, Relationships extends unknown[]> = {
@@ -349,6 +349,7 @@ export type Database = {
       join_leaderboard: { Args: never; Returns: undefined };
       leave_leaderboard: { Args: never; Returns: undefined };
       leaderboard: { Args: { p_exam_id: string }; Returns: Json };
+      my_streak: { Args: never; Returns: Json };
       admin_storage_usage: { Args: never; Returns: Json };
       admin_save_question: {
         Args: {

@@ -2,6 +2,7 @@ import Link from "@/components/NavLink";
 import { AdminBell } from "@/components/AdminBell";
 import { HomePicker, type SubjectView } from "@/components/HomePicker";
 import { InvitePanel } from "@/components/InvitePanel";
+import { StreakPanel, type StreakView } from "@/components/StreakPanel";
 import { signOut } from "@/app/actions";
 import { requireActive } from "@/lib/auth";
 import { toInviteViews } from "@/lib/invites";
@@ -12,7 +13,7 @@ export default async function HomePage() {
   const supabase = await createClient();
   const isAdmin = profile.role === "admin";
 
-  const [{ data: subjects }, { data: exams }, { data: invites }, { data: open }] = await Promise.all([
+  const [{ data: subjects }, { data: exams }, { data: invites }, { data: open }, { data: streakRaw }] = await Promise.all([
     supabase.from("subject").select("id, name, sort_order").order("sort_order"),
     supabase
       .from("exam")
@@ -20,6 +21,7 @@ export default async function HomePage() {
       .order("sort_order"),
     supabase.from("invite").select("*").eq("created_by", profile.id).order("created_at", { ascending: false }),
     supabase.rpc("my_open_session"),
+    supabase.rpc("my_streak"),
   ]);
 
   // Best score per saved set, so redoing a set shows the earlier result.
@@ -65,6 +67,7 @@ export default async function HomePage() {
   if (mixed.length) views.push({ id: "mixed", name: "Mixed", exams: mixed.map(toExamView) });
 
   const inProgress = open as { session_id: string; exam_name: string } | null;
+  const streak = streakRaw as unknown as StreakView | null;
 
   return (
     <main className="shell shell-wide">
@@ -110,7 +113,15 @@ export default async function HomePage() {
         </div>
       ) : null}
 
-      <HomePicker subjects={views} side={<InvitePanel invites={toInviteViews(invites ?? [])} limit={isAdmin ? null : profile.invite_limit} />} />
+      <HomePicker
+        subjects={views}
+        side={
+          <>
+            {streak ? <StreakPanel streak={streak} /> : null}
+            <InvitePanel invites={toInviteViews(invites ?? [])} limit={isAdmin ? null : profile.invite_limit} />
+          </>
+        }
+      />
     </main>
   );
 }

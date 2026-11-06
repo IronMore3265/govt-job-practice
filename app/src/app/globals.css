@@ -577,9 +577,250 @@ p {
 }
 
 /* Topic practice picker: one dropdown of the ready topics, then a grid of numbered sets. Orange is done, ink is selected. */
-.topic-select {
+.topic-pick {
+  position: relative;
   width: calc(100% - 6px);
+}
+
+.topic-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
   cursor: pointer;
+}
+
+.topic-trigger[aria-expanded="true"] {
+  border-color: var(--orange);
+}
+
+.topic-trigger:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.topic-trigger-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.topic-chevron {
+  transition: transform 0.12s;
+}
+
+.topic-trigger[aria-expanded="true"] .topic-chevron {
+  transform: rotate(180deg);
+}
+
+.topic-count {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+
+.topic-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: min(320px, 55vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  outline: none;
+  scrollbar-width: thin;
+}
+
+.topic-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.topic-option + .topic-option {
+  border-top: 1px dashed var(--muted);
+}
+
+.topic-option-active {
+  background: var(--bg);
+  box-shadow: inset 4px 0 0 var(--orange);
+}
+
+.topic-option[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Daily streak card in the Home side column. Done subjects look like the final checklist: orange tick, orange strikethrough. */
+.dash-side .section-label .ico-off {
+  color: var(--muted);
+}
+
+.streak-days {
+  font-family: var(--font-doto), monospace;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.streak-days-on {
+  color: var(--orange);
+}
+
+.streak-goal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.streak-bar {
+  flex: 1;
+  height: 12px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.streak-bar-fill {
+  height: 100%;
+  background: var(--orange);
+}
+
+.cash {
+  flex: none;
+  display: block;
+}
+
+.cash-note,
+.cash-coin {
+  fill: var(--bg);
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.cash-band {
+  fill: var(--card);
+  stroke: var(--muted);
+}
+
+.cash-sign {
+  fill: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cash-won .cash-note {
+  fill: var(--orange);
+  stroke: var(--ink);
+}
+
+.cash-won .cash-band {
+  stroke: var(--ink);
+}
+
+.cash-won .cash-coin {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+
+.cash-won .cash-sign {
+  fill: var(--orange);
+}
+
+.streak-list,
+.streak-friends {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.streak-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 3px 3px 0;
+}
+
+.streak-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 6px 9px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 13px;
+}
+
+.streak-box {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+}
+
+.streak-box svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3;
+}
+
+.streak-row-done .streak-box {
+  background: var(--orange);
+}
+
+.streak-row-done .streak-name {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
+}
+
+.streak-friend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-top: 1px dashed var(--muted);
+}
+
+.streak-friend-days {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  font-weight: 600;
+}
+
+.streak-friend-days .ico {
+  width: 14px;
+  height: 14px;
+  color: var(--orange);
 }
 
 .set-grid {

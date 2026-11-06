@@ -66,6 +66,14 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 - [ ] Admin > Settings > Leaderboard: switch on. As a student, the Leaderboard card appears on Home: Join, finish a full set, and you appear in the top 10 with your average. Leave. A second account sees only name, sets and average.
 - [ ] Switch it off: the card disappears for everyone.
 
+### 5b. Daily streak and topic dropdown
+- [ ] Home: the Daily streak card sits above Invite a friend (under the picker on a phone). The flame and cash pile are grey, the bar is empty.
+- [ ] Finish one set: that subject gets an orange tick and strikethrough, the bar moves. A retry of missed questions or a blank submit changes nothing.
+- [ ] Finish a set in every subject: the flame turns orange, the cash pile turns orange and ink, the day count goes up by one.
+- [ ] Next day (after midnight Bangladesh time) the ticks clear and the count stays. Miss a whole day and it goes back to 0.
+- [ ] Admin > Settings > Shared streaks: switch on. The card lists the other students with name and days only. Switch off: the list disappears.
+- [ ] Topic dropdown, phone and laptop: cream popup in the site style, Bangla reads well, long lists scroll, tapping outside closes it. Picking a topic changes the set numbers.
+
 ### 6. Admin
 - [ ] Admin > Settings > Storage: bars for files and database, plus a per-bucket list.
 - [ ] Admin > Settings > Export: download Content, People and Activity. Each is one JSON file that opens and has your data.
@@ -83,6 +91,7 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 - **Weak topics** means under 70 percent over at least 3 asked questions. Easy to change.
 - **Time-out grace is 3 seconds** on the server, so a slow connection does not lose the last answer. The clock is the server's, not the phone's.
 - **Leaderboard** counts finished sessions of a full set or a full random set. Retries do not count. Only sessions started after joining count.
+- **Streak** needs a set in every subject that has questions, so adding a new subject later makes older days look incomplete and resets streaks. Sets count on the day they finish, in Bangladesh time.
 - **Export is JSON**, one file per group, streamed so large exports work. The note PDFs and figures are not in it.
 - **Report PDF** uses the browser's print dialog, as planned. Nothing is generated on the server.
 - **Notes can still be saved by a determined student** (a screenshot, for example). The viewer hides the right-click menu on pages and prints blank, and the file link expires after 10 minutes. This only makes casual copying harder, as the plan says.

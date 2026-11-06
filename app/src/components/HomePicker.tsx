@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "@/components/NavLink";
 import { LeaderboardPanel } from "@/components/LeaderboardPanel";
 import { StartExamForm } from "@/components/StartExamForm";
+import { TopicDropdown } from "@/components/TopicDropdown";
 import { examSummary, formatMark } from "@/lib/exam";
 import { noteHref } from "@/lib/notes";
 
@@ -227,24 +228,18 @@ function PracticePicker({ exam }: { exam: ExamView }) {
   return (
     <>
       <div className="stack-sm">
-        <label className="label" htmlFor="practice-topic">
+        <p className="label" id="practice-topic">
           Topic
-        </label>
-        <select
-          id="practice-topic"
-          className="select topic-select"
+        </p>
+        <TopicDropdown
+          labelId="practice-topic"
+          options={ready.map((t) => ({ id: t.id, title: t.title, progress: progress(t.id) }))}
           value={topicId}
-          onChange={(e) => {
-            setTopicId(e.target.value);
+          onChange={(id) => {
+            setTopicId(id);
             setPicked(null);
           }}
-        >
-          {ready.map((t) => (
-            <option key={t.id} value={t.id}>
-              {t.title} ({progress(t.id)})
-            </option>
-          ))}
-        </select>
+        />
         {ready.length < exam.topics.length ? (
           <p className="small muted">
             {ready.length} of {exam.topics.length} topics ready. More coming soon.
