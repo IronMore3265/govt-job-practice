@@ -187,17 +187,32 @@ export function HomePicker({ subjects, side }: { subjects: SubjectView[]; side?:
   );
 }
 
+function setLabel(t: TopicSetView) {
+  return t.tries > 0 && t.best !== null && t.max ? `Set ${t.chunk}, best ${formatMark(t.best)} of ${formatMark(t.max)}` : `Set ${t.chunk}`;
+}
+
+// One line about the selected set, so the set buttons can stay plain numbers.
+function setDetail(t: TopicSetView, fullSize: number) {
+  const parts: string[] = [];
+  if (t.size < fullSize) parts.push(`${t.size} questions`);
+  if (t.tries > 0 && t.best !== null && t.max) parts.push(`best ${formatMark(t.best)}/${formatMark(t.max)}`);
+  return `Set ${t.chunk}: ${parts.length ? parts.join(", ") : "not tried yet"}`;
+}
+
 // Topic practice: pick one topic, then one of its sets. Set 1 is the first questions of the topic as they were written, Set 2 the
 // next ones, and so on, so finishing every set means every question of the topic has been asked.
+// Only topics with questions are listed, in a dropdown, so the picker stays small however many topics and sets a subject has.
 function PracticePicker({ exam }: { exam: ExamView }) {
   const hasSets = new Set(exam.topicSets.map((t) => t.topicId));
   const [topicId, setTopicId] = useState(exam.topics.find((t) => hasSets.has(t.id))?.id ?? "");
   const [picked, setPicked] = useState<number | null>(null);
 
+  const ready = exam.topics.filter((t) => hasSets.has(t.id));
   const topic = exam.topics.find((t) => t.id === topicId);
   const sets = exam.topicSets.filter((t) => t.topicId === topicId).sort((a, b) => a.chunk - b.chunk);
   const firstNew = sets.find((t) => t.tries === 0)?.chunk ?? sets[0]?.chunk ?? null;
   const chunk = picked !== null && sets.some((t) => t.chunk === picked) ? picked : firstNew;
+  const current = sets.find((t) => t.chunk === chunk);
   const done = sets.filter((t) => t.tries > 0).length;
   const progress = (id: string) => {
     const all = exam.topicSets.filter((t) => t.topicId === id);
@@ -212,50 +227,50 @@ function PracticePicker({ exam }: { exam: ExamView }) {
   return (
     <>
       <div className="stack-sm">
-        <p className="label">Topic</p>
-        <div className="wrap">
-          {exam.topics.map((t) => {
-            const on = t.id === topicId;
-            const has = hasSets.has(t.id);
-            return (
-              <button
-                key={t.id}
-                type="button"
-                className={`pill${on ? " pill-active" : ""}`}
-                aria-pressed={on}
-                disabled={!has}
-                title={has ? undefined : "No questions in this topic yet"}
-                onClick={() => {
-                  setTopicId(t.id);
-                  setPicked(null);
-                }}
-              >
-                {t.title}
-                {has ? <span className="small"> · {progress(t.id)}</span> : null}
-              </button>
-            );
-          })}
-        </div>
+        <label className="label" htmlFor="practice-topic">
+          Topic
+        </label>
+        <select
+          id="practice-topic"
+          className="select topic-select"
+          value={topicId}
+          onChange={(e) => {
+            setTopicId(e.target.value);
+            setPicked(null);
+          }}
+        >
+          {ready.map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.title} ({progress(t.id)})
+            </option>
+          ))}
+        </select>
+        {ready.length < exam.topics.length ? (
+          <p className="small muted">
+            {ready.length} of {exam.topics.length} topics ready. More coming soon.
+          </p>
+        ) : null}
       </div>
 
       <div className="stack-sm">
         <p className="label">Set</p>
-        <div className="wrap">
+        <div className="set-grid">
           {sets.map((t) => (
-            <button key={t.chunk} type="button" className={`pill${chunk === t.chunk ? " pill-active" : ""}`} aria-pressed={chunk === t.chunk} onClick={() => setPicked(t.chunk)}>
-              Set {t.chunk}
-              {t.size < exam.questionCount ? <span className="small"> · {t.size} questions</span> : null}
-              {t.tries > 0 && t.best !== null && t.max ? (
-                <span className="small">
-                  {" "}
-                  · best {formatMark(t.best)}/{formatMark(t.max)}
-                </span>
-              ) : null}
+            <button
+              key={t.chunk}
+              type="button"
+              className={`set-num${t.tries > 0 ? " set-num-done" : ""}`}
+              aria-pressed={chunk === t.chunk}
+              aria-label={setLabel(t)}
+              onClick={() => setPicked(t.chunk)}
+            >
+              {t.chunk}
             </button>
           ))}
         </div>
+        {current ? <p className="small">{setDetail(current, exam.questionCount)}</p> : null}
         <p className="small muted">
-          {done} of {sets.length} sets done. Each set is the next {exam.questionCount} questions of the topic in the order they were written. Finish every set and the topic is covered.
+          {done} of {sets.length} sets done (orange).
         </p>
       </div>
 

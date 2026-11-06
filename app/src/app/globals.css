@@ -571,9 +571,44 @@ p {
   cursor: not-allowed;
 }
 
-:is(.btn, .pill, .opt, .exam-card, .segment):focus-visible {
+:is(.btn, .pill, .opt, .exam-card, .segment, .set-num):focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 2px;
+}
+
+/* Topic practice picker: one dropdown of the ready topics, then a grid of numbered sets. Orange is done, ink is selected. */
+.topic-select {
+  width: calc(100% - 6px);
+  cursor: pointer;
+}
+
+.set-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.set-num {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.set-num-done {
+  background: var(--orange);
+}
+
+.set-num[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
 }
 
 /* Exam cards: ink border and black shadow, the selected card is orange and pressed */
