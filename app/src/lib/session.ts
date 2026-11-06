@@ -1,7 +1,7 @@
 // Exam session helpers (PLAN.md sections 2.1 and 3). Pure functions, tested with `npm test`.
 // The shapes below are what the database functions return (supabase/migrations/20261105110000_exam_mode.sql).
 
-export type ExamOption = { id: string; label: "A" | "B" | "C" | "D"; text: string };
+export type ExamOption = { id: string; label: "A" | "B" | "C" | "D" | "E"; text: string };
 export type ExamQuestion = {
   position: number;
   question_id: string;

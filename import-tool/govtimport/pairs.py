@@ -46,6 +46,8 @@ def load_pair(question_path: Path, answer_path: Path) -> ParsedFile:
         if a.answer in LABELS and a.answer_text and norm(a.answer_text) != norm(q.options.get(a.answer, "")):
             q.errors.append(f"{aname} says the answer is {a.answer}. '{a.answer_text[:40]}' but option {a.answer} in {qname} is '{q.options.get(a.answer, '')[:40]}'")
         q.answer, q.reason, q.page = a.answer, a.reason, a.page
+        if q.answer in LABELS and q.answer not in q.options:
+            q.errors.append(f"{aname} says the answer is {q.answer} but Q{q.number} in {qname} has no option {q.answer}")
         q.figure, q.figure_caption = a.figure, a.figure_caption
         q.topic = a.topic or q.topic
         q.lang = a.lang or q.lang

@@ -41,7 +41,7 @@ lang: bn
 **উৎস:** বিগত পরীক্ষা
 ```
 
-- `question.md` has the header (`subject`, `topic`, `lang`) and, for each question, the `### Qn.` heading and options A to D.
+- `question.md` has the header (`subject`, `topic`, `lang`) and, for each question, the `### Qn.` heading and options A to E (two to five).
 - `answer.md` has, for each question, the same heading, `**উত্তর:**` (a letter, or letter plus the option text), `**ব্যাখ্যা:**`
   and `**পৃষ্ঠা:**` (the page of the note PDF). `**উৎস:**` is a note for people and is ignored. The English names
   `**Answer:**`, `**Reason:**`, `**Page:**` also work, and so do `**Figure:**`, `**Topic:**` and `**Lang:**`.
@@ -101,8 +101,8 @@ lang: en
 | Part | Rule |
 |---|---|
 | `### Q1. text` | Heading with the question number and the question text. The text may continue on following lines until the first option. Numbers must be unique inside a file. |
-| `- A.` to `- D.` | Exactly four options, labelled A, B, C, D, each different. An option may continue on the next line. |
-| `**Answer:** B` | One letter A to D. |
+| `- A.` to `- E.` | Two to five options, labelled A, B, C, D, E in order with no gap, each different. An option may continue on the next line. |
+| `**Answer:** B` | One letter A to E, and that option must exist. |
 | `**Reason:** ...` | Required. The explanation shown after the exam. It may span several lines. If it says "see page 12", the site turns that into a link to the note (Phase 4). |
 | `**Page:** 12` | Required. The page of the book or note the question comes from. |
 | `**Figure:** file.png \| caption` | Optional. An image file (`.png`, `.jpg`, `.webp`, up to 5 MB) from the `figures/` folder next to the Markdown file. The caption after `\|` is optional. Questions that name the same file share one stored figure. Figures are 1:1 copies from the reference book, never redrawn. |
@@ -125,12 +125,12 @@ written questions and is ignored with a warning.
 
 ## What the importer checks
 
-Exactly four options and one valid answer, a non-empty reason, a page number, the topic exists, UTF-8 and Bangla
+Two to five options and one valid answer, a non-empty reason, a page number, the topic exists, UTF-8 and Bangla
 survive, every `$` closes and parses, figure files exist, no duplicate questions (same text in the same topic is
 skipped on re-import). Any error stops the whole import before anything is written.
 
 ## Asking Claude to write a file
 
 > Write MCQs for the note "<topic title>" in the format of `docs/QUESTION_FORMAT.md`. Subject <subject>, topic <number>,
-> language <en or bn>. Four options, one correct, a short reason that explains why, and the source page for each.
+> language <en or bn>. Four options (two to five are allowed), one correct, a short reason that explains why, and the source page for each.
 > Use `\$` for real dollar signs and `$...$` for math. Output only the Markdown file.

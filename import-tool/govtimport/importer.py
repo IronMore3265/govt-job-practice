@@ -1,8 +1,8 @@
 """Write validated questions and figures to Supabase.
 
-Order for every question: figure (if any), question as a draft, its four options, a read-back check that the text came
+Order for every question: figure (if any), question as a draft, its two to five options, a read-back check that the text came
 back unchanged (this is the Bangla round trip), then optionally approval. The database trigger only approves a question
-that has four options, one correct, and an explanation on the correct one, so approval is always the last step.
+that has two to five options, one correct, and an explanation on the correct one, so approval is always the last step.
 Running the same file again is safe: a question whose text already exists in the topic is skipped.
 """
 import hashlib
@@ -130,7 +130,7 @@ def write_question(db, item: Item, figure_id: str | None, approve: bool) -> None
     }])[0]
     try:
         options = [{"question_id": row["id"], "label": label, "text": q.options[label], "is_correct": label == q.answer,
-                    "explanation": q.reason if label == q.answer else None} for label in "ABCD"]
+                    "explanation": q.reason if label == q.answer else None} for label in sorted(q.options)]
         back = db.insert("mcq_option", options)
         bad = _verify({"text": q.text}, row)
         by_label = {o["label"]: o for o in back}

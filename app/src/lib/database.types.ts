@@ -84,7 +84,7 @@ type QuestionRow = {
 type McqOptionRow = {
   id: string;
   question_id: string;
-  label: "A" | "B" | "C" | "D";
+  label: "A" | "B" | "C" | "D" | "E";
   text: string;
   is_correct: boolean;
   explanation: string | null;

@@ -67,7 +67,7 @@ export default async function EditQuestionPage({ params, searchParams }: Props) 
             topic_id: question.topic_id,
             lang: question.lang,
             text: question.text,
-            options: { A: byLabel.get("A")?.text ?? "", B: byLabel.get("B")?.text ?? "", C: byLabel.get("C")?.text ?? "", D: byLabel.get("D")?.text ?? "" },
+            options: { A: byLabel.get("A")?.text ?? "", B: byLabel.get("B")?.text ?? "", C: byLabel.get("C")?.text ?? "", D: byLabel.get("D")?.text ?? "", E: byLabel.get("E")?.text ?? "" },
             correct: correct?.label ?? "",
             explanation: correct?.explanation ?? "",
             source_page: question.source_page,

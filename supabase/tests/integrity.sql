@@ -62,6 +62,27 @@ begin
   update public.question set status = 'approved' where id = q;
   qs := qs || q;
 
+  -- Two to five options are allowed (A to E, no gap), still with exactly one correct and an explanation.
+  insert into public.question (subject_id, topic_id, text) values (subj, t1, 'Five options') returning id into q;
+  insert into public.mcq_option (question_id, label, text, is_correct, explanation) values
+    (q, 'A', 'a', false, null), (q, 'B', 'b', false, null), (q, 'C', 'c', false, null), (q, 'D', 'd', false, null), (q, 'E', 'e', true, 'Because e.');
+  update public.question set status = 'approved' where id = q;
+  delete from public.mcq_option where question_id = q and label in ('D', 'E');
+  update public.question set status = 'draft' where id = q;
+  denied := false;
+  begin update public.question set status = 'approved' where id = q; exception when sqlstate 'P0001' then denied := true; end;
+  assert denied, 'losing the correct option blocks approval';
+  update public.mcq_option set is_correct = true, explanation = 'Because c.' where question_id = q and label = 'C';
+  update public.question set status = 'approved' where id = q;
+  update public.question set status = 'draft' where id = q;
+  delete from public.mcq_option where question_id = q and label = 'B';
+  denied := false;
+  begin update public.question set status = 'approved' where id = q; exception when sqlstate 'P0001' then denied := true; end;
+  assert denied, 'options must run A, B, C without a gap';
+  denied := false;
+  begin insert into public.mcq_option (question_id, label, text) values (q, 'F', 'f'); exception when check_violation then denied := true; end;
+  assert denied, 'option labels stop at E';
+
   -- 20 approved questions across the two topics.
   for i in 2..21 loop
     insert into public.question (subject_id, topic_id, text, source_page)

@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 import { MathText } from "@/components/MathText";
 import type { ActionState } from "@/lib/action-state";
-import { LIMITS, OPTION_LABELS, type OptionLabel } from "@/lib/questions";
+import { LIMITS, MIN_OPTIONS, OPTION_LABELS, type OptionLabel } from "@/lib/questions";
 
 export type FormSubject = { id: string; name: string };
 export type FormTopic = { id: string; subject_id: string; number: number; title: string };
@@ -92,8 +92,8 @@ export function QuestionForm({ action, subjects, topics, figures, initial }: Pro
       </div>
 
       <fieldset className="stack-sm" style={{ border: 0, padding: 0, margin: 0 }}>
-        <legend className="label">Options (mark the correct one)</legend>
-        {OPTION_LABELS.map((label) => (
+        <legend className="label">Options (mark the correct one). A and B are required; C, D and E are optional, filled in order.</legend>
+        {OPTION_LABELS.map((label, i) => (
           <div key={label} className="opt-row">
             <label className="check">
               <input type="radio" name="correct" value={label} defaultChecked={initial.correct === label} required aria-label={`Option ${label} is correct`} />
@@ -105,7 +105,7 @@ export function QuestionForm({ action, subjects, topics, figures, initial }: Pro
               defaultValue={initial.options[label]}
               maxLength={LIMITS.option}
               aria-label={`Option ${label} text`}
-              required
+              required={i < MIN_OPTIONS}
             />
           </div>
         ))}

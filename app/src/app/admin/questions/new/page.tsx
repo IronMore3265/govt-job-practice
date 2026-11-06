@@ -41,7 +41,7 @@ export default async function NewQuestionPage({ searchParams }: { searchParams: 
               topic_id: isUuid(topic) && (topics ?? []).some((t) => t.id === topic) ? topic : "",
               lang: "en",
               text: "",
-              options: { A: "", B: "", C: "", D: "" },
+              options: { A: "", B: "", C: "", D: "", E: "" },
               correct: "",
               explanation: "",
               source_page: null,

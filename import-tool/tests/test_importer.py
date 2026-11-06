@@ -111,3 +111,49 @@ def test_figure_is_stored_once_and_linked(db, tmp_path):
 def test_slugify():
     assert importer.slugify("General Knowledge") == "general-knowledge"
     assert importer.slugify("বাংলা") == ""
+
+
+def test_five_and_three_options_are_imported(db):
+    text = """---
+subject: Mathematics
+topic: 1
+---
+
+### Q1. Five options?
+
+- A. one
+- B. two
+- C. three
+- D. four
+- E. five
+
+**Answer:** E
+
+**Reason:** Because five.
+
+**Page:** 3
+
+---
+
+### Q2. Three options?
+
+- A. one
+- B. two
+- C. three
+
+**Answer:** C
+
+**Reason:** Because three.
+
+**Page:** 4
+"""
+    pf = parse_text(text, "m.md")
+    check_files([pf])
+    assert not [e for q in pf.questions for e in q.errors]
+    out = importer.run(db, [pf])
+    assert (out.imported, out.errors) == (2, [])
+    qs = db.tables["question"]
+    for q, labels, key in zip(qs, ("ABCDE", "ABC"), ("E", "C")):
+        opts = [o for o in db.tables["mcq_option"] if o["question_id"] == q["id"]]
+        assert [o["label"] for o in opts] == list(labels)
+        assert [o["label"] for o in opts if o["is_correct"]] == [key]

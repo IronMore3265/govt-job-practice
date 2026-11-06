@@ -35,10 +35,12 @@ test("required pieces are checked with plain messages", () => {
     [{ topic_id: "" }, /topic/i],
     [{ lang: "fr" }, /English or Bangla/],
     [{ text: "  " }, /Write the question/],
-    [{ option_C: "" }, /Option C is empty/],
+    [{ option_B: "" }, /Option B is empty/],
+    [{ option_C: "", option_D: "7" }, /Option C is empty/],
     [{ option_D: "3" }, /same text/],
     [{ correct: "" }, /correct answer/],
     [{ correct: "E" }, /correct answer/],
+    [{ option_E: "8", correct: "F" }, /correct answer/],
     [{ source_page: "abc" }, /source page/],
     [{ source_page: "0" }, /source page/],
     [{ text: "x".repeat(4001) }, /4000/],
@@ -101,4 +103,18 @@ test("search words are escaped for LIKE and pages are counted", () => {
   assert.equal(pageCount(0), 1);
   assert.equal(pageCount(25), 1);
   assert.equal(pageCount(26), 2);
+});
+
+test("a question may have two to five options, filled in order", () => {
+  const five = parseQuestionForm(form({ option_E: "7", correct: "E" }), "draft");
+  assert.ok(five.ok);
+  assert.deepEqual(five.value.options.map((o) => o.label), ["A", "B", "C", "D", "E"]);
+  assert.equal(five.value.correct, "E");
+  const three = parseQuestionForm(form({ option_D: "", correct: "C" }), "draft");
+  assert.ok(three.ok);
+  assert.deepEqual(three.value.options.map((o) => o.label), ["A", "B", "C"]);
+  const gap = parseQuestionForm(form({ option_C: "", option_D: "", option_E: "9" }), "draft");
+  assert.ok(!gap.ok && /no gap/.test(gap.message));
+  const missingKey = parseQuestionForm(form({ option_D: "", correct: "D" }), "draft");
+  assert.ok(!missingKey.ok && /correct answer/.test(missingKey.message));
 });

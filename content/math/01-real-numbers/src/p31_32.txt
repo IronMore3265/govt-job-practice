@@ -1,0 +1,223 @@
+@SOLAPPEND 16
+@SQRTDIV ১৫. ৬০ ২৫ | ৩.৯৫ | ৯ ; ৬৬০ ; ৬৯ ; ৬২১ ; ৩৯২৫ ; ৭৮৫ ; ৩৯২৫ ; ০
+@ENDSOLAPPEND
+
+@Q 17 | বাংলাদেশ পল্লী বিদ্যুতায়ন বোর্ডের লাইনম্যান : ১৯
+$\sqrt{\frac{১}{৯}}$ এর মান কত?
+ক) $\frac{১}{৩}$
+খ) $\sqrt{\frac{১}{৩}}$
+গ) $\frac{১}{৯}$
+ঘ) $\frac{১}{৮১}$
+@ANS ক
+@SOL
+$\sqrt{\frac{১}{৯}} = \sqrt{\frac{১}{৩ \times ৩}} = \frac{১}{৩}$।
+
+@Q 18 | ডাক অধিদপ্তরের এস্টিমেটর : ১৮
+$\sqrt{\frac{১}{০.২৫}}$ = ?
+ক) ০.০২৫
+খ) ২৫
+গ) ০.০০২
+ঘ) ২
+@ANS ঘ
+@SOL
+$\sqrt{\frac{১}{০.২৫}} = \sqrt{\frac{১০০}{২৫}} = \frac{১০}{৫} = ২$।
+
+@Q 19 | ১০ম বিজেএস পরীক্ষা : ১৫
+$\frac{\sqrt{৮}}{\sqrt{৯৮}}$ এর চার দশমিক স্থান পর্যন্ত আসন্নমান কোনটি?
+ক) ০.২৮৫৭
+খ) ০.২৮৪৭
+গ) ০.২৮৬৭
+ঘ) ০.২৮৩৭
+@ANS ক
+@SOL
+$\frac{\sqrt{৮}}{\sqrt{৯৮}} = \frac{\sqrt{২ \times ৪}}{\sqrt{২ \times ৪৯}} = \frac{\sqrt{২ \times ২}}{\sqrt{২ \times ৭}} = \frac{২}{৭} = ০.২৮৫৭$
+
+@Q 20 | BKBL Senior Officer : 11
+$\sqrt{27} + \sqrt{75}$ = ?
+ক) 8
+খ) $8\sqrt{3}$
+গ) 16
+ঘ) $16\sqrt{3}$
+@ANS খ
+@SOL
+$\sqrt{27} + \sqrt{75} = \sqrt{9 \times 3} + \sqrt{25 \times 3}$
+$= 3\sqrt{3} + 5\sqrt{3} = 8\sqrt{3}$.
+
+@Q 21 | Pubali Bank Ltd. Senior Officer : 17
+$\sqrt{176 + \sqrt{2401}}$ is equal to-
+ক) 14
+খ) 15
+গ) 18
+ঘ) 24
+@ANS খ
+@SOL
+$\sqrt{176 + \sqrt{2401}}$
+$= \sqrt{176 + \sqrt{7 \times 7 \times 7 \times 7}}$
+$= \sqrt{176 + 7 \times 7}$
+$= \sqrt{176 + 49} = \sqrt{225} = 15$.
+
+@Q 22 | BKBL Senior Officer : 17
+$\sqrt{(16)(20) + (8)(32)}$ = ?
+ক) $4\sqrt{20}$
+খ) 24
+গ) 25
+ঘ) 32
+@ANS খ
+@SOL
+$\sqrt{(16)(20) + (8)(32)}$
+$= \sqrt{320 + 256} = \sqrt{576} = 24$.
+
+@Q 23 | Probashi Kallyan Bank Ltd. (SEO) : 18
+$(2\sqrt{27} - \sqrt{75} + \sqrt{12})$ is equal to -
+ক) $\sqrt{3}$
+খ) $2\sqrt{3}$
+গ) $3\sqrt{3}$
+ঘ) $4\sqrt{3}$
+@ANS গ
+@SOL
+$2\sqrt{27} - \sqrt{75} + \sqrt{12}$
+$= 2\sqrt{9 \times 3} - \sqrt{25 \times 3} + \sqrt{4 \times 3}$
+$= 2 \times 3\sqrt{3} - 5\sqrt{3} + 2\sqrt{3}$
+$= \sqrt{3}(6 - 5 + 2) = 3\sqrt{3}$.
+
+@Q 24 | বিভিন্ন মন্ত্রণালয়ের ব্যক্তিগত কর্মকর্তা : ২২
+$\sqrt{0.01} \times \sqrt{0.0001}$ = কত?
+ক) 0.001
+খ) 0.01
+গ) 0.1
+ঘ) 1.0
+@ANS ক
+@SOL
+$\sqrt{0.01} \times \sqrt{0.0001} = \sqrt{\frac{1}{100}} \times \sqrt{\frac{1}{10000}}$
+$= \frac{1}{10} \times \frac{1}{100} = \frac{1}{1000} = 0.001$
+
+@Q 25 | Pubali Bank Ltd. Trainee Asst. Teller : 17
+$\sqrt{.0025} \times \sqrt{2.25} \times \sqrt{.0001}$ = ?
+ক) 0.000075
+খ) 0.00075
+গ) 0.0075
+ঘ) 0.075
+@ANS খ
+@SOL
+$\sqrt{.0025} \times \sqrt{2.25} \times \sqrt{.0001}$
+$= \sqrt{\frac{25}{10000}} \times \sqrt{\frac{225}{100}} \times \sqrt{\frac{1}{10000}}$
+$= \frac{5}{100} \times \frac{15}{10} \times \frac{1}{100} = \frac{75}{100000} = 0.00075$
+
+@Q 26 | Janata Bank Ltd. Executive officer (Morning) : 17
+The square root of $(7 + 3\sqrt{5})(7 - 3\sqrt{5})$ is -
+ক) $\sqrt{5}$
+খ) 2
+গ) 4
+ঘ) $3\sqrt{5}$
+@ANS খ
+@SOL
+$(7 + 3\sqrt{5})(7 - 3\sqrt{5}) = (7)^2 - (3\sqrt{5})^2 = 49 - 45 = 4$
+বা, $(7 + 3\sqrt{5})(7 - 3\sqrt{5}) = 2^2$
+∴ $\sqrt{(7 + 3\sqrt{5})(7 - 3\sqrt{5})} = 2$.
+
+@Q 27 | ৩২তম বিসিএস (প্রিলি.)/ ২৬তম বিসিএস (প্রিলি.)
+$\frac{\sqrt{২}}{\sqrt{৬} + ২}$ = কত?
+ক) $\sqrt{৩} + \sqrt{২}$
+খ) $৩ - \sqrt{২}$
+গ) $\sqrt{৩} - \sqrt{২}$
+ঘ) $\sqrt{৩} + ২$
+@ANS গ
+@SOL
+$\frac{\sqrt{২}}{\sqrt{৬} + ২} = \frac{\sqrt{২}}{\sqrt{৩} \cdot \sqrt{২} + \sqrt{২} \cdot \sqrt{২}}$
+$= \frac{\sqrt{২}}{\sqrt{২}(\sqrt{৩} + \sqrt{২})} = \frac{১}{\sqrt{৩} + \sqrt{২}}$
+$= \frac{(\sqrt{৩} - \sqrt{২})}{(\sqrt{৩} + \sqrt{২})(\sqrt{৩} - \sqrt{২})}$
+$= \frac{(\sqrt{৩} - \sqrt{২})}{৩ - ২} = \sqrt{৩} - \sqrt{২}$।
+
+@Q 28 | EXIM Bank Ltd. Trainee Asst. Officer : 18/ BBA : 92 - 93
+The difference between $\sqrt{150}$ and $\sqrt{54}$ is -/ $\sqrt{150}$ এবং $\sqrt{54}$ এর পার্থক্য কত?
+ক) $2\sqrt{6}$
+খ) $16\sqrt{6}$
+গ) $9\sqrt{6}$
+ঘ) $6\sqrt{2}$
+ঙ) $8\sqrt{6}$
+@ANS ক
+@SOL
+$\sqrt{150} = \sqrt{25 \times 6} = 5\sqrt{6}$
+$\sqrt{54} = \sqrt{9 \times 6} = 3\sqrt{6}$
+$\sqrt{150} - \sqrt{54} = 5\sqrt{6} - 3\sqrt{6} = 2\sqrt{6}$.
+
+@Q 29 | ৩৩তম বিসিএস (প্রিলি.)
+নিচের কোনটি $(\sqrt{৫} - \sqrt{৩})$ এর সমান?
+ক) $\sqrt{২}$
+খ) $\frac{১}{২(\sqrt{৫} - \sqrt{৩})}$
+গ) $\frac{১}{\sqrt{৫}} + \frac{১}{\sqrt{৩}}$
+ঘ) $\frac{২}{\sqrt{৩} + \sqrt{৫}}$
+@ANS ঘ
+@SOL
+$(\sqrt{৫} - \sqrt{৩}) = \frac{(\sqrt{৫} - \sqrt{৩})(\sqrt{৫} + \sqrt{৩})}{(\sqrt{৫} + \sqrt{৩})}$
+$= \frac{৫ - ৩}{\sqrt{৫} + \sqrt{৩}} = \frac{২}{\sqrt{৫} + \sqrt{৩}}$।
+
+@Q 30 | Al-Arafah Islami Bank Ltd. MTO : 17
+What is the value of $\frac{\sqrt{28} \times \sqrt{24}}{\sqrt{12} \times \sqrt{8}}$?
+ক) $2\sqrt{2}$
+খ) $3\sqrt{2}$
+গ) $\sqrt{2}$
+ঘ) None
+@ANS ঘ
+@SOL
+$\frac{\sqrt{28} \times \sqrt{24}}{\sqrt{12} \times \sqrt{8}}$
+$= \frac{\sqrt{2 \times 2 \times 7} \times \sqrt{2 \times 2 \times 2 \times 3}}{\sqrt{2 \times 2 \times 3} \times \sqrt{2 \times 2 \times 2}}$
+$= \frac{2\sqrt{7} \times 2\sqrt{2 \times 3}}{2\sqrt{3} \times 2\sqrt{2}} = \frac{\sqrt{7} \times \sqrt{2} \times \sqrt{3}}{\sqrt{3} \times \sqrt{2}} = \sqrt{7}$.
+
+@Q 31 | বন ও পরিবেশ মন্ত্রণালয়ের সহকারী পরিচালক : ৯৫
+$\sqrt[3]{১২৫ \times ৮}$ = কত?
+ক) ২০
+খ) $১০\sqrt{২}$
+গ) ১০
+ঘ) $১০\sqrt{৫}$
+@ANS গ
+@SOL
+$\sqrt[3]{১২৫ \times ৮} = \sqrt[3]{৫^৩ \times ২^৩} = ৫ \times ২ = ১০$।
+
+@Q 32 | মাদকদ্রব্য নিয়ন্ত্রণ অধিদপ্তরের ওয়্যারলেস অপারেটর : ২১
+$\sqrt[3]{১২৫} \times ৮$ = ?
+ক) ২০
+খ) $১০\sqrt{২}$
+গ) ৪০
+ঘ) $১০\sqrt{৫}$
+@ANS গ
+@SOL
+$\sqrt[3]{১২৫} \times ৮ = \sqrt[3]{৫^৩} \times ৮ = ৫ \times ৮ = ৪০$।
+
+@Q 33 | Bangladesh Bank Assistant Director : 14
+The largest number from among $\sqrt{2}$, $\sqrt[3]{3}$ and $\sqrt[4]{4}$ is -/ $\sqrt{2}$, $\sqrt[3]{3}$ এবং $\sqrt[4]{4}$ সংখ্যাগুলোর মধ্যে কোনটি বৃহত্তম?
+ক) $\sqrt{2}$
+খ) $\sqrt[3]{3}$
+গ) $\sqrt[4]{4}$
+ঘ) All are equal
+@ANS খ
+@SOL
+$\sqrt[4]{4} = 4^{\frac{1}{4}} = 2^{2 \times \frac{1}{4}} = 2^{\frac{1}{2}} = \sqrt{2} = 1.414$
+$\sqrt[3]{3} = 1.442$
+
+@Q 34 | পরিবার পরিকল্পনা অধিদপ্তরের সহকারী পরিবার পরিকল্পনা কর্মকর্তা : ২২
+৬৫৫৯ এর সাথে কোন ক্ষুদ্রতম সংখ্যা যোগ করলে যোগফল একটি পূর্ণবর্গ সংখ্যা হবে?
+ক) ২
+খ) ৩
+গ) ৪
+ঘ) ৫
+@ANS ক
+@SOL
+@SQRTDIV ৬৫ ৫৯ | ৮১ | ৬৪ ; ১৫৯ ; ১৬১ ; ১৬১ ; -২
+সংখ্যাটির সাথে ২ যোগ করলে ৮১ এর বর্গের সমান হবে।
+অর্থাৎ ৬৫৫৯ + ২ = ৬৫৬১ = $(৮১)^২$
+∴ নির্ণেয় ক্ষুদ্রতম সংখ্যা = ২।
+
+@Q 35 | প্রাথমিক শিক্ষা অধিদপ্তরের সহকারী লাইব্রেরিয়ান কাম ক্যাটালগার : ১৮
+২০৭৪০ সংখ্যক সৈন্যকে বর্গাকারে সাজাতে গিয়ে ৪ জন অতিরিক্ত হয়। প্রতি সারিতে সৈন্য সংখ্যা-
+ক) ১৪২
+খ) ১৪৪
+গ) ১৩৬
+ঘ) ১৪০
+@ANS খ
+@SOL
+মোট সৈন্য থেকে ৪ বাদ দিয়ে প্রাপ্ত সংখ্যার বর্গমূলই হবে প্রতি সারির সৈন্য সংখ্যা।
+২০৭৪০ - ৪ = ২০৭৩৬
+@FACT 20736 | 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3
+২০৭৩৬ = ২ × ২ × ২ × ২ × ২ × ২ × ২ × ২ × ৩ × ৩ × ৩ × ৩ = $২^৮ \times ৩^৪$
+∴ সৈন্য সংখ্যা = $\sqrt{২০৭৩৬} = \sqrt{২^৮ \times ৩^৪} = ১৪৪$।

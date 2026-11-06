@@ -1,7 +1,9 @@
 // Question bank helpers (PLAN.md sections 3 and 7). Pure functions, tested with `npm test`.
 // The limits mirror the database check constraints and the import tool (docs/QUESTION_FORMAT.md).
 
-export const OPTION_LABELS = ["A", "B", "C", "D"] as const;
+// A question has 2 to 5 options: A and B are required, C, D and E are optional, and there is no gap (no D without C).
+export const OPTION_LABELS = ["A", "B", "C", "D", "E"] as const;
+export const MIN_OPTIONS = 2;
 export type OptionLabel = (typeof OPTION_LABELS)[number];
 export const LIMITS = { text: 4000, option: 1000, explanation: 2000, page: 10000 } as const;
 export const PAGE_SIZE = 25;
@@ -77,16 +79,20 @@ export function parseQuestionForm(form: FormData, intent: "draft" | "approve"): 
   if (!text) return bad("Write the question.");
   if (text.length > LIMITS.text) return bad(`The question is over ${LIMITS.text} characters.`);
 
-  const options = OPTION_LABELS.map((label) => ({ label, text: get(`option_${label}`).replace(/\s*\n\s*/g, " ").trim() }));
+  const all = OPTION_LABELS.map((label) => ({ label, text: get(`option_${label}`).replace(/\s*\n\s*/g, " ").trim() }));
+  const options = all.filter((o) => o.text);
+  for (let i = 0; i < MIN_OPTIONS; i++) if (!all[i].text) return bad(`Option ${all[i].label} is empty.`);
+  if (all.slice(options.length).some((o) => o.text) || options.some((o, i) => o.label !== all[i].label)) {
+    return bad(`Option ${all[all.findIndex((o) => !o.text)].label} is empty. Options must run A, B, C ... with no gap.`);
+  }
   for (const o of options) {
-    if (!o.text) return bad(`Option ${o.label} is empty.`);
     if (o.text.length > LIMITS.option) return bad(`Option ${o.label} is over ${LIMITS.option} characters.`);
   }
   const lowered = options.map((o) => o.text.toLowerCase());
   if (new Set(lowered).size !== lowered.length) return bad("Two options have the same text.");
 
   const correct = get("correct");
-  if (!(OPTION_LABELS as readonly string[]).includes(correct)) return bad("Mark one option as the correct answer.");
+  if (!options.some((o) => o.label === correct)) return bad("Mark one option as the correct answer.");
 
   const explanation = get("explanation").replace(/\r\n?/g, "\n").trim();
   if (explanation.length > LIMITS.explanation) return bad(`The explanation is over ${LIMITS.explanation} characters.`);

@@ -58,17 +58,23 @@ def test_missing_pieces_are_reported():
     _, q = one(GOOD.replace("**Answer:** b\n", ""))
     assert any("Answer" in e for e in q.errors)
     _, q = one(GOOD.replace("- D. four\n", ""))
-    assert any("missing D" in e for e in q.errors)
+    assert not q.errors, "three options are allowed"
+    _, q = one(GOOD.replace("- C. three\n", ""))
+    assert any("no gap" in e for e in q.errors)
+    _, q = one(GOOD.replace("**Answer:** b", "**Answer:** e"))
+    assert any("no option E" in e for e in q.errors)
     _, q = one(GOOD.replace("**Page:** 7\n", ""))
     assert any("Page" in e for e in q.errors)
     _, q = one(GOOD.replace("**Reason:** Because.", "**Reason:**"))
     assert any("Reason" in e for e in q.errors)
-    _, q = one(GOOD.replace("**Answer:** b", "**Answer:** E"))
+    _, q = one(GOOD.replace("**Answer:** b", "**Answer:** F"))
     assert any("Answer" in e for e in q.errors)
 
 
 def test_bad_options():
     _, q = one(GOOD.replace("- D. four", "- D. four\n- E. five"))
+    assert not q.errors and sorted(q.options) == list("ABCDE")
+    _, q = one(GOOD.replace("- D. four", "- D. four\n- F. six"))
     assert any("not allowed" in e for e in q.errors)
     _, q = one(GOOD.replace("- D. four", "- D. one"))
     assert any("same text" in e for e in q.errors)

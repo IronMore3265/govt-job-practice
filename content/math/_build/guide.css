@@ -1,0 +1,35 @@
+@import url("../../bangla/_build/guide.css");
+
+/* math note extras */
+.katex{font-size:1.04em}
+.katex, .katex *{font-family:KaTeX_Main,"Noto Sans Bengali","Outfit",serif}
+.katex .mathnormal,.katex .mathit{font-family:KaTeX_Math,"Noto Sans Bengali","Outfit",serif}
+.katex .delimsizing,.katex .op-symbol,.katex .mop,.katex .mathcal,.katex .mathbb,.katex .size1,.katex .size2,.katex .size3,.katex .size4{font-family:inherit}
+.katex .mord.text{font-family:"Noto Sans Bengali","Outfit",sans-serif}
+.cover .cl{margin-top:26px;max-width:640px;border-top:2px solid var(--ink)}
+.cover .cl .li{display:grid;grid-template-columns:50px 1fr auto;align-items:baseline;padding:4px 0 5px;border-bottom:1px solid var(--hair)}
+.cover .cl .n{font-family:"Outfit","Noto Sans Bengali",sans-serif;font-size:13px;font-weight:600;color:var(--orange)}
+.cover .cl .nm{font-size:14px;font-weight:700}
+.cover .cl .nt{font-size:11.5px;color:var(--muted)}
+.figbox{margin:6px auto 10px;text-align:center}
+.figbox svg{max-width:100%;height:auto}
+.ldiv{display:inline-block;margin:2px 0 8px 16px;font-weight:600;line-height:1.55;vertical-align:top}
+.ldiv table{border-collapse:collapse}
+.ldiv td{padding:0 6px;text-align:right}
+.ldiv td.q{text-align:left;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);padding-left:8px}
+.ldiv td.l{border-bottom:0}
+.ldiv .u{border-bottom:1.5px solid var(--ink)}
+.sqd{display:inline-block;margin:2px 0 8px 16px;font-weight:600;line-height:1.55}
+.sqd table{border-collapse:collapse}
+.sqd td{padding:0 8px;text-align:right}
+.sqd td.m{border-left:1.5px solid var(--ink)}
+.sqd td.top{border-top:1.5px solid var(--ink);text-align:left}
+.sqd .ol{border-top:1.5px solid var(--ink);padding:0 3px;margin-right:4px}
+.fact{display:inline-block;margin:2px 0 8px 16px;font-weight:600;line-height:1.5}
+.fact table{border-collapse:collapse}
+.fact td{padding:0 8px}
+.fact td.d{text-align:right;border-right:1.5px solid var(--ink)}
+.fact td.v{border-bottom:1.5px solid var(--ink)}
+.twoup{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+h3.sub{color:var(--ink)}
+h3.sub::before{background:var(--ink)}

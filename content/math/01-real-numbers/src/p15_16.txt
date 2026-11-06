@@ -1,0 +1,210 @@
+@Q 14 | IBA (MBA) : 87-88
+If m is an even integer & n is an odd integer & both are positive numbers then which of the following must be even?/ যদি m একটি জোড় পূর্ণসংখ্যা এবং n একটি বিজোড় পূর্ণসংখ্যা হয় এবং উভয় সংখ্যাই ধনাত্মক হয়, তবে নিচের কোনটি অবশ্যই জোড় সংখ্যা হবে?
+ক) $m^2 + n^2$
+খ) $mn + n^2$
+গ) $m^3 + n^2$
+ঘ) $mn + m^2$
+@ANS ঘ
+@SOL
+m = 2 এবং n = 3 হয় তবে-
+ক) $m^2 + n^2 = 2^2 + 3^2 = 4 + 9 = 13$ (Odd)
+খ) $mn + n^2 = 2 \times 3 + 3^2 = 6 + 9 = 15$ (Odd)
+গ) $m^3 + n^2 = 2^3 + 3^2 = 8 + 9 = 17$ (Odd)
+ঘ) $mn + m^2 = 2 \times 3 + 2^2 = 6 + 4 = 10$ (Even)
+
+@Q 15 | Dutch Bangla Bank Ltd. Assistant officer : 17/ MBM : 06
+If x is an negative odd integer & y is an positive even integer, then xy must be -/ যদি x একটি ঋণাত্মক বিজোড় পূর্ণসংখ্যা এবং y একটি ধনাত্মক জোড় পূর্ণসংখ্যা হয়, তবে xy অবশ্যই-
+ক) Even & -ve
+খ) Odd & -ve
+গ) Even & +ve
+ঘ) Odd & +ve
+ঙ) Can't be determined
+@ANS ক
+@SOL
+x = - 3 এবং y = 4 হলে-
+xy = - 3 × 4 = - 12 (Even & -ve)
+
+@Q 16 | MBM : 06
+If a & b are both positive even integers, which of the following must be even?/ যদি a & b উভয়ই ধনাত্মক জোড় পূর্ণসংখ্যা হয়, তবে নিচের কোনটি অবশ্যই জোড় সংখ্যা হবে?
+I. $a^b$   II. $(a + 1)^b$   III. $a^{b + 1}$
+ক) I only
+খ) I & II
+গ) I & III
+ঘ) I, II, III
+@ANS গ
+@SOL
+a = 2 এবং b = 4 হলে-
+I. $a^b = 2^4 = 16$ (Even)
+II. $(a + 1)^b = (2 + 1)^4 = 81$ (Odd)
+III. $a^{b + 1} = 2^{4 + 1} = 2^5 = 32$ (Even)
+
+@Q 17 | Modhumoti Bank Ltd. Probationary Officer : 17
+If positive integers x and y are not both odd, which of the following must be even?/ যদি x ও y ধনাত্মক পূর্ণসংখ্যাদ্বয় উভয় বিজোড় না হয়, তবে নিচের কোনটি অবশ্যই জোড় হবে?
+ক) xy
+খ) 2(x + y) - 1
+গ) x - y
+ঘ) x + y
+@ANS ক
+@SOL
+যদি x = 2 এবং y = 3 হয় তবে-
+xy = 2 × 3 = 6 (Even)
+x + y = 2 + 3 = 5 (Odd)
+x - y = 2 - 3 = - 1 (Odd)
+2(x + y) - 1 = 2(2 + 3) - 1 = 9 (Odd)
+
+@Q 18 | Sonali Bank Ltd. Senior Officer : 18
+If m and p are positive integers and (m + p) m is even , which of the following must be true?/ যদি m ও p ধনাত্মক পূর্ণসংখ্যা এবং (m + p)m জোড় হয়, তবে নিচের কোনটি অবশ্যই সত্য হবে?
+ক) If m is odd, then p is odd
+খ) If m is odd, then p is even
+গ) If m is even, then p is even
+ঘ) If m is even, then p is odd
+@ANS ঘ
+@DOUBT
+@SOL
+m এবং p ক্রমিক ধনাত্মক পূর্ণসংখ্যা হলে m এর মান জোড় এবং p এর মান বিজোড় হবে। সেক্ষেত্রে (m + p) m সবসময় জোড় হবে।
+সতর্কতা: বইয়ের উত্তরমালায় ঘ দেওয়া আছে। কিন্তু (m + p)m জোড় হলে m বিজোড় হওয়ার ক্ষেত্রে (m + p) জোড় হতে হবে, তাই তখন p বিজোড়। অর্থাৎ ক সবসময় সত্য, আর m জোড় হলে p জোড় বা বিজোড় দুটিই হতে পারে।
+
+@Q 19 | NSI-এর ওয়াচার কনস্টেবল (ফিল্ড স্টাফ) : ২১
+যদি P ও Q জোড় সংখ্যা এবং R বিজোড় সংখ্যা হয়, নিচের কোনটি জোড় সংখ্যা হতে পারবে না?
+ক) PQ
+খ) PR
+গ) (RQ)/P
+ঘ) R/P
+@ANS ঘ
+@SOL
+P = 2, Q = 4 এবং R = 3 হলে পাই-
+ক) PQ = 2 × 4 = 8 (জোড় সংখ্যা)
+খ) PR = 2 × 3 = 6 (জোড় সংখ্যা)
+গ) (RQ)/P = (3 × 4)/2 = 6 (জোড় সংখ্যা)
+ঘ) R/P = 3/2 (ভগ্নাংশ সংখ্যা)।
+
+@Q 20 | Shahjalal Islami Bank Ltd. TO : 13
+If P is an even number and Q and R are both odd, which of the following must be true?/ P একটি জোড় সংখ্যা এবং Q ও R উভয়ই বিজোড় সংখ্যা। নিচের কোনটি অবশ্যই সত্য হবে?
+ক) P × Q is an odd number
+খ) Q - R is an even number
+গ) PQ - PR is an odd number
+ঘ) Q + R cannot equal P
+ঙ) P + Q cannot equal R
+@ANS খ
+@SOL
+যদি P = 6, Q = 5 এবং R = 3 হয় তবে-
+ক) P × Q = 6 × 5 = 30 (Even)
+খ) Q - R = 5 - 3 = 2 (Even)
+গ) PQ - PR = 6 × 5 - 6 × 3 = 12 (Even)
+ঘ) Q + R = 5 + 3 = 8 (Even)
+ঙ) P + Q = 6 + 5 = 11 (Odd)
+
+@Q 21 | Southeast Bank Ltd. Probationary Officer : 12
+If the sum of three consecutive integers is odd, then the first and last integers must be-/ যদি তিনটি ক্রমিক পূর্ণসংখ্যার সমষ্টি বিজোড় হয়, তাহলে প্রথম এবং শেষ সংখ্যা অবশ্যই-
+ক) odd, even
+খ) odd, odd
+গ) even, even
+ঘ) even, odd
+ঙ) None
+@ANS গ
+@SOL
+তিনটি ক্রমিক পূর্ণসংখ্যা বলে এখানে সম্ভাব্য তিনটি সংখ্যা হবে -
+Even + Odd + Even অথবা Odd + Even + Odd
+= (Even + Odd) + Even = (Odd + Even) + Odd
+= Odd + Even = Odd + Odd
+= Odd = Even
+(প্রথম ক্ষেত্রে যোগফল Odd, দ্বিতীয় ক্ষেত্রে যোগফল Even। যোগফল বিজোড় হতে হলে সংখ্যা তিনটি Even, Odd, Even, তাই প্রথম ও শেষ সংখ্যা even, even।)
+
+@Q 22 | BBA : 98-99
+The average of four consecutive odd positive integers is always/ চারটি ক্রমিক ধনাত্মক বিজোড় সংখ্যার গড় সর্বদা-
+ক) an odd number
+খ) divisible by 4
+গ) an even number
+ঘ) Both (খ) & (গ)
+ঙ) Either (খ) or (গ)
+@ANS গ
+@SOL
+চারটি ক্রমিক ধনাত্মক বিজোড় সংখ্যা যথাক্রমে- 2n + 1, 2n + 3, 2n + 5 এবং 2n + 7 হলে- [n যেকোনো পূর্ণসংখ্যা]
+সংখ্যা চারটির যোগফল = 2n + 1 + 2n + 3 + 2n + 5 + 2n + 7 = 8n + 16
+সংখ্যা চারটির গড় = $\frac{8n + 16}{4}$ = 2n + 4
+= 2(n + 2) = জোড় সংখ্যা
+এক্ষেত্রে সংখ্যাটি 4 দ্বারা বিভাজ্য হতেও পারে আবার নাও পারে।
+
+@Q 23 | Dutch Bangla Bank Ltd. : 17
+If $(y^2 + xy + x + y)$ is an odd integer, which of the following must be true?/ $(y^2 + xy + x + y)$ একটি বিজোড় পূর্ণসংখ্যা। নিম্নের কোনটি অবশ্যই সত্য?
+ক) x is even
+খ) y is even
+গ) y is odd
+ঘ) None
+@ANS খ
+@SOL
+$(y^2 + xy + x + y)$
+= y(x + y) + (x + y) = (x + y) (y + 1)
+দুটি সংখ্যার গুণফল বিজোড় হলে সংখ্যা দুটির প্রত্যেকটিই বিজোড়।
+y + 1 বিজোড় হলে y অবশ্যই জোড় সংখ্যা।
+
+@Q 24 | First Security Islami Bank Ltd. Officer : 14
+If x and y are integers and x = 32y + 15, which of the following must be an odd integer?/ যদি x ও y পূর্ণসংখ্যা এবং x = 32y + 15 হয়, তবে নিচের কোনটি অবশ্যই বিজোড় পূর্ণসংখ্যা হবে?
+ক) xy
+খ) x + y
+গ) x + 2y
+ঘ) None of these
+@ANS গ
+@SOL
+x = 32y + 15
+বা, x + 2y = 2y + 32y + 15
+বা, x + 2y = 34y + 15
+বা, x + 2y = জোড় সংখ্যা + বিজোড় সংখ্যা
+[y একটি পূর্ণসংখ্যা বলে 34y অবশ্যই জোড় সংখ্যা হবে]
+∴ x + 2y একটি বিজোড় সংখ্যা।
+
+@Q 25 | DBBL. Assistant officer : 09
+The positive difference between the squares of any two consecutive integers is always-/ যেকোনো দুইটি ক্রমিক পূর্ণসংখ্যার বর্গের অন্তরের ধনাত্মক মান সর্বদা-
+ক) an even integer
+খ) An odd number
+গ) The square of an integer
+ঘ) a prime number
+@ANS খ
+@SOL
+একটি পূর্ণসংখ্যা x হলে অপর ক্রমিক পূর্ণসংখ্যা (x + 1)
+তাদের বর্গের অন্তর = $(x + 1)^2 - x^2 = 2x + 1$
+= 2 × যেকোনো সংখ্যা + 1
+= জোড় সংখ্যা + 1 = বিজোড় সংখ্যা
+
+@Q 26 | Bangladesh House Building Finance Corporation(SO) : 17
+If n - 5 is an even integer, what is the next large consecutive even integer?/ যদি n - 5 একটি জোড় পূর্ণসংখ্যা হয়, তবে পরবর্তী বৃহত্তর জোড় ক্রমিক পূর্ণসংখ্যা কোনটি?
+ক) n - 7
+খ) n - 3
+গ) n - 4
+ঘ) n - 2
+@ANS খ
+@SOL
+(n - 5) এর পরবর্তী জোড় পূর্ণসংখ্যা = (n - 5) + 2 = n - 5 + 2 = n - 3.
+
+@Q 27 | First Security Islami Bank Ltd. Officer : 14
+If 2x - 3 is an odd integer, find the next even integer./ যদি 2x - 3 বিজোড় সংখ্যা হয়, তবে পরবর্তী জোড় সংখ্যা বের করুন।
+ক) 2x - 5
+খ) 2x - 4
+গ) 2x - 2
+ঘ) 2x + 1
+@ANS গ
+@SOL
+2x - 3 এর পরবর্তী জোড় সংখ্যা = (2x - 3) + 1 = 2x - 2.
+(বইয়ে ঘ) অপশনটি "wx + 1" ছাপা আছে, এটি 2x + 1 এর ছাপার ভুল ধরা হয়েছে।)
+
+@Q 28 | MBM : 05
+If 3x + 1 represents an odd integer, which of the following represents the next larger odd integer?/ যদি 3x + 1 একটি বিজোড় সংখ্যা নির্দেশ করে, তবে নিচের কোনটি পরবর্তী বৃহত্তর বিজোড় সংখ্যা হবে?
+ক) 3(x + 1)
+খ) 3(x + 2)
+গ) 3x + 2
+ঘ) 3(x + 2) + 1
+ঙ) 3(x + 3)
+@ANS ক
+@SOL
+3x + 1 এর পরবর্তী বিজোড় সংখ্যা = (3x + 1) + 2 = 3x + 3 = 3(x + 1).
+
+@Q 29 | Shahjalal Islami bank Ltd. TO : 13
+If (7y + 9) represents an odd integer, which of the following represents the next smaller odd integer?/ যদি (7y + 9) একটি বিজোড় সংখ্যা হয়, তবে সংখ্যাটির ক্রমিক ক্ষুদ্রতর বিজোড় সংখ্যা কত?
+ক) 7(y + 1)
+খ) 7(y - 2)
+গ) 7(y + 3)
+ঘ) 7(y - 2) + 1
+ঙ) 7(y + 2)
+@ANS ক
+@SOL
+(7y + 9) এর পূর্ববর্তী বিজোড় সংখ্যা = 7y + 9 - 2 = 7y + 7 = 7(y + 1).

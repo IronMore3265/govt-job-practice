@@ -73,7 +73,7 @@ A web app where you and your friends practice MCQs for government job exams. Eac
 
 Questions and notes are prepared on your laptop with Claude, then imported once.
 
-- Questions are written as Markdown files, one file per topic or topic group (the MSc project already uses this habit with its `*_MCQ.md` files). Each question has: text, four options, the correct option, an explanation, and the source page. The exact file format is fixed in Phase 2 after checking the MSc files, so the same authoring habit works.
+- Questions are written as Markdown files, one file per topic or topic group (the MSc project already uses this habit with its `*_MCQ.md` files). Each question has: text, two to five options (usually four), the correct option, an explanation, and the source page. The exact file format is fixed in Phase 2 after checking the MSc files, so the same authoring habit works.
 - `import-tool/` (Python) parses the Markdown, validates it (exactly one correct option, no empty explanation, page numbers present) and writes to Postgres. A dry-run mode prints errors without writing.
 - Questions that depend on a visual reference a figure file. Figures are 1:1 copies extracted from the reference book, never redrawn. They go to a private `figures` bucket.
 - Note PDFs are uploaded to the private `notes` bucket by the same tool and linked to their topic.

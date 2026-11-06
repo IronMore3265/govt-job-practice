@@ -1,14 +1,14 @@
 """Parse a question Markdown file (docs/QUESTION_FORMAT.md) into plain data. Nothing here touches the network.
 
 A file starts with a small header between two `---` lines (subject, topic, lang). After that each question is a
-`### Q1. text` heading, four `- A.` options, then `**Answer:**`, `**Reason:**`, `**Page:**` and optionally
+`### Q1. text` heading, two to five `- A.` options (A to E), then `**Answer:**`, `**Reason:**`, `**Page:**` and optionally
 `**Figure:**`, `**Topic:**`, `**Lang:**`. Anything else (titles, `## Part` headings, `---` rules, intro text) is ignored.
 """
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-LABELS = ("A", "B", "C", "D")
+LABELS = ("A", "B", "C", "D", "E")   # a question has 2 to 5 options, A first, no gap
 LANGS = ("en", "bn")
 
 HEAD = re.compile(r"^###\s+Q\s*(\d+)\s*[.:)]?\s*(.*)$")
@@ -16,7 +16,7 @@ OPTION = re.compile(r"^-\s*\(?([A-Za-z])[.)]\s*(.*)$")
 FIELD = re.compile(r"^\*\*(Answer|Reason|Explanation|Page|Figure|Topic|Lang|Marking points|Source|উত্তর|ব্যাখ্যা|পৃষ্ঠা|উৎস):\*\*\s*(.*)$", re.I)
 # Bangla field names used in answer.md map to the same fields. 'source' is a note for people and is ignored.
 ALIAS = {"উত্তর": "answer", "ব্যাখ্যা": "reason", "পৃষ্ঠা": "page", "উৎস": "source", "explanation": "reason"}
-ANSWER_VALUE = re.compile(r"^\(?([A-Da-d])\)?(?:\s*[.):]\s*(.*))?$")
+ANSWER_VALUE = re.compile(r"^\(?([A-Ea-e])\)?(?:\s*[.):]\s*(.*))?$")
 SECTION = re.compile(r"^#{1,2}\s")
 RULE = re.compile(r"^-{3,}\s*$")
 
@@ -168,7 +168,7 @@ def parse_text(text: str, path: str, kind: str = "full") -> ParsedFile:
         if o:
             label = o.group(1).upper()
             if label not in LABELS:
-                q.errors.append(f"option '{o.group(1)}.' is not allowed, options are A, B, C and D")
+                q.errors.append(f"option '{o.group(1)}.' is not allowed, options are A, B, C, D and E")
             elif label in q.options:
                 q.errors.append(f"option {label} appears twice")
             else:
@@ -256,9 +256,11 @@ def _check_shape(q: Question, kind: str = "full") -> None:
 
 
 def _check_options(q: Question) -> None:
-    missing = [x for x in LABELS if x not in q.options]
-    if missing:
-        q.errors.append(f"needs exactly four options A to D, missing {', '.join(missing)}")
+    have = [x for x in LABELS if x in q.options]
+    if len(have) < 2:
+        q.errors.append("needs at least two options (A and B)")
+    elif have != list(LABELS[:len(have)]):
+        q.errors.append(f"options must run A, B, C ... with no gap, found {', '.join(have)}")
     for label, text in q.options.items():
         if not text:
             q.errors.append(f"option {label} is empty")
@@ -269,7 +271,9 @@ def _check_options(q: Question) -> None:
 
 def _check_answer_fields(q: Question) -> None:
     if q.answer not in LABELS:
-        q.errors.append(f"**Answer:** must be one letter from A to D, not '{q.answer}'" if q.answer else "**Answer:** is missing")
+        q.errors.append(f"**Answer:** must be one letter from A to E, not '{q.answer}'" if q.answer else "**Answer:** is missing")
+    elif q.options and q.answer not in q.options:
+        q.errors.append(f"**Answer:** is {q.answer} but the question has no option {q.answer}")
     if not q.reason:
         q.errors.append("**Reason:** is missing or empty (every question needs an explanation)")
     if q.page is None and not any("**Page:**" in e for e in q.errors):
