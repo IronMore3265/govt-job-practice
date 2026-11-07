@@ -2646,3 +2646,15 @@ body:has(.nav-pending) {
     height: 22px;
   }
 }
+
+/* Exam footer: Submit kept apart from the Previous/Next buttons. */
+.exam-submit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--muted);
+}

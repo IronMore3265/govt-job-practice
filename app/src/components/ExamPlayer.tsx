@@ -224,13 +224,14 @@ export function ExamPlayer({ sessionId, examName, total, seconds, deadline, serv
             </div>
           </div>
 
-          <div className="between" style={{ flexWrap: "wrap", gap: 10 }}>
-            <span className="small muted" aria-live="polite">
-              {counts.answered} of {total} answered · {counts.marked} marked
-            </span>
+          {/* Submit sits on the left, below a divider, so it is never mistaken for the Next button on the right. */}
+          <div className="exam-submit-row">
             <button type="button" className="btn btn-ink" onClick={confirmSubmit} disabled={submitting}>
               {submitting ? "Submitting..." : "Submit exam"}
             </button>
+            <span className="small muted" aria-live="polite">
+              {counts.answered} of {total} answered · {counts.marked} marked
+            </span>
           </div>
           {saveProblem ? (
             <p className="form-msg" data-ok="false" role="alert">
