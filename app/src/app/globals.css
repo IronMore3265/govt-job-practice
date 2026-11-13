@@ -1,5 +1,5 @@
 /* Gamut style, PLAN.md section 10: Codecademy Gamut's tokens (navy, white, beige, yellow, hyper purple), 1px borders,
-   4px corners, hard shadows to the lower left. Light mode only. Purple is the action colour, yellow is for emphasis,
+   4px corners, hard shadows to the lower left. Light mode, with a dark mode below. Purple is the action colour, yellow is for emphasis,
    green and red mean right and wrong. */
 :root {
   --bg: #ffffff;
@@ -27,6 +27,39 @@
   /* Hanken Grotesk, "Noto Sans Bengali", sans-serif: Bangla letters inside mixed text fall back to Noto Sans Bengali. */
   --font-stack: var(--font-sans), var(--font-bengali), sans-serif;
   --font-stack-bn: var(--font-bengali), var(--font-sans), sans-serif;
+  /* The same in both modes: navy text on yellow, and the text colour on purple and on green or red. */
+  --navy: #10162f;
+  --on-primary: #ffffff;
+  --on-status: #ffffff;
+  color-scheme: light;
+}
+
+/* Dark mode (Gamut's dark tokens): navy page, white ink and borders, white hard shadows. Purple and the status colours are
+   lightened so they read on navy, and the text on them turns navy. Screen only, so printing stays light.
+   The theme is set on <html> before the first paint (layout.tsx) and switched by ThemeToggle. */
+@media screen {
+  :root[data-theme="dark"] {
+    --bg: #10162f;
+    --ink: #ffffff;
+    --muted: #b4b7c7;
+    --card: #10162f;
+    --primary: #a594ff;
+    --primary-hover: #bdb0ff;
+    --beige: #1e2649;
+    --green: #6bd68a;
+    --red: #ff7a85;
+    --bg-success: #12321f;
+    --bg-error: #3b1a22;
+    --bg-warning: #33300f;
+    --bg-info: #142a4a;
+    --hover: rgba(255, 255, 255, 0.14);
+    --selected: rgba(255, 255, 255, 0.07);
+    --hair: rgba(255, 255, 255, 0.3);
+    --checker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Cpath fill='%23ffffff' d='M0 0h1v1H0zM2 2h1v1H2z'/%3E%3C/svg%3E");
+    --on-primary: #10162f;
+    --on-status: #10162f;
+    color-scheme: dark;
+  }
 }
 
 * {
@@ -174,7 +207,7 @@ p {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--navy);
   padding: 0 0.22em;
 }
 
@@ -290,7 +323,7 @@ p {
 .btn-primary {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 .btn-primary:hover,
@@ -340,7 +373,7 @@ p {
 .pill[aria-current="page"] {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
   font-weight: 700;
 }
 
@@ -359,12 +392,12 @@ p {
 
 .chip-done {
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
 }
 
 .chip-now {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--navy);
 }
 
 .chip-muted {
@@ -426,6 +459,7 @@ p {
 
 .exam-selected {
   background: var(--yellow);
+  color: var(--navy);
   border-radius: var(--radius);
   padding-left: 10px;
   padding-right: 10px;
@@ -690,7 +724,7 @@ p {
 
 .topic-option[aria-selected="true"] {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 /* Daily streak card in the Home side column. Done subjects look like the final checklist: green tick, strikethrough. */
@@ -709,7 +743,7 @@ p {
 }
 
 .streak-days-on {
-  color: var(--ink);
+  color: var(--navy);
   background: var(--yellow);
   padding: 2px 6px;
 }
@@ -767,7 +801,7 @@ p {
 }
 
 .cash-won .cash-coin {
-  fill: var(--ink);
+  fill: var(--navy);
   stroke: var(--ink);
 }
 
@@ -785,18 +819,14 @@ p {
 .streak-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .streak-row {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: var(--card);
-  border: 1px solid var(--ink);
-  border-radius: var(--radius);
-  padding: 6px 9px;
-  font-size: 13px;
+    font-size: 13px;
 }
 
 .streak-box {
@@ -804,8 +834,8 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   color: var(--card);
   border: 1px solid var(--ink);
   border-radius: 4px;
@@ -832,7 +862,7 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 6px 0;
+  padding: 4px 0;
   border-top: 1px solid var(--hair);
 }
 
@@ -891,13 +921,13 @@ p {
 }
 
 .set-num[aria-pressed="true"]::after {
-  background: #fff;
+  background: var(--on-primary);
 }
 
 .set-num[aria-pressed="true"] {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 /* Exam cards: ink border, lift with a hard shadow on hover. The selected card is beige with a purple edge. */
@@ -945,7 +975,8 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--ink);
+  background: var(--navy);
+  border: 1px solid var(--ink);
   color: #fff;
   border-radius: 999px;
   padding: 4px 14px;
@@ -991,11 +1022,11 @@ p {
 
 .timer-low {
   background: var(--red);
-  color: #fff;
+  color: var(--on-status);
 }
 
 .timer-low b {
-  color: #fff;
+  color: var(--on-status);
 }
 
 /* Question palette: navy = answered, yellow = marked, empty = open, purple outline = current */
@@ -1097,19 +1128,19 @@ p {
 .opt.opt-sel .opt-letter {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 .opt.opt-correct .opt-letter {
   background: var(--green);
   border-color: var(--green);
-  color: #fff;
+  color: var(--on-status);
 }
 
 .opt.opt-wrong .opt-letter {
   background: var(--red);
   border-color: var(--red);
-  color: #fff;
+  color: var(--on-status);
 }
 
 .opt.opt-dim {
@@ -1501,13 +1532,13 @@ body:has(.nav-pending) {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   font: inherit;
   color: var(--ink);
   background: transparent;
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   cursor: pointer;
   transition: background 0.15s ease-in;
@@ -1526,17 +1557,17 @@ body:has(.nav-pending) {
   position: absolute;
   top: -8px;
   right: -8px;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 5px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
   display: grid;
   place-items: center;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--navy);
   border: 1px solid var(--ink);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1;
 }
@@ -1678,7 +1709,7 @@ body:has(.nav-pending) {
   font-family: var(--font-stack-bn);
   font-weight: 700;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--navy);
   padding: 0 0.22em;
 }
 
@@ -1710,7 +1741,7 @@ body:has(.nav-pending) {
   padding: 0 5px;
   border-radius: 999px;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--navy);
   font-size: 11px;
   line-height: 18px;
   text-align: center;
@@ -1769,7 +1800,7 @@ body:has(.nav-pending) {
 
 /* Muted text is too faint on the yellow selected row */
 .exam-selected .muted {
-  color: var(--ink);
+  color: var(--navy);
 }
 
 /* Note viewer (Phase 4): a fixed shell. The notes scroll in their own box, the top and bottom bars sit over it and never move,
@@ -1792,7 +1823,7 @@ body:has(.nav-pending) {
   left: 0;
   right: 0;
   z-index: 20;
-  background: #fff;
+  background: var(--bg);
   border-bottom: 1px solid var(--ink);
   padding: 12px 18px 10px;
   display: flex;
@@ -1969,7 +2000,7 @@ body:has(.nav-pending) {
   padding: 0;
   display: grid;
   place-items: center;
-  color: var(--ink);
+  color: var(--navy);
   background: var(--yellow);
   border: 1px solid var(--ink);
   border-radius: 50%;
@@ -1999,7 +2030,7 @@ body:has(.nav-pending) {
 
 .nv-btn-on {
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
 }
 
 .nv-field {
@@ -2115,7 +2146,7 @@ body:has(.nav-pending) {
 
 .nv-pop-item[aria-checked="true"] {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 /* The drawer: page pictures in a grid, and the student's own marks */
@@ -2160,7 +2191,7 @@ body:has(.nav-pending) {
 .nv-tab[aria-selected="true"] {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
 }
 
 .nv-panel {
@@ -2235,6 +2266,7 @@ body:has(.nav-pending) {
 
 .nv-thumb-on .nv-thumb-n {
   background: var(--yellow);
+  color: var(--navy);
   border-color: var(--ink);
 }
 
@@ -2748,4 +2780,86 @@ body:has(.nav-pending) {
   margin-top: 14px;
   padding-top: 20px;
   border-top: 1px solid var(--hair);
+}
+
+/* Top bar: the bell, the theme switch, the links and Sign out are all the same height. */
+.topbar-actions :is(.pill, .btn-small) {
+  min-height: 32px;
+}
+
+.bell .ico {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-toggle .theme-sun,
+:root[data-theme="dark"] .theme-toggle .theme-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .theme-sun {
+  display: block;
+}
+
+/* Side column cards stay short so the column fits a laptop screen without its own scrolling. */
+.dash-side .card-shadow,
+.dash-side .card {
+  padding: 12px 14px;
+}
+
+.streak-friends-fold > summary,
+.invite-fold > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.streak-friends-fold > summary::-webkit-details-marker,
+.invite-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+:is(.streak-friends-fold, .invite-fold) > summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.fold-chevron {
+  transition: transform 0.12s;
+}
+
+details[open] > summary .fold-chevron {
+  transform: rotate(180deg);
+}
+
+.streak-friends-fold {
+  border-top: 1px solid var(--hair);
+  padding-top: 8px;
+}
+
+.streak-friends-fold[open] > summary {
+  margin-bottom: 4px;
+}
+
+.invite-fold[open] > summary {
+  margin-bottom: 12px;
+}
+
+.dash-side .code {
+  font-size: 17px;
+}
+
+/* Notes library: one subject at a time, picked with the tabs. */
+.notes-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.notes-tabs .tab-count {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
 }

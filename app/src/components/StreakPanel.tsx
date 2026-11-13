@@ -1,4 +1,4 @@
-import { Check, Flame } from "lucide-react";
+import { Check, ChevronDown, Flame } from "lucide-react";
 
 export type StreakView = {
   days: number;
@@ -45,7 +45,7 @@ export function StreakPanel({ streak }: { streak: StreakView }) {
         </p>
         <span className={`streak-days${burning ? " streak-days-on" : ""}`}>{dayWord(days)}</span>
       </div>
-      <p className="small muted">{burning ? "Today is done. Come back tomorrow." : "Finish one set from each subject today."}</p>
+      <p className="small muted">{burning ? "Today is done. Come back tomorrow." : "Finish one set from each subject today. Answer at least half of it."}</p>
 
       <div className="streak-goal">
         <div className="streak-bar" role="progressbar" aria-label="Subjects done today" aria-valuemin={0} aria-valuemax={subjects.length} aria-valuenow={done}>
@@ -65,8 +65,16 @@ export function StreakPanel({ streak }: { streak: StreakView }) {
       </ul>
 
       {shared ? (
-        <div className="stack-sm">
-          <p className="label">Friends</p>
+        <details className="streak-friends-fold">
+          <summary>
+            <span className="label">Friends</span>
+            <span className="wrap">
+              <span className="small muted">
+                {friends.filter((f) => f.today_done).length} of {friends.length} done today
+              </span>
+              <ChevronDown className="ico fold-chevron" aria-hidden="true" />
+            </span>
+          </summary>
           {friends.length ? (
             <ul className="streak-friends">
               {friends.map((f, i) => (
@@ -82,7 +90,7 @@ export function StreakPanel({ streak }: { streak: StreakView }) {
           ) : (
             <p className="small muted">No friends here yet.</p>
           )}
-        </div>
+        </details>
       ) : null}
     </section>
   );

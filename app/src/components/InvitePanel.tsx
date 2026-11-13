@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserPlus } from "lucide-react";
+import { ChevronDown, UserPlus } from "lucide-react";
 import type { InviteView } from "@/lib/invites";
 
 type Props = {
@@ -42,17 +42,22 @@ export function InvitePanel({ invites, limit }: Props) {
   }
 
   return (
-    <section className="card-shadow stack">
+    <details className="card-shadow invite-fold">
+      <summary>
+        <span className="label section-label">
+          <UserPlus className="ico" aria-hidden="true" />
+          Invite a friend
+        </span>
+        <span className="wrap">
+          <span className="small muted">{unused} unused</span>
+          <ChevronDown className="ico fold-chevron" aria-hidden="true" />
+        </span>
+      </summary>
+      <div className="stack">
       <div className="between">
-        <div>
-          <p className="label section-label">
-            <UserPlus className="ico" aria-hidden="true" />
-            Invite a friend
-          </p>
-          <p className="small muted">
-            {limit === null ? `${unused} unused codes` : `${unused} of ${limit} unused codes`}. Each code works once and expires after 7 days.
-          </p>
-        </div>
+        <p className="small muted">
+          {limit === null ? `${unused} unused codes` : `${unused} of ${limit} unused codes`}. Each code works once and expires after 7 days.
+        </p>
         <button type="button" className="btn btn-primary" onClick={create} disabled={pending || full}>
           {pending ? "Creating..." : "New code"}
         </button>
@@ -85,6 +90,7 @@ export function InvitePanel({ invites, limit }: Props) {
       ) : (
         <p className="small muted">No codes yet.</p>
       )}
-    </section>
+      </div>
+    </details>
   );
 }

@@ -1,13 +1,15 @@
 import Link from "@/components/NavLink";
 import { BrandTitle } from "@/components/BrandTitle";
+import { NotesTabs, type NotesTab } from "@/components/NotesTabs";
 import { MarkClip } from "@/components/NoteSidebar";
 import { ANNOTATION_COLUMNS, toAnnotation, type Annotation } from "@/lib/annotations";
 import { requireActive } from "@/lib/auth";
 import { noteHref, readingPercent } from "@/lib/notes";
 import { createClient } from "@/lib/supabase/server";
 
-// Notes library: every topic's note, grouped by subject, with where you stopped. A topic without a note yet is greyed out.
-export default async function NotesLibraryPage() {
+// Notes library: every topic's note, one subject per tab, with where you stopped. The student's marks are the last tab. A topic without a note yet is greyed out.
+export default async function NotesLibraryPage({ searchParams }: { searchParams: Promise<{ s?: string }> }) {
+  const { s: initialTab } = await searchParams;
   const { user } = await requireActive();
   const supabase = await createClient();
   const [{ data: subjects }, { data: topics }, { data: progress }, { data: markRows }] = await Promise.all([
@@ -22,6 +24,85 @@ export default async function NotesLibraryPage() {
   const marksByTopic = new Map<string, Annotation[]>();
   for (const row of markRows ?? []) marksByTopic.set(row.topic_id, [...(marksByTopic.get(row.topic_id) ?? []), toAnnotation(row)]);
   const marked = (topics ?? []).filter((t) => marksByTopic.has(t.id));
+
+  const marksPanel = (
+    <div className="card rows">
+      {marked.map((t) => {
+        const list = marksByTopic.get(t.id) ?? [];
+        const comments = list.filter((m) => m.kind === "comment").length;
+        return (
+          <details key={t.id} className="mk-topic">
+            <summary className="row mk-summary">
+              <span className="row-name">
+                {t.number}. {t.title}
+              </span>
+              <span className="wrap">
+                <span className="chip chip-muted">{list.length} {list.length === 1 ? "mark" : "marks"}</span>
+                {comments ? <span className="chip chip-muted">{comments} {comments === 1 ? "comment" : "comments"}</span> : null}
+              </span>
+            </summary>
+            <ul className="mk-list">
+              {list.map((m) => (
+                <li key={m.id}>
+                  <Link href={noteHref(t.id, { page: m.page })} className="mk-item">
+                    <span className="nv-mark-meta">
+                      <i className={`nv-dot nv-dot-${m.color}`} aria-hidden />
+                      Page {m.page}
+                    </span>
+                    {m.has_clip ? <MarkClip topicId={t.id} id={m.id} color={m.color} /> : null}
+                    {m.comment ? <span className="nv-mark-comment">{m.comment}</span> : null}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
+        );
+      })}
+    </div>
+  );
+
+  // One tab per subject that has topics, then the student's marks.
+  const tabs: NotesTab[] = (subjects ?? []).flatMap((s) => {
+    const list = (topics ?? []).filter((t) => t.subject_id === s.id);
+    if (!list.length) return [];
+    const panel = (
+      <div className="card rows">
+        {list.map((t) => {
+          const hasNote = Boolean(t.note_path);
+          const page = last.get(t.id);
+          const body = (
+            <>
+              <span>
+                <span className="row-name">
+                  {t.number}. {t.title}
+                </span>
+                {hasNote && t.note_pages ? <span className="small muted note-pages">{t.note_pages} pages</span> : null}
+              </span>
+              {hasNote ? (
+                <span className="wrap">
+                  {page && t.note_pages ? <span className="chip chip-muted">{readingPercent(page, t.note_pages)}% read</span> : null}
+                  <span className="chip chip-now">{page ? `Continue, page ${page}` : "Open"}</span>
+                </span>
+              ) : (
+                <span className="chip chip-muted">No note yet</span>
+              )}
+            </>
+          );
+          return hasNote ? (
+            <Link key={t.id} href={noteHref(t.id)} className="row row-link note-row">
+              {body}
+            </Link>
+          ) : (
+            <div key={t.id} className="row note-row" style={{ opacity: 0.6 }}>
+              {body}
+            </div>
+          );
+        })}
+      </div>
+    );
+    return [{ id: s.id, label: s.name, count: list.filter((t) => t.note_path).length, panel }];
+  });
+  if (marked.length) tabs.push({ id: "marks", label: "My highlights", count: markRows?.length ?? 0, panel: marksPanel });
 
   return (
     <main className="shell shell-wide">
@@ -38,90 +119,10 @@ export default async function NotesLibraryPage() {
         <h2 className="heading">
           Notes <span className="accent">Library</span>
         </h2>
-        <p className="small muted">Read the notes before you practise. The page you stopped on is remembered.</p>
+        <p className="small muted">Pick a subject. Read the notes before you practise. The page you stopped on is remembered.</p>
       </div>
 
-      {marked.length ? (
-        <section className="stack-sm subject-section">
-          <p className="label">My highlights and comments</p>
-          <div className="card rows">
-            {marked.map((t) => {
-              const list = marksByTopic.get(t.id) ?? [];
-              const comments = list.filter((m) => m.kind === "comment").length;
-              return (
-                <details key={t.id} className="mk-topic">
-                  <summary className="row mk-summary">
-                    <span className="row-name">
-                      {t.number}. {t.title}
-                    </span>
-                    <span className="wrap">
-                      <span className="chip chip-muted">{list.length} {list.length === 1 ? "mark" : "marks"}</span>
-                      {comments ? <span className="chip chip-muted">{comments} {comments === 1 ? "comment" : "comments"}</span> : null}
-                    </span>
-                  </summary>
-                  <ul className="mk-list">
-                    {list.map((m) => (
-                      <li key={m.id}>
-                        <Link href={noteHref(t.id, { page: m.page })} className="mk-item">
-                          <span className="nv-mark-meta">
-                            <i className={`nv-dot nv-dot-${m.color}`} aria-hidden />
-                            Page {m.page}
-                          </span>
-                          {m.has_clip ? <MarkClip topicId={t.id} id={m.id} color={m.color} /> : null}
-                          {m.comment ? <span className="nv-mark-comment">{m.comment}</span> : null}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {(subjects ?? []).map((s) => {
-        const list = (topics ?? []).filter((t) => t.subject_id === s.id);
-        if (!list.length) return null;
-        return (
-          <section key={s.id} className="stack-sm subject-section">
-            <p className="label">{s.name}</p>
-            <div className="card rows">
-              {list.map((t) => {
-                const hasNote = Boolean(t.note_path);
-                const page = last.get(t.id);
-                const body = (
-                  <>
-                    <span>
-                      <span className="row-name">
-                        {t.number}. {t.title}
-                      </span>
-                      {hasNote && t.note_pages ? <span className="small muted note-pages">{t.note_pages} pages</span> : null}
-                    </span>
-                    {hasNote ? (
-                      <span className="wrap">
-                        {page && t.note_pages ? <span className="chip chip-muted">{readingPercent(page, t.note_pages)}% read</span> : null}
-                        <span className="chip chip-now">{page ? `Continue, page ${page}` : "Open"}</span>
-                      </span>
-                    ) : (
-                      <span className="chip chip-muted">No note yet</span>
-                    )}
-                  </>
-                );
-                return hasNote ? (
-                  <Link key={t.id} href={noteHref(t.id)} className="row row-link note-row">
-                    {body}
-                  </Link>
-                ) : (
-                  <div key={t.id} className="row note-row" style={{ opacity: 0.6 }}>
-                    {body}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        );
-      })}
+      <NotesTabs initial={initialTab} tabs={tabs} />
       {(topics ?? []).length === 0 ? <p className="small muted">No topics yet. The admin adds them in the portal.</p> : null}
     </main>
   );

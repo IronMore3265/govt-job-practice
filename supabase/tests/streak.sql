@@ -4,7 +4,7 @@
 
 begin;
 
--- One finished set in the subject at the given moment. Blank means no question was answered.
+-- One finished set in the subject at the given moment. Blank means no question was answered. A set counts when at least half of it was answered.
 create function pg_temp.practise(p_user uuid, p_subject uuid, p_at timestamptz, p_blank boolean default false, p_retry_of uuid default null) returns uuid
 language plpgsql
 as $$

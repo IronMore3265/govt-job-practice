@@ -68,10 +68,14 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 
 ### 5b. Daily streak and topic dropdown
 - [ ] Home: the Daily streak card sits above Invite a friend (under the picker on a phone). The flame and cash pile are grey, the bar is empty.
-- [ ] Finish one set: that subject gets a green tick and strikethrough, the bar moves. A retry of missed questions or a blank submit changes nothing.
+- [ ] Finish one set with at least 10 of 20 answered: that subject gets a green tick and strikethrough, the bar moves. A retry of missed questions, a blank submit or a set with fewer than half answered changes nothing.
 - [ ] Finish a set in every subject: the day count gets a yellow block, the cash pile turns yellow and navy, the day count goes up by one.
 - [ ] Next day (after midnight Bangladesh time) the ticks clear and the count stays. Miss a whole day and it goes back to 0.
-- [ ] Admin > Settings > Shared streaks: switch on. The card lists the other students with name and days only. Switch off: the list disappears.
+- [ ] Admin > Settings > Shared streaks: switch on. Open Friends in the card: it lists the other students with name and days only. Switch off: the list disappears.
+- [ ] Laptop: the right column (streak, invites, leaderboard) fits the screen without its own scrolling. Invite a friend opens on a click and shows the codes.
+- [ ] Top bar: the bell, the Sun and Moon button, the links and Sign out are the same height.
+- [ ] Sun and Moon button: the whole site turns dark (navy page, white ink) and back, and the choice survives a reload. Check Home, an exam, the review, Notes, a note (pages stay white), History, Revision and Admin in dark. Printing a report is still light.
+- [ ] Notes: one subject shows at a time, picked with the tabs. Opening a note and going back lands on the same subject. My highlights is the last tab.
 - [ ] Topic dropdown, phone and laptop: white popup in the site style, Bangla reads well, long lists scroll, tapping outside closes it. Picking a topic changes the set numbers.
 
 ### 6. Admin
@@ -91,7 +95,7 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 - **Weak topics** means under 70 percent over at least 3 asked questions. Easy to change.
 - **Time-out grace is 3 seconds** on the server, so a slow connection does not lose the last answer. The clock is the server's, not the phone's.
 - **Leaderboard** counts finished sessions of a full set or a full random set. Retries do not count. Only sessions started after joining count.
-- **Streak** needs a set in every subject that has questions, so adding a new subject later makes older days look incomplete and resets streaks. Sets count on the day they finish, in Bangladesh time.
+- **Streak** counts a set only when at least half of its questions were answered. It needs a set in every subject that has questions, so adding a new subject later makes older days look incomplete and resets streaks. Sets count on the day they finish, in Bangladesh time.
 - **Export is JSON**, one file per group, streamed so large exports work. The note PDFs and figures are not in it.
 - **Report PDF** uses the browser's print dialog, as planned. Nothing is generated on the server.
 - **Notes can still be saved by a determined student** (a screenshot, for example). The viewer hides the right-click menu on pages and prints blank, and the file link expires after 10 minutes. This only makes casual copying harder, as the plan says.

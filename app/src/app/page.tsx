@@ -2,6 +2,7 @@ import Link from "@/components/NavLink";
 import { AdminBell } from "@/components/AdminBell";
 import { HomePicker, type SubjectView } from "@/components/HomePicker";
 import { InvitePanel } from "@/components/InvitePanel";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { StreakPanel, type StreakView } from "@/components/StreakPanel";
 import { signOut } from "@/app/actions";
 import { requireActive } from "@/lib/auth";
@@ -77,6 +78,7 @@ export default async function HomePage() {
         </h1>
         <div className="topbar-actions">
           {isAdmin ? <AdminBell /> : null}
+          <ThemeToggle />
           <Link href="/notes" className="pill">
             Notes
           </Link>
