@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build the four Bangla note PDFs in the RoboNuggets style.
+"""Build the Bangla literature note PDF in the Gamut style (PLAN.md section 10).
 
 Run from this folder:  python build_notes.py          (needs: pip install playwright, Chromium)
 Writes content/bangla/01-bangla-sahitto/note.html and note.pdf (PDFs are git-ignored).
@@ -9,9 +9,11 @@ import sys
 
 HERE = pathlib.Path(__file__).parent
 OUT = HERE.parent
+sys.path.insert(0, str(HERE))
+import theme as T  # noqa: E402  colours of the note style
 
 FOOT = "BANGLA LITERATURE - THE NOTE"
-AR = '<svg width="14" height="11" viewBox="0 0 17 13" fill="none" stroke="#1C1A16" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6.5h14M10 1.5l5 5-5 5"/></svg>'
+AR = f'<svg width="14" height="11" viewBox="0 0 17 13" fill="none" stroke="{T.INK}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6.5h14M10 1.5l5 5-5 5"/></svg>'
 BN = "০১২৩৪৫৬৭৮৯"
 
 
@@ -249,7 +251,7 @@ def note4():
 def cover():
     PN[0] += 1
     rows = [("০১", "বাঙালি জাতি", "২"), ("০২", "বাংলা ভাষার উদ্ভব ও বিকাশ", "৩"), ("০৩", "বাংলা লিপি", "৭"), ("০৪", "বাংলা সাহিত্যের ইতিহাসের যুগবিভাগ", "৯")]
-    led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span><span class="nt" style="color:#6F6A5C;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
+    led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span><span class="nt" style="color:{T.MUTED};font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
     return ('<section class="page cover"><div style="margin-top:170px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">BANGLA LITERATURE</div>'
             '<h1 style="font-size:68px;line-height:1.35;font-weight:700;margin:6px 0 4px">বাংলা <span class="acc">সাহিত্য</span></h1>'
             '<div class="tagline" style="font-size:15px;max-width:520px">চারটি অধ্যায়ে বাঙালি জাতি, বাংলা ভাষা, বাংলা লিপি ও সাহিত্যের যুগবিভাগ। পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
@@ -260,7 +262,7 @@ def cover():
 def family_tree_svg():
     """Dr. Muhammad Shahidullah's 'Bangla bhashar kulji' (book p.12), rebuilt as a clean vector diagram.
     Every node, label, date, mark and the legend are the book's; coordinates follow the book's layout."""
-    INK = "#1C1A16"
+    INK = T.INK
     out = []
 
     def line(x1, y1, x2, y2, arrow=False):
@@ -356,7 +358,7 @@ def family_tree_svg():
     text(523, 801, "২। মগহী", anchor="start")
     text(523, 824, "৩। ভোজপুরি", anchor="start")
     text(743, 778, "উড়িয়া", size=17)
-    text(907, 778, "১। বাংলা", anchor="start", bold=True, size=19, fill="#FF6B1A")
+    text(907, 778, "১। বাংলা", anchor="start", bold=True, size=19, fill=T.ACCENT)
     text(907, 801, "২। আসামী", anchor="start")
     text(940, 824, "(অসমিয়া)", bold=True)
     # legend
@@ -373,7 +375,7 @@ def figure_page():
     body = (
         '<h3>চিত্র: বাংলা ভাষার কুলজী</h3>'
         '<p class="sm">ড. মুহম্মদ শহীদুল্লাহর বংশলতিকা। বইয়ের চিত্রটি হুবহু একই বিন্যাসে, একই নাম, তারিখ ও চিহ্নসহ পরিষ্কারভাবে নতুন করে আঁকা হয়েছে।</p>'
-        '<div style="border:2px solid #1C1A16;border-radius:8px;background:#FAF8F2;box-shadow:8px 8px 0 rgba(28,26,22,.85);padding:10px 8px 6px;margin:12px 8px 24px 0">'
+        f'<div style="border:2px solid {T.INK};border-radius:8px;background:{T.CARD};box-shadow:{T.FRAME_SHADOW};padding:10px 8px 6px;margin:{T.FRAME_MARGIN}">'
         + family_tree_svg() + '</div>'
         '<div class="callout"><b>পড়ার ক্রম:</b> ইন্দো-ইউরোপীয় থেকে শতম, তারপর হিন্দ-আর্য ও ভারতিক ধাপে প্রাচীন ভারতীয় আর্য (বৈদিক, সংস্কৃত)। এরপর মধ্য হিন্দ-আর্য, প্রাচীন প্রাচ্য, গৌড়ী প্রাকৃত ও গৌড়ী অপভ্রংশ হয়ে বঙ্গ-কামরূপী। তার দুটি ভাষা বাংলা ও আসামী (অসমিয়া)।</div>')
     return page("", "", "", body, FOOT, first=False)

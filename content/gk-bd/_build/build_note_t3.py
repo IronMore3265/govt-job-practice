@@ -45,10 +45,10 @@ def cover():
             ("০৭", "লক্ষ্মণ সেন ও বখতিয়ার খলজি", "১১"),
             ("০৮", "বইয়ের উত্তরমালা থেকে", "১২")]
     led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
+                  f'<span class="nt" style="color:#4C5063;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
     return ('<section class="page cover" data-ch="0"><div style="margin-top:150px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">GENERAL KNOWLEDGE BANGLADESH</div>'
             '<h1 style="font-size:58px;line-height:1.35;font-weight:700;margin:6px 0 4px">প্রাচীন যুগে <span class="acc">বাংলা</span></h1>'
-            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#6F6A5C;margin-bottom:8px">Bangla in the Ancient Period</div>'
+            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#4C5063;margin-bottom:8px">Bangla in the Ancient Period</div>'
             '<div class="tagline" style="font-size:15px;max-width:540px">জনপদ থেকে সাম্রাজ্য, মাৎস্যন্যায় থেকে পাল ও সেন যুগ: পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
             '<div class="ledger" style="margin-top:30px;max-width:580px">' + led + '</div></div>'
             f'<div class="footer"><span>{F}</span><span class="pn"></span></div></section>')

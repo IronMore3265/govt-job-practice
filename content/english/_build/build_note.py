@@ -29,11 +29,11 @@ SRC = HERE / "src"
 OUT = HERE.parent
 FOLDER = "01-the-noun"
 F = "ENGLISH GRAMMAR - THE NOUN"
-DOTO = "font-family:Doto,Outfit,sans-serif;font-weight:900"
+ACCENT_FONT = "font-family:'Courier Prime',Outfit,monospace;font-weight:700"
 
 
 def acc(w):
-    return f'<span class="acc" style="{DOTO}">{w}</span>'
+    return f'<span class="acc" style="{ACCENT_FONT}">{w}</span>'
 
 
 # chapter key -> (title html, tagline). Chapter order = order of the "# " lines in the sources; the last one (0) is the key page.
@@ -136,12 +136,12 @@ def parse_sources():
 def cover():
     bn.PN[0] += 1
     led = "".join(f'<div class="li" data-ch="{c}" style="grid-template-columns:40px 1fr 70px"><span class="n">{k}</span><span class="nm">{CH_TITLE_PLAIN[c]}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px"></span></div>' for k, (c, _t, _g) in enumerate(CHAPTERS[:-1], start=1))
+                  f'<span class="nt" style="color:#4C5063;font-size:12px"></span></div>' for k, (c, _t, _g) in enumerate(CHAPTERS[:-1], start=1))
     led += (f'<div class="li" data-ch="0" style="grid-template-columns:40px 1fr 70px"><span class="n">{len(CHAPTERS)}</span>'
             f'<span class="nm">{CH_TITLE_PLAIN[0]}</span><span class="nt"></span></div>')
     return ('<section class="page cover"><div style="margin-top:130px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">ENGLISH GRAMMAR</div>'
             f'<h1 style="font-size:56px;line-height:1.3;font-weight:700;margin:6px 0 4px;font-family:Outfit,sans-serif">The {acc("Noun")}</h1>'
-            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#6F6A5C;margin-bottom:8px">Parts of Speech, Determiners, Gender and Number</div>'
+            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#4C5063;margin-bottom:8px">Parts of Speech, Determiners, Gender and Number</div>'
             '<div class="tagline" style="font-size:15px;max-width:560px">Noun-এর শ্রেণি, determiner, gender আর number: পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
             '<div class="ledger" style="margin-top:30px;max-width:600px">' + led + '</div></div>'
             f'<div class="footer"><span>{F}</span><span class="pn"></span></div></section>')

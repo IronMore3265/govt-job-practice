@@ -10,7 +10,7 @@ export type StreakView = {
 
 const dayWord = (n: number) => `${n} ${n === 1 ? "day" : "days"}`;
 
-// The reward at the end of the bar. Colours come from globals.css: grey until the day is done, then the site's orange and ink.
+// The reward at the end of the bar. Colours come from globals.css: grey until the day is done, then the site's yellow and ink.
 function CashPile({ won }: { won: boolean }) {
   const note = (x: number, y: number) => (
     <g key={`${x}-${y}`}>

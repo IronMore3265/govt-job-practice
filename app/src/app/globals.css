@@ -1,14 +1,32 @@
-/* RoboNuggets style, PLAN.md section 10. Copied from the MSc site's globals.css. Only these colors. Orange is for emphasis. */
+/* Gamut style, PLAN.md section 10: Codecademy Gamut's tokens (navy, white, beige, yellow, hyper purple), 1px borders,
+   4px corners, hard shadows to the lower left. Light mode only. Purple is the action colour, yellow is for emphasis,
+   green and red mean right and wrong. */
 :root {
-  --bg: #f2efe8;
-  --ink: #1c1a16;
-  --muted: #6f6a5c;
-  --orange: #ff6b1a;
-  --card: #faf8f2;
-  --radius: 8px;
-  /* Outfit, "Noto Sans Bengali", sans-serif: Bangla letters inside mixed text fall back to Noto Sans Bengali. */
-  --font-stack: var(--font-outfit), var(--font-bengali), sans-serif;
-  --font-stack-bn: var(--font-bengali), var(--font-outfit), sans-serif;
+  --bg: #ffffff;
+  --ink: #10162f;
+  --muted: #4c5063;
+  --card: #ffffff;
+  --radius: 4px;
+  --primary: #3a10e5;
+  --primary-hover: #5533ff;
+  --yellow: #ffd300;
+  --beige: #fff0e5;
+  --green: #008a27;
+  --red: #e91c11;
+  --bg-success: #f5ffe3;
+  --bg-error: #fbf1f0;
+  --bg-warning: #fffae5;
+  --bg-info: #f5fcff;
+  --hover: rgba(16, 22, 47, 0.12);
+  --selected: rgba(16, 22, 47, 0.04);
+  --hair: rgba(16, 22, 47, 0.28);
+  /* Hard offset shadows fall to the lower left. */
+  --shadow: -6px 6px 0 var(--ink);
+  /* Checker pattern, 4px tile with 1px squares at (0,0) and (2,2), in the ink colour. */
+  --checker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Cpath fill='%2310162f' d='M0 0h1v1H0zM2 2h1v1H2z'/%3E%3C/svg%3E");
+  /* Hanken Grotesk, "Noto Sans Bengali", sans-serif: Bangla letters inside mixed text fall back to Noto Sans Bengali. */
+  --font-stack: var(--font-sans), var(--font-bengali), sans-serif;
+  --font-stack-bn: var(--font-bengali), var(--font-sans), sans-serif;
 }
 
 * {
@@ -26,7 +44,7 @@ body {
   color: var(--ink);
   font-family: var(--font-stack);
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -87,7 +105,7 @@ p {
     top: 24px;
     max-height: calc(100vh - 48px);
     overflow-y: auto;
-    padding: 0 8px 8px 0;
+    padding: 0 0 8px 8px;
     scrollbar-width: thin;
   }
 }
@@ -128,34 +146,36 @@ p {
 
 /* Type */
 .label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .label-orange {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .title {
   font-size: 34px;
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .heading {
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .accent {
-  font-family: var(--font-doto), monospace;
-  font-weight: 900;
-  color: var(--orange);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 0 0.22em;
 }
 
 .muted {
@@ -163,7 +183,7 @@ p {
 }
 
 .small {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Surfaces */
@@ -176,25 +196,29 @@ p {
 
 .card-shadow {
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 14px 16px;
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: var(--shadow);
 }
 
 .card-orange {
-  background: var(--card);
-  border: 2px solid var(--orange);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  box-shadow: 8px 8px 0 var(--orange);
+  border: 0;
+  padding: 15px 17px 23px 25px;
+  background:
+  linear-gradient(var(--bg), var(--bg)) left top / 8px 8px no-repeat,
+  linear-gradient(var(--bg), var(--bg)) right bottom / 8px 8px no-repeat,
+  linear-gradient(var(--beige), var(--beige)) right 1px top 1px / calc(100% - 10px) calc(100% - 10px) no-repeat,
+  linear-gradient(var(--ink), var(--ink)) right top / calc(100% - 8px) calc(100% - 8px) no-repeat,
+  var(--checker) left bottom / 4px 4px;
 }
 
 .dashed {
-  border: 2px dashed var(--ink);
-  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  border-left: 4px solid var(--primary);
+  border-radius: 2px;
   padding: 14px 16px;
-  background: transparent;
+  background: var(--bg-info);
 }
 
 /* Form controls */
@@ -208,60 +232,54 @@ p {
 .select {
   width: 100%;
   font: inherit;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  padding: 11px 14px;
-  box-shadow: 6px 6px 0 var(--ink);
+  padding: 10px 12px;
   outline: none;
 }
 
 .input:focus,
 .select:focus {
-  border-color: var(--orange);
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
 .input-sm {
-  padding: 7px 10px;
-  box-shadow: 3px 3px 0 var(--ink);
+  padding: 6px 10px;
   font-size: 14px;
 }
 
 .field-box {
-  /* leaves room for the hard shadow */
-  padding-right: 6px;
-  padding-bottom: 6px;
+  padding: 0;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   font: inherit;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--ink);
-  background: var(--card);
+  background: transparent;
   border: 2px solid var(--ink);
   border-radius: var(--radius);
-  padding: 8px 16px;
+  padding: 7px 16px;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition: background 0.15s ease-in, color 0.15s ease-in, border-color 0.15s ease-in;
 }
 
 .btn:hover {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--hover);
 }
 
 .btn:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--ink);
+  background: var(--hover);
 }
 
 .btn:disabled {
@@ -270,18 +288,25 @@ p {
 }
 
 .btn-primary {
-  background: var(--orange);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .btn-ink {
-  background: var(--ink);
-  color: var(--bg);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .btn-small {
-  padding: 4px 10px;
-  font-size: 12px;
-  box-shadow: 2px 2px 0 var(--ink);
+  padding: 3px 10px;
+  font-size: 13px;
 }
 
 .btn-link {
@@ -300,12 +325,12 @@ p {
   display: inline-flex;
   align-items: center;
   font: inherit;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 999px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
   padding: 4px 14px;
   text-decoration: none;
   cursor: pointer;
@@ -313,29 +338,32 @@ p {
 
 .pill-active,
 .pill[aria-current="page"] {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
 }
 
 .chip {
   display: inline-block;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 4px;
-  padding: 2px 7px;
+  padding: 1px 7px;
   background: var(--card);
 }
 
 .chip-done {
   background: var(--ink);
-  color: var(--orange);
+  color: #fff;
 }
 
 .chip-now {
-  background: var(--orange);
+  background: var(--yellow);
   color: var(--ink);
 }
 
@@ -346,7 +374,7 @@ p {
 
 /* Lists */
 .rows > * + * {
-  border-top: 1px dashed var(--muted);
+  border-top: 1px solid var(--hair);
 }
 
 .row {
@@ -397,7 +425,7 @@ p {
 }
 
 .exam-selected {
-  background: var(--orange);
+  background: var(--yellow);
   border-radius: var(--radius);
   padding-left: 10px;
   padding-right: 10px;
@@ -410,7 +438,7 @@ p {
 }
 
 .form-msg[data-ok="false"] {
-  color: var(--orange);
+  color: var(--red);
 }
 
 .form-msg[data-ok="true"] {
@@ -446,22 +474,22 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
   padding: 3px 12px;
   background: var(--card);
   cursor: pointer;
 }
 
 .check input {
-  accent-color: var(--ink);
+  accent-color: var(--primary);
 }
 
 .code {
-  font-family: var(--font-doto), monospace;
-  font-weight: 900;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 22px;
   letter-spacing: 0.06em;
 }
@@ -572,14 +600,14 @@ p {
 }
 
 :is(.btn, .pill, .opt, .exam-card, .segment, .set-num):focus-visible {
-  outline: 3px solid var(--orange);
-  outline-offset: 2px;
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
-/* Topic practice picker: one dropdown of the ready topics, then a grid of numbered sets. Orange is done, ink is selected. */
+/* Topic practice picker: one dropdown of the ready topics, then a grid of numbered sets. A green dot is done, purple is selected. */
 .topic-pick {
   position: relative;
-  width: calc(100% - 6px);
+  width: 100%;
 }
 
 .topic-trigger {
@@ -591,11 +619,11 @@ p {
 }
 
 .topic-trigger[aria-expanded="true"] {
-  border-color: var(--orange);
+  border-color: var(--primary);
 }
 
 .topic-trigger:focus-visible {
-  outline: 3px solid var(--orange);
+  outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -624,7 +652,7 @@ p {
 .topic-menu {
   position: absolute;
   z-index: 20;
-  top: calc(100% + 12px);
+  top: calc(100% + 6px);
   left: 0;
   right: 0;
   margin: 0;
@@ -634,9 +662,9 @@ p {
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: var(--shadow);
   outline: none;
   scrollbar-width: thin;
 }
@@ -652,28 +680,28 @@ p {
 }
 
 .topic-option + .topic-option {
-  border-top: 1px dashed var(--muted);
+  border-top: 1px solid var(--hair);
 }
 
 .topic-option-active {
-  background: var(--bg);
-  box-shadow: inset 4px 0 0 var(--orange);
+  background: var(--hover);
+  box-shadow: inset 4px 0 0 var(--primary);
 }
 
 .topic-option[aria-selected="true"] {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--primary);
+  color: #fff;
 }
 
-/* Daily streak card in the Home side column. Done subjects look like the final checklist: orange tick, orange strikethrough. */
+/* Daily streak card in the Home side column. Done subjects look like the final checklist: green tick, strikethrough. */
 .dash-side .section-label .ico-off {
   color: var(--muted);
 }
 
 .streak-days {
-  font-family: var(--font-doto), monospace;
+  font-family: var(--font-mono), monospace;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -681,7 +709,9 @@ p {
 }
 
 .streak-days-on {
-  color: var(--orange);
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 2px 6px;
 }
 
 .streak-goal {
@@ -694,14 +724,14 @@ p {
   flex: 1;
   height: 12px;
   background: var(--bg);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .streak-bar-fill {
   height: 100%;
-  background: var(--orange);
+  background: var(--yellow);
 }
 
 .cash {
@@ -728,7 +758,7 @@ p {
 }
 
 .cash-won .cash-note {
-  fill: var(--orange);
+  fill: var(--yellow);
   stroke: var(--ink);
 }
 
@@ -742,7 +772,7 @@ p {
 }
 
 .cash-won .cash-sign {
-  fill: var(--orange);
+  fill: var(--yellow);
 }
 
 .streak-list,
@@ -756,7 +786,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 0 3px 3px 0;
 }
 
 .streak-row {
@@ -764,10 +793,9 @@ p {
   align-items: center;
   gap: 9px;
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 6px 9px;
-  box-shadow: 3px 3px 0 var(--ink);
   font-size: 13px;
 }
 
@@ -779,8 +807,8 @@ p {
   width: 20px;
   height: 20px;
   color: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 5px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
 }
 
 .streak-box svg {
@@ -790,14 +818,13 @@ p {
 }
 
 .streak-row-done .streak-box {
-  background: var(--orange);
+  background: var(--green);
+  border-color: var(--green);
 }
 
 .streak-row-done .streak-name {
   color: var(--muted);
   text-decoration: line-through;
-  text-decoration-color: var(--orange);
-  text-decoration-thickness: 2px;
 }
 
 .streak-friend {
@@ -806,7 +833,7 @@ p {
   justify-content: space-between;
   gap: 10px;
   padding: 6px 0;
-  border-top: 1px dashed var(--muted);
+  border-top: 1px solid var(--hair);
 }
 
 .streak-friend-days {
@@ -820,7 +847,7 @@ p {
 .streak-friend-days .ico {
   width: 14px;
   height: 14px;
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .set-grid {
@@ -830,50 +857,70 @@ p {
 }
 
 .set-num {
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 8px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .set-num-done {
-  background: var(--orange);
+  background: var(--bg-success);
+}
+
+.set-num:hover {
+  background: var(--hover);
+}
+
+.set-num-done::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.set-num[aria-pressed="true"]::after {
+  background: #fff;
 }
 
 .set-num[aria-pressed="true"] {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 
-/* Exam cards: ink border and black shadow, the selected card is orange and pressed */
+/* Exam cards: ink border, lift with a hard shadow on hover. The selected card is beige with a purple edge. */
 .exam-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  width: calc(100% - 6px);
+  width: 100%;
   text-align: left;
   font: inherit;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 12px 14px;
-  box-shadow: 6px 6px 0 var(--ink);
   cursor: pointer;
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
 }
 
 .exam-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(3px, -3px);
+  box-shadow: var(--shadow);
 }
 
 .exam-card-sub {
@@ -883,46 +930,75 @@ p {
 
 .exam-card-on,
 .exam-card-on:hover {
-  background: var(--orange);
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--beige);
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+  transform: none;
 }
 
 .exam-card-on .exam-card-sub {
-  color: var(--ink);
+  color: var(--muted);
 }
 
-/* Timer pill: black with orange digits */
+/* Timer pill: navy with yellow digits and a stopwatch whose hand sweeps anticlockwise */
 .timer-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: var(--ink);
-  color: var(--bg);
+  color: #fff;
   border-radius: 999px;
   padding: 4px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .timer-pill b {
-  color: var(--orange);
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  color: var(--yellow);
+  font-size: 17px;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 
+.stopwatch {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.stopwatch-hand {
+  transform-origin: 12px 14px;
+  animation: stopwatch-sweep 4s linear infinite;
+}
+
+@keyframes stopwatch-sweep {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stopwatch-hand {
+    animation: none;
+  }
+}
+
 .timer-low {
-  background: var(--orange);
-  color: var(--ink);
+  background: var(--red);
+  color: #fff;
 }
 
 .timer-low b {
-  color: var(--ink);
+  color: #fff;
 }
 
-/* Progress segments: orange = right, black = wrong, empty = open */
+/* Question palette: navy = answered, yellow = marked, empty = open, purple outline = current */
 .segments {
   display: flex;
   gap: 4px;
@@ -932,54 +1008,54 @@ p {
   flex: 1;
   height: 12px;
   padding: 0;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
   background: transparent;
   cursor: pointer;
 }
 
 .segment-right {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--green);
+  border-color: var(--green);
 }
 
 .segment-wrong {
-  background: var(--ink);
+  background: var(--red);
+  border-color: var(--red);
 }
 
 .segment-current {
-  box-shadow: 0 3px 0 var(--ink);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .q-text {
   font-size: 20px;
-  font-weight: 500;
-  line-height: 1.3;
+  font-weight: 700;
+  line-height: 1.35;
   white-space: pre-line;
 }
 
-/* MCQ option cards: ink border, black shadow. Right is orange, wrong is black, both pressed. */
+/* MCQ option rows: ink border. Selected is purple, right is green, wrong is red. */
 .opt {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  width: calc(100% - 6px);
+  width: 100%;
   text-align: left;
   font: inherit;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 12px 14px;
-  box-shadow: 6px 6px 0 var(--ink);
   cursor: pointer;
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition: background 0.15s ease-in;
 }
 
-.opt:hover:not(:disabled) {
-  transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 var(--ink);
+.opt:hover:not(:disabled):not(.opt-sel) {
+  background: var(--hover);
 }
 
 .opt:disabled {
@@ -991,12 +1067,14 @@ p {
   flex: none;
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1.5px solid currentColor;
+  width: 26px;
+  height: 26px;
+  border: 1px solid currentColor;
   border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .opt-text {
@@ -1005,16 +1083,33 @@ p {
 }
 
 .opt.opt-correct {
-  background: var(--orange);
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--bg-success);
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
 }
 
 .opt.opt-wrong {
-  background: var(--ink);
-  color: var(--bg);
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--bg-error);
+  border-color: var(--red);
+  box-shadow: inset 0 0 0 1px var(--red);
+}
+
+.opt.opt-sel .opt-letter {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.opt.opt-correct .opt-letter {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.opt.opt-wrong .opt-letter {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
 }
 
 .opt.opt-dim {
@@ -1023,11 +1118,11 @@ p {
 
 /* Results */
 .score-big {
-  font-family: var(--font-doto), monospace;
-  font-weight: 900;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 56px;
   line-height: 1;
-  color: var(--orange);
+  color: var(--ink);
 }
 
 .score-of {
@@ -1037,15 +1132,15 @@ p {
 
 .bar {
   height: 10px;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
-  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  background: var(--hover);
   overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  background: var(--orange);
+  background: var(--yellow);
 }
 
 .review-summary {
@@ -1157,7 +1252,6 @@ body:has(.nav-pending) {
 .btn-key {
   width: 32px;
   height: 32px;
-  box-shadow: 2px 2px 0 var(--ink);
   cursor: default;
 }
 
@@ -1174,20 +1268,22 @@ body:has(.nav-pending) {
 
 /* Result review: right or wrong chip next to each question */
 .chip-right {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--bg-success);
+  border-color: var(--green);
+  color: var(--green);
 }
 
 .chip-wrong {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--bg-error);
+  border-color: var(--red);
+  color: var(--red);
 }
 
 .print-only {
   display: none;
 }
 
-/* Report PDF: the browser's "Save as PDF" with RoboNuggets paper. Cream page, A4, every note open. */
+/* Report PDF: the browser's "Save as PDF". White page, A4, every note open. */
 @media print {
   @page {
     size: A4;
@@ -1239,17 +1335,17 @@ body:has(.nav-pending) {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
     padding-bottom: 8px;
   }
 }
 
-/* Dotted pixel icons in section labels, drawn to match the Doto lettering */
+/* Small filled icons in section labels */
 .dot-icon {
   flex: none;
   width: 18px;
   height: 18px;
-  fill: var(--orange);
+  fill: var(--yellow);
 }
 
 /* Section headings on home: a little bigger than .label, icon and text about the same height */
@@ -1273,7 +1369,7 @@ body:has(.nav-pending) {
   height: 14px;
 }
 
-/* Leaderboard: Doto rank, name, sets, average. Your own row is orange. */
+/* Leaderboard: mono rank, name, sets, average. Your own row is tinted with a purple edge. */
 .lb {
   list-style: none;
   margin: 0;
@@ -1288,7 +1384,7 @@ body:has(.nav-pending) {
   gap: 10px;
   align-items: center;
   padding: 7px 8px;
-  border-top: 1px dashed var(--muted);
+  border-top: 1px solid var(--hair);
 }
 
 .lb-row:first-child {
@@ -1296,10 +1392,10 @@ body:has(.nav-pending) {
 }
 
 .lb-rank {
-  font-family: var(--font-doto), monospace;
-  font-weight: 900;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 18px;
-  color: var(--orange);
+  color: var(--ink);
 }
 
 .lb-name {
@@ -1320,13 +1416,12 @@ body:has(.nav-pending) {
 }
 
 .lb-me {
-  background: var(--orange);
-  border-radius: var(--radius);
-  border-top-color: transparent;
+  background: var(--selected);
+  box-shadow: inset 3px 0 0 var(--primary);
 }
 
 .lb-me + .lb-row {
-  border-top-color: transparent;
+  border-top-color: var(--hair);
 }
 
 .lb-me .lb-rank,
@@ -1338,9 +1433,10 @@ body:has(.nav-pending) {
 .brand {
   display: inline-flex;
   align-items: center;
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.15;
+  gap: 0.3em;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
   min-height: 38px;
 }
 
@@ -1400,31 +1496,29 @@ body:has(.nav-pending) {
   position: relative;
 }
 
-/* Bell (mockup frame 6): a square bordered button with an orange count badge on its corner. */
+/* Bell: a square button with a yellow count badge on its corner. */
 .bell {
   position: relative;
   display: inline-grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   font: inherit;
   color: var(--ink);
-  background: var(--card);
+  background: transparent;
   border: 2px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 3px 3px 0 var(--ink);
   cursor: pointer;
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition: background 0.15s ease-in;
 }
 
 .bell:hover {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--hover);
 }
 
 .bell:focus-visible {
-  outline: 3px solid var(--orange);
+  outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -1437,21 +1531,22 @@ body:has(.nav-pending) {
   padding: 0 5px;
   display: grid;
   place-items: center;
-  background: var(--orange);
+  background: var(--yellow);
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 700;
   line-height: 1;
 }
 
 .card-orange-sm {
   background: var(--card);
-  border: 2px solid var(--orange);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 14px 16px;
-  box-shadow: 4px 4px 0 var(--orange);
+  box-shadow: var(--shadow);
 }
 
 .notif-panel {
@@ -1478,18 +1573,20 @@ body:has(.nav-pending) {
   flex-direction: column;
   gap: 2px;
   padding: 10px 12px;
-  border: 1.5px dashed var(--ink);
+  border: 1px solid var(--hair);
   border-radius: var(--radius);
   color: var(--ink);
   text-decoration: none;
 }
 
 .notif-item:hover {
-  border-style: solid;
+  border-color: var(--ink);
+  background: var(--selected);
 }
 
 .notif-unread {
-  border: 2px solid var(--orange);
+  border: 1px solid var(--primary);
+  box-shadow: inset 3px 0 0 var(--primary);
 }
 
 .notif-title {
@@ -1520,7 +1617,7 @@ body:has(.nav-pending) {
 
 /* Result screens: missed questions (MCQ) and every question (CQ) in a carousel instead of a long list. */
 .carousel:focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--primary);
   outline-offset: 6px;
   border-radius: var(--radius);
 }
@@ -1533,8 +1630,8 @@ body:has(.nav-pending) {
 }
 
 .carousel-strip .pill-right {
-  border-color: var(--orange);
-  color: var(--orange);
+  border-color: var(--green);
+  color: var(--green);
 }
 
 /* Briefing before an exam: on a laptop its sections sit in two columns. */
@@ -1567,7 +1664,7 @@ body:has(.nav-pending) {
 /* ---------- Govt Job Practice additions ---------- */
 
 /* Bangla (PLAN.md section 10). Noto Sans Bengali leads so conjunct letters are shaped by one font.
-   Doto has no Bengali letters, so a Bangla title is Noto Sans Bengali bold with the accent word in orange. */
+   Courier Prime has no Bengali letters, so a Bangla title is Noto Sans Bengali bold with the accent word on yellow. */
 .bn {
   font-family: var(--font-stack-bn);
 }
@@ -1580,7 +1677,9 @@ body:has(.nav-pending) {
 .bn-accent {
   font-family: var(--font-stack-bn);
   font-weight: 700;
-  color: var(--orange);
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 0 0.22em;
 }
 
 /* lucide-react icons: 2px stroke in the text colour */
@@ -1610,7 +1709,7 @@ body:has(.nav-pending) {
   min-width: 18px;
   padding: 0 5px;
   border-radius: 999px;
-  background: var(--orange);
+  background: var(--yellow);
   color: var(--ink);
   font-size: 11px;
   line-height: 18px;
@@ -1636,7 +1735,7 @@ body:has(.nav-pending) {
 }
 
 .math-error {
-  color: var(--orange);
+  color: var(--red);
   font-family: monospace;
 }
 
@@ -1661,14 +1760,14 @@ body:has(.nav-pending) {
 }
 
 .section-label .ico {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .dash-side .btn {
   white-space: nowrap;
 }
 
-/* Muted text would disappear on the orange selected row */
+/* Muted text is too faint on the yellow selected row */
 .exam-selected .muted {
   color: var(--ink);
 }
@@ -1682,7 +1781,7 @@ body:has(.nav-pending) {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--beige);
   /* The browser's own pinch zoom is off here (the viewer zooms the note itself), which keeps the bars intact */
   touch-action: pan-x pan-y;
 }
@@ -1693,8 +1792,8 @@ body:has(.nav-pending) {
   left: 0;
   right: 0;
   z-index: 20;
-  background: var(--bg);
-  border-bottom: 2px solid var(--ink);
+  background: #fff;
+  border-bottom: 1px solid var(--ink);
   padding: 12px 18px 10px;
   display: flex;
   flex-direction: column;
@@ -1715,7 +1814,7 @@ body:has(.nav-pending) {
   gap: 10px;
   padding: 10px 18px;
   background: var(--bg);
-  border-top: 2px solid var(--ink);
+  border-top: 1px solid var(--ink);
   transition: transform 0.22s ease;
 }
 
@@ -1729,16 +1828,16 @@ body:has(.nav-pending) {
 
 .nv-bar {
   height: 6px;
-  border-radius: 3px;
-  background: #d9d4c6;
+  border-radius: 2px;
+  background: var(--hover);
   overflow: hidden;
 }
 
 .nv-bar i {
   display: block;
   height: 100%;
-  background: var(--orange);
-  border-radius: 3px;
+  background: var(--primary);
+  border-radius: 2px;
   transition: width 0.2s ease;
 }
 
@@ -1819,10 +1918,9 @@ body:has(.nav-pending) {
 .nv-page {
   position: relative;
   flex: none;
-  background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: 6px 6px 0 var(--ink);
+  background: #fff;
+  border: 1px solid var(--ink);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -1872,8 +1970,8 @@ body:has(.nav-pending) {
   display: grid;
   place-items: center;
   color: var(--ink);
-  background: var(--orange);
-  border: 2px solid var(--ink);
+  background: var(--yellow);
+  border: 1px solid var(--ink);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -1901,7 +1999,7 @@ body:has(.nav-pending) {
 
 .nv-btn-on {
   background: var(--ink);
-  color: var(--bg);
+  color: #fff;
 }
 
 .nv-field {
@@ -1913,15 +2011,15 @@ body:has(.nav-pending) {
   font-weight: 600;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 3px 3px 0 var(--ink);
   padding: 0 10px;
 }
 
 .nv-field:focus {
   outline: none;
-  border-color: var(--orange);
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
 .nv-jump {
@@ -1981,16 +2079,16 @@ body:has(.nav-pending) {
   flex-direction: column;
   gap: 2px;
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow);
 }
 
 .nv-pop-steps {
   display: none;
   gap: 8px;
   padding: 2px 2px 8px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
   margin-bottom: 4px;
 }
 
@@ -2006,17 +2104,18 @@ body:has(.nav-pending) {
   text-align: left;
   background: none;
   border: 0;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 10px 12px;
   cursor: pointer;
 }
 
 .nv-pop-item:hover {
-  background: var(--bg);
+  background: var(--hover);
 }
 
 .nv-pop-item[aria-checked="true"] {
-  background: var(--orange);
+  background: var(--primary);
+  color: #fff;
 }
 
 /* The drawer: page pictures in a grid, and the student's own marks */
@@ -2032,7 +2131,7 @@ body:has(.nav-pending) {
   padding-top: var(--nv-top, 64px);
   padding-bottom: var(--nv-bot, 60px);
   background: var(--bg);
-  border-right: 2px solid var(--ink);
+  border-right: 1px solid var(--ink);
 }
 
 .nv-side[hidden] {
@@ -2053,15 +2152,15 @@ body:has(.nav-pending) {
   font-weight: 600;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 3px 3px 0 var(--ink);
   cursor: pointer;
 }
 
 .nv-tab[aria-selected="true"] {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 
 .nv-panel {
@@ -2097,9 +2196,8 @@ body:has(.nav-pending) {
   display: block;
   width: 100%;
   background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  box-shadow: 3px 3px 0 var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -2115,8 +2213,8 @@ body:has(.nav-pending) {
   right: 5px;
   width: 12px;
   height: 12px;
-  background: var(--orange);
-  border: 2px solid var(--ink);
+  background: var(--yellow);
+  border: 1px solid var(--ink);
   border-radius: 50%;
 }
 
@@ -2127,16 +2225,16 @@ body:has(.nav-pending) {
   font-weight: 600;
   text-align: center;
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .nv-thumb-on .nv-thumb-img {
-  border-color: var(--orange);
-  box-shadow: 3px 3px 0 var(--orange);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
 }
 
 .nv-thumb-on .nv-thumb-n {
-  background: var(--orange);
+  background: var(--yellow);
   border-color: var(--ink);
 }
 
@@ -2156,9 +2254,8 @@ body:has(.nav-pending) {
 .nv-mark {
   display: flex;
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 3px 3px 0 var(--ink);
   overflow: hidden;
 }
 
@@ -2192,7 +2289,7 @@ body:has(.nav-pending) {
   display: block;
   width: 12px;
   height: 12px;
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 50%;
 }
 
@@ -2235,7 +2332,7 @@ body:has(.nav-pending) {
 .nv-mark-acts {
   display: flex;
   flex-direction: column;
-  border-left: 2px solid var(--ink);
+  border-left: 1px solid var(--ink);
 }
 
 .nv-mark-act {
@@ -2250,7 +2347,7 @@ body:has(.nav-pending) {
 }
 
 .nv-mark-act + .nv-mark-act {
-  border-top: 2px solid var(--ink);
+  border-top: 1px solid var(--ink);
 }
 
 .nv-mark-act svg {
@@ -2271,9 +2368,8 @@ body:has(.nav-pending) {
   gap: 8px;
   padding: 8px;
   background: var(--bg);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
-  box-shadow: 4px 4px 0 var(--ink);
   transform: translateX(-50%);
   -webkit-user-select: none;
   user-select: none;
@@ -2300,7 +2396,7 @@ body:has(.nav-pending) {
   line-height: 1.45;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  border-bottom: 2px dashed var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
 
 /* The tapped highlight is outlined so it is clear which one the bar belongs to */
@@ -2316,8 +2412,8 @@ body:has(.nav-pending) {
   overflow: hidden;
   isolation: isolate;
   background: var(--hl-yellow);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
 }
 
 .nv-clip img {
@@ -2340,7 +2436,7 @@ body:has(.nav-pending) {
   width: 40px;
   height: 40px;
   padding: 0;
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -2379,7 +2475,7 @@ body:has(.nav-pending) {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background: rgba(28, 26, 22, 0.4);
+  background: rgba(16, 22, 47, 0.4);
 }
 
 .nv-sheet {
@@ -2389,9 +2485,9 @@ body:has(.nav-pending) {
   gap: 12px;
   padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
   background: var(--bg);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-bottom: 0;
-  border-radius: 14px 14px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .nv-text {
@@ -2403,14 +2499,15 @@ body:has(.nav-pending) {
   font-size: 16px;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 10px 12px;
 }
 
 .nv-text:focus {
   outline: none;
-  border-color: var(--orange);
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
 .nv-sheet-row {
@@ -2426,9 +2523,8 @@ body:has(.nav-pending) {
   }
 
   .nv-sheet {
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
     border-radius: var(--radius);
-    box-shadow: 6px 6px 0 var(--ink);
   }
 }
 
@@ -2478,12 +2574,10 @@ body:has(.nav-pending) {
     height: 38px;
     min-width: 38px;
     padding: 0 8px;
-    box-shadow: 2px 2px 0 var(--ink);
   }
 
   .nv-field {
     height: 38px;
-    box-shadow: 2px 2px 0 var(--ink);
   }
 
   .nv-jump {
@@ -2539,7 +2633,6 @@ body:has(.nav-pending) {
   }
 
   .nv-page {
-    box-shadow: 4px 4px 0 var(--ink);
   }
 }
 
@@ -2557,7 +2650,7 @@ body:has(.nav-pending) {
 
 /* Notes library: the student's own highlights and comments, one fold per note */
 .mk-topic + .mk-topic {
-  border-top: 1.5px solid var(--ink);
+  border-top: 1px solid var(--ink);
 }
 
 .mk-summary {
@@ -2586,20 +2679,19 @@ body:has(.nav-pending) {
   color: var(--ink);
   text-decoration: none;
   background: var(--bg);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
 }
 
 .mk-item:hover {
-  border-color: var(--orange);
+  border-color: var(--primary);
 }
 
 /* Exam screen and review (Phase 5) */
 .opt.opt-sel {
-  background: var(--ink);
-  color: var(--bg);
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--selected);
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
 .segment.segment-answered {
@@ -2607,8 +2699,7 @@ body:has(.nav-pending) {
 }
 
 .segment.segment-marked {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--yellow);
 }
 
 .exam-figure {
@@ -2616,7 +2707,7 @@ body:has(.nav-pending) {
   max-height: 340px;
   align-self: flex-start;
   background: #fff;
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 4px;
 }
 
@@ -2635,10 +2726,10 @@ body:has(.nav-pending) {
 }
 
 .link {
+  color: var(--primary);
   text-decoration: underline;
-  text-decoration-color: var(--orange);
   text-underline-offset: 3px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @media (pointer: coarse) {
@@ -2656,5 +2747,5 @@ body:has(.nav-pending) {
   gap: 10px;
   margin-top: 14px;
   padding-top: 20px;
-  border-top: 1px dashed var(--muted);
+  border-top: 1px solid var(--hair);
 }

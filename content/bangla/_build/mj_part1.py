@@ -15,7 +15,7 @@ def cover():
             ("১৩", "মধ্যযুগে বাংলা সাহিত্যের পৃষ্ঠপোষক", "১৬"), ("১৪", "যুগ সন্ধিক্ষণ", "১৭"),
             ("১৫", "বইয়ের উত্তরমালা থেকে", "১৮")]
     led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
+                  f'<span class="nt" style="color:#4C5063;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
     return ('<section class="page cover"><div style="margin-top:120px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">BANGLA LITERATURE</div>'
             '<h1 style="font-size:64px;line-height:1.35;font-weight:700;margin:6px 0 4px"><span class="acc">মধ্যযুগ</span></h1>'
             '<div class="tagline" style="font-size:15px;max-width:540px">১২০১ থেকে ১৮০০ সাল: শ্রীকৃষ্ণকীর্তন, পদাবলি, মঙ্গলকাব্য, অনুবাদ, প্রণয়োপাখ্যান ও আরও অনেক ধারা। পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'

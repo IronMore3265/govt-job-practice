@@ -17,7 +17,7 @@ Status: brainstorming is finished, the plan is build-ready except for the items 
 - Admin notification: the admin gets a notification when a new account signs up, in-app only through the bell on the website. No email or Telegram (section 7).
 - Leaderboard: yes, as on the MSc site. Opt-in per student, and the admin can switch it on or off for everyone (section 3, item 11).
 - Notes: every topic has a note PDF. Before starting an exam, the student can read it in an in-site viewer that matches the site theme (section 6).
-- Note PDFs follow the RoboNuggets guide style (cream paper, Outfit type, orange Doto pixel accents, hard-shadow boxes). They are real text PDFs, not OCR scans, and they carry the graphs, charts and other visuals from the reference book.
+- Note PDFs follow the site's Gamut style (white paper, navy ink, purple accent word, yellow highlights, hard-shadow boxes to the lower left; section 10). They are real text PDFs, not OCR scans, and they carry the graphs, charts and other visuals from the reference book.
 - Platform: Next.js (App Router, TypeScript) on Vercel, with the existing Supabase project **Govt Jobs Website** (ref `kjeolamvvggqobhlcwhn`, region ap-south-1). It is empty today (no tables). Auth, Postgres with RLS, private Storage buckets.
 - Accounts: this site has its own accounts, because it uses its own Supabase project. Friends sign up again here. Nothing is shared with the MSc site, on the frontend or in credentials.
 - Look: RoboNuggets style, same tokens as the MSc site (section 10).
@@ -87,17 +87,17 @@ Questions and notes are prepared on your laptop with Claude, then imported once.
 
 ### 6.1 The PDFs
 
-- Built outside the app, in the RoboNuggets guide style, using the existing RoboNuggets PDF skill. Real text PDFs (selectable, searchable, small), never scanned images of text.
+- Built outside the app by the builders in `content/*/_build`, which share one stylesheet (`content/bangla/_build/guide.css`, Gamut style, section 10). Real text PDFs (selectable, searchable, small), never scanned images of text.
 - Visuals come from the reference book: graphs, charts, tables and diagrams as 1:1 copies.
 - Equations in the Math notes are typeset as real text and symbols, not images.
-- Fonts: Outfit for English and Noto Sans Bengali for Bangla, both embedded in the PDF. Bengali needs correct text shaping (conjunct letters), so Phase 2 starts with a test page that is checked by eye before any real notes are built.
+- Fonts: Outfit for English, Noto Sans Bengali for Bangla and Courier Prime for the footer line, all embedded in the PDF. The Latin face stays Outfit because the notes were paginated with it: another face changes word widths and moves content across pages, which breaks the questions' page references and saved highlights. Bengali needs correct text shaping (conjunct letters), so Phase 2 starts with a test page that is checked by eye before any real notes are built.
 - Size target: under 10 MB per PDF, so the 1 GB free storage holds a large library.
 - Reference books may be copyrighted. The site is private (login plus approval). Only the study notes and the figures used in them are stored online, never the full reference books.
 
 ### 6.2 The viewer
 
 - Library: pdf.js (`pdfjs-dist`) renders each page to a canvas with a text layer, inside our own interface. The browser's default PDF viewer is not used, because it cannot be themed.
-- Layout: cream background, each page shown as a card with an ink border and a hard black shadow. Top bar with the topic title (one Doto accent word), page x of y, zoom out and in, fit width. Orange reading progress bar. Thumbnail drawer on laptop, bottom page jump on phone.
+- Layout: beige stage, each page shown as a white card with a navy border and a hard navy shadow to the lower left. White top bar with the topic title (one accent word), page x of y, zoom out and in, fit width. Purple reading progress bar. Thumbnail drawer on laptop, bottom page jump on phone.
 - Phone: single column, pinch zoom, large tap targets.
 - Performance: render only the pages near the screen, free the canvases of pages that scroll away.
 - Resume: the last page read per student and note is saved, so reopening continues there.
@@ -161,27 +161,34 @@ Stack: Next.js, Supabase, `pdfjs-dist` for the viewer, `lucide-react` for icons,
 - `question_report(id, question_id, user_id, note, status[open|resolved], created_at)`
 - `app_setting(id, leaderboard_on, streaks_public, updated_at)` (one row of site-wide switches)
 
-## 10. UI specification (RoboNuggets style)
+## 10. UI specification (Gamut style)
 
-Same tokens as the MSc site: background cream `#F2EFE8`, ink `#1C1A16`, muted `#6F6A5C`, orange `#FF6B1A`, card `#FAF8F2`. Outfit 400/500/600 for English text, Doto 900 for one accent word per English title. Bangla text uses Noto Sans Bengali (400/500/700). Set the font stack to `Outfit, "Noto Sans Bengali", sans-serif` so Bangla letters fall back automatically inside mixed text. Doto has no Bengali letters, so a Bangla title uses Noto Sans Bengali bold with the accent word in orange instead of pixel type. Load fonts with `next/font` and embed them in the note PDFs. No em dashes in any UI text.
+The look follows Codecademy's Gamut design system. Its tokens are MIT licensed and are rebuilt in our own stylesheet (`app/src/app/globals.css`); the Gamut library itself is not installed (it needs Emotion and has no App Router support). Light mode only.
+
+- Colours: navy `#10162F` (text, borders, shadows), white `#FFFFFF` (background and cards), beige `#FFF0E5` (question card, selected exam card, viewer stage), yellow `#FFD300` (emphasis: accent word, marked, counts), hyper purple `#3A10E5` (actions, selection, links), green `#008A27` (right, done), red `#E91C11` (wrong, errors), muted text `#4C5063`.
+- Shape: 1px navy borders (2px on buttons), 4px corners, hard offset shadows that fall to the lower left (`-6px 6px 0` navy), used on a few feature cards and never on buttons or inputs. The question card carries the checker pattern as its shadow.
+- Fonts, through `next/font`: Hanken Grotesk 400/500/600/700 for English text, Courier Prime 400/700 for labels, numbers, chips and one accent word per English title, Noto Sans Bengali 400/500/700 for Bangla. Font stack `"Hanken Grotesk", "Noto Sans Bengali", sans-serif`, so Bangla letters fall back automatically inside mixed text. Gamut's own typefaces (Apercu, Suisse Intl Mono) are commercial and are not used. Courier Prime has no Bengali letters, so a Bangla title uses Noto Sans Bengali bold with the accent word on yellow.
+- No em dashes in any UI text. No Codecademy logo or illustrations.
 
 | Component | Style |
 |---|---|
-| Question card | 2px orange border, 8px radius, card background, hard orange shadow (8px 8px 0) |
-| MCQ option card | 2px ink border, 8px radius, hard black shadow (6px 6px 0) |
-| Option, correct (review after submit) | Orange fill, pressed toward its shadow |
-| Option, wrong (review after submit) | Black fill with cream text, pressed |
-| Explanation box (review) | 2px dashed ink border, 8px radius, orange label with source page (a link to the viewer), short text |
-| Timer | Small black pill in the top bar with orange digits |
-| Question palette (exam mode) | Small bordered squares, answered black, marked orange, unanswered card color |
-| Pickers (subject, exam, topics, set) | Pill buttons, selected pill is black |
-| Exam cards | Ink border and black shadow, selected card orange and pressed |
-| Note viewer pages | Page cards with ink border and hard black shadow on cream, orange progress bar, toolbar as black pills |
-| Admin tabs | Small pill tabs, active tab black |
-| Icons | `lucide-react`, 2px stroke in ink color. ChevronLeft and ChevronRight for previous and next (exam screen and note viewer), Bell for notifications. No emoji. Icon-only buttons need an aria-label. |
-| Report question button | Small bordered button, text "Report question", next to Mark for review. Opens a short note box, then confirms. |
-| Notification bell | Bell icon button with an orange count badge. The panel lists new signups and reported questions, newest first, unread marked with a chip. |
-| Leaderboard | Ink-bordered card in the Home side column, rank, name, session count and average per row, your own row highlighted (same classes as the MSc `lb-*` styles) |
+| Title accent word | Courier Prime bold on a yellow block (Bangla: Noto Sans Bengali bold on yellow) |
+| Buttons | Default: 2px navy outline, transparent. Primary: purple fill, white text. Submit exam: purple outline. Hover tints the background. No shadows |
+| Question card | Beige, 1px navy border, checker pattern offset to the lower left |
+| MCQ option row | 1px navy border, 4px radius, letter in a small Courier Prime box. Selected: purple border and filled letter |
+| Option, correct (review after submit) | Green border, pale green fill, green letter |
+| Option, wrong (review after submit) | Red border, pale red fill, red letter |
+| Explanation box (review) | Pale blue box with a 4px purple left edge, label with source page (a link to the viewer), short text |
+| Timer | Navy pill with yellow Courier Prime digits and a stopwatch icon whose hand sweeps anticlockwise, no text. Turns red when time is low |
+| Question palette (exam mode) | Small bordered squares, answered navy, marked yellow, current outlined in purple |
+| Pickers (subject, exam, topics, set) | Bordered buttons with 4px corners, selected one purple. A set already taken carries a green dot |
+| Exam cards | Navy border, lift with a hard shadow on hover, selected card beige with a purple edge |
+| Note viewer pages | White page cards with a navy border and hard navy shadow on a beige stage, purple progress bar |
+| Admin tabs | Small bordered tabs, active tab purple |
+| Icons | `lucide-react`, 2px stroke in the text colour. ChevronLeft and ChevronRight for previous and next (exam screen and note viewer), Bell for notifications. No emoji. Icon-only buttons need an aria-label. |
+| Report question button | Small outlined button, text "Report question", next to Mark for review. Opens a short note box, then confirms. |
+| Notification bell | Bell icon button with a yellow count badge. The panel lists new signups and reported questions, newest first, unread marked with a purple edge. |
+| Leaderboard | Bordered card in the Home side column, rank, name, session count and average per row, your own row tinted with a purple edge |
 
 Screens:
 
@@ -196,7 +203,7 @@ Screens:
 9. Admin portal, with the notification bell.
 10. Leaderboard panel in the Home side column (top 10 plus your row, opt-in).
 
-Visual references, all in `docs/design/` or linked: `exam-ui-mockup-v5.png` (the MSc mockup, base style), `govt-ui-mockup.html` and its PNG (this site's new screens: home, note viewer, briefing, exam screen with palette and a Bangla question, result and review, admin notification), the MSc live site (ipe-studio.vercel.app, login page only without an account) and the MSc repo (github.com/IronMore3265/MSc-Practice-Website), whose `globals.css` holds the exact component styles. Still to mock up before Phase 6: Notes library and History.
+Visual references, all in `docs/design/` or linked: `gamut-ui-mockup.html` (the current look: every main screen and a components sheet), and from before the restyle, for layout only: `exam-ui-mockup-v5.png` (the MSc mockup, base style), `govt-ui-mockup.html` and its PNG (this site's new screens: home, note viewer, briefing, exam screen with palette and a Bangla question, result and review, admin notification), the MSc live site (ipe-studio.vercel.app, login page only without an account) and the MSc repo (github.com/IronMore3265/MSc-Practice-Website), whose `globals.css` holds the exact component styles. Still to mock up before Phase 6: Notes library and History.
 
 ## 11. Build phases
 

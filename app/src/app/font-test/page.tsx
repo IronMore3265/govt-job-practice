@@ -24,11 +24,11 @@ export default function FontTestPage() {
         <h2 className="title bn-title">
           ফন্ট <span className="bn-accent">পরীক্ষা</span>
         </h2>
-        <p className="muted">The same sentence in both languages, then conjunct letters and math. Doto has no Bengali letters, so the Bangla title uses bold Noto Sans Bengali with the accent word in orange.</p>
+        <p className="muted">The same sentence in both languages, then conjunct letters and math. Courier Prime has no Bengali letters, so the Bangla title uses bold Noto Sans Bengali with the accent word on yellow.</p>
       </div>
 
       <section className="card-orange stack-sm">
-        <p className="label label-orange">English, Outfit</p>
+        <p className="label label-orange">English, Hanken Grotesk</p>
         <p className="sample">Bangladesh became independent in 1971, and its national flower is the water lily.</p>
       </section>
 

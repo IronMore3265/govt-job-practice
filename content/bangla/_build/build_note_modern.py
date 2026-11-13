@@ -115,7 +115,7 @@ def cover():
 
     def col(rows):
         return "".join(f'<div class="li" data-ch="{int(n.translate(str.maketrans(BNUM, "0123456789")))}" style="grid-template-columns:30px 1fr 52px"><span class="n">{n}</span><span class="nm" style="font-size:12px">{t}</span>'
-                       f'<span class="nt" style="color:#6F6A5C;font-size:11px">পৃষ্ঠা {bnum(p)}</span></div>' for n, t, p in rows)
+                       f'<span class="nt" style="color:#4C5063;font-size:11px">পৃষ্ঠা {bnum(p)}</span></div>' for n, t, p in rows)
 
     return ('<section class="page cover"><div style="margin-top:60px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">BANGLA LITERATURE</div>'
             '<h1 style="font-size:60px;line-height:1.35;font-weight:700;margin:6px 0 4px">আধুনিক <span class="acc">যুগ</span></h1>'

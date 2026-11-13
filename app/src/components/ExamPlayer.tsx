@@ -153,7 +153,12 @@ export function ExamPlayer({ sessionId, examName, total, seconds, deadline, serv
           {examName} · Question {index + 1} of {total}
         </p>
         <span className={`timer-pill${isLowTime(left, seconds) ? " timer-low" : ""}`} role="timer" aria-label={`Time left ${formatClock(left)}`}>
-          TIME <b>{formatClock(left)}</b>
+          <svg className="stopwatch" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 2h4" />
+            <circle cx="12" cy="14" r="8" />
+            <path className="stopwatch-hand" d="M12 14V9.5" />
+          </svg>
+          <b>{formatClock(left)}</b>
         </span>
       </div>
 

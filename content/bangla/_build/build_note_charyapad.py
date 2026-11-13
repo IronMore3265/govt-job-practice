@@ -24,7 +24,7 @@ def cover():
             ("০৪", "ভাষা ও ধর্মমত", "৬"), ("০৫", "সমাজচিত্র, প্রবাদ ও গুরুত্ব", "৭"),
             ("০৬", "অনুবাদ ও টীকা", "৮"), ("০৭", "নবচর্যাপদ ও নতুন চর্যাপদ", "৯"), ("০৮", "বইয়ের উত্তরমালা থেকে", "১০")]
     led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
+                  f'<span class="nt" style="color:#4C5063;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
     return ('<section class="page cover"><div style="margin-top:170px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">BANGLA LITERATURE</div>'
             '<h1 style="font-size:60px;line-height:1.35;font-weight:700;margin:6px 0 4px">আদি বা প্রাচীন <span class="acc">যুগ</span></h1>'
             '<div class="tagline" style="font-size:15px;max-width:520px">প্রাচীন যুগের একমাত্র নিদর্শন চর্যাপদ: কে লিখলেন, কীভাবে মিলল, কোন ভাষায়, কোন ধর্মমতে। পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
@@ -34,8 +34,8 @@ def cover():
 
 def poem(lines):
     rows = "".join(f'<div>{l}</div>' for l in lines)
-    return ('<div style="border:2px solid #1C1A16;border-radius:8px;background:#FAF8F2;box-shadow:6px 6px 0 #FF6B1A;'
-            'padding:12px 18px;margin:8px 8px 14px 0;text-align:center;font-style:italic;font-size:14.5px;line-height:1.95">' + rows + '</div>')
+    return ('<div style="border:2px solid #10162F;border-radius:8px;background:#FFFFFF;box-shadow:-6px 6px 0 #FFD300;'
+            'padding:12px 18px;margin:8px 0 14px 8px;text-align:center;font-style:italic;font-size:14.5px;line-height:1.95">' + rows + '</div>')
 
 
 # ------------------------------------------------------------------ page 2 (a)

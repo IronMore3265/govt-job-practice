@@ -28,13 +28,13 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 ### 1. Get content in (about 15 minutes)
 - [ ] Admin > Topics: add real topics. Note the topic numbers.
 - [ ] Write a question file in the format of `docs/QUESTION_FORMAT.md` (or import `import-tool/samples/` first as a trial), run `python -m govtimport check`, then `import`. Include one Bangla file and one Math file.
-- [ ] Upload a real note PDF: `python -m govtimport notes your.pdf --subject English --topic 1`. Use a PDF built in the RoboNuggets style with embedded fonts.
+- [ ] Upload a real note PDF: `python -m govtimport notes your.pdf --subject English --topic 1`. Use a PDF built by the note builders (Gamut style) with embedded fonts.
 - [ ] Admin > Questions: filter, open a question, edit it, approve drafts (single and "Approve all drafts").
 - [ ] Admin > Exams: link topics to the exam. Admin > Sets: press "Build sets from unused questions". With fewer than 20 questions, set the exam's questions per set to 5 first.
 
 ### 2. Notes (as a student)
 - [ ] Home > Notes (library) lists topics, with "Continue, page N" after you read.
-- [ ] Open a note. The pages look right: cream background, ink border and hard shadow per page, orange progress bar, `PAGE x / y`. Real text is selectable. Charts and figures look sharp, Bangla letters are not broken.
+- [ ] Open a note. The pages look right: beige stage, navy border and hard shadow per page, purple progress bar, `PAGE x / y`. Real text is selectable. Charts and figures look sharp, Bangla letters are not broken.
 - [ ] Zoom out, zoom in, Fit width, next and previous, jump to a page, thumbnails on the left (laptop). Close the tab, reopen: it resumes on the same page.
 - [ ] The Download button (top right of the note viewer) saves the PDF. The PDF address stops working after about 10 minutes (open `/api/notes/<topic id>` while signed in, copy the link, try it later).
 - [ ] Viewer controls: Back is a clear button; the bottom bar has page list toggle, previous, next, page box with "of N", zoom out, zoom level menu (Fit width, 50% to 300%) and zoom in, all the same height. The page list hides and shows, and the pages widen when it is hidden.
@@ -44,7 +44,7 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 ### 3. Taking an exam
 - [ ] Home: pick subject, exam, topics. "All" is preselected. Narrowing topics turns the set choice to "New random" (a saved set is a fixed list).
 - [ ] Start exam opens "Before you start": number of questions, time, marking rules with your exam's numbers. Nothing runs until Begin.
-- [ ] Begin: countdown starts. Select an answer (it turns black), tap it again to clear. Mark for review (palette square turns orange). Jump with the palette. Previous and next chevrons work. The "answered" count updates.
+- [ ] Begin: countdown starts. Select an answer (purple border and letter), tap it again to clear. Mark for review (palette square turns yellow). Jump with the palette. Previous and next chevrons work. The "answered" count updates.
 - [ ] Refresh the page mid-exam: the answers and the remaining time are still right. Close the tab and reopen Home: an "Exam in progress, Resume" card appears.
 - [ ] Switch your phone to airplane mode and tap an answer: a red "not saved yet" note appears, and it saves when the connection returns.
 - [ ] Let the timer reach zero (use an exam with a very short time, for example 1 question and 20 seconds): the exam submits by itself and unanswered questions count as missed.
@@ -55,10 +55,10 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 
 ### 4. After the exam
 - [ ] Result: the score is right (right answers minus 0.25 per wrong answer, skipped costs nothing). Check one by hand.
-- [ ] Review: right answer orange, your wrong pick black, others faded, a dashed explanation box with "Notes, page N" that opens the note at that page. "see page 12" in an explanation is a link too.
+- [ ] Review: right answer green, your wrong pick red, others faded, a pale blue explanation box with "Notes, page N" that opens the note at that page. "see page 12" in an explanation is a link too.
 - [ ] "Missed only" filter. Time per question is shown.
 - [ ] "Retry missed" starts a new exam of only the missed questions, with proportionally less time.
-- [ ] "Save report PDF" opens the print dialog with a clean cream A4 layout (no buttons). Try Save as PDF.
+- [ ] "Save report PDF" opens the print dialog with a clean white A4 layout (no buttons). Try Save as PDF.
 - [ ] Redo the same set: Home shows "best x/y" on the set pill.
 
 ### 5. History and leaderboard
@@ -68,11 +68,11 @@ I cannot sign in as you, I have no note PDF or real questions, and no phone. So 
 
 ### 5b. Daily streak and topic dropdown
 - [ ] Home: the Daily streak card sits above Invite a friend (under the picker on a phone). The flame and cash pile are grey, the bar is empty.
-- [ ] Finish one set: that subject gets an orange tick and strikethrough, the bar moves. A retry of missed questions or a blank submit changes nothing.
-- [ ] Finish a set in every subject: the flame turns orange, the cash pile turns orange and ink, the day count goes up by one.
+- [ ] Finish one set: that subject gets a green tick and strikethrough, the bar moves. A retry of missed questions or a blank submit changes nothing.
+- [ ] Finish a set in every subject: the day count gets a yellow block, the cash pile turns yellow and navy, the day count goes up by one.
 - [ ] Next day (after midnight Bangladesh time) the ticks clear and the count stays. Miss a whole day and it goes back to 0.
 - [ ] Admin > Settings > Shared streaks: switch on. The card lists the other students with name and days only. Switch off: the list disappears.
-- [ ] Topic dropdown, phone and laptop: cream popup in the site style, Bangla reads well, long lists scroll, tapping outside closes it. Picking a topic changes the set numbers.
+- [ ] Topic dropdown, phone and laptop: white popup in the site style, Bangla reads well, long lists scroll, tapping outside closes it. Picking a topic changes the set numbers.
 
 ### 6. Admin
 - [ ] Admin > Settings > Storage: bars for files and database, plus a per-bucket list.

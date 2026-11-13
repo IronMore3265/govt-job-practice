@@ -6,7 +6,7 @@ import Link from "@/components/NavLink";
 import { markAllNotificationsRead, markNotificationRead } from "@/app/notifications/actions";
 import type { NotificationView } from "@/lib/notifications";
 
-// Bell in the top bar with an orange unread count (pattern from the MSc site's NotificationBell).
+// Bell in the top bar with a yellow unread count (pattern from the MSc site's NotificationBell).
 // The panel lists new signups and reported questions, newest first, unread ones marked with a chip.
 // Notifications are in-app only, so new ones show on the next page load.
 export function NotificationBell({ items, unread }: { items: NotificationView[]; unread: number }) {

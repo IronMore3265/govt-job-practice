@@ -265,7 +265,7 @@ function PracticePicker({ exam }: { exam: ExamView }) {
         </div>
         {current ? <p className="small">{setDetail(current, exam.questionCount)}</p> : null}
         <p className="small muted">
-          {done} of {sets.length} sets done (orange).
+          {done} of {sets.length} sets done (green dot).
         </p>
       </div>
 

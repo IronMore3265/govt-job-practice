@@ -3,7 +3,7 @@
 import Link from "@/components/NavLink";
 import { usePathname } from "next/navigation";
 
-// Small pill tabs, the active one black (PLAN.md section 10). Counts: open reports on Questions, pending
+// Small pill tabs, the active one purple (PLAN.md section 10). Counts: open reports on Questions, pending
 // accounts on Students. Note PDFs, storage and export arrive in later phases.
 export function AdminTabs({ pending, reports }: { pending: number; reports: number }) {
   const pathname = usePathname();

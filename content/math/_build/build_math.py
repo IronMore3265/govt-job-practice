@@ -16,7 +16,9 @@ ROOT = HERE.parent                      # content/math
 REPO = ROOT.parent.parent
 OUT = ROOT / "01-real-numbers"
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(ROOT.parent / "bangla" / "_build"))
 from qparse import BNL, LET, parse  # noqa: E402
+import theme as T  # noqa: E402  colours of the note style
 
 BN = "০১২৩৪৫৬৭৮৯"
 FOOT = "MATHEMATICS - REAL NUMBERS - THE NOTE"
@@ -103,16 +105,16 @@ def sqrtdiv_html(arg):
 def realtree_svg():
     def box(cx, cy, w, h, t, accent=False, vertical=False):
         x, y = cx - w / 2, cy - h / 2
-        st = ' stroke="#FF6B1A" stroke-width="2.4"' if accent else ' stroke="#1C1A16" stroke-width="1.5"'
-        r = f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="7" fill="#FAF8F2"{st}/>'
+        st = f' stroke="{T.ACCENT}" stroke-width="2.4"' if accent else f' stroke="{T.INK}" stroke-width="1.5"'
+        r = f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="7" fill="{T.CARD}"{st}/>'
         if vertical:
             return r.replace('rx="7"', 'rx="2"') + f'<text transform="translate({cx:.1f},{cy:.1f}) rotate(-90)" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="700">{t}</text>'
         return r + f'<text x="{cx}" y="{cy}" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="700">{t}</text>'
 
     def line(x1, y1, x2, y2, arrow=False):
-        s = f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#1C1A16" stroke-width="1.5"/>'
+        s = f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{T.INK}" stroke-width="1.5"/>'
         if arrow:
-            s += f'<path d="M{x2 - 4.5} {y2 - 8} L{x2} {y2} L{x2 + 4.5} {y2 - 8} Z" fill="#1C1A16"/>'
+            s += f'<path d="M{x2 - 4.5} {y2 - 8} L{x2} {y2} L{x2 + 4.5} {y2 - 8} Z" fill="{T.INK}"/>'
         return s
 
     p = []
@@ -136,7 +138,7 @@ def realtree_svg():
     p += [box(358, 505, 48, 40, "মিশ্র"), box(447, 503, 99, 40, "অসীম আবৃত্ত")]
     p += [box(519, 421, 36, 196, "অসীম অনাবৃত্ত দশমিক", vertical=True)]
     return ('<div class="figbox"><svg viewBox="0 0 570 540" width="520" xmlns="http://www.w3.org/2000/svg" '
-            'font-family="Noto Sans Bengali, Outfit, sans-serif" fill="#1C1A16">' + "".join(p) + "</svg></div>")
+            'font-family="Noto Sans Bengali, Outfit, sans-serif" fill="' + T.INK + '">' + "".join(p) + "</svg></div>")
 
 
 # ---------------------------------------------------------------- theory -> html

@@ -21,7 +21,7 @@ from build_notes import card, chain, doc, page, table  # noqa: E402
 OUT = HERE.parent
 FOLDER = "04-upomohadeshe-muslim-shason"
 F = "GENERAL KNOWLEDGE BANGLADESH - THE NOTE"
-INK = "#1C1A16"
+INK = "#10162F"
 
 
 def box(title, rows):
@@ -33,15 +33,15 @@ def box(title, rows):
 
 def svg(inner, vb, h, label):
     return (f'<svg viewBox="{vb}" height="{h}" role="img" aria-label="{label}" style="display:block;flex:none" '
-            f'stroke="{INK}" stroke-width="3" fill="#FAF8F2" stroke-linejoin="round">{inner}</svg>')
+            f'stroke="{INK}" stroke-width="3" fill="#FFFFFF" stroke-linejoin="round">{inner}</svg>')
 
 
 def minar_svg():
     tiers = "".join(f'<path d="M{50 - w} {y} L{50 + w} {y} L{50 + w - 3} {y + 62} L{50 - w + 3} {y + 62} Z"/>'
                     f'<line x1="{50 - w - 6}" y1="{y}" x2="{50 + w + 6}" y2="{y}"/>'
                     for y, w in [(300, 30), (238, 25), (176, 20), (124, 16), (80, 12)])
-    top = '<rect x="38" y="52" width="24" height="26"/><circle cx="50" cy="40" r="9" fill="#1C1A16"/><line x1="50" y1="18" x2="50" y2="31"/>'
-    return svg('<rect x="14" y="362" width="72" height="14" fill="#1C1A16"/>' + tiers + top, "0 10 100 372", 215, "কুতুব মিনারের রেখাচিত্র")
+    top = '<rect x="38" y="52" width="24" height="26"/><circle cx="50" cy="40" r="9" fill="#10162F"/><line x1="50" y1="18" x2="50" y2="31"/>'
+    return svg('<rect x="14" y="362" width="72" height="14" fill="#10162F"/>' + tiers + top, "0 10 100 372", 215, "কুতুব মিনারের রেখাচিত্র")
 
 
 def taj_svg():
@@ -49,7 +49,7 @@ def taj_svg():
              '<path d="M120 36 L120 20"/><path d="M93 95 A27 30 0 0 1 147 95"/>'
              '<rect x="10" y="50" width="16" height="87"/><rect x="214" y="50" width="16" height="87"/>'
              '<path d="M10 50 L18 38 L26 50"/><path d="M214 50 L222 38 L230 50"/>'
-             '<path d="M104 137 L104 112 A16 16 0 0 1 136 112 L136 137" fill="#1C1A16"/>'
+             '<path d="M104 137 L104 112 A16 16 0 0 1 136 112 L136 137" fill="#10162F"/>'
              '<circle cx="62" cy="80" r="11"/><circle cx="178" cy="80" r="11"/>')
     return svg(parts, "0 10 240 135", 100, "তাজমহলের রেখাচিত্র")
 
@@ -57,7 +57,7 @@ def taj_svg():
 def babri_svg():
     parts = ('<rect x="20" y="80" width="200" height="42"/><path d="M85 80 A35 40 0 0 1 155 80 Z"/>'
              '<path d="M30 80 A22 24 0 0 1 74 80 Z"/><path d="M166 80 A22 24 0 0 1 210 80 Z"/>'
-             '<path d="M120 40 L120 26"/><path d="M100 122 L100 100 A20 20 0 0 1 140 100 L140 122" fill="#1C1A16"/>')
+             '<path d="M120 40 L120 26"/><path d="M100 122 L100 100 A20 20 0 0 1 140 100 L140 122" fill="#10162F"/>')
     return svg(parts, "0 15 240 110", 90, "বাবরি মসজিদের রেখাচিত্র")
 
 
@@ -70,10 +70,10 @@ SECTIONS = [("০১", "উপমহাদেশে ইসলামের আব
 def cover():
     bn.PN[0] += 1
     led = "".join(f'<div class="li" data-ch="{c}" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px"></span></div>' for n, t, c in SECTIONS)
+                  f'<span class="nt" style="color:#4C5063;font-size:12px"></span></div>' for n, t, c in SECTIONS)
     return ('<section class="page cover"><div style="margin-top:150px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">GENERAL KNOWLEDGE BANGLADESH</div>'
             '<h1 style="font-size:56px;line-height:1.35;font-weight:700;margin:6px 0 4px">উপমহাদেশে <span class="acc">মুসলিম শাসন</span></h1>'
-            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#6F6A5C;margin-bottom:8px">Sub-continent Under Muslim Rule</div>'
+            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#4C5063;margin-bottom:8px">Sub-continent Under Muslim Rule</div>'
             '<div class="tagline" style="font-size:15px;max-width:540px">সিন্ধু বিজয় থেকে পলাশী আর বক্সার: সুলতান, সম্রাট, সুবাদার ও নবাবদের ইতিহাস। পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
             '<div class="ledger" style="margin-top:30px;max-width:580px">' + led + '</div></div>'
             f'<div class="footer"><span>{F}</span><span class="pn"></span></div></section>')
@@ -160,7 +160,7 @@ def c3a():
 """)
 
 
-ARR = '<svg width="11" height="16" viewBox="0 0 11 16" fill="none" stroke="#1C1A16" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1v12M1.5 9l4 4 4-4"/></svg>'
+ARR = '<svg width="11" height="16" viewBox="0 0 11 16" fill="none" stroke="#10162F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1v12M1.5 9l4 4 4-4"/></svg>'
 ARRD = ARR.replace('<path d="M5.5 1v12', '<path stroke-dasharray="2 3" d="M5.5 1v12')
 
 

@@ -80,7 +80,7 @@ export default async function ExamPage({ params }: Props) {
             <span className="segment segment-key" />
             <span className="segment segment-key segment-current" />
           </div>
-          <p className="small">Black: answered. Orange: marked for review. Empty: not answered. Underlined: the question you are on.</p>
+          <p className="small">Navy: answered. Yellow: marked for review. Empty: not answered. Outlined: the question you are on.</p>
         </div>
         <div className="between">
           <Link href="/" className="btn">

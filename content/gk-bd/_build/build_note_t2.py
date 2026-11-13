@@ -31,10 +31,10 @@ def cover():
             ("০২", "পরিব্রাজক: ইবনে বতুতা, মা-হুয়ান ও এক নজরের তালিকা", "৪"), ("০৩", "বাঙালি জাতির উৎপত্তি", "৫"),
             ("০৩", "আর্যদের আগমন ও জাতি গঠন", "৬"), ("০৪", "বইয়ের উত্তরমালা থেকে", "৭")]
     led = "".join(f'<div class="li" style="grid-template-columns:40px 1fr 70px"><span class="n">{n}</span><span class="nm">{t}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
+                  f'<span class="nt" style="color:#4C5063;font-size:12px">পৃষ্ঠা {p}</span></div>' for n, t, p in rows)
     return ('<section class="page cover" data-ch="0"><div style="margin-top:170px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">GENERAL KNOWLEDGE BANGLADESH</div>'
             '<h1 style="font-size:60px;line-height:1.35;font-weight:700;margin:6px 0 4px">বাংলার <span class="acc">ইতিহাস</span></h1>'
-            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#6F6A5C;margin-bottom:8px">History of Bangla</div>'
+            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#4C5063;margin-bottom:8px">History of Bangla</div>'
             '<div class="tagline" style="font-size:15px;max-width:520px">ইতিহাসের উপাদান, বিদেশি পরিব্রাজকদের বিবরণ আর বাঙালি জাতির উৎপত্তি: পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
             '<div class="ledger" style="margin-top:34px;max-width:560px">' + led + '</div></div>'
             f'<div class="footer"><span>{F}</span><span class="pn"></span></div></section>')
@@ -122,10 +122,10 @@ def pc():
 
 # ------------------------------------------------------------------ page 5: বাঙালি জাতির উৎপত্তি (1) with the diagram
 def tree_svg():
-    t = lambda x, y, s, size=25, w=400, fill="#1C1A16", anchor="start": (
+    t = lambda x, y, s, size=25, w=400, fill="#10162F", anchor="start": (
         f'<text x="{x}" y="{y}" font-size="{size}" font-weight="{w}" fill="{fill}" text-anchor="{anchor}" '
         f'font-family="Noto Sans Bengali, Outfit, sans-serif">{s}</text>')
-    ln = lambda x1, y1, x2, y2: f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#1C1A16" stroke-width="3" stroke-linecap="square"/>'
+    ln = lambda x1, y1, x2, y2: f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#10162F" stroke-width="3" stroke-linecap="square"/>'
     parts = [
         t(25, 118, "নেগ্রিটো"), t(318, 125, "অস্ট্রিক"), t(595, 108, "দ্রাবিড়"),
         t(738, 62, "ভোটচীনীয়/"), t(748, 115, "মঙ্গোলীয়"),
@@ -134,12 +134,12 @@ def tree_svg():
         ln(405, 265, 405, 322),
         t(70, 362, "প্রাক-আর্য নরগোষ্ঠী (অনার্য নরগোষ্ঠী)"), t(700, 352, "আর্য নরগোষ্ঠী"),
         ln(400, 385, 400, 440), ln(838, 385, 838, 440), ln(400, 440, 838, 440),
-        ln(568, 440, 568, 598), '<polygon points="556,596 580,596 568,624" fill="#1C1A16"/>',
+        ln(568, 440, 568, 598), '<polygon points="556,596 580,596 568,624" fill="#10162F"/>',
         ln(568, 528, 604, 528),
         t(610, 520, "আরবি, তুর্কি, ইরানি,", size=27), t(610, 580, "হাবশি, আফগান, মুগল", size=27),
-        t(468, 690, "বাঙালি জাতি", size=30, w=700, fill="#FF6B1A"),
+        t(468, 690, "বাঙালি জাতি", size=30, w=700, fill="#3A10E5"),
     ]
-    return ('<div style="border:2px solid #1C1A16;border-radius:8px;background:#FAF8F2;box-shadow:6px 6px 0 #1C1A16;padding:8px 10px 6px;margin:8px 8px 12px 0">'
+    return ('<div style="border:2px solid #10162F;border-radius:8px;background:#FFFFFF;box-shadow:-6px 6px 0 #10162F;padding:8px 10px 6px;margin:8px 0 12px 8px">'
             '<svg viewBox="0 0 960 720" width="100%" role="img" aria-label="বাঙালি জাতির উৎপত্তির ছক">' + "".join(parts) + '</svg></div>')
 
 

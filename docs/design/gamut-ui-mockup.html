@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Govt Job Practice: Gamut restyle preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens follow Codecademy Gamut's core theme (MIT): palette, spacing 4 to 96, radii 2/4/8/16/999,
+   1px and 2px borders, hard offset shadows that fall to the lower left, checker pattern.
+   Typefaces are free stand-ins: Hanken Grotesk (body), Courier Prime (accent), Noto Sans Bengali. */
+:root{
+  --navy:#10162F;--navy-900:#0A0D1C;--white:#fff;--beige:#FFF0E5;--yellow:#FFD300;--yellow-400:#CCA900;
+  --hyper:#3A10E5;--hyper-400:#5533FF;--green:#008A27;--red:#E91C11;
+  --text:var(--navy);--text-2:rgba(16,22,47,.75);--text-3:rgba(16,22,47,.63);
+  --bg:var(--white);--bg-primary:var(--beige);--bg-contrast:var(--white);
+  --bg-hover:rgba(16,22,47,.12);--bg-selected:rgba(16,22,47,.04);
+  --primary:var(--hyper);--primary-hover:var(--hyper-400);--on-primary:var(--white);
+  --accent-bg:var(--yellow);--accent-text:var(--navy);
+  --border:var(--navy);--border-2:rgba(16,22,47,.63);--border-3:rgba(16,22,47,.28);
+  --success:#008A27;--danger:#E91C11;--danger-hover:#BE1809;
+  --bg-success:#F5FFE3;--bg-error:#FBF1F0;--bg-warning:#FFFAE5;--bg-info:#F5FCFF;
+  --pill-bg:var(--navy);--pill-text:var(--yellow);
+  --board:#F3F1EE;
+  --sans:"Hanken Grotesk","Noto Sans Bengali",-apple-system,"Segoe UI",sans-serif;
+  --mono:"Courier Prime","Noto Sans Bengali","Courier New",monospace;
+  --bn:"Noto Sans Bengali","Hanken Grotesk",sans-serif;
+}
+:root[data-theme="dark"]{
+  --text:#fff;--text-2:rgba(255,255,255,.8);--text-3:rgba(255,255,255,.65);
+  --bg:var(--navy);--bg-primary:var(--navy-900);--bg-contrast:#000;
+  --bg-hover:rgba(255,255,255,.09);--bg-selected:rgba(255,255,255,.04);
+  --primary:var(--yellow);--primary-hover:var(--yellow-400);--on-primary:var(--navy);
+  --accent-bg:var(--yellow);--accent-text:var(--navy);
+  --border:#fff;--border-2:rgba(255,255,255,.65);--border-3:rgba(255,255,255,.2);
+  --success:#AEE938;--danger:#E85D7F;--danger-hover:#DC5879;
+  --bg-success:#151C07;--bg-error:#280503;--bg-warning:#211B00;--bg-info:#1D2340;
+  --pill-bg:#000;--pill-text:var(--yellow);
+  --board:#05070F;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--board);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+.bn{font-family:var(--bn)}
+.ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;flex:none}
+
+/* board chrome */
+.topbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:10px 16px;flex-wrap:wrap}
+.topbar b{font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+.jump{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.jump a{font-size:13px;color:var(--text);text-decoration:none;padding:4px 8px;border-radius:4px}
+.jump a:hover{background:var(--bg-hover)}
+.board{max-width:1280px;margin:0 auto;padding:24px 16px 96px;display:flex;flex-direction:column;gap:48px}
+.intro{max-width:760px;font-size:14px;color:var(--text-2)}
+.frame{display:flex;flex-direction:column;gap:12px;min-width:0}
+.frame-label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2)}
+.screen{background:var(--bg);border:1px solid var(--border);min-width:0}
+.phone{max-width:420px;width:100%}
+.pair{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.pair>.frame{flex:1 1 380px}
+.shell{padding:24px;display:flex;flex-direction:column;gap:24px}
+
+/* layout helpers */
+.stack{display:flex;flex-direction:column;gap:16px}.stack-sm{display:flex;flex-direction:column;gap:8px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.grid-2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
+.muted{color:var(--text-2)}.small{font-size:14px}
+.label{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2)}
+.rule{border:0;border-top:1px solid var(--border-3);margin:0}
+
+/* type */
+.title{font-size:34px;font-weight:700;line-height:1.2}
+.heading{font-size:22px;font-weight:700;line-height:1.2}
+.accent{font-family:var(--mono);font-weight:700;background:var(--accent-bg);color:var(--accent-text);padding:0 .22em;letter-spacing:-.01em}
+.bn-accent{font-family:var(--bn);font-weight:700;background:var(--accent-bg);color:var(--accent-text);padding:0 .22em}
+.link{color:var(--primary);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:4px 16px;font-size:16px;font-weight:700;border:2px solid transparent;border-radius:4px;background:none;text-decoration:none;white-space:nowrap;transition:background .15s ease-in,color .15s ease-in,border-color .15s ease-in,box-shadow .15s ease-in,transform .15s ease-in;position:relative}
+.btn:focus-visible,.opt:focus-visible,.set-num:focus-visible,.tab:focus-visible,.input:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.btn-fill{background:var(--primary);color:var(--on-primary)}
+.btn-fill:hover{background:var(--primary-hover)}
+.btn-fill:active{border-color:var(--border)}
+.btn-stroke{border-color:var(--primary);color:var(--primary)}
+.btn-stroke:hover{background:var(--bg-hover)}
+.btn-stroke:active{background:var(--primary);color:var(--on-primary)}
+.btn-secondary{border-color:var(--text);color:var(--text)}
+.btn-secondary:hover{background:var(--bg-hover)}
+.btn-text{color:var(--primary)}
+.btn-text:hover{background:var(--bg-hover)}
+.btn-danger{background:var(--danger);color:var(--bg)}
+.btn-danger:hover{background:var(--danger-hover)}
+.btn-cta{background:var(--accent-bg);color:var(--accent-text);font-family:var(--mono);font-weight:700;padding:12px 24px;height:auto;border:1px solid var(--text);box-shadow:-4px 4px 0 0 var(--text)}
+.btn-cta:hover{box-shadow:-8px 8px 0 0 var(--text);transform:translate(4px,-4px)}
+.btn-cta:active{box-shadow:none;transform:none}
+.btn-sm{height:32px;padding:4px 8px;font-size:14px}
+.btn-lg{height:56px;font-size:18px;padding:4px 24px}
+.btn-icon{width:40px;padding:0;color:var(--text)}
+.btn-icon:hover{background:var(--bg-hover)}
+.btn-icon.btn-sm{width:32px}
+.btn[disabled],.btn-off{background:var(--bg-hover);color:var(--text-3);border-color:transparent;cursor:not-allowed}
+
+/* cards */
+.card{background:var(--bg);border:1px solid var(--border);padding:16px}
+.card-beige{background:var(--bg-primary)}
+.card-yellow{background:var(--yellow);color:var(--navy);border-color:var(--navy)}
+.card-navy{background:var(--navy);color:#fff;border-color:var(--border)}
+.card-outline{box-shadow:-8px 8px 0 0 var(--bg),-8px 8px 0 1px var(--border)}
+.card-solid{box-shadow:-8px 8px 0 0 var(--text)}
+/* checker pattern as an offset shadow: 4px tile, 1px squares at (0,0) and (2,2) */
+.pattern{position:relative;margin-left:8px;margin-bottom:8px}
+.pattern::before{content:"";position:absolute;inset:0;transform:translate(-8px,8px);background:var(--text);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E") 0 0/4px 4px;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E") 0 0/4px 4px}
+.pattern>*{position:relative}
+.lift{border-radius:4px;transition:box-shadow .15s ease-in,transform .15s ease-in}
+.lift:hover{box-shadow:-8px 8px 0 0 var(--text);transform:translate(4px,-4px)}
+
+/* badge, tag, alert */
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:16px;font-family:var(--mono);font-size:14px;background:var(--text);color:var(--bg);white-space:nowrap}
+.badge-accent{background:var(--yellow);color:var(--navy)}
+.badge-stroke{background:none;color:var(--text);border:1px solid var(--border-2)}
+.badge-sm{height:16px;font-size:10px;padding:0 6px}
+.tag{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:4px;font-size:14px;border:1px solid var(--border);white-space:nowrap}
+.tag-ok{border-color:var(--success);color:var(--success);background:var(--bg-success)}
+.tag-bad{border-color:var(--danger);color:var(--danger);background:var(--bg-error)}
+.tag-quiet{border:0;background:var(--bg-hover)}
+.alert{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:2px;border:1px solid var(--border);font-size:14px}
+.alert-info{background:var(--bg-info)}.alert-ok{background:var(--bg-success)}.alert-warn{background:var(--bg-warning)}.alert-bad{background:var(--bg-error)}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:700}
+.input{width:100%;font:inherit;font-weight:400;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px 12px;min-height:44px}
+.input:hover{border-color:var(--primary)}
+.input:focus{box-shadow:inset 0 0 0 1px var(--primary);border-color:var(--primary);outline:0}
+select.input{appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 20px) 19px,calc(100% - 14px) 19px;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.toggle{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+.toggle input{position:absolute;opacity:0}
+.toggle i{width:36px;height:18px;border-radius:999px;background:var(--border-2);position:relative;transition:background .2s}
+.toggle i::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--bg);transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.toggle input:checked+i{background:var(--primary)}
+.toggle input:checked+i::after{transform:translateX(18px)}
+.toggle input:focus-visible+i{outline:3px solid var(--primary);outline-offset:2px}
+
+/* tabs */
+.tabs{display:flex;border-bottom:1px solid var(--text);overflow-x:auto}
+.tab{padding:8px 24px;font-size:16px;background:none;border:0;border-bottom:4px solid transparent;white-space:nowrap;color:var(--text);text-decoration:none}
+.tab:hover{background:var(--bg-selected)}
+.tab[aria-selected="true"]{font-weight:700;border-bottom-color:var(--primary)}
+.tab .badge{margin-left:6px}
+
+/* progress */
+.bar{height:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg-hover);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--primary)}
+.bar-lg{height:18px;border-radius:8px}
+.bar-yellow>i{background:var(--yellow)}
+
+/* app header */
+.appbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.brand{font-size:20px;font-weight:700}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:6px 10px;border-radius:4px;color:var(--text);text-decoration:none;font-size:15px}
+.nav a:hover{background:var(--bg-hover)}
+.nav a[aria-current]{font-weight:700;box-shadow:inset 0 -3px 0 var(--primary);border-radius:0}
+.bell{position:relative}
+.bell em{position:absolute;top:-2px;right:-2px;font-style:normal}
+
+/* home */
+.exam-card{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px 16px}
+.exam-card span.sub{display:block;color:var(--text-2);font-size:14px;font-weight:400}
+.exam-card[aria-pressed="true"]{background:var(--bg-primary);box-shadow:inset 0 0 0 1px var(--primary);border-color:var(--primary)}
+.set-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px}
+.set-num{height:44px;border:1px solid var(--border);border-radius:4px;background:var(--bg);font-family:var(--mono);font-size:15px;position:relative}
+.set-num:hover{background:var(--bg-hover)}
+.set-num[aria-pressed="true"]{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.set-num.done::after{content:"";position:absolute;right:4px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--success)}
+.streak-num{font-family:var(--mono);font-weight:700;font-size:64px;line-height:1}
+.days{display:flex;gap:6px}
+.day{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--mono);font-size:12px;font-weight:700}
+.day i{width:100%;height:10px;border:1px solid var(--navy);background:transparent}
+.day.on i{background:var(--navy)}
+.row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-3)}
+.row:last-child{border-bottom:0}
+.row .grow{flex:1;min-width:0}
+.rank{font-family:var(--mono);font-weight:700;width:28px}
+.row.me{background:var(--bg-selected);box-shadow:inset 3px 0 0 var(--primary);padding-left:8px}
+
+/* exam */
+.timer{display:inline-flex;align-items:center;gap:8px;background:var(--pill-bg);color:#fff;border-radius:999px;padding:4px 14px;font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.06em;border:1px solid var(--border)}
+.timer b{color:var(--pill-text);font-size:17px;letter-spacing:0;font-variant-numeric:tabular-nums}
+/* stopwatch hand sweeps anticlockwise, one turn every 4 seconds */
+.stopwatch{width:18px;height:18px}
+.stopwatch .hand{transform-origin:12px 14px;animation:tick 4s linear infinite}
+@keyframes tick{to{transform:rotate(-360deg)}}
+.palette{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:4px}
+.seg{height:14px;border:1px solid var(--border);border-radius:2px}
+.seg.ans{background:var(--text)}
+.seg.mark{background:var(--yellow);border-color:var(--navy)}
+.seg.cur{outline:2px solid var(--primary);outline-offset:2px}
+.q-text{font-size:20px;font-weight:700;line-height:1.35}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;font-size:16px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px 16px;transition:background .15s ease-in}
+button.opt:hover{background:var(--bg-hover)}
+.opt-letter{flex:none;display:grid;place-items:center;width:26px;height:26px;border:1px solid currentColor;border-radius:4px;font-family:var(--mono);font-weight:700;font-size:15px;line-height:1}
+.opt-text{padding-top:1px;flex:1}
+.opt[aria-pressed="true"]{border-color:var(--primary);box-shadow:inset 0 0 0 1px var(--primary);background:var(--bg-selected)}
+.opt[aria-pressed="true"] .opt-letter{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.opt-correct{border-color:var(--success);box-shadow:inset 0 0 0 1px var(--success);background:var(--bg-success)}
+.opt-correct .opt-letter{background:var(--success);color:var(--bg);border-color:var(--success)}
+.opt-wrong{border-color:var(--danger);box-shadow:inset 0 0 0 1px var(--danger);background:var(--bg-error)}
+.opt-wrong .opt-letter{background:var(--danger);color:var(--bg);border-color:var(--danger)}
+.opt-dim{color:var(--text-3);border-color:var(--border-3)}
+.opt .mark{font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.opt-correct .mark{color:var(--success)}.opt-wrong .mark{color:var(--danger)}
+.explain{border:1px solid var(--border);border-left:4px solid var(--primary);background:var(--bg-info);padding:12px 16px;border-radius:2px}
+.score{font-family:var(--mono);font-weight:700;font-size:64px;line-height:1}
+
+/* note viewer */
+.nv-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.nv-body{display:grid;grid-template-columns:112px minmax(0,1fr);background:var(--bg-primary)}
+.nv-thumbs{border-right:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.nv-thumb{aspect-ratio:210/297;border:1px solid var(--border-3);background:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--navy)}
+.nv-thumb.on{border:2px solid var(--primary)}
+.nv-stage{padding:24px 24px 32px;min-width:0}
+/* the note page is always light: it is a PDF page. It uses the note stylesheet's own look. */
+.note-page{background:#fff;color:#10162F;border:1px solid var(--border);box-shadow:-8px 8px 0 0 var(--text);padding:32px 36px;display:flex;flex-direction:column;gap:12px;font-family:var(--bn);font-size:13.5px;line-height:1.8;max-width:620px;margin:0 auto 8px}
+.note-page h3{font-size:24px;font-weight:700;line-height:1.4}
+.note-page h3 b{color:#3A10E5}
+.note-page h4{font-size:15.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+.note-page h4::before{content:"";width:9px;height:9px;background:#FFD300;box-shadow:inset 0 0 0 1.5px #10162F}
+.note-box{border:2px solid #10162F;border-radius:4px;background:#FFFAE5;box-shadow:-8px 8px 0 #FFD300;padding:10px 16px;margin:4px 0 12px 8px}
+.note-box span{display:block;font-size:11px;font-weight:700}
+.note-chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-weight:700;font-size:12px}
+.note-chain span{border:1px solid #10162F;border-radius:4px;padding:4px 10px}
+.note-chain span.hl{background:#FFD300;border-width:2px}
+.note-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#4C5063;margin-top:12px}
+mark{background:#FFD93D;color:inherit}
+
+/* table */
+.table{width:100%;border-collapse:collapse;font-size:15px}
+.table th{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--text-2);font-weight:700;padding:8px 12px;border-bottom:1px solid var(--text)}
+.table td{padding:10px 12px;border-bottom:1px solid var(--border-3);vertical-align:middle}
+.table tbody tr:nth-child(even){background:var(--bg-selected)}
+.table tbody tr:hover{background:var(--bg-hover)}
+.scroll-x{overflow-x:auto}
+
+@media(max-width:820px){
+  .grid-2{grid-template-columns:minmax(0,1fr)}
+  .nv-body{grid-template-columns:minmax(0,1fr)}.nv-thumbs{display:none}
+  .shell{padding:16px}.appbar{padding:12px 16px}
+  .title{font-size:26px}
+  .topbar{flex-wrap:nowrap;gap:8px;padding:8px 12px}.topbar b{display:none}
+  .jump{flex-wrap:nowrap;overflow-x:auto;min-width:0}
+  .nv-stage{padding:16px 12px 24px}.note-page{padding:20px 18px}
+  .palette{grid-template-columns:repeat(10,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<!-- lucide icons (ISC licence), used through lucide-react in the app -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="chev-l" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="chev-r" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+  <symbol id="download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+</svg>
+
+<header class="topbar">
+  <b>GAMUT RESTYLE PREVIEW</b>
+  <nav class="jump" aria-label="Screens">
+    <a href="#login">Login</a><a href="#home">Home</a><a href="#exam">Exam</a><a href="#review">Review</a><a href="#notes">Notes</a><a href="#admin">Admin</a><a href="#parts">Components</a>
+  </nav>
+  <button class="btn btn-secondary btn-sm" id="theme" type="button"><svg class="ico"><use id="theme-ico" href="#moon"/></svg><span id="theme-txt">Dark</span></button>
+</header>
+
+<main class="board">
+  <p class="intro">The Govt Job Practice site redrawn with Codecademy Gamut's tokens: navy, white, beige, yellow and hyper purple, 1px borders, 4px corners, and hard shadows that fall to the lower left. Fonts are free stand-ins (Hanken Grotesk, Courier Prime, Noto Sans Bengali). All content is placeholder. Use the button at the top right to switch between light and dark.</p>
+
+  <!-- 1 login + 3b exam phone -->
+  <div class="pair">
+    <section class="frame" id="login">
+      <p class="frame-label">1 Login</p>
+      <div class="screen phone"><div class="shell">
+        <h1 class="title">Practice <span class="accent">Studio</span></h1>
+        <p class="muted">Sign in to continue. Accounts are by invitation.</p>
+        <div class="pattern"><div class="card stack">
+          <label class="field">Email<input class="input" type="email" placeholder="you@example.com"></label>
+          <label class="field">Password<input class="input" type="password" placeholder="Your password"></label>
+          <button class="btn btn-fill" type="button">Sign in</button>
+        </div></div>
+        <p class="small muted">Have an invite code? <a class="link" href="#login">Create your account</a></p>
+      </div></div>
+    </section>
+
+    <section class="frame">
+      <p class="frame-label">3b Exam on a phone (Bangla question)</p>
+      <div class="screen phone"><div class="shell">
+        <div class="between"><p class="label">Question 4 of 20</p><span class="timer" role="timer" aria-label="Time left"><svg class="ico stopwatch" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4"/><circle cx="12" cy="14" r="8"/><path class="hand" d="M12 14V9.5"/></svg><b data-countdown>08:42</b></span></div>
+        <div class="palette" aria-label="Question palette">
+          <i class="seg ans"></i><i class="seg ans"></i><i class="seg mark"></i><i class="seg cur"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i>
+        </div>
+        <div class="pattern"><div class="card card-beige"><p class="q-text bn">বাংলাদেশের জাতীয় ফুল কোনটি?</p></div></div>
+        <div class="stack-sm" data-options>
+          <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">ক</span><span class="opt-text bn">গোলাপ</span></button>
+          <button class="opt" type="button" aria-pressed="true"><span class="opt-letter">খ</span><span class="opt-text bn">শাপলা</span></button>
+          <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">গ</span><span class="opt-text bn">জবা</span></button>
+          <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">ঘ</span><span class="opt-text bn">রজনীগন্ধা</span></button>
+        </div>
+        <div class="between">
+          <button class="btn btn-secondary btn-sm" type="button"><svg class="ico"><use href="#flag"/></svg>Mark</button>
+          <div class="wrap"><button class="btn btn-secondary btn-icon" type="button" aria-label="Previous question"><svg class="ico"><use href="#chev-l"/></svg></button><button class="btn btn-fill" type="button">Next<svg class="ico"><use href="#chev-r"/></svg></button></div>
+        </div>
+        <hr class="rule">
+        <div class="between"><button class="btn btn-stroke btn-sm" type="button">Submit exam</button><span class="small muted">3 answered, 1 marked</span></div>
+      </div></div>
+    </section>
+  </div>
+
+  <!-- 2 home -->
+  <section class="frame" id="home">
+    <p class="frame-label">2 Home</p>
+    <div class="screen">
+      <div class="appbar">
+        <span class="brand">Practice <span class="accent">Studio</span></span>
+        <nav class="nav" aria-label="Main"><a href="#home" aria-current="page">Practice</a><a href="#notes">Notes</a><a href="#review">History</a><a href="#home">Revision</a></nav>
+        <button class="btn btn-icon bell" type="button" aria-label="Notifications, 2 unread"><svg class="ico"><use href="#bell"/></svg><em class="badge badge-accent badge-sm">2</em></button>
+      </div>
+      <div class="shell"><div class="grid-2">
+        <div class="stack">
+          <div class="stack-sm"><h1 class="title">Topic <span class="accent">Practice</span></h1><p class="muted">Pick an exam, a topic and a set. Every set is 20 questions in 12 minutes.</p></div>
+          <div class="tabs" role="tablist" aria-label="Subject">
+            <button class="tab" role="tab" aria-selected="true" type="button">Bangla</button><button class="tab" role="tab" aria-selected="false" type="button">English</button><button class="tab" role="tab" aria-selected="false" type="button">Mathematics</button><button class="tab" role="tab" aria-selected="false" type="button">General Knowledge</button>
+          </div>
+          <div class="stack-sm"><p class="label">Exam</p>
+            <button class="exam-card lift" type="button" aria-pressed="true"><span><b>BCS Preliminary</b><span class="sub">4 topics ready, 20 questions, 12 min</span></span><span class="badge badge-stroke">-0.25</span></button>
+            <button class="exam-card lift" type="button" aria-pressed="false"><span><b>Bank Recruitment</b><span class="sub">2 topics ready, 20 questions, 12 min</span></span><span class="badge badge-stroke">-0.25</span></button>
+          </div>
+          <label class="field"><span class="label">Topic</span>
+            <select class="input bn"><option>বাংলা সাহিত্য: জাতি, ভাষা, লিপি ও যুগবিভাগ</option><option>আদি ও প্রাচীন যুগ: চর্যাপদ</option><option>মধ্যযুগ</option><option>আধুনিক যুগ</option></select></label>
+          <div class="stack-sm"><div class="between"><p class="label">Set</p><p class="small muted">Green dot: already taken</p></div>
+            <div class="set-grid">
+              <button class="set-num done" type="button" aria-pressed="false">1</button><button class="set-num done" type="button" aria-pressed="false">2</button><button class="set-num" type="button" aria-pressed="true">3</button><button class="set-num" type="button" aria-pressed="false">4</button><button class="set-num" type="button" aria-pressed="false">5</button><button class="set-num" type="button" aria-pressed="false">6</button><button class="set-num" type="button" aria-pressed="false">7</button><button class="set-num" type="button" aria-pressed="false">8</button><button class="set-num" type="button" aria-pressed="false">9</button><button class="set-num" type="button" aria-pressed="false">10</button>
+            </div></div>
+          <div class="wrap"><button class="btn btn-cta" type="button">Start exam</button><button class="btn btn-text" type="button">Read the note first</button></div>
+        </div>
+        <div class="stack">
+          <div class="card card-yellow card-solid stack-sm" style="margin-left:8px">
+            <div class="between"><p class="label" style="color:inherit">Daily streak</p><svg class="ico" aria-hidden="true"><use href="#flame"/></svg></div>
+            <div class="wrap" style="align-items:baseline"><span class="streak-num">12</span><span>days in a row</span></div>
+            <div class="days" aria-label="This week">
+              <span class="day on"><i></i>S</span><span class="day on"><i></i>S</span><span class="day on"><i></i>M</span><span class="day on"><i></i>T</span><span class="day on"><i></i>W</span><span class="day"><i></i>T</span><span class="day"><i></i>F</span>
+            </div>
+            <p class="small">One set today keeps it going.</p>
+          </div>
+          <div class="card stack-sm">
+            <div class="between"><h2 class="heading">Leaderboard</h2><span class="badge badge-stroke">This week</span></div>
+            <div>
+              <div class="row"><span class="rank">1</span><span class="grow">Tania Rahman</span><b>186.50</b></div>
+              <div class="row me"><span class="rank">2</span><span class="grow">Nabil <span class="badge badge-sm">You</span></span><b>171.25</b></div>
+              <div class="row"><span class="rank">3</span><span class="grow">Rafi Ahmed</span><b>160.00</b></div>
+              <div class="row"><span class="rank">4</span><span class="grow">Nusrat Jahan</span><b>142.75</b></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 3 exam -->
+  <section class="frame" id="exam">
+    <p class="frame-label">3 Exam screen (click an option)</p>
+    <div class="screen"><div class="shell">
+      <div class="between"><p class="label">BCS Preliminary, Set 3, Question 7 of 20</p><span class="timer" role="timer" aria-label="Time left"><svg class="ico stopwatch" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4"/><circle cx="12" cy="14" r="8"/><path class="hand" d="M12 14V9.5"/></svg><b data-countdown>08:42</b></span></div>
+      <div class="palette" aria-label="Question palette">
+        <i class="seg ans"></i><i class="seg ans"></i><i class="seg mark"></i><i class="seg ans"></i><i class="seg ans"></i><i class="seg"></i><i class="seg cur"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i>
+      </div>
+      <p class="small muted">Filled: answered. Yellow: marked for review. Outlined: the question you are on.</p>
+      <div class="grid-2" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+        <div class="pattern"><div class="card card-beige stack-sm"><p class="label">General Knowledge, History</p><p class="q-text">In which year did the Partition of Bengal take effect under Lord Curzon?</p></div></div>
+        <div class="stack">
+          <div class="stack-sm" data-options>
+            <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">A</span><span class="opt-text">1857</span></button>
+            <button class="opt" type="button" aria-pressed="true"><span class="opt-letter">B</span><span class="opt-text">1905</span></button>
+            <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">C</span><span class="opt-text">1911</span></button>
+            <button class="opt" type="button" aria-pressed="false"><span class="opt-letter">D</span><span class="opt-text">1947</span></button>
+          </div>
+          <div class="between">
+            <div class="wrap"><button class="btn btn-secondary btn-sm" type="button"><svg class="ico"><use href="#flag"/></svg>Mark for review</button><button class="btn btn-text btn-sm" type="button">Report question</button></div>
+            <div class="wrap"><button class="btn btn-secondary btn-icon" type="button" aria-label="Previous question"><svg class="ico"><use href="#chev-l"/></svg></button><button class="btn btn-fill" type="button">Next<svg class="ico"><use href="#chev-r"/></svg></button></div>
+          </div>
+          <hr class="rule">
+          <div class="between"><button class="btn btn-stroke" type="button">Submit exam</button><span class="small muted">5 of 20 answered, 1 marked</span></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 4 review -->
+  <section class="frame" id="review">
+    <p class="frame-label">4 Result and review</p>
+    <div class="screen"><div class="shell"><div class="grid-2" style="grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)">
+      <div class="stack">
+        <div class="pattern"><div class="card stack-sm">
+          <p class="label">Your result</p>
+          <div class="wrap" style="align-items:baseline"><span class="score">14.00</span><span class="muted">out of 20</span></div>
+          <div class="bar bar-lg bar-yellow"><i style="width:70%"></i></div>
+          <div class="wrap"><span class="tag tag-ok"><svg class="ico" style="width:14px;height:14px"><use href="#check"/></svg>15 right</span><span class="tag tag-bad"><svg class="ico" style="width:14px;height:14px"><use href="#x"/></svg>4 wrong, -1.00</span><span class="tag tag-quiet">1 skipped</span></div>
+          <p class="small muted">Time used: 11 min 05 s.</p>
+        </div></div>
+        <div class="card stack-sm">
+          <p class="label">Weak topics</p>
+          <div>
+            <div class="row"><span class="grow">Geography</span><span class="badge badge-stroke">50%</span></div>
+            <div class="row"><span class="grow">Current affairs</span><span class="badge badge-stroke">60%</span></div>
+            <div class="row"><span class="grow">History</span><span class="badge">90%</span></div>
+          </div>
+        </div>
+        <div class="wrap"><button class="btn btn-fill" type="button">Retry missed</button><button class="btn btn-secondary" type="button"><svg class="ico"><use href="#download"/></svg>Save report PDF</button></div>
+      </div>
+      <div class="stack">
+        <p class="label">Question 7, your pick was wrong</p>
+        <div class="card card-beige"><p class="q-text">What is the SI unit of force?</p></div>
+        <div class="stack-sm">
+          <div class="opt opt-dim"><span class="opt-letter">A</span><span class="opt-text">Joule</span></div>
+          <div class="opt opt-correct"><span class="opt-letter">B</span><span class="opt-text">Newton</span><span class="mark"><svg class="ico" style="width:16px;height:16px"><use href="#check"/></svg>Correct answer</span></div>
+          <div class="opt opt-wrong"><span class="opt-letter">C</span><span class="opt-text">Pascal</span><span class="mark"><svg class="ico" style="width:16px;height:16px"><use href="#x"/></svg>Your answer</span></div>
+          <div class="opt opt-dim"><span class="opt-letter">D</span><span class="opt-text">Watt</span></div>
+        </div>
+        <div class="explain stack-sm"><p class="label">Why, <a class="link" href="#notes">Notes, page 12</a></p><p class="small">One newton is the force that gives a 1 kg mass an acceleration of 1 m/s². Pascal is the unit of pressure.</p></div>
+        <div class="between"><span class="small muted">Something wrong with this question?</span><button class="btn btn-text btn-sm" type="button">Report question</button></div>
+      </div>
+    </div></div></div>
+  </section>
+
+  <!-- 5 notes -->
+  <section class="frame" id="notes">
+    <p class="frame-label">5 Note viewer (the page inside is the restyled PDF)</p>
+    <div class="screen">
+      <div class="nv-bar">
+        <div class="wrap"><button class="btn btn-icon btn-sm" type="button" aria-label="Back to notes"><svg class="ico"><use href="#chev-l"/></svg></button><h2 class="heading bn" style="font-size:18px">বাংলা সাহিত্য</h2></div>
+        <div class="wrap">
+          <span class="timer" aria-label="Page 3 of 10"><b>3 / 10</b></span>
+          <button class="btn btn-icon btn-sm" type="button" aria-label="Zoom out"><svg class="ico"><use href="#minus"/></svg></button>
+          <button class="btn btn-icon btn-sm" type="button" aria-label="Zoom in"><svg class="ico"><use href="#plus"/></svg></button>
+          <button class="btn btn-secondary btn-sm" type="button"><svg class="ico"><use href="#download"/></svg>Download</button>
+        </div>
+      </div>
+      <div class="bar" style="border-width:0 0 1px;border-radius:0;height:6px"><i style="width:30%"></i></div>
+      <div class="nv-body">
+        <div class="nv-thumbs" aria-hidden="true"><div class="nv-thumb">1</div><div class="nv-thumb">2</div><div class="nv-thumb on">3</div><div class="nv-thumb">4</div></div>
+        <div class="nv-stage">
+          <div class="note-page">
+            <h3>বাংলা ভাষার <b>উদ্ভব</b> ও বিকাশ</h3>
+            <h4>বাংলার আদিম ভাষা</h4>
+            <p>বাংলার আদিম অধিবাসীগণ প্রথম থেকেই বাংলায় কথা বলেননি। তাঁদের ভাষা ছিল অস্ট্রিক। <mark>আর্য ভাষা থেকে বিবর্তনের মাধ্যমে ক্রমে বাংলা ভাষার উৎপত্তি হয়েছে।</mark></p>
+            <div class="note-box"><span>ভাষা কাকে বলে</span>মনের ভাব প্রকাশের মাধ্যম ভাষা। ভাষার মূল উপাদান ধ্বনি।</div>
+            <h4>সংক্ষেপে বাংলার বংশধারা</h4>
+            <div class="note-chain"><span>ইন্দো-ইউরোপীয়</span>&rarr;<span>শতম</span>&rarr;<span>ভারতীয় আর্য</span>&rarr;<span>প্রাকৃত</span>&rarr;<span class="hl">বাংলা</span></div>
+            <div class="note-foot"><span>BANGLA LITERATURE - THE NOTE</span><span>3</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="nv-bar" style="border-top:1px solid var(--border);border-bottom:0">
+        <div class="wrap"><button class="btn btn-secondary btn-icon btn-sm" type="button" aria-label="Previous page"><svg class="ico"><use href="#chev-l"/></svg></button><button class="btn btn-secondary btn-icon btn-sm" type="button" aria-label="Next page"><svg class="ico"><use href="#chev-r"/></svg></button><span class="small muted">Resumes on page 3 next time</span></div>
+        <div class="wrap"><button class="btn btn-secondary btn-sm" type="button"><svg class="ico"><use href="#check"/></svg>Mark as done</button><button class="btn btn-fill btn-sm" type="button">Start exam</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 admin -->
+  <section class="frame" id="admin">
+    <p class="frame-label">6 Admin: students</p>
+    <div class="screen">
+      <div class="appbar"><span class="brand">Admin <span class="accent">Portal</span></span>
+        <button class="btn btn-icon bell" type="button" aria-label="Notifications, 2 unread"><svg class="ico"><use href="#bell"/></svg><em class="badge badge-accent badge-sm">2</em></button></div>
+      <div class="shell">
+        <div class="tabs" role="tablist" aria-label="Admin sections">
+          <button class="tab" role="tab" aria-selected="false" type="button">Exams</button><button class="tab" role="tab" aria-selected="false" type="button">Topics</button><button class="tab" role="tab" aria-selected="false" type="button">Questions<span class="badge badge-sm">1</span></button><button class="tab" role="tab" aria-selected="true" type="button">Students<span class="badge badge-accent badge-sm">2</span></button><button class="tab" role="tab" aria-selected="false" type="button">Settings</button>
+        </div>
+        <div class="alert alert-warn"><svg class="ico"><use href="#info"/></svg><p><b>2 students are waiting for approval.</b> They cannot open notes or exams until you approve them.</p></div>
+        <div class="scroll-x"><table class="table">
+          <thead><tr><th>Student</th><th>Invited by</th><th>Status</th><th>Sets taken</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><b>Rafi Ahmed</b></td><td>Tania</td><td><span class="tag tag-quiet">Pending</span></td><td>0</td><td><div class="wrap"><button class="btn btn-fill btn-sm" type="button">Approve</button><button class="btn btn-text btn-sm" type="button">Reject</button></div></td></tr>
+            <tr><td><b>Nusrat Jahan</b></td><td>Nabil</td><td><span class="tag tag-quiet">Pending</span></td><td>0</td><td><div class="wrap"><button class="btn btn-fill btn-sm" type="button">Approve</button><button class="btn btn-text btn-sm" type="button">Reject</button></div></td></tr>
+            <tr><td><b>Tania Rahman</b></td><td>Nabil</td><td><span class="tag tag-ok">Active</span></td><td>42</td><td><button class="btn btn-text btn-sm" type="button">Deactivate</button></td></tr>
+            <tr><td><b>Sajid Hasan</b></td><td>Nabil</td><td><span class="tag tag-bad">Inactive</span></td><td>7</td><td><button class="btn btn-text btn-sm" type="button">Activate</button></td></tr>
+          </tbody>
+        </table></div>
+        <label class="toggle"><input type="checkbox" checked><i></i>Share streaks on the leaderboard</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 components -->
+  <section class="frame" id="parts">
+    <p class="frame-label">7 Components</p>
+    <div class="screen"><div class="shell">
+      <div class="stack-sm"><p class="label">Buttons</p>
+        <div class="wrap"><button class="btn btn-fill" type="button">Fill</button><button class="btn btn-stroke" type="button">Stroke</button><button class="btn btn-secondary" type="button">Secondary</button><button class="btn btn-text" type="button">Text</button><button class="btn btn-danger" type="button">Danger</button><button class="btn btn-fill" type="button" disabled>Disabled</button><button class="btn btn-secondary btn-icon" type="button" aria-label="Next"><svg class="ico"><use href="#chev-r"/></svg></button></div>
+        <div class="wrap" style="padding:8px 0 8px 8px"><button class="btn btn-cta" type="button">Call to action</button><button class="btn btn-fill btn-sm" type="button">Small</button><button class="btn btn-fill btn-lg" type="button">Large</button></div></div>
+      <div class="stack-sm"><p class="label">Cards and shadows (hover the last one)</p>
+        <div class="pair" style="gap:24px;padding-left:8px">
+          <div class="card" style="flex:1 1 160px">Plain</div>
+          <div class="card card-outline" style="flex:1 1 160px">Outline shadow</div>
+          <div class="card card-solid card-beige" style="flex:1 1 160px">Solid shadow</div>
+          <div class="pattern" style="flex:1 1 160px;margin:0"><div class="card">Pattern shadow</div></div>
+          <div class="card lift" style="flex:1 1 160px">Lifts on hover</div>
+        </div></div>
+      <div class="stack-sm"><p class="label">Badges and tags</p>
+        <div class="wrap"><span class="badge">Primary</span><span class="badge badge-accent">Accent</span><span class="badge badge-stroke">Outline</span><span class="tag">Tag</span><span class="tag tag-ok">Active</span><span class="tag tag-bad">Inactive</span><span class="tag tag-quiet">Pending</span></div></div>
+      <div class="stack-sm"><p class="label">Alerts</p>
+        <div class="alert alert-info"><svg class="ico"><use href="#info"/></svg><p>The exam is submitted on its own when the clock reaches zero.</p></div>
+        <div class="alert alert-ok"><svg class="ico"><use href="#check"/></svg><p>Saved. Your streak is now 12 days.</p></div>
+        <div class="alert alert-bad"><svg class="ico"><use href="#x"/></svg><p>That invite code has already been used.</p></div></div>
+      <div class="stack-sm"><p class="label">Progress and titles</p>
+        <div class="bar"><i style="width:45%"></i></div>
+        <div class="bar bar-lg bar-yellow"><i style="width:70%"></i></div>
+        <h2 class="title">English title with one <span class="accent">Accent</span></h2>
+        <h2 class="title bn">বাংলা শিরোনামে একটি <span class="bn-accent">শব্দ</span></h2></div>
+    </div></div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme'),ico=document.getElementById('theme-ico'),txt=document.getElementById('theme-txt');
+  function set(t){root.setAttribute('data-theme',t);ico.setAttribute('href',t==='dark'?'#sun':'#moon');txt.textContent=t==='dark'?'Light':'Dark';}
+  var saved=null;try{saved=localStorage.getItem('gamut-mock-theme')}catch(e){}
+  set(saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  btn.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';set(t);try{localStorage.setItem('gamut-mock-theme',t)}catch(e){}});
+  // pressed-state groups: options, exam cards, set numbers, tabs
+  function group(sel,attr){document.querySelectorAll(sel).forEach(function(el){el.addEventListener('click',function(){
+    var box=el.parentElement;box.querySelectorAll(':scope > ['+attr+']').forEach(function(o){o.setAttribute(attr,'false')});el.setAttribute(attr,'true');});});}
+  // demo countdown
+  var left=8*60+42;setInterval(function(){left=left>0?left-1:8*60+42;var t=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');document.querySelectorAll('[data-countdown]').forEach(function(e){e.textContent=t})},1000);
+  group('[data-options] .opt','aria-pressed');group('.exam-card','aria-pressed');group('.set-num','aria-pressed');group('.tab','aria-selected');
+})();
+</script>
+</body>
+</html>

@@ -142,10 +142,10 @@ def parse_sources():
 def cover():
     bn.PN[0] += 1
     led = "".join(f'<div class="li" data-ch="{c}" style="grid-template-columns:40px 1fr 70px"><span class="n">{BN[k]}</span><span class="nm">{CH_TITLE_PLAIN[c]}</span>'
-                  f'<span class="nt" style="color:#6F6A5C;font-size:12px"></span></div>' for k, (c, _t, _g) in enumerate(CHAPTERS, start=1))
+                  f'<span class="nt" style="color:#4C5063;font-size:12px"></span></div>' for k, (c, _t, _g) in enumerate(CHAPTERS, start=1))
     return ('<section class="page cover"><div style="margin-top:130px"><div class="label" style="font-size:12px;font-family:Outfit,sans-serif;letter-spacing:.24em">GENERAL KNOWLEDGE INTERNATIONAL</div>'
             '<h1 style="font-size:50px;line-height:1.4;font-weight:700;margin:6px 0 4px">বিশ্বের <span class="acc">সাম্প্রতিক</span> ও চলমান ঘটনাপ্রবাহ - ১</h1>'
-            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#6F6A5C;margin-bottom:8px">Current Affairs of the World, Part 1</div>'
+            '<div style="font-family:Outfit,sans-serif;font-size:18px;color:#4C5063;margin-bottom:8px">Current Affairs of the World, Part 1</div>'
             '<div class="tagline" style="font-size:15px;max-width:560px">বিশ্বের নেতারা, যুদ্ধ আর কূটনীতি, বৈশ্বিক সূচক, আন্তর্জাতিক সংস্থা আর দিবসের প্রতিপাদ্য: পরীক্ষায় বসার আগে বইয়ের মতো পড়ে নিন।</div>'
             '<div class="ledger" style="margin-top:30px;max-width:600px">' + led + '</div></div>'
             f'<div class="footer"><span>{F}</span><span class="pn"></span></div></section>')

@@ -70,3 +70,36 @@ table.grid{width:100%;border-collapse:collapse;margin:6px 0 12px;table-layout:fi
 .two{display:grid;grid-template-columns:1fr 1fr;column-gap:18px}
 
 .cover .pn{display:none}
+
+/* ---------------------------------------------------------------- Gamut style (PLAN.md section 10)
+   The rules above set the layout and its box metrics (sizes, paddings, line heights). They are left as they were, so
+   page breaks stay where they are. The rules below set the look: colours, shadows, radii and the footer typeface. */
+/* The Latin typeface stays Outfit, the face the notes were paginated with. Swapping it (Hanken Grotesk was tried)
+   changes word widths, which moved content across pages in the English and GK International notes, and the
+   questions' page references and students' saved highlights depend on where the text sits. */
+@font-face{font-family:"Courier Prime";font-weight:700;src:url("fonts/courier-prime-latin-700-normal.woff2") format("woff2")}
+
+/* --orange keeps its name (every rule uses it) but now holds the Gamut accent, hyper purple. */
+:root{--bg:#FFFFFF;--ink:#10162F;--muted:#4C5063;--orange:#3A10E5;--card:#FFFFFF;--dark:#0A0D1C;
+  --dash:rgba(16,22,47,.28);--hair:rgba(16,22,47,.28);--chip:rgba(16,22,47,.04);--shadow-ink:#10162F;
+  --beige:#FFF0E5;--yellow:#FFD300;--pale-yellow:#FFFAE5;--pale-blue:#F5FCFF}
+
+.footer{font-family:"Courier Prime","Outfit",monospace;font-weight:700;letter-spacing:.14em}
+.footer .pn{font-family:"Courier Prime","Outfit",monospace;font-weight:700}
+
+h3::before{background:var(--yellow);box-shadow:inset 0 0 0 1.5px var(--ink)}
+h3.sub::before{background:var(--ink)}
+
+.sbox{border-radius:4px}
+.sbox.orange{border-color:var(--ink);background:var(--pale-yellow);box-shadow:-8px 8px 0 var(--yellow)}
+.sbox.ink{background:var(--beige);box-shadow:-8px 8px 0 var(--ink)}
+.sbox .label{color:var(--ink)}
+
+.card{border-radius:4px}
+.card.accent{border-color:var(--ink);background:var(--beige)}
+.callout{border-left-color:var(--orange);background:var(--pale-blue);border-radius:0 2px 2px 0}
+.callout.ink{background:var(--beige)}
+
+.grid th{background:var(--beige)}
+.chain .st,.vchain .st{border-radius:4px}
+.chain .st.hl,.vchain .st.hl{border-color:var(--ink);background:var(--yellow)}

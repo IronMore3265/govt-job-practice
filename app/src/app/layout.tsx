@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Doto, Noto_Sans_Bengali, Outfit } from "next/font/google";
+import { Courier_Prime, Hanken_Grotesk, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 
-// Fonts (PLAN.md section 10): Outfit for English text, Doto 900 for one accent word per English title,
-// Noto Sans Bengali for Bangla. The stack in globals.css is Outfit, "Noto Sans Bengali", sans-serif.
-const outfit = Outfit({
-  variable: "--font-outfit",
+// Fonts (PLAN.md section 10): Hanken Grotesk for English text, Courier Prime for labels, numbers and one accent word
+// per English title, Noto Sans Bengali for Bangla. The stack in globals.css is Hanken Grotesk, "Noto Sans Bengali", sans-serif.
+const sans = Hanken_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const doto = Doto({
-  variable: "--font-doto",
+const mono = Courier_Prime({
+  variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["900"],
+  weight: ["400", "700"],
 });
 
 const bengali = Noto_Sans_Bengali({
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#F2EFE8",
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${outfit.variable} ${doto.variable} ${bengali.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${bengali.variable}`}>
       <body>{children}</body>
     </html>
   );

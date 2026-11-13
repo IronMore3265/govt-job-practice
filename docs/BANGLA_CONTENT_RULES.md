@@ -20,12 +20,13 @@ no OCR). Book page N is PDF page N + 2. Read pages by rendering them (see "Readi
 
 - **Readable like a book, not question and answer.** The book is written as "প্র./উ." pairs and a list of past-exam
   MCQs. Turn each pair into prose, tables, short lists, callouts. Never copy the Q&A layout.
-- Style: RoboNuggets guide style (cream paper, ink borders, hard orange or black shadow boxes, orange square before each
-  heading). Bangla text in Noto Sans Bengali, numbers and the English footer in Outfit. No Doto for Bangla (Doto has no
-  Bengali letters). The accent word in a title is orange Noto Sans Bengali bold.
+- Style: the site's Gamut style (PLAN.md section 10), set by `content/bangla/_build/guide.css`: white paper, navy ink
+  and borders, boxes with a hard yellow or navy shadow to the lower left, a yellow square before each heading. Bangla
+  text in Noto Sans Bengali, Latin text and numbers in Outfit, the English footer in Courier Prime. The accent word in a
+  title is purple Noto Sans Bengali bold. Colours inside a diagram come from `content/bangla/_build/theme.py`.
 - Bangla text must never get `letter-spacing` (it breaks conjunct letters). English labels only in the footer.
 - No em dashes anywhere. Use commas, colons or parentheses.
-- Real text PDF (selectable), fonts embedded (only Outfit and Noto Sans Bengali), well under 10 MB. Page content must end
+- Real text PDF (selectable), fonts embedded (only Outfit, Noto Sans Bengali and Courier Prime), well under 10 MB. Page content must end
   above y = 1070 px (the build script prints each page's bottom).
 - Facts come from the book. Keep the book's own numbers, names and wording of definitions. Where scholars disagree
   (Shahidullah, Grierson, Sunitikumar and so on) show every view side by side in a table.

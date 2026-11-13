@@ -12,17 +12,17 @@ def panchapandab_svg():
     ys = [20, 62, 104, 146, 188]
     boxes = ""
     for n, y in zip(names, ys):
-        boxes += (f'<line x1="150" y1="{y}" x2="196" y2="{y}" stroke="#1C1A16" stroke-width="2"/>'
-                  f'<path d="M190 {y - 5} L198 {y} L190 {y + 5} Z" fill="#1C1A16"/>'
-                  f'<rect x="200" y="{y - 15}" width="170" height="30" fill="#FAF8F2" stroke="#1C1A16" stroke-width="1.6"/>'
-                  f'<text x="285" y="{y + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1A16">{n}</text>')
+        boxes += (f'<line x1="150" y1="{y}" x2="196" y2="{y}" stroke="#10162F" stroke-width="2"/>'
+                  f'<path d="M190 {y - 5} L198 {y} L190 {y + 5} Z" fill="#10162F"/>'
+                  f'<rect x="200" y="{y - 15}" width="170" height="30" fill="#FFFFFF" stroke="#10162F" stroke-width="1.6"/>'
+                  f'<text x="285" y="{y + 5}" text-anchor="middle" font-size="14" font-weight="700" fill="#10162F">{n}</text>')
     return ('<svg viewBox="0 0 400 210" width="400" height="210" style="display:block;margin:8px auto 10px;font-family:\'Noto Sans Bengali\',sans-serif">'
-            '<rect x="20" y="62" width="46" height="84" fill="#FAF8F2" stroke="#1C1A16" stroke-width="1.6"/>'
-            '<text transform="translate(50 104) rotate(90)" text-anchor="middle" font-size="15" font-weight="700" fill="#FF6B1A">পঞ্চপাণ্ডব</text>'
-            '<line x1="66" y1="104" x2="112" y2="104" stroke="#1C1A16" stroke-width="2"/>'
-            '<path d="M104 99 L112 104 L104 109 Z" fill="#1C1A16"/>'
-            '<line x1="150" y1="20" x2="150" y2="188" stroke="#1C1A16" stroke-width="2"/>'
-            '<line x1="112" y1="104" x2="150" y2="104" stroke="#1C1A16" stroke-width="2"/>' + boxes + '</svg>')
+            '<rect x="20" y="62" width="46" height="84" fill="#FFFFFF" stroke="#10162F" stroke-width="1.6"/>'
+            '<text transform="translate(50 104) rotate(90)" text-anchor="middle" font-size="15" font-weight="700" fill="#3A10E5">পঞ্চপাণ্ডব</text>'
+            '<line x1="66" y1="104" x2="112" y2="104" stroke="#10162F" stroke-width="2"/>'
+            '<path d="M104 99 L112 104 L104 109 Z" fill="#10162F"/>'
+            '<line x1="150" y1="20" x2="150" y2="188" stroke="#10162F" stroke-width="2"/>'
+            '<line x1="112" y1="104" x2="150" y2="104" stroke="#10162F" stroke-width="2"/>' + boxes + '</svg>')
 
 
 def p_travel():
